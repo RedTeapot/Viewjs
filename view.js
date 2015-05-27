@@ -483,7 +483,23 @@
 				
 				if("" != location.hash){
 					var targetViewId = location.hash.replace(/^#/i, "");
-					if("true" == keep){
+					
+					var directAccessable = false;
+					if("true" == keep){/** 如果设定全部可以直接访问 */
+						/** 判定视图是否可以直接访问 */
+						if("false" == View.ofId(targetViewId).getDomElement().getAttribute("data-view-direct-accessable"))
+							directAccessable = false;
+						else
+							directAccessable = true;
+					}else{
+						/** 判定视图是否可以直接访问 */
+						if("true" == View.ofId(targetViewId).getDomElement().getAttribute("data-view-direct-accessable"))
+							directAccessable = true;
+						else
+							directAccessable = false;
+					}
+					
+					if(directAccessable){
 						if(historyPushPopSupported){
 							var state = {viewId: targetViewId, timestamp: new Date().getTime()};
 							history.pushState(state, "", "#" + targetViewId);/* browser support */
