@@ -536,9 +536,11 @@
 		
 		/** 默认页面的监听器触发 */
 		var activeView = View.getActiveView();
-		activeView.getEnterListeners().forEach(function(enterCallback){/* callbacks */
-			enterCallback.call(activeView.getDomElement(), View.SWITCHTYPE_VIEWSWITCH);
-		});
+		var defaultView = View.getDefaultView();
+		if(activeView == defaultView)
+			activeView.getEnterListeners().forEach(function(enterCallback){/* callbacks */
+				enterCallback.call(activeView.getDomElement(), View.SWITCHTYPE_VIEWSWITCH);
+			});
 	});
 	
 	return View;
