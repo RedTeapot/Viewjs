@@ -30,6 +30,9 @@
 			throw new Error("View of id: " + id + " does not exist(No element matching pattern: '#" + id + "[data-view=true]' found)!");
 		}
 		
+		/** 上下文，用于存储视图相关的数据等 */
+		var context = {};
+		
 		/** 当前视图由活动视图变为非活动视图时执行的回调方法 */
 		var leaveCallbacks = [];
 		/** 当前视图变为活动视图时执行的回调方法 */
@@ -67,6 +70,20 @@
 		 */
 		this.getDomElement = function(){
 			return document.querySelector("#" + id);
+		};
+		
+		/**
+		 * 获取视图上下文
+		 */
+		this.getContext = function(){
+			return context;
+		};
+		
+		/**
+		 * 清除视图上下文
+		 */
+		this.clearContext = function(){
+			context = {};
 		};
 		
 		/**
