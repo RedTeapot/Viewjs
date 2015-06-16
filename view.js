@@ -196,6 +196,8 @@
 	
 	/** 通过文档扫描得出的配置的视图集合 */
 	var viewInstances = [];
+	/** 监听视图变化的监听器集合 */
+	var viewChangeListeners = [];
 	
 	/* history的最近一次状态 */
 	View.currentState = null;
@@ -216,6 +218,29 @@
 		viewInstances.push(instance);
 		
 		return instance;
+	};
+	
+	/**
+	 * 添加视图切换监听器
+	 * @param listener 监听器
+	 */
+	View.addChangeListener = function(listener){
+		if(viewChangeListeners.indexOf(listener) != -1)
+			return;
+		
+		viewChangeListeners.push(listener);
+	};
+	
+	/**
+	 * 移除视图切换监听器
+	 * @param listener 监听器
+	 */
+	View.removeChangeListener = function(listener){
+		var index = viewChangeListeners.indexOf(listener);
+		if(index == -1)
+			return;
+		
+		viewChangeListeners.splice(index, 1);
 	};
 	
 	/**
@@ -292,6 +317,11 @@
 				});
 			});
 		}
+		
+		/** 触发切换监听器 */
+		viewChangeListeners.forEach(function(listener){
+			listener(currentView, targetView, type);
+		});
 	};
 	
 	/**
