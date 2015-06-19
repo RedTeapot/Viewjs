@@ -196,8 +196,10 @@
 	
 	/** 通过文档扫描得出的配置的视图集合 */
 	var viewInstances = [];
+	
 	/** 监听视图变化的监听器集合 */
-	var viewChangeListeners = [];
+	var viewChangeListeners_preset = [];/** 视图切换前触发 */
+	var viewChangeListeners_postset = [];/** 视图切换后触发 */
 	
 	/* history的最近一次状态 */
 	View.currentState = null;
@@ -223,24 +225,43 @@
 	/**
 	 * 添加视图切换监听器
 	 * @param listener 监听器
+	 * @param preset 是否在视图切换前触发
 	 */
-	View.addChangeListener = function(listener){
-		if(viewChangeListeners.indexOf(listener) != -1)
-			return;
-		
-		viewChangeListeners.push(listener);
+	View.addChangeListener = function(listener, preset){
+		if(preset)
+			if(viewChangeListeners_preset.indexOf(listener) != -1)
+				return;
+			else
+				viewChangeListeners_preset.push(listener);
+		else
+			if(viewChangeListeners_postset.indexOf(listener) != -1)
+				return;
+			else
+				viewChangeListeners_postset.push(listener);
 	};
 	
 	/**
 	 * 移除视图切换监听器
 	 * @param listener 监听器
+	 * @param preset 是否在视图切换前触发
 	 */
-	View.removeChangeListener = function(listener){
-		var index = viewChangeListeners.indexOf(listener);
-		if(index == -1)
-			return;
-		
-		viewChangeListeners.splice(index, 1);
+	View.removeChangeListener = function(listener, preset){
+		var index;
+		if(preset){
+			index = viewChangeListeners_preset.indexOf(listener);
+			
+			if(viewChangeListeners_preset.indexOf(listener) != -1)
+				return;
+			else
+				viewChangeListeners_preset.splice(index, 1);
+		}else{
+			index = viewChangeListeners_postset.indexOf(listener);
+			
+			if(viewChangeListeners_postset.indexOf(listener) != -1)
+				return;
+			else
+				viewChangeListeners_postset.splice(index, 1);
+		}
 	};
 	
 	/**
@@ -288,6 +309,12 @@
 		if(currentView.getId().toLowerCase() == targetViewId.toLowerCase())
 			return;
 		
+		/** 触发前置切换监听器 */
+		viewChangeListeners_preset.forEach(function(listener){
+			console.log("triggering preset view change listeners...");
+			listener(currentView, targetView, type);
+		});
+		
 		/* 目标视图 */
 		var targetView = View.ofId(targetViewId);
 		type = (type.toLowerCase() == View.SWITCHTYPE_HISTORYFORWARD? View.SWITCHTYPE_HISTORYFORWARD: (
@@ -318,8 +345,9 @@
 			});
 		}
 		
-		/** 触发切换监听器 */
-		viewChangeListeners.forEach(function(listener){
+		/** 触发后置切换监听器 */
+		viewChangeListeners_postset.forEach(function(listener){
+			console.log("triggering postset view change listeners...");
 			listener(currentView, targetView, type);
 		});
 	};
@@ -429,6 +457,7 @@
 			 * 		取值：true 所在元素是默认视图
 			 */
 			(function(){
+				/** 查找配置的默认视图 */
 				var defaultViewObj = null;
 				/* 查找配置的第一个视图 */
 				var defaultViewObjs = document.querySelectorAll("*[data-view-default=true][data-view=true]");
@@ -446,7 +475,20 @@
 					for(var i = 1; i < defaultViewObjs.length; i++)
 						defaultViewObjs[i].removeAttribute("data-view-default");
 				}
-				defaultViewObj.classList.add("active");
+				
+				// var targetViewObj = defaultViewObj;
+				
+				// /** 确定地址栏中是否制定了目标视图 */
+				// var specifiedViewId = location.hash.replace(/^#/, "");
+				// if("" != specifiedViewId.trim()){
+				// 	try{
+				// 		targetViewObj = View.ofId(specifiedViewId).getDomElement();
+				// 	}catch(e){
+				// 		console.error("Fail to load specified view: " + specifiedViewId, e);
+				// 	}
+				// }
+				
+				// targetViewObj.classList.add("active");
 			})();
 			
 			/**
@@ -531,16 +573,35 @@
 				if("" != location.hash){
 					var targetViewId = location.hash.replace(/^#/i, "");
 					
+					/** 检测目标视图是否可以直接访问 */
+					var targetView;
+					try{
+						targetView = View.ofId(targetViewId);
+					}catch(e){
+						console.error("Fail to show up specified view: " + targetViewId, e);
+						
+						/** 保持地址栏的一致性 */
+						location.hash = "";
+						if(historyPushPopSupported){
+							var state = null;
+							history.pushState(state, "", "");/* browser support */
+						}
+						
+						/** 呈现默认视图 */
+						View.getDefaultView().getDomElement().classList.add("active");
+						return;
+					}
+					
 					var directAccessable = false;
 					if("true" == keep){/** 如果设定全部可以直接访问 */
 						/** 判定视图是否可以直接访问 */
-						if("false" == View.ofId(targetViewId).getDomElement().getAttribute("data-view-direct-accessable"))
+						if("false" == targetView.getDomElement().getAttribute("data-view-direct-accessable"))
 							directAccessable = false;
 						else
 							directAccessable = true;
 					}else{
 						/** 判定视图是否可以直接访问 */
-						if("true" == View.ofId(targetViewId).getDomElement().getAttribute("data-view-direct-accessable"))
+						if("true" == targetView.getDomElement().getAttribute("data-view-direct-accessable"))
 							directAccessable = true;
 						else
 							directAccessable = false;
@@ -550,12 +611,11 @@
 						if(historyPushPopSupported){
 							var state = {viewId: targetViewId, timestamp: new Date().getTime()};
 							history.pushState(state, "", "#" + targetViewId);/* browser support */
-							
-							console.log("pushed state by initializer", state);
 						}
 						
 						/** 呈现指定视图 */
-						View.switchView(targetViewId, View.SWITCHTYPE_VIEWSWITCH, false);
+						console.log("presenting specified view: " + targetViewId);
+						targetView.getDomElement().classList.add("active");
 					}else{
 						/** 保持地址栏的一致性 */
 						location.hash = "";
@@ -563,13 +623,17 @@
 						if(historyPushPopSupported){
 							var state = null;
 							history.pushState(state, "", "");/* browser support */
-							
-							console.log("pushed state by initializer", state);
 						}
 						
 						/** 呈现默认视图 */
-						View.switchView(View.getDefaultView().getId(), View.SWITCHTYPE_VIEWSWITCH, false);
+						console.warn("specified view: " + targetViewId + " is not permited to access directly!");
+						View.getDefaultView().getDomElement().classList.add("active");
 					}
+				}else{
+					var defaultView = View.getDefaultView();
+					
+					console.log("no view specified, showing up default view: " + defaultView.getId());
+					defaultView.getDomElement().classList.add("active");
 				}
 			})();
 			
@@ -581,13 +645,11 @@
 	document.addEventListener("DOMContentLoaded", function(){
 		Initializer.init();
 		
-		/** 默认页面的监听器触发 */
+		/** 页面的监听器触发 */
 		var activeView = View.getActiveView();
-		var defaultView = View.getDefaultView();
-		if(activeView == defaultView)
-			activeView.getEnterListeners().forEach(function(enterCallback){/* callbacks */
-				enterCallback.call(activeView.getDomElement(), View.SWITCHTYPE_VIEWSWITCH);
-			});
+		activeView.getEnterListeners().forEach(function(enterCallback){/* callbacks */
+			enterCallback.call(activeView.getDomElement(), View.SWITCHTYPE_VIEWSWITCH);
+		});
 	});
 	
 	return View;
