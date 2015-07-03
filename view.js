@@ -247,7 +247,7 @@
 				var fallbackViewId = this.getDomElement().getAttribute("data-view-fallback");
 				/** 判断是否配置且配置的视图是否存在 */
 				if(null == fallbackViewId || !View.isExisting(fallbackViewId)){
-					console.warn("View: " + this.getId() + " is not permited to access directly, and no available fallback configuration found, thus returning the default view");
+					console.warn("View: " + this.getId() + " is not permited to access directly, and no fallback configuration found, thus returning the default view");
 					return View.getDefaultView();
 				}else{
 					view = View.ofId(fallbackViewId);
@@ -517,11 +517,7 @@
 		}
 		
 		/* 视图切换 */
-		if(targetView){
-			View.switchView(targetView.getId(), type);
-			/** 状态同步（因为最终要呈现的视图可能与地址栏不一致） */
-			replaceViewState(targetView.getId());
-		}
+		targetView && View.switchView(targetView.getId(), type);
 	};
 	
 	var init = function(){
@@ -651,7 +647,7 @@
 			
 			if(null != targetView){
 				if(historyPushPopSupported){
-					pushViewState(targetView.getId());
+					replaceViewState(targetView.getId());
 				}else
 					location.hash = targetView.getId();/** 保持地址栏的一致性 */
 				
