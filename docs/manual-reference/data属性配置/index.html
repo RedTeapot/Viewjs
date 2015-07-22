@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset = "UTF-8"/>
+		
+		<title>data属性配置参考手册</title>
+		
+		<link rel = "stylesheet" href = "css/index.css"/>
+	</head>
+	<body>
+		<header>data属性配置参考手册</header>
+		<section class = "overview">
+			data属性是HTML5新增的，供应用程序定义自己的属性前缀，如：data-abc，data-nav等。
+			View.js提供了如下几个配置：
+			<ul>
+				<li><a href = "#data-view">data-view</a></li>
+				<li><a href = "#data-view-default">data-view-default</a></li>
+				<li><a href = "#data-view-rel">data-view-rel</a></li>
+				<li><a href = "#data-view-rel-disabled">data-view-rel-disabled</a></li>
+				<li><a href = "#data-view-directly-accessible">data-view-directly-accessible</a></li>
+				<li><a href = "#data-view-fallback">data-view-fallback</a></li>
+			</ul>
+		</section>
+		<section class = "detail">
+			<div id = "data-view" class = "item">
+				<div class = "name">data-view</div>
+				<div class = "description">
+				用于指明对应的DOM节点是一个视图
+				</div>
+				<div class = "values">true, false</div>
+				<div class = "note">无</div>
+				<div class = "example">
+					&lt;div data-view = "true"&gt;...&lt;/div&gt;
+				</div>
+				<div class = "available-nodes">HTMLElement("div")、HTMLElement("section")等</div>
+			</div>
+			<div id = "data-view-default" class = "item">
+				<div class = "name">data-view-default</div>
+				<div class = "description">
+				用于指明对应的视图是一个默认视图
+				</div>
+				<div class = "values">true, false</div>
+				<div class = "note">
+				同一html源文件中，最多只能有一个视图指定此属性并赋值为true
+				</div>
+				<div class = "example">
+					&lt;div data-view = "true" data-view-default = "true"&gt;...&lt;/div&gt;
+				</div>
+				<div class = "available-nodes">HTMLElement("div")、HTMLElement("section")等</div>
+			</div>
+			<div id = "data-view-rel" class = "item">
+				<div class = "name">data-view-rel</div>
+				<div class = "description">
+				用于定义元素点击（触摸）后要定向到的视图
+				</div>
+				<div class = "values">
+				<ul>
+					<li>[目标视图ID（不包含字符：“#”）]：定向到的目标视图的id</li>
+					<li>:back：定向到浏览器回退一次后对应的视图</li>
+					<li>:forward：定向到浏览器前进一次后对应的视图</li>
+				</ul>
+				</div>
+				<div class = "note">
+				无
+				</div>
+				<div class = "example">
+					&lt;a data-view-rel = "my-bill"&gt;我的账单&lt;/a&gt;
+				</div>
+				<div class = "available-nodes">HTMLElement("div")、HTMLElement("section")等</div>
+			</div>
+			<div id = "data-view-rel-disabled" class = "item">
+				<div class = "name">data-view-rel-disabled</div>
+				<div class = "description">
+				禁用元素点击（触摸）时的视图定向功能
+				</div>
+				<div class = "values">true, false</div>
+				<div class = "note">
+				无
+				</div>
+				<div class = "example">
+					&lt;a data-view-rel = "my-bill" data-view-rel-disabled = "true"&gt;我的账单&lt;/a&gt;
+				</div>
+				<div class = "available-nodes">HTMLElement("div")、HTMLElement("section")等</div>
+			</div>
+			<div id = "data-view-directly-accessible" class = "item">
+				<div class = "name">data-view-directly-accessible</div>
+				<div class = "description">
+				定义对应的视图是否可以通过地址栏hash直接访问
+				</div>
+				<div class = "values">true, false</div>
+				<div class = "note">
+				此属性可同时配置于html节点和视图节点上。如果同时配置，则视图节点的优先级更高
+				</div>
+				<div class = "example">
+					&lt;html data-view-directly-accessible = "false"&gt;
+						&lt;div data-view = "true" data-view-directly-accessible = "true"&gt;...&lt;/div&gt;
+					/html&gt;
+				</div>
+				<div class = "available-nodes">HTMLElement("div")、HTMLElement("section")等</div>
+			</div>
+			<div id = "data-view-fallback" class = "item">
+				<div class = "name">data-view-fallback</div>
+				<div class = "description">
+				定义视图不能直接访问时需要呈现的视图ID
+				</div>
+				<div class = "values">
+				[目标视图ID（不包含字符：“#”）]：视图不能直接访问时需要呈现的视图ID
+				</div>
+				<div class = "note">
+				对于不可以直接访问的特定视图，如果没有配置回退视图则呈现默认视图；
+				如果配置了回退视图且回退视图可以直接访问，则呈现回退视图；
+				如果配置的回退视图也不支持直接访问，则呈现默认视图。亦即，回退视图也支持定义回退视图
+				</div>
+				<div class = "example">
+					&lt;html data-view-directly-accessible = "false"&gt;
+						&lt;div data-view = "true" data-view-directly-accessible = "true"&gt;...&lt;/div&gt;
+					/html&gt;
+				</div>
+				<div class = "available-nodes">HTMLElement("div")、HTMLElement("section")等</div>
+			</div>
+		</section>
+	</body>
+</html>

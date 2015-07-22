@@ -1,0 +1,83 @@
+@charset "utf-8";
+
+html{
+	margin: 0;
+	padding: 0;
+	font-family: "Microsoft Yahei", sans-serif;
+	font-size: 100px;
+	
+	background: #CCCCCC;
+}
+
+body{
+	margin: 0 auto;
+	padding: 10px 5px;
+	font-size: 0.12rem;
+	
+	width: 80%;
+	min-height: 100%;
+	background: #FCFCFC;
+	border-radius: 3px;
+}
+
+a{
+	text-decoration: none;
+	color: rgb(68, 190, 172);
+}
+a:hover{
+	text-decoration: underline;
+}
+
+header{
+	font-weight: bold;
+	font-size: 0.16rem;
+	height: 0.5rem;
+	line-height: 0.5rem;
+	border-bottom: solid 1px #CCCCCC;
+}
+
+.overview:before{
+	content: "概述";
+	display: block;
+	font-size: 0.14rem;
+	font-weight: bold;
+	height: 0.3rem;
+	line-height: 0.3rem;
+}
+.detail{
+	border-top: solid 1px #EEEEEE;
+}
+.detail .item{
+	margin-top: 0.1rem;
+	padding: 0.05rem;
+}
+.detail .item:nth-child(even){
+	background: #EEEEEE;
+}
+.detail .item:hover{
+	background: #EEEEEE;
+}
+.detail .item:before{
+	content: attr(id);
+	font-weight: bold;
+	font-size: 0.14rem;
+	display: block;
+}
+.detail .item .name:before{
+	content: "名称：";
+}
+.detail .item .description:before{
+	content: "描述：";
+}
+.detail .item .values:before{
+	content: "取值：";
+}
+.detail .item .note:before{
+	content: "说明：";
+}
+.detail .item .example:before{
+	content: "样例：";
+}
+.detail .item .available-nodes:before{
+	content: "支持结点：";
+}
