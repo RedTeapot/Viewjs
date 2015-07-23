@@ -518,6 +518,13 @@
 		
 		/* 视图切换 */
 		targetView && View.switchView(targetView.getId(), type);
+		/** 保持地址栏的一致性 */
+		if(null != targetView){
+			if(historyPushPopSupported){
+				replaceViewState(targetView.getId());
+			}else
+				location.hash = targetView.getId();
+		}
 	};
 	
 	var init = function(){
@@ -646,10 +653,11 @@
 				targetView = View.ofId(targetViewId).getFallbackView();
 			
 			if(null != targetView){
+				/** 保持地址栏的一致性 */
 				if(historyPushPopSupported){
 					replaceViewState(targetView.getId());
 				}else
-					location.hash = targetView.getId();/** 保持地址栏的一致性 */
+					location.hash = targetView.getId();
 				
 				targetView.getDomElement().classList.add("active");
 			}
