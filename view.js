@@ -672,7 +672,10 @@
 		
 		/** 页面的监听器触发 */
 		var activeView = View.getActiveView();
-		activeView && activeView.fire("enter", View.SWITCHTYPE_VIEWSWITCH);
+		if(activeView){
+			activeView.fire("enter", View.SWITCHTYPE_VIEWSWITCH);
+			activeView.fire("ready", View.SWITCHTYPE_VIEWSWITCH);
+		}
 	});
 	
 	return View;
