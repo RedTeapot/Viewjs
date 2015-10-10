@@ -1,6 +1,24 @@
+/**
+ * 事件触发顺序：
+ * 1. View.beforechange
+ * 2. view.ready
+ * 3. view.enter
+ * 4. View.afterchange
+ */
 ;window.View = (function(){
 	var historyPushPopSupported = ("pushState" in history) && (typeof history.pushState == "function");
 	console.log("history.pushState is " + (historyPushPopSupported? "": "not ") + "supported");
+	
+	/**
+	 * 准备就绪的视图ID列表
+	 * 
+	 * “准备就绪”的定义：
+	 * 1. 页面DOM加载完毕
+	 * 2. 视图已经呈现过
+	 * 
+	 * 视图的“准备就绪”事件只会触发一次，即未就绪状态下进入视图时，触发视图进入事件：“enter”之前触发
+	 */
+	var readyViews = [];
 	
 	/**
 	 * 设定参数默认值
@@ -188,6 +206,13 @@
 		 */
 		this.clearContext = function(){
 			context = {};
+		};
+		
+		/**
+		 * 判断当前视图是否已经就绪
+		 */
+		this.isReady = function(){
+			return readyViews.indexOf(this.getId()) != -1;
 		};
 		
 		/**
@@ -422,15 +447,22 @@
 		currentView.fire("leave", type);
 		if(!withAnimation){
 			display();
+			
+			if(!targetView.isReady()){
+				readyViews.push(targetView.getId());
+				targetView.fire("ready", type);
+			}
 			targetView.fire("enter", type);
-			targetView.fire("ready", type);
 		}else{
 			currentView.getLeaveAnimation() && currentView.getLeaveAnimation().call(currentView.getDomElement(), targetViewId, type, display);
 			targetView.getEnterAnimation() && targetView.getEnterAnimation().call(targetView.getDomElement(), currentView.getId(), type, function(){/* animation */
 				display();
 				
+				if(!targetView.isReady()){
+					readyViews.push(targetView.getId());
+					targetView.fire("ready", type);
+				}
 				targetView.fire("enter", type);
-				targetView.fire("ready", type);
 			});
 		}
 		
@@ -673,8 +705,10 @@
 		/** 页面的监听器触发 */
 		var activeView = View.getActiveView();
 		if(activeView){
-			activeView.fire("enter", View.SWITCHTYPE_VIEWSWITCH);
+			readyViews.push(activeView.getId());
 			activeView.fire("ready", View.SWITCHTYPE_VIEWSWITCH);
+			
+			activeView.fire("enter", View.SWITCHTYPE_VIEWSWITCH);
 		}
 	});
 	
