@@ -103,17 +103,19 @@
 	/**
 	 * 向history中添加view浏览历史
 	 * @param viewId 视图ID
+	 * @param timestamp 视图压入堆栈的时间戳
 	 */
-	var pushViewState = function(viewId){
-		history.pushState({viewId: viewId, timestamp: Date.now()}, "", "#" + viewId);
+	var pushViewState = function(viewId, timestamp){
+		history.pushState({viewId: viewId, timestamp: null == timestamp? Date.now(): timestamp}, "", "#" + viewId);
 	};
 	
 	/**
 	 * 更新history中最后一个view浏览历史
 	 * @param viewId 视图ID
+	 * @param timestamp 视图压入堆栈的时间戳
 	 */
-	var replaceViewState = function(viewId){
-		history.replaceState({viewId: viewId, timestamp: Date.now()}, "", "#" + viewId);
+	var replaceViewState = function(viewId, timestamp){
+		history.replaceState({viewId: viewId, timestamp: null == timestamp? Date.now(): timestamp}, "", "#" + viewId);
 	};
 	
 	/**
@@ -533,6 +535,9 @@
 				targetView = View.ofId(tarId).getFallbackView();
 						
 			type = View.SWITCHTYPE_VIEWSWITCH;
+			
+			/** 保持地址栏的一致性 */
+			location.hash = targetView.getId();
 		}else{
 			var popedNewState = e.state;
 		
@@ -546,17 +551,13 @@
 				type = popedNewState.timestamp < View.currentState.timestamp? View.SWITCHTYPE_HISTORYBACK: View.SWITCHTYPE_HISTORYFORWARD;
 			
 			View.currentState = popedNewState;
+			
+			/** 保持地址栏的一致性 */
+			replaceViewState(targetView.getId(), popedNewState.timestamp);
 		}
 		
 		/* 视图切换 */
 		targetView && View.switchView(targetView.getId(), type);
-		/** 保持地址栏的一致性 */
-		if(null != targetView){
-			if(historyPushPopSupported){
-				replaceViewState(targetView.getId());
-			}else
-				location.hash = targetView.getId();
-		}
 	};
 	
 	var init = function(){
