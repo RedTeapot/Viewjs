@@ -531,6 +531,42 @@
 	};
 	
 	/**
+	 * 视图准备就绪后执行的方法
+	 */
+	View.ready = (function(){
+		var isReady = false;
+		
+		/* 挂起的回调方法列表 */
+		var callbacks = [];
+		
+		/**
+		 * 就绪后执行的方法
+		 */
+		return function(callback){
+			/* 如果已经就绪，则立即执行 */
+			if(isReady){
+				callback && callback();
+				return;
+			}
+			
+			if(callbacks.indexOf(callback) != -1)
+				return;
+			callbacks.push(callback);
+		};
+		
+		/**
+		 * 页面加载完毕后执行所有挂起的回调方法
+		 */
+		document.addEventListener("DOMContentLoaded", function(){
+			isReady = true;
+			
+			callbacks.forEach(function(cb){
+				cb && cb();
+			});
+		});
+	})();
+	
+	/**
 	 * 响应地址栏的hash进行渲染操作
 	 */
 	var stateChangeListener =  function(e){
