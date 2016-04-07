@@ -118,6 +118,21 @@
 				</div>
 				<div class = "available-nodes">HTMLElement("div")、HTMLElement("section")等</div>
 			</div>
+			<div id = "data-view-title" class = "item">
+				<div class = "name">title</div>
+				<div class = "description">
+				定义视图特有的标题。可以忽略。如果视图设置有此属性，则视图进入后插件会自动将文档标题设置为视图标题，视图离开后自动恢复文档标题。注：初始的文档标题为文档加载完成后的标题
+				</div>
+				<div class = "values">
+				[标题字符串]
+				</div>
+				<div class = "example">
+					&lt;html data-view-directly-accessible = "false"&gt;
+						&lt;div data-view = "true" data-view-title = "标题1"&gt;...&lt;/div&gt;
+					/html&gt;
+				</div>
+				<div class = "available-nodes">HTMLElement("div")、HTMLElement("section")等</div>
+			</div>
 		</section>
 	</body>
 </html>

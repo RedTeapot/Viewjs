@@ -752,7 +752,7 @@
 		/* 扫描文档，遍历定义的视图 */
 		[].forEach.call(document.querySelectorAll("*[data-view=true]"), function(viewObj){
 			View.ofId(viewObj.id);
-		});		
+		});
 		
 		/**
 		 * 指令：data-view 视图定义
@@ -899,6 +899,25 @@
 			
 			activeView.fire("enter", View.SWITCHTYPE_VIEWSWITCH);
 		}
+		
+		/* 视图标题自动设置 */
+		;(function(){
+			/* 文档标题 */
+			var documentTitle = document.title;
+			[].forEach.call(document.querySelectorAll("*[data-view=true]"), function(viewObj){
+				var specifiedTitle = viewObj.getAttribute("data-view-title");
+				if(null == specifiedTitle)
+					return;
+				
+				var view = View.ofId(viewObj.id);
+				view.on("enter", function(){
+					document.title = specifiedTitle;
+				});
+				view.on("leave", function(){
+					document.title = documentTitle;
+				});
+			});
+		})();
 	});
 	
 	return View;
