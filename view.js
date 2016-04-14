@@ -6,6 +6,10 @@
  * 4. View.afterchange
  */
 ;window.View = (function(){
+	var MOBILE_REGEX = /mobile|tablet|ip(ad|hone|od)|android/i;
+	var SUPPORT_TOUCH = ('ontouchstart' in window);
+	var IS_MOBILE = MOBILE_REGEX.test(navigator.userAgent);
+	
 	/**
 	 * 触摸支持
 	 */
@@ -52,7 +56,7 @@
 		 */
 		var addTapListener = function(target, callback, options){
 			/* 如果浏览器不支持触摸事件，则改用click */
-			if(!('ontouchstart' in window)){
+			if(!IS_MOBILE){
 				target.addEventListener? target.addEventListener("click", callback): target.attachEvent("onclick", callback);
 				return;
 			}
@@ -116,7 +120,7 @@
 		 */
 		var removeTapListener = function(target, callback, useCapture){
 			/* 如果浏览器不支持触摸事件，则改用click */
-			if(!('ontouchstart' in window)){
+			if(!IS_MOBILE){
 				target.removeEventListener? target.removeEventListener("click", callback): target.detachEvent("onclick", callback);
 				return;
 			}
