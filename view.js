@@ -51,6 +51,12 @@
 		 * @param options.useCapture {Boolean} 是否在捕获阶段监听事件
 		 */
 		var addTapListener = function(target, callback, options){
+			/* 如果浏览器不支持触摸事件，则改用click */
+			if(!('ontouchstart' in window)){
+				target.addEventListener? target.addEventListener("click", callback): target.attachEvent("onclick", callback);
+				return;
+			}
+			
 			/* 在元素上创建空间，用于存储相关信息 */
 			var tapNamespace = mapNamespace(target, touchAttributeName + ".tap");
 			tapNamespace.callbacks = tapNamespace.callbacks || [];
@@ -71,7 +77,7 @@
 			/* 轻触开始 */
 			if(null == metaNamespace.touchstart){
 				metaNamespace.touchstart = function(e){
-					var touch = e.changedTouches[0];
+					var touch = e.changedTouches? e.changedTouches[0]: e;
 					tapNamespace.startX = touch.screenX;
 					tapNamespace.startY = touch.screenY
 					tapNamespace.startTimestamp = Date.now();
@@ -81,7 +87,7 @@
 			/* 轻触结束 */
 			if(null == metaNamespace.touchend){
 				metaNamespace.touchend = function(e){
-					var touch = e.changedTouches[0];
+					var touch = e.changedTouches? e.changedTouches[0]: e;
 					tapNamespace.stopX = touch.screenX;
 					tapNamespace.stopY = touch.screenY;
 					tapNamespace.stopTimestamp = Date.now();
@@ -109,6 +115,12 @@
 		 * @param useCapture {Boolean} 是否在捕获阶段监听事件
 		 */
 		var removeTapListener = function(target, callback, useCapture){
+			/* 如果浏览器不支持触摸事件，则改用click */
+			if(!('ontouchstart' in window)){
+				target.removeEventListener? target.removeEventListener("click", callback): target.detachEvent("onclick", callback);
+				return;
+			}
+			
 			if(!target.hasOwnProperty(touchAttributeName))
 				return;
 			
@@ -798,7 +810,7 @@
 		 */
 		(function(){
 			touch.addTapListener(document.documentElement, function(e){
-				var eventTarget = e.changedTouches[0].target;
+				var eventTarget = e.changedTouches? e.changedTouches[0].target: e.target;
 				
 				/* 视图导向定义检测 */
 				var targetViewId;
