@@ -329,27 +329,6 @@
 		eventDrive(this, document.querySelector("#" + id));
 		
 		/**
-		 * 当前视图由活动视图变为非活动视图时执行的动画方法
-		 * @param targetViewId {String} 新的活动视图的ID
-		 * @param type {String} 当前视图是如何由活动视图变为非活动视图
-		 * 		"history.back"：由浏览器的回退操作引起；
-		 * 		"history.forward"：由浏览器的前进操作引起；
-		 * 		"view.switch"：由本插件的切换操作引起
-		 * @param render {Function} 本插件在切换视图时执行的界面渲染操作。在使用切换动画时，在动画执行完毕后需要手动执行本方法，否则界面渲染可能不正常。
-		 */
-		var leaveAnimation = function(targetViewId, type, render){/*render();*/};
-		/**
-		 * 当前视图变为活动视图时执行的动画方法
-		 * @param sourceViewId {String} 原来的的活动视图的ID
-		 * @param type {String} 当前视图是如何变为活动视图
-		 * 		"history.back"：由浏览器的回退操作引起；
-		 * 		"history.forward"：由浏览器的前进操作引起；
-		 * 		"view.switch"：由本插件的切换操作引起
-		 * @param render {Function} 本插件在切换视图时执行的界面渲染操作。在使用切换动画时，在动画执行完毕需要必手动执行本方法，否则界面渲染可能不正常。
-		 */
-		var enterAnimation = function(sourceViewId, type, render){render();};
-		
-		/**
 		 * 返回视图对应的DOM元素的ID
 		 */
 		this.getId = function(){
@@ -456,36 +435,6 @@
 			}while(true);
 		};
 		
-		/**
-		 * 设定视图由活动视图变为非活动视图时执行的动画
-		 * @param animation {Function} 视图由活动视图变为非活动视图时执行的动画
-		 */
-		this.setLeaveAnimation = function(animation){
-			leaveAnimation = animation;
-		};
-		
-		/**
-		 * 获取视图由活动视图变为非活动视图时执行的动画
-		 */
-		this.getLeaveAnimation = function(){
-			return leaveAnimation;
-		};
-		
-		/**
-		 * 设定视图变为活动视图时执行的动画
-		 * @param animation {Function} 视图变为活动视图时执行的动画
-		 */
-		this.setEnterAnimation = function(animation){
-			enterAnimation = animation;
-		};
-		
-		/**
-		 * 获取视图变为活动视图时执行的动画
-		 */
-		this.getEnterAnimation = function(){
-			return enterAnimation;
-		};
-		
 		Object.freeze && Object.freeze(this);
 	};
 	
@@ -502,6 +451,9 @@
 	
 	/** 通过文档扫描得出的配置的视图集合 */
 	var viewInstances = [];
+	
+	/** 视图切换动画 */
+	var viewSwitchAnimation = null;
 	
 	/* history的最近一次状态 */
 	View.currentState = null;
@@ -566,6 +518,28 @@
 	};
 	
 	/**
+	 * 设置视图切换动画
+	 * @param animationFunction {Function} 视图切换动画
+	 * @return {View} View
+	 */
+	View.setSwitchAnimation = function(animationFunction){
+		if(!(animationFunction instanceof Function))
+			throw new Error("Invalid argument. Animation of Function is needed.");
+		
+		viewSwitchAnimation = animationFunction;
+		
+		return View;
+	};
+	
+	/**
+	 * 获取视图切换动画
+	 * @return {Function} 视图切换动画
+	 */
+	View.getSwitchAnimation = function(){
+		return viewSwitchAnimation;
+	};
+	
+	/**
 	 * 切换视图
 	 * @param targetViewId 目标视图ID
 	 * @param type 切换操作类型（View.SWITCHTYPE_HISTORYFORWARD || View.SWITCHTYPE_HISTORYBACK || View.SWITCHTYPE_VIEWSWITCH）
@@ -624,8 +598,7 @@
 			}
 			targetView.fire("enter", type);
 		}else{
-			currentView.getLeaveAnimation() && currentView.getLeaveAnimation().call(currentView.getDomElement(), targetViewId, type, display);
-			targetView.getEnterAnimation() && targetView.getEnterAnimation().call(targetView.getDomElement(), currentView.getId(), type, function(){/* animation */
+			var render = function(){
 				display();
 				
 				if(!targetView.isReady()){
@@ -633,11 +606,18 @@
 					targetView.fire("ready", type);
 				}
 				targetView.fire("enter", type);
-			});
+			};
+			
+			if(viewSwitchAnimation){
+				viewSwitchAnimation.call(null, currentView.getDomElement(), targetView.getDomElement(), type, render);
+			}else
+				render();
 		}
 		
 		/** 触发后置切换监听器 */
 		View.fire("afterchange", {currentView: currentView, targetView: targetView, type: type});
+		
+		return View;
 	};
 	
 	/**
@@ -678,6 +658,8 @@
 			location.hash = targetViewId;
 		
 		View.switchView(targetViewId, type);
+		
+		return View;
 	};
 	
 	/**
@@ -688,6 +670,17 @@
 		
 		/* 挂起的回调方法列表 */
 		var callbacks = [];
+		
+		/**
+		 * 页面加载完毕后执行所有挂起的回调方法
+		 */
+		document.addEventListener("DOMContentLoaded", function(){
+			isReady = true;
+			
+			callbacks.forEach(function(cb){
+				cb && cb();
+			});
+		});
 		
 		/**
 		 * 就绪后执行的方法
@@ -702,19 +695,30 @@
 			if(callbacks.indexOf(callback) != -1)
 				return;
 			callbacks.push(callback);
-		};
-		
-		/**
-		 * 页面加载完毕后执行所有挂起的回调方法
-		 */
-		document.addEventListener("DOMContentLoaded", function(){
-			isReady = true;
 			
-			callbacks.forEach(function(cb){
-				cb && cb();
-			});
-		});
+			return View;
+		};
 	})();
+	
+	/**
+	 * 根据提供的视图ID计算最终映射到的可以呈现出来的视图
+	 * @param viewId {String} 视图ID
+	 * @return {View} 最终视图
+	 */
+	var getFinalView = function(viewId){
+		var targetView = null;
+		
+		if(null == viewId || "" == viewId){/** 判断是否指定目标视图 */
+			targetView = View.getDefaultView();
+		}else if(!View.isExisting(viewId)){/** 判断指定的视图是否存在 */
+			targetView = View.getDefaultView();
+		}else if(View.ofId(viewId).isDirectlyAccessible())/** 判断指定的视图是否支持直接访问 */
+			targetView = View.ofId(viewId);
+		else
+			targetView = View.ofId(viewId).getFallbackView();
+		
+		return targetView;
+	};
 	
 	/**
 	 * 响应地址栏的hash进行渲染操作
@@ -728,16 +732,7 @@
 		var tarId, type = View.SWITCHTYPE_VIEWSWITCH, targetView = null;;
 		if(!historyPushPopSupported || null == e.state){
 			tarId = location.hash.replace(/^#/, "").toLowerCase();
-			
-			if("" == tarId){/** 判断是否指定目标视图 */
-				targetView = View.getDefaultView();
-			}else if(!View.isExisting(tarId)){/** 判断指定的视图是否存在 */
-				targetView = View.getDefaultView();
-			}else if(View.ofId(tarId).isDirectlyAccessible())/** 判断指定的视图是否支持直接访问 */
-				targetView = View.ofId(tarId);
-			else
-				targetView = View.ofId(tarId).getFallbackView();
-						
+			targetView = getFinalView(tarId);
 			type = View.SWITCHTYPE_VIEWSWITCH;
 			
 			/** 保持地址栏的一致性 */
@@ -878,16 +873,7 @@
 		 */
 		(function(){
 			var targetViewId = location.hash.replace(/^#/i, "").toLowerCase();
-			var targetView = null;
-			
-			if("" == targetViewId){/** 判断是否指定目标视图 */
-				targetView = View.getDefaultView();
-			}else if(!View.isExisting(targetViewId)){/** 判断指定的视图是否存在 */
-				targetView = View.getDefaultView();
-			}else if(View.ofId(targetViewId).isDirectlyAccessible())/** 判断指定的视图是否支持直接访问 */
-				targetView = View.ofId(targetViewId);
-			else
-				targetView = View.ofId(targetViewId).getFallbackView();
+			var targetView = getFinalView(targetViewId);
 			
 			if(null != targetView){
 				/** 保持地址栏的一致性 */
