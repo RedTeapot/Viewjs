@@ -343,6 +343,24 @@
 		};
 		
 		/**
+		 * 在视图内查找元素
+		 * @param selector {String} 元素选择器
+		 * @return {HTMLElement} 找到的元素
+		 */
+		this.find = function(selector){
+			return this.getDomElement().querySelector(selector);
+		};
+		
+		/**
+		 * 在视图内查找元素
+		 * @param selector {String} 元素选择器
+		 * @return {NodeList} 找到的元素列表
+		 */
+		this.findAll = function(selector){
+			return this.getDomElement().querySelectorAll(selector);
+		};
+		
+		/**
 		 * 获取视图上下文
 		 */
 		this.getContext = function(){
