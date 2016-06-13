@@ -900,6 +900,9 @@
 				}else
 					location.hash = targetView.getId();
 				
+				[].forEach.call(document.querySelectorAll("*[data-view=true].active"), function(obj){
+					obj.classList.remove("active");
+				});
 				targetView.getDomElement().classList.add("active");
 			}
 		})();
