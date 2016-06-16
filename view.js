@@ -159,7 +159,7 @@
 	
 	
 	var historyPushPopSupported = ("pushState" in history) && (typeof history.pushState == "function");
-	console.log("history.pushState is " + (historyPushPopSupported? "": "not ") + "supported");
+	console.log("History pushState is " + (historyPushPopSupported? "": "not ") + "supported");
 	
 	/**
 	 * 准备就绪的视图ID列表
@@ -275,7 +275,11 @@
 	 * @param timestamp 视图压入堆栈的时间戳
 	 */
 	var pushViewState = function(viewId, timestamp){
-		history.pushState({viewId: viewId, timestamp: null == timestamp? Date.now(): timestamp}, "", "#" + viewId);
+		var state = {viewId: viewId, timestamp: null == timestamp? Date.now(): timestamp};
+		console.log("↓", state);
+		history.pushState(state, "", "#" + viewId);
+		
+		View.currentState = state;
 	};
 	
 	/**
@@ -284,7 +288,11 @@
 	 * @param timestamp 视图压入堆栈的时间戳
 	 */
 	var replaceViewState = function(viewId, timestamp){
-		history.replaceState({viewId: viewId, timestamp: null == timestamp? Date.now(): timestamp}, "", "#" + viewId);
+		var state = {viewId: viewId, timestamp: null == timestamp? Date.now(): timestamp};
+		console.log("%", state);
+		history.replaceState(state, "", "#" + viewId);
+		
+		View.currentState = state;
 	};
 	
 	/**
@@ -587,7 +595,7 @@
 			return;
 		}
 		
-		console.log(currentView.getId() + " -> " + targetViewId, type);
+		console.log(currentView.getId() + " → " + targetViewId, type);
 		
 		/* 如果切换目标是自己，则直接返回 */
 		if(currentView.getId().toLowerCase() == targetViewId.toLowerCase())
@@ -643,6 +651,7 @@
 		
 		return View;
 	};
+	View.show = View.switchView;
 	
 	/**
 	 * 切换视图，同时更新相关状态
@@ -672,12 +681,8 @@
 			return;
 		}
 		
-		View.currentState = state;
-		
 		if(historyPushPopSupported){
 			pushViewState(targetViewId);
-			
-			console.log("pushed state by update view", state);
 		}else
 			location.hash = targetViewId;
 		
@@ -685,6 +690,7 @@
 		
 		return View;
 	};
+	View.switchTo = View.updateView;
 	
 	/**
 	 * 视图准备就绪后执行的方法
@@ -750,8 +756,8 @@
 	var stateChangeListener =  function(e){
 		var currentActiveView = View.getActiveView();
 		
-		console.log(historyPushPopSupported? "state poped!": "hash changed!", "current: " + currentActiveView.getId());
-		historyPushPopSupported && console.log("poped state", JSON.stringify(e.state));
+		console.log(historyPushPopSupported? "State poped!": "Hash changed!", "Current: " + currentActiveView.getId());
+		historyPushPopSupported && console.log("↑", JSON.stringify(e.state));
 		
 		var tarId, type = View.SWITCHTYPE_VIEWSWITCH, targetView = null;;
 		if(!historyPushPopSupported || null == e.state){
@@ -784,6 +790,9 @@
 	};
 	
 	var init = function(){
+		/** 事件监听 */
+		window.addEventListener(historyPushPopSupported? "popstate": "hashchange", stateChangeListener);
+		
 		/* 扫描文档，遍历定义的视图 */
 		[].forEach.call(document.querySelectorAll("*[data-view=true]"), function(viewObj){
 			View.ofId(viewObj.id);
@@ -902,7 +911,8 @@
 			if(null != targetView){
 				/** 保持地址栏的一致性 */
 				if(historyPushPopSupported){
-					replaceViewState(targetView.getId());
+					if(null == history.state)
+						replaceViewState(targetView.getId());
 				}else
 					location.hash = targetView.getId();
 				
@@ -912,9 +922,6 @@
 				targetView.getDomElement().classList.add("active");
 			}
 		})();
-		
-		/** 事件监听 */
-		window.addEventListener(historyPushPopSupported? "popstate": "hashchange", stateChangeListener);
 	};
 	
 	document.addEventListener("DOMContentLoaded", function(){
