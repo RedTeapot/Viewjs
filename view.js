@@ -913,6 +913,8 @@
 				if(historyPushPopSupported){
 					if(null == history.state)
 						replaceViewState(targetView.getId());
+					else
+						View.currentState = history.state;
 				}else
 					location.hash = targetView.getId();
 				
