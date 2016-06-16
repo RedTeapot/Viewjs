@@ -2,8 +2,10 @@
  * 事件触发顺序：
  * 1. View.beforechange
  * 2. view.ready
- * 3. view.enter
- * 4. View.afterchange
+ * 3. view.beforeenter
+ * 4. view.enter
+ * 5. view.afterenter
+ * 6. View.afterchange
  */
 ;window.View = (function(){
 	var MOBILE_REGEX = /mobile|tablet|ip(ad|hone|od)|android/i;
@@ -614,7 +616,9 @@
 				readyViews.push(targetView.getId());
 				targetView.fire("ready", type);
 			}
+			targetView.fire("beforeenter", type);
 			targetView.fire("enter", type);
+			targetView.fire("afterenter", type);
 		}else{
 			var render = function(){
 				display();
@@ -623,7 +627,9 @@
 					readyViews.push(targetView.getId());
 					targetView.fire("ready", type);
 				}
+				targetView.fire("beforeenter", type);
 				targetView.fire("enter", type);
+				targetView.fire("afterenter", type);
 			};
 			
 			if(viewSwitchAnimation){
@@ -920,7 +926,9 @@
 			readyViews.push(activeView.getId());
 			activeView.fire("ready", View.SWITCHTYPE_VIEWSWITCH);
 			
+			activeView.fire("beforeenter", View.SWITCHTYPE_VIEWSWITCH);
 			activeView.fire("enter", View.SWITCHTYPE_VIEWSWITCH);
+			activeView.fire("afterenter", View.SWITCHTYPE_VIEWSWITCH);
 		}
 		
 		/* 视图标题自动设置 */
