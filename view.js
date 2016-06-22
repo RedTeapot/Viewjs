@@ -759,14 +759,18 @@
 		console.log(historyPushPopSupported? "State poped!": "Hash changed!", "Current: " + currentActiveView.getId());
 		historyPushPopSupported && console.log("↑", JSON.stringify(e.state));
 		
-		var tarId, type = View.SWITCHTYPE_VIEWSWITCH, targetView = null;;
-		if(!historyPushPopSupported || null == e.state){
+		var tarId, type = View.SWITCHTYPE_VIEWSWITCH, targetView = null;
+		if(null == e.state){
 			tarId = location.hash.replace(/^#/, "").toLowerCase();
 			targetView = getFinalView(tarId);
 			type = View.SWITCHTYPE_VIEWSWITCH;
 			
-			/** 保持地址栏的一致性 */
-			location.hash = targetView.getId();
+			if(!historyPushPopSupported){
+				/** 保持地址栏的一致性 */
+				location.hash = targetView.getId();
+			}else{
+				replaceViewState(tarId, Date.now());
+			}
 		}else{
 			var popedNewState = e.state;
 		
