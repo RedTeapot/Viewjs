@@ -328,7 +328,23 @@
 		}
 		
 		/** 上下文，用于存储视图相关的数据等 */
-		var context = {};
+		var context = (function(){
+			var obj = {};
+
+			Object.defineProperty(obj, "has", {value: function(name){
+				return name in obj;
+			}, configurable: false, writable: false, enumerable: false});
+
+			Object.defineProperty(obj, "set", {value: function(name, value){
+				obj[name] = value;
+			}, configurable: false, writable: false, enumerable: false});
+
+			Object.defineProperty(obj, "get", {value: function(name, value){
+				return obj[name];
+			}, configurable: false, writable: false, enumerable: false});
+			
+			return obj;
+		})();
 		
 		/**
 		 * 启用事件驱动机制
