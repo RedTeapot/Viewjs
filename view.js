@@ -270,27 +270,71 @@
 	})();
 	
 	/**
-	 * 向history中添加view浏览历史
-	 * @param viewId 视图ID
-	 * @param timestamp 视图压入堆栈的时间戳
+	 * 浏览状态
+	 * @param viewId {String} 视图ID
+	 * @param timestamp {Long} 时间戳
 	 */
-	var pushViewState = function(viewId, timestamp){
-		var state = {viewId: viewId, timestamp: null == timestamp? Date.now(): timestamp};
+	var ViewState = function(viewId, timestamp){
+		if(arguments.length < 2)
+			timestamp = Date.now();
+		
+		Object.defineProperty(this, "viewId", {value: viewId, configurable: false, writable: false, enumerable: true});
+		Object.defineProperty(this, "timestamp", {value: timestamp, configurable: false, writable: false, enumerable: true});
+	};
+
+	/**
+	 * 判断特定的对象是否是ViewState的实例
+	 * @param obj {Object} 要判断的对象
+	 */
+	ViewState.isConstructorOf = function(obj){
+		if(null == obj || typeof obj != "object")
+			return false;
+		
+		return obj.hasOwnProperty("viewId") && obj.hasOwnProperty("timestamp");
+	}
+
+	/**
+	 * 向history中添加view浏览历史
+	 * @param viewId {String} 视图ID
+	 * @param timestamp {String} 视图压入堆栈的时间戳
+	 * @param updateLocation {Boolean} 是否同步更新地址栏。默认为true
+	 */
+	var pushViewState = function(viewId, timestamp, updateLocation){
+		if(arguments.length < 2)
+			timestamp = Date.now();
+		if(arguments.length < 3)
+			updateLocation = true;
+
+		var state = new ViewState(viewId, timestamp);
 		console.log("↓", state);
-		history.pushState(state, "", "#" + viewId);
+
+		if(historyPushPopSupported)
+			history.pushState(state, "", "#" + viewId);
+		else
+			location.hash = viewId;
 		
 		View.currentState = state;
 	};
 	
 	/**
 	 * 更新history中最后一个view浏览历史
-	 * @param viewId 视图ID
-	 * @param timestamp 视图压入堆栈的时间戳
+	 * @param viewId {String} 视图ID
+	 * @param timestamp {String} 视图压入堆栈的时间戳
+	 * @param updateLocation {Boolean} 是否同步更新地址栏。默认为true
 	 */
 	var replaceViewState = function(viewId, timestamp){
-		var state = {viewId: viewId, timestamp: null == timestamp? Date.now(): timestamp};
+		if(arguments.length < 2)
+			timestamp = Date.now();
+		if(arguments.length < 3)
+			updateLocation = true;
+		
+		var state = new ViewState(viewId, timestamp);
 		console.log("%", state);
-		history.replaceState(state, "", "#" + viewId);
+
+		if(historyPushPopSupported)
+			history.replaceState(state, "", "#" + viewId);
+		else
+			location.hash = viewId;
 		
 		View.currentState = state;
 	};
@@ -348,7 +392,9 @@
 		
 		/**
 		 * 启用事件驱动机制
+		 * 事件 beforeenter：视图进入前触发
 		 * 事件 enter：当前视图变为活动视图时触发
+		 * 事件 afterenter：视图进入后触发
 		 * 事件 ready：当前视图变为活动视图时，且enter事件触发后触发
 		 * 事件 leave：当前视图由活动视图变为非活动视图时触发
 		 */
@@ -470,7 +516,7 @@
 					view = View.ofId(fallbackViewId);
 					
 					if(idChain.indexOf(view.getId()) != -1){/** 循环引用 */
-						console.error("cyclical reference of view on fallback configuration on view: " + this.getId());
+						console.error("Cyclical reference of view on fallback configuration on view: " + this.getId());
 						return View.getDefaultView();
 					}
 						
@@ -515,7 +561,7 @@
 	 */
 	View.ofId = function(id){
 		for(var i = 0; i < viewInstances.length; i++)
-			if(viewInstances[i].getId().toLowerCase().trim() == id.toLowerCase().trim())
+			if(viewInstances[i].getId().trim() == id.trim())
 				return viewInstances[i];
 		
 		/* 创建实例 */
@@ -533,7 +579,7 @@
 	 */
 	View.isExisting = function(id){
 		for(var i = 0; i < viewInstances.length; i++)
-			if(viewInstances[i].getId().toLowerCase().trim() == id.toLowerCase().trim())
+			if(viewInstances[i].getId().trim() == id.trim())
 				return true;
 		
 		return false;
@@ -590,20 +636,14 @@
 	 * @param withAnimation 是否执行动画
 	 */
 	View.switchView = function(targetViewId, type, withAnimation){
-		/* 当前活动视图 */
-		var currentView = View.getActiveView();
 		if(arguments.length < 3)
 			withAnimation = true;
 		if(arguments.length < 2)
 			type = View.SWITCHTYPE_VIEWSWITCH;
 		type = type || View.SWITCHTYPE_VIEWSWITCH;
-		
-		if("" == targetViewId.trim()){
-			if(null == View.getDefaultView())
-				return;
-			else
-				targetViewId = View.getDefaultView().getId();
-		}
+
+		/* 当前活动视图 */
+		var currentView = View.getActiveView();
 		
 		/** 检查目标视图是否存在 */
 		if(!View.isExisting(targetViewId)){
@@ -611,12 +651,12 @@
 			return;
 		}
 		
-		console.log(currentView.getId() + " → " + targetViewId, type);
-		
 		/* 如果切换目标是自己，则直接返回 */
 		if(currentView.getId().toLowerCase() == targetViewId.toLowerCase())
 			return;
 		
+		console.log(currentView.getId() + " → " + targetViewId, type);
+
 		/* 目标视图 */
 		var targetView = View.ofId(targetViewId);
 		type = (type.toLowerCase() == View.SWITCHTYPE_HISTORYFORWARD? View.SWITCHTYPE_HISTORYFORWARD: (
@@ -624,7 +664,6 @@
 		
 		/** 触发前置切换监听器 */
 		View.fire("beforechange", {currentView: currentView, targetView: targetView, type: type});
-		
 		
 		var display = function(){
 			currentView.getDomElement().classList.remove("active");
@@ -667,7 +706,7 @@
 		
 		return View;
 	};
-	View.show = View.switchView;
+	View.switchTo = View.switchView;
 	
 	/**
 	 * 切换视图，同时更新相关状态
@@ -675,7 +714,7 @@
 	 * @param type 切换操作类型（View.SWITCHTYPE_HISTORYFORWARD || View.SWITCHTYPE_HISTORYBACK || View.SWITCHTYPE_VIEWSWITCH）
 	 */
 	View.updateView = function(targetViewId, type){
-		var state = {viewId: targetViewId, timestamp: Date.now()};
+		var state = new ViewState(targetViewId, Date.now());
 		
 		/** 伪视图支持 */
 		/* 回退操作(":back") */
@@ -693,20 +732,16 @@
 		
 		/** 检查目标视图是否存在 */
 		if(!View.isExisting(targetViewId)){
-			console.error("target view: " + targetViewId + " does not exist!");
+			console.error("Target view: " + targetViewId + " does not exist!");
 			return;
 		}
 		
-		if(historyPushPopSupported){
-			pushViewState(targetViewId);
-		}else
-			location.hash = targetViewId;
-		
-		View.switchView(targetViewId, type);
+		View.switchTo(targetViewId, type);
+		pushViewState(targetViewId);
 		
 		return View;
 	};
-	View.switchTo = View.updateView;
+	View.navTo = View.updateView;
 	
 	/**
 	 * 视图准备就绪后执行的方法
@@ -755,9 +790,9 @@
 		var targetView = null;
 		
 		if(null == viewId || "" == viewId){/** 判断是否指定目标视图 */
-			targetView = View.getDefaultView();
+			targetView = View.getActiveView();
 		}else if(!View.isExisting(viewId)){/** 判断指定的视图是否存在 */
-			targetView = View.getDefaultView();
+			targetView = View.getActiveView();
 		}else if(View.ofId(viewId).isDirectlyAccessible())/** 判断指定的视图是否支持直接访问 */
 			targetView = View.ofId(viewId);
 		else
@@ -773,47 +808,37 @@
 		var currentActiveView = View.getActiveView();
 		
 		console.log(historyPushPopSupported? "State poped!": "Hash changed!", "Current: " + currentActiveView.getId());
-		historyPushPopSupported && console.log("↑", JSON.stringify(e.state));
+		console.log("↑", historyPushPopSupported? JSON.stringify(e.state): location.hash);
 		
-		var tarId, type = View.SWITCHTYPE_VIEWSWITCH, targetView = null;
+		var newViewId, type = View.SWITCHTYPE_VIEWSWITCH, targetView = null;
 		if(null == e.state){
-			tarId = location.hash.replace(/^#/, "").toLowerCase();
-			targetView = getFinalView(tarId);
 			type = View.SWITCHTYPE_VIEWSWITCH;
+
+			newViewId = location.hash.replace(/^#/, "").toLowerCase();
+			targetView = getFinalView(newViewId);
 			
-			if(!historyPushPopSupported){
-				/** 保持地址栏的一致性 */
-				location.hash = targetView.getId();
-			}else{
-				replaceViewState(tarId, Date.now());
-			}
+			replaceViewState(targetView.getId());
 		}else{
 			var popedNewState = e.state;
 		
-			tarId = popedNewState.viewId;
-			if(null == tarId || !View.isExisting(tarId))
-				targetView = View.getDefaultView();
-			else
-				targetView = View.ofId(tarId);
+			newViewId = popedNewState.viewId;
+			targetView = getFinalView(newViewId);
 		
 			if(View.currentState != null)
 				type = popedNewState.timestamp < View.currentState.timestamp? View.SWITCHTYPE_HISTORYBACK: View.SWITCHTYPE_HISTORYFORWARD;
 			
-			View.currentState = popedNewState;
-			
-			/** 保持地址栏的一致性 */
 			replaceViewState(targetView.getId(), popedNewState.timestamp);
 		}
 		
 		/* 视图切换 */
-		targetView && View.switchView(targetView.getId(), type);
+		View.switchTo(targetView.getId(), type);
 	};
 	
 	var init = function(){
 		/** 事件监听 */
 		window.addEventListener(historyPushPopSupported? "popstate": "hashchange", stateChangeListener);
 		
-		/* 扫描文档，遍历定义的视图 */
+		/* 扫描文档，遍历定义视图 */
 		[].forEach.call(document.querySelectorAll("*[data-view=true]"), function(viewObj){
 			View.ofId(viewObj.id);
 		});
@@ -849,6 +874,19 @@
 				for(var i = 1; i < defaultViewObjs.length; i++)
 					defaultViewObjs[i].removeAttribute("data-view-default");
 			}
+		})();
+		
+		/* 视图标题自动设置 */
+		;(function(){
+			/* 文档标题 */
+			var documentTitle = document.title;
+			[].forEach.call(document.querySelectorAll("*[data-view=true]"), function(viewObj){
+				var specifiedTitle = viewObj.getAttribute("data-view-title");
+				var view = View.ofId(viewObj.id);
+				view.on("enter", function(){
+					document.title = null == specifiedTitle? documentTitle: specifiedTitle;
+				});
+			});
 		})();
 		
 		/**
@@ -917,68 +955,41 @@
 				}
 				
 				/* 呈现ID指定的视图 */
-				View.updateView(targetViewId, View.SWITCHTYPE_VIEWSWITCH);
+				View.navTo(targetViewId, View.SWITCHTYPE_VIEWSWITCH);
 			}, {useCapture: true});
 		})();
-		
+
 		/**
-		 * 呈现指定视图
+		 * 呈现视图
 		 */
 		(function(){
+			/* 呈现默认视图 */
+			var activeViewObjs = document.querySelectorAll("*[data-view=true].active");
+			for(var i = 0; i < activeViewObjs.length; i++){
+				var viewObj = activeViewObjs[i];
+				viewObj.classList.remove("active");
+			}
+			View.getDefaultView().getDomElement().classList.add("active");
+
+
+			/* 呈现指定视图 */
 			var targetViewId = location.hash.replace(/^#/i, "").toLowerCase();
 			var targetView = getFinalView(targetViewId);
-			
-			if(null != targetView){
-				/** 保持地址栏的一致性 */
-				if(historyPushPopSupported){
-					if(null == history.state)
-						replaceViewState(targetView.getId());
-					else
-						View.currentState = history.state;
-				}else
-					location.hash = targetView.getId();
-				
-				[].forEach.call(document.querySelectorAll("*[data-view=true].active"), function(obj){
-					obj.classList.remove("active");
-				});
-				targetView.getDomElement().classList.add("active");
+
+			var isViewState = ViewState.isConstructorOf(history.state);
+			if(null != history.state){
+				console.log("Found existing state: ", history.state, " isViewState? " + isViewState);
+
+				if(!(isViewState && history.state.viewId == targetView.getId()))
+					replaceViewState(targetView.getId());
+			}else{
+				replaceViewState(targetView.getId());
 			}
+			View.switchTo(targetView.getId(), null, false);
 		})();
 	};
 	
-	document.addEventListener("DOMContentLoaded", function(){
-		init();
-		
-		/** 页面的监听器触发 */
-		var activeView = View.getActiveView();
-		if(activeView){
-			readyViews.push(activeView.getId());
-			activeView.fire("ready", View.SWITCHTYPE_VIEWSWITCH);
-			
-			activeView.fire("beforeenter", View.SWITCHTYPE_VIEWSWITCH);
-			activeView.fire("enter", View.SWITCHTYPE_VIEWSWITCH);
-			activeView.fire("afterenter", View.SWITCHTYPE_VIEWSWITCH);
-		}
-		
-		/* 视图标题自动设置 */
-		;(function(){
-			/* 文档标题 */
-			var documentTitle = document.title;
-			[].forEach.call(document.querySelectorAll("*[data-view=true]"), function(viewObj){
-				var specifiedTitle = viewObj.getAttribute("data-view-title");
-				if(null == specifiedTitle)
-					return;
-				
-				var view = View.ofId(viewObj.id);
-				view.on("enter", function(){
-					document.title = specifiedTitle;
-				});
-				view.on("leave", function(){
-					document.title = documentTitle;
-				});
-			});
-		})();
-	});
+	document.addEventListener("DOMContentLoaded", init);
 	
 	return View;
 })();
