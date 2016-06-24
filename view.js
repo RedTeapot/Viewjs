@@ -635,7 +635,7 @@
 	 * @param type 切换操作类型（View.SWITCHTYPE_HISTORYFORWARD || View.SWITCHTYPE_HISTORYBACK || View.SWITCHTYPE_VIEWSWITCH）
 	 * @param withAnimation 是否执行动画
 	 */
-	View.switchView = function(targetViewId, type, withAnimation){
+	View.switchTo = function(targetViewId, type, withAnimation){
 		if(arguments.length < 3)
 			withAnimation = true;
 		if(arguments.length < 2)
@@ -706,14 +706,14 @@
 		
 		return View;
 	};
-	View.switchTo = View.switchView;
+	View.switchView = View.switchTo;
 	
 	/**
 	 * 切换视图，同时更新相关状态
 	 * @param targetViewId 目标视图ID
 	 * @param type 切换操作类型（View.SWITCHTYPE_HISTORYFORWARD || View.SWITCHTYPE_HISTORYBACK || View.SWITCHTYPE_VIEWSWITCH）
 	 */
-	View.updateView = function(targetViewId, type){
+	View.navTo = function(targetViewId, type){
 		var state = new ViewState(targetViewId, Date.now());
 		
 		/** 伪视图支持 */
@@ -741,7 +741,7 @@
 		
 		return View;
 	};
-	View.navTo = View.updateView;
+	View.updateView = View.navTo;
 	
 	/**
 	 * 视图准备就绪后执行的方法
@@ -815,14 +815,24 @@
 			type = View.SWITCHTYPE_VIEWSWITCH;
 
 			newViewId = location.hash.replace(/^#/, "").toLowerCase();
-			targetView = getFinalView(newViewId);
+			if(View.isExisting(newViewId))
+				targetView = View.ofId(newViewId);
+			else{
+				console.warn("Poped view: " + newViewId + " does not exist, keeping current.");
+				targetView = currentActiveView;
+			}
 			
 			replaceViewState(targetView.getId());
 		}else{
 			var popedNewState = e.state;
 		
 			newViewId = popedNewState.viewId;
-			targetView = getFinalView(newViewId);
+			if(View.isExisting(newViewId))
+				targetView = View.ofId(newViewId);
+			else{
+				console.warn("Poped view: " + newViewId + " does not exist, keeping current.");
+				targetView = currentActiveView;
+			}
 		
 			if(View.currentState != null)
 				type = popedNewState.timestamp < View.currentState.timestamp? View.SWITCHTYPE_HISTORYBACK: View.SWITCHTYPE_HISTORYFORWARD;
