@@ -82,6 +82,25 @@
 				</div>
 				<div class = "available-nodes">HTMLElement("div")、HTMLElement("section")等</div>
 			</div>
+			<div id = "data-view-rel-type" class = "item">
+				<div class = "name">data-view-rel-type</div>
+				<div class = "description">
+				指定视图切换方式
+				</div>
+				<div class = "values">
+				<ul>
+					<li>nav（默认）：使用history.pushState以“导向”的方式切换至新视图。采用此方式时，切换多少次视图，就需要返回多少次才能回到初始界面</li>
+					<li>change：使用history.replaceState以“更新”的方式切换至新视图。采用此方式时，无论切换多少次视图，仅需1次就能回到初始界面</li>
+				</ul>
+				</div>
+				<div class = "note">
+				无
+				</div>
+				<div class = "example">
+					&lt;a data-view-rel = "my-bill" data-view-rel-type = "change"&gt;我的账单&lt;/a&gt;
+				</div>
+				<div class = "available-nodes">HTMLElement("div")、HTMLElement("section")等</div>
+			</div>
 			<div id = "data-view-directly-accessible" class = "item">
 				<div class = "name">data-view-directly-accessible</div>
 				<div class = "description">

@@ -709,7 +709,7 @@
 	View.switchView = View.switchTo;
 	
 	/**
-	 * 切换视图，同时更新相关状态
+	 * 切换视图，同时更新相关状态（压入堆栈）
 	 * @param targetViewId 目标视图ID
 	 * @param type 切换操作类型（View.SWITCHTYPE_HISTORYFORWARD || View.SWITCHTYPE_HISTORYBACK || View.SWITCHTYPE_VIEWSWITCH）
 	 */
@@ -742,6 +742,18 @@
 		return View;
 	};
 	View.updateView = View.navTo;
+
+	/**
+	 * 切换视图，同时更新相关状态（更新堆栈）
+	 * @param targetViewId 目标视图ID
+	 * @param type 切换操作类型（View.SWITCHTYPE_HISTORYFORWARD || View.SWITCHTYPE_HISTORYBACK || View.SWITCHTYPE_VIEWSWITCH）
+	 */
+	View.changeTo = function(targetViewId, type){
+		View.switchTo(targetViewId, type);
+		replaceViewState(targetViewId);
+		
+		return View;
+	};
 	
 	/**
 	 * 视图准备就绪后执行的方法
@@ -941,10 +953,14 @@
 		})();
 		
 		/**
-		 * 指令：data-view-rel 配置视图导向
+		 * 指令：data-view-rel配置视图导向
 		 * 		取值：[view-id] 目标视图ID
 		 * 		取值：:back 回退至上一个视图
 		 * 		取值：:forward 前进至下一个视图
+		 * 
+		 * 指令：data-view-rel-type 配置视图更新方式
+		 * 		取值：nav（默认） 使用history.pushState以“导向”的方式切换至新视图。采用此方式时，切换多少次视图，就需要返回多少次才能回到初始界面
+		 * 		取值：change 使用history.replaceState以“更新”的方式切换至新视图。采用此方式时，无论切换多少次视图，仅需1次就能回到初始界面
 		 * 
 		 * 指令：data-view-rel-disabled 配置导向开关
 		 * 		取值：true 触摸时不导向至通过data-view-rel指定的视图
@@ -971,25 +987,12 @@
 					return;
 				
 				/* 视图切换禁用标志检测 */
-				var isViewRelDisabled = false;
-				tmp = eventTarget;
-				while(null == tmp.getAttribute("data-view-rel-disabled")){
-					tmp = tmp.parentNode;
-					
-					if(!(tmp instanceof HTMLElement))
-						tmp = null;
-					if(null == tmp)
-						break;
-				}
-				if(null != tmp)
-					isViewRelDisabled = "true" == tmp.getAttribute("data-view-rel-disabled");
+				var isViewRelDisabled = "true" == tmp.getAttribute("data-view-rel-disabled");
 				
 				/* 如果当前禁用视图跳转 */
 				if(isViewRelDisabled)
 					return;
 				
-				/* 阻止ghost click */
-				e.preventDefault();
 				
 				/* 回退操作(":back") */
 				if(":back" == targetViewId.toLowerCase().trim()){
@@ -1005,8 +1008,18 @@
 					return;
 				}
 				
+				var relType = tmp.getAttribute("data-view-rel-type");
+				relType = null == relType || "" == relType.trim()? "nav": relType;
+				if(!/^(?:nav)|(?:change)$/.test(relType)){
+					console.warn("Unknown view switch type: " + relType, tmp);
+					relType = "nav";
+				}
+
 				/* 呈现ID指定的视图 */
-				View.navTo(targetViewId, View.SWITCHTYPE_VIEWSWITCH);
+				View[relType + "To"](targetViewId, View.SWITCHTYPE_VIEWSWITCH);
+
+				/* 阻止ghost click */
+				e.preventDefault();
 			}, {useCapture: true});
 		})();
 	};
