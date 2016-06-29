@@ -885,6 +885,47 @@
 					defaultViewObjs[i].removeAttribute("data-view-default");
 			}
 		})();
+
+		/**
+		 * 重置活动视图为默认视图
+		 */
+		(function(){
+			var activeViewObjs = document.querySelectorAll("*[data-view=true].active");
+			for(var i = 0; i < activeViewObjs.length; i++){
+				var viewObj = activeViewObjs[i];
+				viewObj.classList.remove("active");
+			}
+			View.getDefaultView().getDomElement().classList.add("active");
+		})();
+
+		/**
+		 * 呈现指定视图
+		 */
+		(function(){
+			var defaultViewId = View.getDefaultView().getId();
+			var specifiedViewId = location.hash.replace(/^#/i, "").toLowerCase().trim();
+			var targetViewId = "" == specifiedViewId? View.getDefaultView().getId(): specifiedViewId;
+			var targetView = getFinalView(targetViewId);
+
+			var isViewState = ViewState.isConstructorOf(history.state);
+			if(null != history.state){
+				console.log("Found existing state: ", history.state, " isViewState? " + isViewState);
+
+				if(!(isViewState && history.state.viewId == targetView.getId()))
+					replaceViewState(targetView.getId());
+			}else{
+				replaceViewState(targetView.getId());
+			}
+
+			if(specifiedViewId == defaultViewId){
+				readyViews.push(targetViewId);
+				targetView.fire("ready", View.SWITCHTYPE_VIEWSWITCH);
+				targetView.fire("beforeenter", View.SWITCHTYPE_VIEWSWITCH);
+				targetView.fire("enter", View.SWITCHTYPE_VIEWSWITCH);
+				targetView.fire("afterenter", View.SWITCHTYPE_VIEWSWITCH);
+			}
+			View.switchTo(targetView.getId(), null, false);
+		})();
 		
 		/* 视图标题自动设置 */
 		;(function(){
@@ -967,35 +1008,6 @@
 				/* 呈现ID指定的视图 */
 				View.navTo(targetViewId, View.SWITCHTYPE_VIEWSWITCH);
 			}, {useCapture: true});
-		})();
-
-		/**
-		 * 呈现视图
-		 */
-		(function(){
-			/* 呈现默认视图 */
-			var activeViewObjs = document.querySelectorAll("*[data-view=true].active");
-			for(var i = 0; i < activeViewObjs.length; i++){
-				var viewObj = activeViewObjs[i];
-				viewObj.classList.remove("active");
-			}
-			View.getDefaultView().getDomElement().classList.add("active");
-
-
-			/* 呈现指定视图 */
-			var targetViewId = location.hash.replace(/^#/i, "").toLowerCase();
-			var targetView = getFinalView(targetViewId);
-
-			var isViewState = ViewState.isConstructorOf(history.state);
-			if(null != history.state){
-				console.log("Found existing state: ", history.state, " isViewState? " + isViewState);
-
-				if(!(isViewState && history.state.viewId == targetView.getId()))
-					replaceViewState(targetView.getId());
-			}else{
-				replaceViewState(targetView.getId());
-			}
-			View.switchTo(targetView.getId(), null, false);
 		})();
 	};
 	
