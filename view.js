@@ -502,24 +502,24 @@
 			var idChain = [this.getId()];
 			
 			do{
-				/** 如果视图可以直接访问，则返回自身 */
-				if(view.isDirectlyAccessible())
-					return view;
-				
 				/** 取出配置的视图 */
-				var fallbackViewId = this.getDomElement().getAttribute("data-view-fallback");
+				var fallbackViewId = view.getDomElement().getAttribute("data-view-fallback");
 				/** 判断是否配置且配置的视图是否存在 */
 				if(null == fallbackViewId || !View.isExisting(fallbackViewId)){
-					console.warn("View: " + this.getId() + " is not permited to access directly, and no fallback configuration found, thus returning the default view");
+					console.warn("View: " + view.getId() + " is not permited to access directly, and no fallback configuration found, thus returning the default view");
 					return View.getDefaultView();
 				}else{
 					view = View.ofId(fallbackViewId);
 					
 					if(idChain.indexOf(view.getId()) != -1){/** 循环引用 */
-						console.error("Cyclical reference of view on fallback configuration on view: " + this.getId());
+						console.error("Cyclical reference of view on fallback configuration on view: " + this.getId(), idChain, view.getId());
 						return View.getDefaultView();
 					}
-						
+
+					/** 如果视图可以直接访问，则返回自身 */
+					if(view.isDirectlyAccessible())
+						return view;
+					
 					idChain.push(fallbackViewId);
 				}
 			}while(true);
@@ -631,6 +631,63 @@
 	
 	/**
 	 * 切换视图
+	 * @param srcView {View} 源视图
+	 * @param targetView {View} 目标视图
+	 * @param type {String} 切换操作类型（View.SWITCHTYPE_HISTORYFORWARD || View.SWITCHTYPE_HISTORYBACK || View.SWITCHTYPE_VIEWSWITCH）
+	 * @param withAnimation {Boolean} 是否执行动画
+	 */
+	var _switchTo = function(srcView, targetView, type, withAnimation){
+		if(arguments.length < 3)
+			withAnimation = true;
+		if(arguments.length < 2)
+			type = View.SWITCHTYPE_VIEWSWITCH;
+		type = type || View.SWITCHTYPE_VIEWSWITCH;
+
+		/** 触发前置切换监听器 */
+		View.fire("beforechange", {currentView: srcView, targetView: targetView, type: type});
+		
+		var display = function(){
+			srcView && srcView.getDomElement().classList.remove("active");
+			targetView.getDomElement().classList.add("active");
+		};
+		
+		/* 执行切换操作 */
+		srcView && srcView.fire("leave", type);
+		if(!withAnimation){
+			display();
+			
+			if(!targetView.isReady()){
+				readyViews.push(targetView.getId());
+				targetView.fire("ready", type);
+			}
+			targetView.fire("beforeenter", type);
+			targetView.fire("enter", type);
+			targetView.fire("afterenter", type);
+		}else{
+			var render = function(){
+				display();
+				
+				if(!targetView.isReady()){
+					readyViews.push(targetView.getId());
+					targetView.fire("ready", type);
+				}
+				targetView.fire("beforeenter", type);
+				targetView.fire("enter", type);
+				targetView.fire("afterenter", type);
+			};
+			
+			if(viewSwitchAnimation){
+				viewSwitchAnimation.call(null, srcView? srcView.getDomElement(): null, targetView.getDomElement(), type, render);
+			}else
+				render();
+		}
+		
+		/** 触发后置切换监听器 */
+		View.fire("afterchange", {currentView: srcView, targetView: targetView, type: type});
+	};
+
+	/**
+	 * 切换视图
 	 * @param targetViewId 目标视图ID
 	 * @param type 切换操作类型（View.SWITCHTYPE_HISTORYFORWARD || View.SWITCHTYPE_HISTORYBACK || View.SWITCHTYPE_VIEWSWITCH）
 	 * @param withAnimation 是否执行动画
@@ -662,47 +719,7 @@
 		type = (type.toLowerCase() == View.SWITCHTYPE_HISTORYFORWARD? View.SWITCHTYPE_HISTORYFORWARD: (
 				type.toLowerCase() == View.SWITCHTYPE_HISTORYBACK? View.SWITCHTYPE_HISTORYBACK: View.SWITCHTYPE_VIEWSWITCH));
 		
-		/** 触发前置切换监听器 */
-		View.fire("beforechange", {currentView: currentView, targetView: targetView, type: type});
-		
-		var display = function(){
-			currentView.getDomElement().classList.remove("active");
-			targetView.getDomElement().classList.add("active");
-		};
-		
-		/* 执行切换操作 */
-		currentView.fire("leave", type);
-		if(!withAnimation){
-			display();
-			
-			if(!targetView.isReady()){
-				readyViews.push(targetView.getId());
-				targetView.fire("ready", type);
-			}
-			targetView.fire("beforeenter", type);
-			targetView.fire("enter", type);
-			targetView.fire("afterenter", type);
-		}else{
-			var render = function(){
-				display();
-				
-				if(!targetView.isReady()){
-					readyViews.push(targetView.getId());
-					targetView.fire("ready", type);
-				}
-				targetView.fire("beforeenter", type);
-				targetView.fire("enter", type);
-				targetView.fire("afterenter", type);
-			};
-			
-			if(viewSwitchAnimation){
-				viewSwitchAnimation.call(null, currentView.getDomElement(), targetView.getDomElement(), type, render);
-			}else
-				render();
-		}
-		
-		/** 触发后置切换监听器 */
-		View.fire("afterchange", {currentView: currentView, targetView: targetView, type: type});
+		_switchTo(currentView, targetView, type, withAnimation);
 		
 		return View;
 	};
@@ -823,16 +840,11 @@
 		console.log("↑", historyPushPopSupported? JSON.stringify(e.state): location.hash);
 		
 		var newViewId, type = View.SWITCHTYPE_VIEWSWITCH, targetView = null;
-		if(null == e.state){
+		if(null == e.state){/* 手动输入目标视图ID */
 			type = View.SWITCHTYPE_VIEWSWITCH;
 
 			newViewId = location.hash.replace(/^#/, "").toLowerCase();
-			if(View.isExisting(newViewId))
-				targetView = View.ofId(newViewId);
-			else{
-				console.warn("Poped view: " + newViewId + " does not exist, keeping current.");
-				targetView = currentActiveView;
-			}
+			targetView = getFinalView(newViewId);
 			
 			replaceViewState(targetView.getId());
 		}else{
@@ -929,14 +941,7 @@
 				replaceViewState(targetView.getId());
 			}
 
-			if(specifiedViewId == defaultViewId){
-				readyViews.push(targetViewId);
-				targetView.fire("ready", View.SWITCHTYPE_VIEWSWITCH);
-				targetView.fire("beforeenter", View.SWITCHTYPE_VIEWSWITCH);
-				targetView.fire("enter", View.SWITCHTYPE_VIEWSWITCH);
-				targetView.fire("afterenter", View.SWITCHTYPE_VIEWSWITCH);
-			}
-			View.switchTo(targetView.getId(), null, false);
+			_switchTo(null, targetView, null, false);
 		})();
 		
 		/* 视图标题自动设置 */

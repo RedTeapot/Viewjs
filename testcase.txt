@@ -41,6 +41,7 @@
 	21. ready事件先于enter事件触发
 	22. 视图呈现后再次进入时其ready事件不会再次触发
 	23. 默认激活视图与默认视图不一致时，呈现默认激活视图
+	24. 视图通过其他视图以fallback方式进入后，ready、beforeenter、enter、afterenter，beforechange、afterchange事件也能够被正常触发
 
 二、异常测试：
 	1.  没有定义视图
