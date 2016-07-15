@@ -941,7 +941,7 @@
 				replaceViewState(targetView.getId());
 			}
 
-			_switchTo(null, targetView, null, false);
+			_switchTo(View.getActiveView(), targetView, null, false);
 		})();
 		
 		/* 视图标题自动设置 */
