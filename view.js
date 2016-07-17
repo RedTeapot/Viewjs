@@ -703,10 +703,8 @@
 		var currentView = View.getActiveView();
 		
 		/** 检查目标视图是否存在 */
-		if(!View.isExisting(targetViewId)){
-			console.error("target view: " + targetViewId + " does not exist!");
-			return;
-		}
+		if(!View.isExisting(targetViewId))
+			throw new Error("target view: " + targetViewId + " does not exist!");
 		
 		/* 如果切换目标是自己，则直接返回 */
 		if(currentView.getId().toLowerCase() == targetViewId.toLowerCase())
@@ -748,10 +746,8 @@
 		}
 		
 		/** 检查目标视图是否存在 */
-		if(!View.isExisting(targetViewId)){
-			console.error("Target view: " + targetViewId + " does not exist!");
-			return;
-		}
+		if(!View.isExisting(targetViewId))
+			throw new Error("target view: " + targetViewId + " does not exist!");
 		
 		View.switchTo(targetViewId, type);
 		pushViewState(targetViewId);
@@ -930,6 +926,8 @@
 			var specifiedViewId = location.hash.replace(/^#/i, "").toLowerCase().trim();
 			var targetViewId = "" == specifiedViewId? View.getDefaultView().getId(): specifiedViewId;
 			var targetView = getFinalView(targetViewId);
+
+			console.log("Initial target view: " + targetView.getId());
 
 			var isViewState = ViewState.isConstructorOf(history.state);
 			if(null != history.state){
