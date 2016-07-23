@@ -769,24 +769,25 @@
 	};
 	
 	/**
-	 * 视图准备就绪后执行的方法
+	 * 标记视图就绪
 	 */
+	var markViewReady;
+	
 	View.ready = (function(){
 		var isReady = false;
 		
 		/* 挂起的回调方法列表 */
 		var callbacks = [];
 		
-		/**
-		 * 页面加载完毕后执行所有挂起的回调方法
-		 */
-		document.addEventListener("DOMContentLoaded", function(){
+		markViewReady = function(){
 			isReady = true;
 			
-			callbacks.forEach(function(cb){
-				cb && cb();
-			});
-		});
+			setTimeout(function(){
+				callbacks.forEach(function(cb){
+					cb && cb();
+				});
+			}, 0);
+		};
 		
 		/**
 		 * 就绪后执行的方法
@@ -1025,6 +1026,9 @@
 				e.preventDefault();
 			}, {useCapture: true});
 		})();
+		
+		/* 标记视图就绪 */
+		markViewReady();
 	};
 	
 	document.addEventListener("DOMContentLoaded", init);
