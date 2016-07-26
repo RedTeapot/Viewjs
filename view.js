@@ -371,9 +371,12 @@
 			throw new ViewNotExistError("View of id: " + id + " does not exist(No element matching pattern: '#" + id + "[data-view=true]' found)!");
 		}
 		
+		/* 存储该视图触发的各个事件的最新数据。key：事件名；value：数据 */
+		var eventData = {};
+		
 		/** 上下文，用于存储视图相关的数据等 */
 		var context = (function(){
-			var obj = {};
+			var obj = {};	
 
 			Object.defineProperty(obj, "has", {value: function(name){
 				return name in obj;
@@ -399,6 +402,20 @@
 		 * 事件 leave：当前视图由活动视图变为非活动视图时触发
 		 */
 		eventDrive(this, document.querySelector("#" + id));
+		
+		var fire = this.fire;
+		this.fire = function(name, value){
+			eventData[name] = value;
+			fire(name, value);
+		};
+		
+		/**
+		 * 获取最新的，指定事件对应的数据
+		 * @param {String} eventName 事件名字
+		 */
+		this.getLatestEventData = function(eventName){
+			return eventData[eventName];
+		};
 		
 		/**
 		 * 返回视图对应的DOM元素的ID
