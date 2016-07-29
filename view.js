@@ -261,9 +261,11 @@
 					
 					/** 触发监听器 */
 					eventHandlers[type] = eventHandlers[type] || [];
-					eventHandlers[type].forEach(function(handler){
-						handler.call(ctx, event);
-					});
+					setTimeout(function(){
+						eventHandlers[type].forEach(function(handler){
+							handler.call(ctx, event);
+						});
+					}, 0);
 				};
 			})(obj, ctx);
 		};
@@ -887,54 +889,59 @@
 		window.addEventListener(historyPushPopSupported? "popstate": "hashchange", stateChangeListener);
 		
 		/* 扫描文档，遍历定义视图 */
-		[].forEach.call(document.querySelectorAll("*[data-view=true]"), function(viewObj){
-			View.ofId(viewObj.id);
-		});
+		var viewObjs = document.querySelectorAll("*[data-view=true]");
 		
-		/**
-		 * 指令：data-view 视图定义
-		 * 		取值：true 所在元素为视图
-		 */
-		[].forEach.call(document.querySelectorAll("*[data-view=true]"), function(viewObj){
-			viewObj.classList.add("view");
-		});	
+		/* 默认视图 */
+		var dftViewObj = null;
 		
-		/**
-		 * 指令：data-view-default 配置默认视图（在视图(data-view = true)中配置，且只能有一个）
-		 * 		取值：true 所在元素是默认视图
-		 */
-		(function(){
-			/** 查找配置的默认视图 */
-			var defaultViewObj = null;
-			/* 查找配置的第一个视图 */
-			var defaultViewObjs = document.querySelectorAll("*[data-view-default=true][data-view=true]");
-			if(0 == defaultViewObjs.length){
-				/* 查找顺序定义的第一个视图 */
-				defaultViewObj = document.querySelector("*[data-view=true]");
+		/** 确定默认视图 */
+		var determineDefaultView = function(){
+			var dftViewObjIndex = -1;
+			for(var i = 0; i < viewObjs.length; i++)
+				if("true" == viewObjs[i].getAttribute("data-view-default")){
+					dftViewObjIndex = i;
+					break;
+				}
+			
+			if(-1 != dftViewObjIndex){
+				dftViewObj = viewObjs[dftViewObjIndex];
 				
-				if(null == defaultViewObj){
-					console.warn("No view found!");
-				}else
-					defaultViewObj.setAttribute("data-view-default", "true");
-			}else{
-				/* 无效的属性定义去除 */
-				defaultViewObj = defaultViewObjs[0];
-				for(var i = 1; i < defaultViewObjs.length; i++)
-					defaultViewObjs[i].removeAttribute("data-view-default");
+				/* 删除多余的声明 */
+				for(var i = dftViewObjIndex + 1; i < viewObjs.length; i++)
+					if("true" == viewObjs[i].getAttribute("data-view-default"))
+						viewObjs[i].removeAttribute("data-view-default");
+			}else if(0 != viewObjs.length){
+				dftViewObj = viewObjs[0];
+				dftViewObj.setAttribute("data-view-default", "true");
 			}
-		})();
-
-		/**
-		 * 重置活动视图为默认视图
-		 */
-		(function(){
-			var activeViewObjs = document.querySelectorAll("*[data-view=true].active");
-			for(var i = 0; i < activeViewObjs.length; i++){
-				var viewObj = activeViewObjs[i];
-				viewObj.classList.remove("active");
-			}
-			View.getDefaultView().getDomElement().classList.add("active");
-		})();
+			
+			return dftViewObj;
+		};
+		
+		[].forEach.call(viewObjs, function(viewObj){
+			/* 定义视图 */
+			View.ofId(viewObj.id);
+			
+			/* 去除可能存在的激活状态 */
+			viewObj.classList.remove("active");
+			
+			/* 确定默认视图，并添加激活标识 */
+			determineDefaultView();
+			if(null != dftViewObj)
+				dftViewObj.classList.add("active");
+			
+			/* 添加样式类 */
+			viewObj.classList.add("view");
+			
+			/* 视图标题自动设置 */
+			;(function(){
+				var specifiedTitle = viewObj.getAttribute("data-view-title");
+				var view = View.ofId(viewObj.id);
+				view.on("enter", function(){
+					document.title = null == specifiedTitle? documentTitle: specifiedTitle;
+				});
+			})();
+		});
 
 		/**
 		 * 呈现指定视图
@@ -958,19 +965,6 @@
 			}
 
 			_switchTo(View.getActiveView(), targetView, null, false);
-		})();
-		
-		/* 视图标题自动设置 */
-		;(function(){
-			/* 文档标题 */
-			var documentTitle = document.title;
-			[].forEach.call(document.querySelectorAll("*[data-view=true]"), function(viewObj){
-				var specifiedTitle = viewObj.getAttribute("data-view-title");
-				var view = View.ofId(viewObj.id);
-				view.on("enter", function(){
-					document.title = null == specifiedTitle? documentTitle: specifiedTitle;
-				});
-			});
 		})();
 		
 		/**
