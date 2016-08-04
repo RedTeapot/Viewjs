@@ -7,10 +7,15 @@
  * 5. view.afterenter
  * 6. View.afterchange
  */
-;window.View = (function(){
+;(function(ctx, name){
 	var MOBILE_REGEX = /mobile|tablet|ip(ad|hone|od)|android/i;
 	var SUPPORT_TOUCH = ('ontouchstart' in window);
 	var IS_MOBILE = MOBILE_REGEX.test(navigator.userAgent);
+	
+	/* 日志输出组件 */
+	var Logger = (function(){var e=function(){if(arguments.length==0){return}var k=arguments;var l=" "+String(arguments[0]);var j=1;l=l.replace(/([^\\])\{\}/g,function(n,m){var o=(k.length-1)<j?"{}":String(g(k[j]));j++;return m+o});l=l.replace(/\\\{\}/g,"{}");return l.substring(1)};var d=function(){var o=new Date();var m=o.getFullYear();var n="0"+String(o.getMonth()+1);n=n.substring(n.length-2);var k="0"+String(o.getDate());k=k.substring(k.length-2);var j="0"+String(o.getHours());j=j.substring(j.length-2);var l="0"+String(o.getMinutes());l=l.substring(l.length-2);var p="0"+String(o.getSeconds());p=p.substring(p.length-2);return n+k+" "+j+":"+l+":"+p};var g=function(k){if(null==k){return null}if((typeof k=="number")||(typeof k=="string")||(typeof k=="boolean")){return k}else{if(typeof k=="function"){return"function "+k.name+"(){...}"}else{if(!(k instanceof Array)&&(typeof k=="object")){if(String(k)!="[object Object]"){return String(k)}else{try{return JSON.stringify(k)}catch(j){return String(k)}}}else{if(k instanceof Array){return JSON.stringify(k)}else{return k}}}}};var h=function(j){return d()+" ["+j+"]: "};var c={};var b=function(j){this.getName=function(){return j};this.debug=function(){var k=e.apply(null,arguments);console.debug(h(j)+k)};this.info=function(){var k=e.apply(null,arguments);console.info(h(j)+k)};this.warn=function(){var k=e.apply(null,arguments);console.warn(h(j)+k)};this.error=function(){var k=e.apply(null,arguments);console.error(h(j)+k)};this.log=function(){var k=e.apply(null,arguments);console.log(h(j)+k)}};var f=function(k){if(k in c){return c[k]}var j=new b(k);c[k]=j;return j};b.ofName=f;return b;})();
+	
+	var globalLogger = Logger.ofName("View");
 	
 	/**
 	 * 触摸支持
@@ -159,7 +164,7 @@
 	
 	
 	var historyPushPopSupported = ("pushState" in history) && (typeof history.pushState == "function");
-	console.log("History pushState is " + (historyPushPopSupported? "": "not ") + "supported");
+	globalLogger.log("History pushState is " + (historyPushPopSupported? "": "not ") + "supported");
 	
 	/**
 	 * 准备就绪的视图ID列表
@@ -282,6 +287,14 @@
 		
 		Object.defineProperty(this, "viewId", {value: viewId, configurable: false, writable: false, enumerable: true});
 		Object.defineProperty(this, "timestamp", {value: timestamp, configurable: false, writable: false, enumerable: true});
+		
+		this.toString = function(){
+			return JSON.stringify(this);
+		};
+		
+		this.clone = function(){
+			return JSON.parse(this.toString());
+		};
 	};
 
 	/**
@@ -307,8 +320,8 @@
 		if(arguments.length < 3)
 			updateLocation = true;
 
-		var state = new ViewState(viewId, timestamp);
-		console.log("↓", state);
+		var state = new ViewState(viewId, timestamp).clone();
+		globalLogger.log("↓ {}", JSON.stringify(state));
 
 		if(historyPushPopSupported)
 			history.pushState(state, "", "#" + viewId);
@@ -330,8 +343,8 @@
 		if(arguments.length < 3)
 			updateLocation = true;
 		
-		var state = new ViewState(viewId, timestamp);
-		console.log("%", state);
+		var state = new ViewState(viewId, timestamp).clone();
+		globalLogger.log("% {}", state.clon);
 
 		if(historyPushPopSupported)
 			history.replaceState(state, "", "#" + viewId);
@@ -410,6 +423,9 @@
 			eventData[name] = value;
 			fire(name, value);
 		};
+		
+		/* 日志输出组件 */
+		Object.defineProperty(this, "logger", {value: Logger.ofName("View#" + id), configurable: false, writable: false, enumerable: true});
 		
 		/**
 		 * 获取最新的，指定事件对应的数据
@@ -525,13 +541,13 @@
 				var fallbackViewId = view.getDomElement().getAttribute("data-view-fallback");
 				/** 判断是否配置且配置的视图是否存在 */
 				if(null == fallbackViewId || !View.isExisting(fallbackViewId)){
-					console.warn("View: " + view.getId() + " is not permited to access directly, and no fallback configuration found, thus returning the default view");
+					globalLogger.warn("View: " + view.getId() + " is not permited to access directly, and no fallback configuration found, thus returning the default view");
 					return View.getDefaultView();
 				}else{
 					view = View.ofId(fallbackViewId);
 					
 					if(idChain.indexOf(view.getId()) != -1){/** 循环引用 */
-						console.error("Cyclical reference of view on fallback configuration on view: " + this.getId(), idChain, view.getId());
+						globalLogger.error("Cyclical reference of view on fallback configuration on view: {}. Chain: {}, view id: {}", this.getId(), idChain, view.getId());
 						return View.getDefaultView();
 					}
 
@@ -729,7 +745,7 @@
 		if(currentView.getId().toLowerCase() == targetViewId.toLowerCase())
 			return;
 		
-		console.log(currentView.getId() + " → " + targetViewId, type);
+		globalLogger.log("{} → {} {}", currentView.getId(), targetViewId, type);
 
 		/* 目标视图 */
 		var targetView = View.ofId(targetViewId);
@@ -786,6 +802,9 @@
 		
 		return View;
 	};
+	
+	/** 暴露日志组件，供第三方使用 */
+	View.Logger = Logger;
 	
 	/**
 	 * 标记视图就绪
@@ -852,8 +871,8 @@
 	var stateChangeListener =  function(e){
 		var currentActiveView = View.getActiveView();
 		
-		console.log(historyPushPopSupported? "State poped!": "Hash changed!", "Current: " + currentActiveView.getId());
-		console.log("↑", historyPushPopSupported? JSON.stringify(e.state): location.hash);
+		globalLogger.log("{} Current: {}", historyPushPopSupported? "State poped!": "Hash changed!", currentActiveView.getId());
+		globalLogger.log("↑ {}", historyPushPopSupported? JSON.stringify(e.state): location.hash);
 		
 		var newViewId, type = View.SWITCHTYPE_VIEWSWITCH, targetView = null;
 		if(null == e.state){/* 手动输入目标视图ID */
@@ -870,7 +889,7 @@
 			if(View.isExisting(newViewId))
 				targetView = View.ofId(newViewId);
 			else{
-				console.warn("Poped view: " + newViewId + " does not exist, keeping current.");
+				globalLogger.warn("Poped view: " + newViewId + " does not exist, keeping current.");
 				targetView = currentActiveView;
 			}
 		
@@ -893,6 +912,8 @@
 		
 		/* 默认视图 */
 		var dftViewObj = null;
+		
+		var documentTitle = document.title;
 		
 		/** 确定默认视图 */
 		var determineDefaultView = function(){
@@ -952,11 +973,11 @@
 			var targetViewId = "" == specifiedViewId? View.getDefaultView().getId(): specifiedViewId;
 			var targetView = getFinalView(targetViewId);
 
-			console.log("Initial target view: " + targetView.getId());
+			globalLogger.log("Initial target view: " + targetView.getId());
 
 			var isViewState = ViewState.isConstructorOf(history.state);
 			if(null != history.state){
-				console.log("Found existing state: ", history.state, " isViewState? " + isViewState);
+				globalLogger.log("Found existing state: {}, isViewState? {}", JSON.stringify(history.state), isViewState);
 
 				if(!(isViewState && history.state.viewId == targetView.getId()))
 					replaceViewState(targetView.getId());
@@ -1026,7 +1047,7 @@
 				var relType = tmp.getAttribute("data-view-rel-type");
 				relType = null == relType || "" == relType.trim()? "nav": relType;
 				if(!/^(?:nav)|(?:change)$/.test(relType)){
-					console.warn("Unknown view switch type: " + relType, tmp);
+					globalLogger.warn("Unknown view switch type: {}. {}", relType, tmp);
 					relType = "nav";
 				}
 
@@ -1044,5 +1065,5 @@
 	
 	document.addEventListener("DOMContentLoaded", init);
 	
-	return View;
-})();
+	ctx[name] = View;
+})(window, "View");
