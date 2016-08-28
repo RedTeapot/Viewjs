@@ -13,7 +13,7 @@
 	var IS_MOBILE = MOBILE_REGEX.test(navigator.userAgent);
 
 	/* 日志输出组件 */
-	var Logger = (function(){var e=function(){if(arguments.length==0){return}var k=arguments;var l=" "+String(arguments[0]);var j=1;l=l.replace(/([^\\])\{\}/g,function(n,m){var o=(k.length-1)<j?"{}":String(g(k[j]));j++;return m+o});l=l.replace(/\\\{\}/g,"{}");return l.substring(1)};var d=function(){var o=new Date();var m=o.getFullYear();var n="0"+String(o.getMonth()+1);n=n.substring(n.length-2);var k="0"+String(o.getDate());k=k.substring(k.length-2);var j="0"+String(o.getHours());j=j.substring(j.length-2);var l="0"+String(o.getMinutes());l=l.substring(l.length-2);var p="0"+String(o.getSeconds());p=p.substring(p.length-2);return n+k+" "+j+":"+l+":"+p};var g=function(m){if(null==m){return null}if((typeof m=="number")||(typeof m=="string")||(typeof m=="boolean")){return m}else{if(typeof m=="function"){return"function "+m.name+"(){...}"}else{if(!(m instanceof Array)&&(typeof m=="object")){if(String(m)!="[object Object]"){return String(m)}else{try{var j={};for(var l in m){j[l]=g(m[l])}return JSON.stringify(j)}catch(k){return String(m)}}}else{if(m instanceof Array){return JSON.stringify(m.map(function(n){return g(n)}))}else{return m}}}}};var h=function(j){return d()+" ["+j+"]: "};var c={};var b=function(j){this.getName=function(){return j};this.debug=function(){var k=e.apply(null,arguments);console.debug(h(j)+k)};this.info=function(){var k=e.apply(null,arguments);console.info(h(j)+k)};this.warn=function(){var k=e.apply(null,arguments);console.warn(h(j)+k)};this.error=function(){var k=e.apply(null,arguments);console.error(h(j)+k)};this.log=function(){var k=e.apply(null,arguments);console.log(h(j)+k)}};var f=function(k){if(k in c){return c[k]}var j=new b(k);c[k]=j;return j};b.ofName=f;return b;})();
+	var Logger = (function(){var f=function(){if(arguments.length==0){return}var m=arguments;var n=" "+String(arguments[0]);var l=1;n=n.replace(/([^\\])\{\}/g,function(p,o){var q=(m.length-1)<l?"{}":String(h(m[l]));l++;return o+q});n=n.replace(/\\\{\}/g,"{}");return n.substring(1)};var d=function(){var q=new Date();var o=q.getFullYear();var p="0"+String(q.getMonth()+1);p=p.substring(p.length-2);var m="0"+String(q.getDate());m=m.substring(m.length-2);var l="0"+String(q.getHours());l=l.substring(l.length-2);var n="0"+String(q.getMinutes());n=n.substring(n.length-2);var r="0"+String(q.getSeconds());r=r.substring(r.length-2);return p+m+" "+l+":"+n+":"+r};var h=function(o){if(null==o){return null}if((typeof o=="number")||(typeof o=="string")||(typeof o=="boolean")){return o}else{if(typeof o=="function"){return"function "+o.name+"(){...}"}else{if(!(o instanceof Array)&&(typeof o=="object")){if(String(o)!="[object Object]"){return String(o)}else{try{var l={};for(var n in o){l[n]=h(o[n])}return JSON.stringify(l)}catch(m){return String(o)}}}else{if(o instanceof Array){return JSON.stringify(o.map(function(p){return h(p)}))}else{return o}}}}};var i=function(l){return d()+" ["+l+"]: "};var c={};var j,e;(function(){var l=true;j=function(){return l};e=function(m){l=m}})();var b=function(l){var m=true;this.isEnabled=function(){return j()&&m};this.setIsEnabled=function(n){m=n;return this};this.getName=function(){return l};this.debug=function(){if(!this.isEnabled()){return}var n=f.apply(null,arguments);console.debug(i(l)+n)};this.info=function(){if(!this.isEnabled()){return}var n=f.apply(null,arguments);console.info(i(l)+n)};this.warn=function(){if(!this.isEnabled()){return}var n=f.apply(null,arguments);console.warn(i(l)+n)};this.error=function(){if(!this.isEnabled()){return}var n=f.apply(null,arguments);console.error(i(l)+n)};this.log=function(){if(!this.isEnabled()){return}var n=f.apply(null,arguments);console.log(i(l)+n)}};var g=function(m){if(m in c){return c[m]}var l=new b(m);c[m]=l;return l};b.ofName=g;b.isGloballyEnabled=j;b.setIsGloballyEnabled=e;return b;})();
 
 	var globalLogger = Logger.ofName("View");
 
@@ -281,11 +281,9 @@
 
 					/** 触发监听器 */
 					eventHandlers[type] = eventHandlers[type] || [];
-					setTimeout(function(){
-						eventHandlers[type].forEach(function(handler){
-							handler.call(ctx, event);
-						});
-					}, 0);
+					eventHandlers[type].forEach(function(handler){
+						handler.call(ctx, event);
+					});
 				};
 			})(obj, ctx);
 		};
