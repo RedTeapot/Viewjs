@@ -192,12 +192,40 @@
 	var viewParameters = {};
 
 	/**
+	 * 设置特定视图特定的参数取值
+	 * @param {String} viewId 视图ID
+	 * @param {String} name 要设置的键的名称
+	 * @param {Any} value 要设置的键的取值
+	 */
+	var setViewParameter = function(viewId, name, value){
+		if(!View.isExisting(viewId))
+			throw new ViewNotExistError("View of id: " + viewId + " does not exist.");
+		if(arguments.length < 3)
+			throw new Error("Invalid argument length. Both parameter name and value should be specified.");
+
+		viewParameters[viewId] = viewParameters[viewId] || {};
+		viewParameters[viewId][String(name)] = value;
+
+		return View;
+	};
+
+	/**
 	 * 设置视图入参
 	 * @param {String} viewId 视图ID
 	 * @param {Any} params 入参
 	 */
-	var setViewParameter = function(viewId, params){
-		viewParameters[viewId] = params;
+	var setViewParameters = function(viewId, params){
+		if(!View.isExisting(viewId))
+			throw new ViewNotExistError("View of id: " + viewId + " does not exist.");
+		if(null == params || typeof params != "object")
+			throw new Error("Parameters specified should be an object.");
+
+		viewParameters[viewId] = viewParameters[viewId] || {};
+		var map = viewParameters[viewId];
+		for(var p in params)
+			map[p] = params[p];
+
+		return View;
 	};
 
 	/**
@@ -206,6 +234,8 @@
 	 */
 	var clearViewParameter = function(viewId){
 		delete viewParameters[viewId];
+
+		return View;
 	};
 
 	/**
@@ -396,28 +426,12 @@
 	ViewNotExistError.prototype = Object.create(Error.prototype);
 
 	/**
-	 * @constructor
-	 *
-	 * 事件
-	 * @param type {String} 事件类型（名称）
-	 * @param data {JSON} 需要传递至监听器的数据
-	 */
-	var Event = function(type, data){
-		this.type = type;
-		this.timestamp = new Date().getTime();
-		this.data = data;
-
-		Object.freeze && Object.freeze(this);
-	};
-
-	/**
 	 * 视图类
 	 * @param id {String} 视图对应的DOM元素的id
 	 */
 	var View = function(id){
-		if(null == document.querySelector("#" + id + "[data-view=true]")){
+		if(null == document.querySelector("#" + id + "[data-view=true]"))
 			throw new ViewNotExistError("View of id: " + id + " does not exist(No element matching pattern: '#" + id + "[data-view=true]' found)!");
-		}
 
 		/* 存储该视图触发的各个事件的最新数据。key：事件名；value：数据 */
 		var eventData = {};
@@ -524,6 +538,31 @@
 				return params;
 
 			return null == params? null: params[name];
+		};
+
+		/**
+		 * 设置视图参数中指定名称的键的参数值
+		 * @param {String} name 参数名
+		 * @param {Any} value 参数取值
+		 */
+		this.setParameter = function(name, value){
+			if(arguments.length < 2)
+				throw new Error("Invalid argument length. Both name and value should be specified.");
+
+			setViewParameter(this.getId(), name, value);
+			return this;
+		};
+
+		/**
+		 * 一次性设置多个参数
+		 * @param {JsonObject} params 参数集合
+		 */
+		this.setParameters = function(params){
+			if(arguments.length < 1)
+				throw new Error("No key-value map specified.");
+
+			setViewParameters(params);
+			return this;
 		};
 
 		/**
@@ -747,8 +786,8 @@
 		var enter = function(){
 			/* 视图参数重置 */
 			var targetViewId = targetView.getId();
-			clearViewParameter(targetViewId);
-			setViewParameter(targetView.getId(), ops.params);
+			if(NOT_SUPPLIED != ops.params && null != ops.params)
+				setViewParameters(targetView.getId(), ops.params);
 
 			if(!targetView.isReady()){
 				readyViews.push(targetViewId);
@@ -806,7 +845,6 @@
 
 		ops.srcView = currentView;
 		ops.targetView = targetView;
-
 		_show(ops);
 
 		return View;
