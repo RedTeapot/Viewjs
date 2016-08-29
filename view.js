@@ -12,6 +12,9 @@
 	var SUPPORT_TOUCH = ('ontouchstart' in window);
 	var IS_MOBILE = MOBILE_REGEX.test(navigator.userAgent);
 
+	/** 使用一个仅内部可见的对象，表示那些json对象中值没有被设置的键 */
+	var NOT_SUPPLIED = new Object();
+
 	/* 日志输出组件 */
 	var Logger = (function(){var f=function(){if(arguments.length==0){return}var m=arguments;var n=" "+String(arguments[0]);var l=1;n=n.replace(/([^\\])\{\}/g,function(p,o){var q=(m.length-1)<l?"{}":String(h(m[l]));l++;return o+q});n=n.replace(/\\\{\}/g,"{}");return n.substring(1)};var d=function(){var q=new Date();var o=q.getFullYear();var p="0"+String(q.getMonth()+1);p=p.substring(p.length-2);var m="0"+String(q.getDate());m=m.substring(m.length-2);var l="0"+String(q.getHours());l=l.substring(l.length-2);var n="0"+String(q.getMinutes());n=n.substring(n.length-2);var r="0"+String(q.getSeconds());r=r.substring(r.length-2);return p+m+" "+l+":"+n+":"+r};var h=function(o){if(null==o){return null}if((typeof o=="number")||(typeof o=="string")||(typeof o=="boolean")){return o}else{if(typeof o=="function"){return"function "+o.name+"(){...}"}else{if(!(o instanceof Array)&&(typeof o=="object")){if(String(o)!="[object Object]"){return String(o)}else{try{var l={};for(var n in o){l[n]=h(o[n])}return JSON.stringify(l)}catch(m){return String(o)}}}else{if(o instanceof Array){return JSON.stringify(o.map(function(p){return h(p)}))}else{return o}}}}};var i=function(l){return d()+" ["+l+"]: "};var c={};var j,e;(function(){var l=true;j=function(){return l};e=function(m){l=m}})();var b=function(l){var m=true;this.isEnabled=function(){return j()&&m};this.setIsEnabled=function(n){m=n;return this};this.getName=function(){return l};this.debug=function(){if(!this.isEnabled()){return}var n=f.apply(null,arguments);console.debug(i(l)+n)};this.info=function(){if(!this.isEnabled()){return}var n=f.apply(null,arguments);console.info(i(l)+n)};this.warn=function(){if(!this.isEnabled()){return}var n=f.apply(null,arguments);console.warn(i(l)+n)};this.error=function(){if(!this.isEnabled()){return}var n=f.apply(null,arguments);console.error(i(l)+n)};this.log=function(){if(!this.isEnabled()){return}var n=f.apply(null,arguments);console.log(i(l)+n)}};var g=function(m){if(m in c){return c[m]}var l=new b(m);c[m]=l;return l};b.ofName=g;b.isGloballyEnabled=j;b.setIsGloballyEnabled=e;return b;})();
 
@@ -187,6 +190,23 @@
 	 * value：{Any} 参数
 	 */
 	var viewParameters = {};
+
+	/**
+	 * 设置视图入参
+	 * @param {String} viewId 视图ID
+	 * @param {Any} params 入参
+	 */
+	var setViewParameter = function(viewId, params){
+		viewParameters[viewId] = params;
+	};
+
+	/**
+	 * 清除特定视图的入参
+	 * @param {String} viewId 视图ID
+	 */
+	var clearViewParameter = function(viewId){
+		delete viewParameters[viewId];
+	};
 
 	/**
 	 * 设定参数默认值
@@ -703,14 +723,15 @@
 			targetView: null,
 			type: View.SWITCHTYPE_VIEWSWITCH,
 			withAnimation: true,
-			params: null
+			params: NOT_SUPPLIED
 		});
 
 		var srcView = ops.srcView,
 			targetView = ops.targetView,
-			type = ops.type || View.SWITCHTYPE_VIEWSWITCH,
-			withAnimation = ops.withAnimation,
-			params = ops.params;
+			type = ops.type || View.SWITCHTYPE_VIEWSWITCH;
+
+		type = (type.toLowerCase() == View.SWITCHTYPE_HISTORYFORWARD? View.SWITCHTYPE_HISTORYFORWARD: (
+			type.toLowerCase() == View.SWITCHTYPE_HISTORYBACK? View.SWITCHTYPE_HISTORYBACK: View.SWITCHTYPE_VIEWSWITCH));
 
 		/** 触发前置切换监听器 */
 		View.fire("beforechange", {currentView: srcView, targetView: targetView, type: type});
@@ -725,11 +746,12 @@
 
 		var enter = function(){
 			/* 视图参数重置 */
-			viewParameters[targetView.getId()] = null;
-			viewParameters[targetView.getId()] = params;
+			var targetViewId = targetView.getId();
+			clearViewParameter(targetViewId);
+			setViewParameter(targetView.getId(), ops.params);
 
 			if(!targetView.isReady()){
-				readyViews.push(targetView.getId());
+				readyViews.push(targetViewId);
 				targetView.fire("ready", type);
 			}
 			targetView.fire("beforeenter", type);
@@ -737,7 +759,7 @@
 			targetView.fire("afterenter", type);
 		};
 
-		if(!withAnimation){
+		if(!ops.withAnimation){
 			display();
 			enter();
 		}else{
@@ -759,13 +781,11 @@
 	/**
 	 * 呈现指定的视图（不操作history）
 	 * @param {String} targetViewId 目标视图ID
-	 * @param {JsonObject} ops 切换配置。详见_show
+	 * @param {JsonObject} ops 切换配置。详见_sowh
 	 */
 	var show = function(targetViewId, ops){
 		ops = setDftValue(ops, {
 			type: View.SWITCHTYPE_VIEWSWITCH,
-			withAnimation: true,
-			params: null
 		}, true);
 
 		/** 检查目标视图是否存在 */
@@ -775,29 +795,23 @@
 		/* 当前活动视图 */
 		var currentView = View.getActiveView();
 
-		var type = ops.type;
-
 		/* 如果切换目标是自己，则直接返回 */
 		if(currentView.getId().toLowerCase() == targetViewId.toLowerCase())
 			return;
 
-		globalLogger.log("{} → {} {}", currentView.getId(), targetViewId, type);
+		globalLogger.log("{} → {} {}", currentView.getId(), targetViewId, ops.type);
 
 		/* 目标视图 */
 		var targetView = View.ofId(targetViewId);
-		type = (type.toLowerCase() == View.SWITCHTYPE_HISTORYFORWARD? View.SWITCHTYPE_HISTORYFORWARD: (
-			type.toLowerCase() == View.SWITCHTYPE_HISTORYBACK? View.SWITCHTYPE_HISTORYBACK: View.SWITCHTYPE_VIEWSWITCH));
 
-		_show({
-			srcView: currentView,
-			targetView: targetView,
-			type: type,
-			withAnimation: ops.withAnimation,
-			params: ops.params
-		});
+		ops.srcView = currentView;
+		ops.targetView = targetView;
+
+		_show(ops);
 
 		return View;
 	};
+	View.show = show;
 
 	/**
 	 * 切换视图
@@ -824,27 +838,24 @@
 	/**
 	 * 切换视图，同时更新相关状态（压入堆栈）
 	 * @param targetViewId 目标视图ID
-	 * @param type 切换操作类型（View.SWITCHTYPE_HISTORYFORWARD || View.SWITCHTYPE_HISTORYBACK || View.SWITCHTYPE_VIEWSWITCH）
-	 * @param {Any} params 视图参数
+	 * @param {JsonObject} ops 切换配置。详见View.show
 	 */
-	View.navTo = function(targetViewId, type, params){
+	View.navTo = function(targetViewId, ops){
 		var state = new ViewState(targetViewId, Date.now());
 
 		/** 伪视图支持 */
 		/* 回退操作(":back") */
 		if(":back" == targetViewId.toLowerCase().trim()){
 			history.go(-1);/* browser support */
-
 			return;
 		}
 		/* 前进操作（":forward"） */
 		if(":forward" == targetViewId.toLowerCase().trim()){
 			history.go(1);/* browser support */
-
 			return;
 		}
 
-		show(targetViewId, {type: type, withAnimation: true, params: params});
+		show(targetViewId, ops);
 		pushViewState(targetViewId);
 
 		return View;
@@ -869,11 +880,10 @@
 	/**
 	 * 切换视图，同时更新相关状态（更新堆栈）
 	 * @param targetViewId 目标视图ID
-	 * @param type 切换操作类型（View.SWITCHTYPE_HISTORYFORWARD || View.SWITCHTYPE_HISTORYBACK || View.SWITCHTYPE_VIEWSWITCH）
-	 * @param {Any} params 视图参数
+	 * @param {JsonObject} ops 切换配置。详见_show
 	 */
-	View.changeTo = function(targetViewId, type, params){
-		show(targetViewId, {type: type, withAnimation: true, params: params});
+	View.changeTo = function(targetViewId, ops){
+		show(targetViewId, ops);
 		replaceViewState(targetViewId);
 
 		return View;
@@ -1113,14 +1123,12 @@
 				/* 回退操作(":back") */
 				if(":back" == targetViewId.toLowerCase().trim()){
 					history.go(-1);/* browser support */
-
 					return;
 				}
 
 				/* 前进操作（":forward"） */
 				if(":forward" == targetViewId.toLowerCase().trim()){
 					history.go(1);/* browser support */
-
 					return;
 				}
 
@@ -1132,7 +1140,7 @@
 				}
 
 				/* 呈现ID指定的视图 */
-				View[relType + "To"](targetViewId, View.SWITCHTYPE_VIEWSWITCH);
+				View[relType + "To"](targetViewId, {type: View.SWITCHTYPE_VIEWSWITCH});
 
 				/* 阻止ghost click */
 				e.preventDefault();

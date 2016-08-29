@@ -43,6 +43,7 @@
 	23. 默认激活视图与默认视图不一致时，呈现默认激活视图
 	24. 视图通过其他视图以fallback方式进入后，ready、beforeenter、enter、afterenter，beforechange、afterchange事件也能够被正常触发
 	25. 视图允许直接访问时，通过地址栏访问非默认视图后，再次刷新页面，页面没有异常，正确地停留在目标视图上
+	26. 通过navTo，changeTo方法传递视图参数时，视图切入后可以正常的拿到参数值
 
 二、异常测试：
 	1.  没有定义视图
