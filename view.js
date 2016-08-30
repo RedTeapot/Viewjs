@@ -15,6 +15,9 @@
 	/** 使用一个仅内部可见的对象，表示那些json对象中值没有被设置的键 */
 	var NOT_SUPPLIED = new Object();
 
+	var PSVIEW_BACK = ":back",
+		PSVIEW_FORWARD = ":forward";
+
 	/* 日志输出组件 */
 	var Logger = (function(){var f=function(){if(arguments.length==0){return}var m=arguments;var n=" "+String(arguments[0]);var l=1;n=n.replace(/([^\\])\{\}/g,function(p,o){var q=(m.length-1)<l?"{}":String(h(m[l]));l++;return o+q});n=n.replace(/\\\{\}/g,"{}");return n.substring(1)};var d=function(){var q=new Date();var o=q.getFullYear();var p="0"+String(q.getMonth()+1);p=p.substring(p.length-2);var m="0"+String(q.getDate());m=m.substring(m.length-2);var l="0"+String(q.getHours());l=l.substring(l.length-2);var n="0"+String(q.getMinutes());n=n.substring(n.length-2);var r="0"+String(q.getSeconds());r=r.substring(r.length-2);return p+m+" "+l+":"+n+":"+r};var h=function(o){if(null==o){return null}if((typeof o=="number")||(typeof o=="string")||(typeof o=="boolean")){return o}else{if(typeof o=="function"){return"function "+o.name+"(){...}"}else{if(!(o instanceof Array)&&(typeof o=="object")){if(String(o)!="[object Object]"){return String(o)}else{try{var l={};for(var n in o){l[n]=h(o[n])}return JSON.stringify(l)}catch(m){return String(o)}}}else{if(o instanceof Array){return JSON.stringify(o.map(function(p){return h(p)}))}else{return o}}}}};var i=function(l){return d()+" ["+l+"]: "};var c={};var j,e;(function(){var l=true;j=function(){return l};e=function(m){l=m}})();var b=function(l){var m=true;this.isEnabled=function(){return j()&&m};this.setIsEnabled=function(n){m=n;return this};this.getName=function(){return l};this.debug=function(){if(!this.isEnabled()){return}var n=f.apply(null,arguments);console.debug(i(l)+n)};this.info=function(){if(!this.isEnabled()){return}var n=f.apply(null,arguments);console.info(i(l)+n)};this.warn=function(){if(!this.isEnabled()){return}var n=f.apply(null,arguments);console.warn(i(l)+n)};this.error=function(){if(!this.isEnabled()){return}var n=f.apply(null,arguments);console.error(i(l)+n)};this.log=function(){if(!this.isEnabled()){return}var n=f.apply(null,arguments);console.log(i(l)+n)}};var g=function(m){if(m in c){return c[m]}var l=new b(m);c[m]=l;return l};b.ofName=g;b.isGloballyEnabled=j;b.setIsGloballyEnabled=e;return b;})();
 
@@ -198,7 +201,7 @@
 	 * @param {Any} value 要设置的键的取值
 	 */
 	var setViewParameter = function(viewId, name, value){
-		if(!View.isExisting(viewId))
+		if(!View.isExisting(viewId) && PSVIEW_BACK != viewId && PSVIEW_FORWARD != viewId)
 			throw new ViewNotExistError("View of id: " + viewId + " does not exist.");
 		if(arguments.length < 3)
 			throw new Error("Invalid argument length. Both parameter name and value should be specified.");
@@ -215,16 +218,15 @@
 	 * @param {Any} params 入参
 	 */
 	var setViewParameters = function(viewId, params){
-		if(!View.isExisting(viewId))
+		if(!View.isExisting(viewId) && PSVIEW_BACK != viewId && PSVIEW_FORWARD != viewId)
 			throw new ViewNotExistError("View of id: " + viewId + " does not exist.");
-		if(null == params || typeof params != "object")
-			throw new Error("Parameters specified should be an object.");
 
-		viewParameters[viewId] = viewParameters[viewId] || {};
-		var map = viewParameters[viewId];
-		for(var p in params)
-			map[p] = params[p];
+		if(undefined === params)
+			params = null;
+		if(typeof params != "object")
+			throw new Error("Parameters specified should be an object or null.");
 
+		viewParameters[viewId] = params;
 		return View;
 	};
 
@@ -232,7 +234,7 @@
 	 * 清除特定视图的入参
 	 * @param {String} viewId 视图ID
 	 */
-	var clearViewParameter = function(viewId){
+	var clearViewParameters = function(viewId){
 		delete viewParameters[viewId];
 
 		return View;
@@ -541,31 +543,6 @@
 		};
 
 		/**
-		 * 设置视图参数中指定名称的键的参数值
-		 * @param {String} name 参数名
-		 * @param {Any} value 参数取值
-		 */
-		this.setParameter = function(name, value){
-			if(arguments.length < 2)
-				throw new Error("Invalid argument length. Both name and value should be specified.");
-
-			setViewParameter(this.getId(), name, value);
-			return this;
-		};
-
-		/**
-		 * 一次性设置多个参数
-		 * @param {JsonObject} params 参数集合
-		 */
-		this.setParameters = function(params){
-			if(arguments.length < 1)
-				throw new Error("No key-value map specified.");
-
-			setViewParameters(params);
-			return this;
-		};
-
-		/**
 		 * 判断当前视图是否已经就绪
 		 */
 		this.isReady = function(){
@@ -767,16 +744,18 @@
 
 		var srcView = ops.srcView,
 			targetView = ops.targetView,
-			type = ops.type || View.SWITCHTYPE_VIEWSWITCH;
+			type = ops.type;
 
-		type = (type.toLowerCase() == View.SWITCHTYPE_HISTORYFORWARD? View.SWITCHTYPE_HISTORYFORWARD: (
-			type.toLowerCase() == View.SWITCHTYPE_HISTORYBACK? View.SWITCHTYPE_HISTORYBACK: View.SWITCHTYPE_VIEWSWITCH));
+		var isBack = type.toLowerCase() == View.SWITCHTYPE_HISTORYBACK,
+			isForward = type.toLowerCase() == View.SWITCHTYPE_HISTORYFORWARD;
+		if(!isBack && !isForward)
+			type = View.SWITCHTYPE_VIEWSWITCH;
 
 		/** 触发前置切换监听器 */
 		View.fire("beforechange", {currentView: srcView, targetView: targetView, type: type});
 
 		/* 执行切换操作 */
-		srcView && srcView.fire("leave", type);
+		srcView && srcView.fire("leave", {targetView: targetView, type: type});
 
 		var display = function(){
 			srcView && srcView.getDomElement().classList.remove("active");
@@ -786,16 +765,30 @@
 		var enter = function(){
 			/* 视图参数重置 */
 			var targetViewId = targetView.getId();
-			if(NOT_SUPPLIED != ops.params && null != ops.params)
-				setViewParameters(targetView.getId(), ops.params);
+			clearViewParameters(targetViewId);
+			if(isBack){
+				if(PSVIEW_BACK in viewParameters){
+					/* 用过之后立即销毁，防止污染其它回退操作 */
+					setViewParameters(targetViewId, viewParameters[PSVIEW_BACK]);
+					delete viewParameters[PSVIEW_BACK];
+				}
+			}else if(isForward){
+				if(PSVIEW_FORWARD in viewParameters){
+					/* 用过之后立即销毁，防止污染其它前进操作 */
+					setViewParameters(targetViewId, viewParameters[PSVIEW_FORWARD]);
+					delete viewParameters[PSVIEW_FORWARD];
+				}
+			}else if(NOT_SUPPLIED != ops.params)
+				setViewParameters(targetViewId, ops.params);
 
+			var eventData = {sourceView: srcView, type: type};
 			if(!targetView.isReady()){
 				readyViews.push(targetViewId);
-				targetView.fire("ready", type);
+				targetView.fire("ready", eventData);
 			}
-			targetView.fire("beforeenter", type);
-			targetView.fire("enter", type);
-			targetView.fire("afterenter", type);
+			targetView.fire("beforeenter", eventData);
+			targetView.fire("enter", eventData);
+			targetView.fire("afterenter", eventData);
 		};
 
 		if(!ops.withAnimation){
@@ -820,7 +813,7 @@
 	/**
 	 * 呈现指定的视图（不操作history）
 	 * @param {String} targetViewId 目标视图ID
-	 * @param {JsonObject} ops 切换配置。详见_sowh
+	 * @param {JsonObject} ops 切换配置。详见_show
 	 */
 	var show = function(targetViewId, ops){
 		ops = setDftValue(ops, {
@@ -879,17 +872,18 @@
 	 * @param {JsonObject} ops 切换配置。详见View.show
 	 */
 	View.navTo = function(targetViewId, ops){
+		targetViewId = targetViewId.trim().toLowerCase();
 		var state = new ViewState(targetViewId, Date.now());
 
 		/** 伪视图支持 */
 		/* 回退操作(":back") */
-		if(":back" == targetViewId.toLowerCase().trim()){
-			history.go(-1);/* browser support */
+		if(PSVIEW_BACK == targetViewId){
+			View.back(ops);
 			return;
 		}
 		/* 前进操作（":forward"） */
-		if(":forward" == targetViewId.toLowerCase().trim()){
-			history.go(1);/* browser support */
+		if(PSVIEW_FORWARD == targetViewId){
+			View.forward(ops);
 			return;
 		}
 
@@ -903,15 +897,33 @@
 
 	/**
 	 * 回退到上一个视图
+	 * @param {JsonObject} ops 切换配置
+	 * @param {JsonObject | null} ops.params 视图切换参数
 	 */
-	View.back = function(){
+	View.back = function(ops){
+		/* 清除旧数据，并仅在指定了参数时才设置参数，防止污染其它回退操作 */
+		clearViewParameters(PSVIEW_BACK);
+		if(null != ops && "params" in ops) {
+			console.log("!!!!", viewParameters);
+			setViewParameters(PSVIEW_BACK, ops.params);
+		}
+
 		history.go(-1);
 	};
 
 	/**
 	 * 前进到下一个视图
+	 * @param {JsonObject} ops 切换配置
+	 * @param {JsonObject | null} ops.params 视图切换参数
 	 */
-	View.forward = function(){
+	View.forward = function(ops){
+		/* 清除旧数据，并仅在指定了参数时才设置参数，防止污染其它前进操作 */
+		clearViewParameters(PSVIEW_FORWARD);
+		if(null != ops && "params" in ops) {
+			console.log("!!!!", viewParameters);
+			setViewParameters(PSVIEW_FORWARD, ops.params);
+		}
+
 		history.go(1);
 	};
 
@@ -1024,7 +1036,7 @@
 		}
 
 		/* 视图切换 */
-		View.switchTo(targetView.getId(), type);
+		View.show(targetView.getId(), {type: type});
 	};
 
 	var init = function(){
@@ -1159,13 +1171,13 @@
 
 
 				/* 回退操作(":back") */
-				if(":back" == targetViewId.toLowerCase().trim()){
+				if(PSVIEW_BACK == targetViewId.toLowerCase().trim()){
 					history.go(-1);/* browser support */
 					return;
 				}
 
 				/* 前进操作（":forward"） */
-				if(":forward" == targetViewId.toLowerCase().trim()){
+				if(PSVIEW_FORWARD == targetViewId.toLowerCase().trim()){
 					history.go(1);/* browser support */
 					return;
 				}
