@@ -1169,7 +1169,9 @@
 				if(isViewRelDisabled)
 					return;
 
-
+				/* 阻止ghost click */
+				e.preventDefault();
+				
 				/* 回退操作(":back") */
 				if(PSVIEW_BACK == targetViewId.toLowerCase().trim()){
 					history.go(-1);/* browser support */
@@ -1191,9 +1193,6 @@
 
 				/* 呈现ID指定的视图 */
 				View[relType + "To"](targetViewId, {type: View.SWITCHTYPE_VIEWSWITCH});
-
-				/* 阻止ghost click */
-				e.preventDefault();
 			}, {useCapture: true});
 		})();
 
