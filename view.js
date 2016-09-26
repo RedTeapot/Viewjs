@@ -746,6 +746,8 @@
 			targetView = ops.targetView,
 			type = ops.type;
 
+		if(null == type)
+			type = View.SWITCHTYPE_VIEWSWITCH;
 		var isBack = type.toLowerCase() == View.SWITCHTYPE_HISTORYBACK,
 			isForward = type.toLowerCase() == View.SWITCHTYPE_HISTORYFORWARD;
 		if(!isBack && !isForward)
