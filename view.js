@@ -941,6 +941,22 @@
 		return View;
 	};
 
+	/** 文档标题 */
+	var documentTitle = document.title;
+	
+	/**
+	 * 设置文档标题。如果特定视图没有自定义标题，则使用文档标题
+	 */
+	var setDocumentTitle = function(title){
+		if(null == title || "" == title){
+			console.warn("Invalid document title: " + title);
+			return;
+		}
+		
+		documentTitle = title;
+	};
+	View.setDocumentTitle = setDocumentTitle;
+	
 	/** 暴露日志组件，供第三方使用 */
 	View.Logger = Logger;
 
@@ -1041,6 +1057,8 @@
 		View.show(targetView.getId(), {type: type});
 	};
 
+	
+	
 	var init = function(){
 		/** 事件监听 */
 		window.addEventListener(historyPushPopSupported? "popstate": "hashchange", stateChangeListener);
