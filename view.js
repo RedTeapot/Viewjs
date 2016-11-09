@@ -874,7 +874,7 @@
 	 * @param {JsonObject} ops 切换配置。详见View.show
 	 */
 	View.navTo = function(targetViewId, ops){
-		targetViewId = targetViewId.trim().toLowerCase();
+		targetViewId = targetViewId.trim();
 		var state = new ViewState(targetViewId, Date.now());
 
 		/** 伪视图支持 */
@@ -1032,7 +1032,7 @@
 		if(null == e.state){/* 手动输入目标视图ID */
 			type = View.SWITCHTYPE_VIEWSWITCH;
 
-			newViewId = location.hash.replace(/^#/, "").toLowerCase();
+			newViewId = location.hash.replace(/^#/, "");
 			targetView = getFinalView(newViewId);
 
 			replaceViewState(targetView.getId());
@@ -1122,9 +1122,14 @@
 		 * 呈现指定视图
 		 */
 		(function(){
-			var defaultViewId = View.getDefaultView().getId();
-			var specifiedViewId = location.hash.replace(/^#/i, "").toLowerCase().trim();
-			var targetViewId = "" == specifiedViewId? View.getDefaultView().getId(): specifiedViewId;
+			var defaultViewId = null == dftViewObj? "": dftViewObj.id;
+			var specifiedViewId = location.hash.replace(/^#/i, "").trim();
+			var targetViewId = "" == specifiedViewId? defaultViewId: specifiedViewId;
+			if("" == targetViewId){
+				globalLogger.warn("Can not determine the initial view!");
+				return;
+			}
+			
 			var targetView = getFinalView(targetViewId);
 
 			globalLogger.log("Initial target view: " + targetView.getId());
