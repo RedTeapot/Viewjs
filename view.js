@@ -680,6 +680,13 @@
 
 		return false;
 	};
+	
+	/**
+	 * 列举所有视图
+	 */
+	View.listAll = function(){
+		return [].concat(viewInstances);
+	};
 
 	/**
 	 * 返回当前活动的视图
