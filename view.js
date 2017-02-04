@@ -422,10 +422,122 @@
 	/**
 	 * 视图不存在错误
 	 */
-	var ViewNotExistError = function(msg){
+	var ViewNotExistError = function ViewNotExistError(msg){
 		Error.call(this, msg);
 	};
 	ViewNotExistError.prototype = Object.create(Error.prototype);
+
+	/**
+	 * 视图配置
+	 * @param {String} _name 配置项名称
+	 */
+	var ViewConfiguration = function ViewConfiguration(_name){
+		var name = _name,/* 配置项名称 */
+		    value,/* 配置项取值 */
+			application;/* 配置项应用方法 */
+		
+		/**
+		 * 获取配置项名称
+		 */
+		this.getName = function(){
+			return name;
+		};
+
+		/**
+		 * 获取配置项取值
+		 */
+		this.getValue = function(){
+			return value;
+		};
+
+		/**
+		 * 设置配置项取值
+		 */
+		this.setValue = function(_value){
+			value = _value;
+			return this;
+		};
+
+		/**
+		 * 获取配置的应用方法
+		 */
+		this.getApplication = function(){
+			return application;
+		};
+
+		/**
+		 * 设置配置的应用方法
+		 */
+		this.setApplication = function(_application){
+			application = _application;
+			return this;
+		};
+
+		/**
+		 * 应用配置
+		 */
+		this.apply = function(){
+			if(typeof application == "function")
+				application(value);
+			return this;
+		};
+
+		Object.freeze(this);
+	};
+
+	/**
+	 * 视图配置集合
+	 */
+	var ViewConfigurationSet = function ViewConfigurationSet(){
+		/** 配置项集合。key：配置项名称；value：ViewConfiguration */
+		var configs = {};
+
+		/**
+		 * 判断特定名称的配置项是否存在
+		 * @param {String} key 配置项名称
+		 */
+		this.has = function(key){
+			return key in configs;
+		};
+
+		/**
+		 * 获取指定名称对应的配置项，如果对应的配置项不存在，则自动创建一个
+		 * @param {String} key 配置项名称
+		 */
+		this.get = function(key){
+			var c;
+			if(key in configs)
+				c = configs[key];
+			else{
+				c = new ViewConfiguration(key);
+				configs[key] = c;
+			}
+
+			return c;
+		};
+
+		/**
+		 * 应用所有配置
+		 */
+		this.applyAll = function(){
+			var items = Object.values(configs);
+			if(0 != items.length)
+				setTimeout(function(){
+					items.forEach(function(c){
+						try{
+							c.apply();
+						}catch(e){console.error(e);}
+					});
+				}, 0);
+		};
+
+		/**
+		 * 列举所有的配置项名称
+		 */
+		this.listAll = function(){
+			return Object.keys(configs);
+		};
+	};
 
 	/**
 	 * 视图类
@@ -457,6 +569,9 @@
 			return obj;
 		})();
 
+		/** 视图配置集合 */
+		var configSet = new ViewConfigurationSet();
+
 		/**
 		 * 启用事件驱动机制
 		 * 事件 beforeenter：视图进入前触发
@@ -476,6 +591,9 @@
 		/* 日志输出组件 */
 		Object.defineProperty(this, "logger", {value: Logger.ofName("View#" + id), configurable: false, writable: false, enumerable: true});
 
+		/* 配置对象 */
+		Object.defineProperty(this, "config", {value: configSet, configurable: false, writable: false, enumerable: true});
+
 		/**
 		 * 获取最新的，指定事件对应的数据
 		 * @param {String} eventName 事件名字
@@ -483,6 +601,8 @@
 		this.getLatestEventData = function(eventName){
 			return eventData[eventName];
 		};
+
+
 
 		/**
 		 * 返回视图对应的DOM元素的ID
