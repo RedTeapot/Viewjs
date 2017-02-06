@@ -8,24 +8,10 @@
  * 6. View.afterchange
  */
 ;(function(ctx, name){
-	var MOBILE_REGEX = /mobile|tablet|ip(ad|hone|od)|android/i;
-	var SUPPORT_TOUCH = ('ontouchstart' in window);
-	var IS_MOBILE = MOBILE_REGEX.test(navigator.userAgent);
-
-	/** 使用一个仅内部可见的对象，表示那些json对象中值没有被设置的键 */
-	var NOT_SUPPLIED = new Object();
-
-	var PSVIEW_BACK = ":back",
-		PSVIEW_FORWARD = ":forward";
-
-	/* 日志输出组件 */
+	/** 日志输出组件 */
 	var Logger = (function(){var f=function(){if(arguments.length==0){return}var m=arguments;var n=" "+String(arguments[0]);var l=1;n=n.replace(/([^\\])\{\}/g,function(p,o){var q=(m.length-1)<l?"{}":String(h(m[l]));l++;return o+q});n=n.replace(/\\\{\}/g,"{}");return n.substring(1)};var d=function(){var q=new Date();var o=q.getFullYear();var p="0"+String(q.getMonth()+1);p=p.substring(p.length-2);var m="0"+String(q.getDate());m=m.substring(m.length-2);var l="0"+String(q.getHours());l=l.substring(l.length-2);var n="0"+String(q.getMinutes());n=n.substring(n.length-2);var r="0"+String(q.getSeconds());r=r.substring(r.length-2);return p+m+" "+l+":"+n+":"+r};var h=function(o){if(null==o){return null}if((typeof o=="number")||(typeof o=="string")||(typeof o=="boolean")){return o}else{if(typeof o=="function"){return"function "+o.name+"(){...}"}else{if(!(o instanceof Array)&&(typeof o=="object")){if(String(o)!="[object Object]"){return String(o)}else{try{var l={};for(var n in o){l[n]=h(o[n])}return JSON.stringify(l)}catch(m){return String(o)}}}else{if(o instanceof Array){return JSON.stringify(o.map(function(p){return h(p)}))}else{return o}}}}};var i=function(l){return d()+" ["+l+"]: "};var c={};var j,e;(function(){var l=true;j=function(){return l};e=function(m){l=m}})();var b=function(l){var m=true;this.isEnabled=function(){return j()&&m};this.setIsEnabled=function(n){m=n;return this};this.getName=function(){return l};this.debug=function(){if(!this.isEnabled()){return}var n=f.apply(null,arguments);console.debug(i(l)+n)};this.info=function(){if(!this.isEnabled()){return}var n=f.apply(null,arguments);console.info(i(l)+n)};this.warn=function(){if(!this.isEnabled()){return}var n=f.apply(null,arguments);console.warn(i(l)+n)};this.error=function(){if(!this.isEnabled()){return}var n=f.apply(null,arguments);console.error(i(l)+n)};this.log=function(){if(!this.isEnabled()){return}var n=f.apply(null,arguments);console.log(i(l)+n)}};var g=function(m){if(m in c){return c[m]}var l=new b(m);c[m]=l;return l};b.ofName=g;b.isGloballyEnabled=j;b.setIsGloballyEnabled=e;return b;})();
 
-	var globalLogger = Logger.ofName("View");
-
-	/**
-	 * 触摸支持
-	 */
+	/** 触摸支持组件 */
 	var touch = (function(){
 		/* 添加的依附于DOM元素的，用于记录其相关取值的属性名称 */
 		var touchAttributeName = "  __com.soft.plugin.touch#" + new Date().getTime() + "__  ";
@@ -168,78 +154,6 @@
 		};
 	})();
 
-
-	var historyPushPopSupported = ("pushState" in history) && (typeof history.pushState == "function");
-	globalLogger.log("History pushState is " + (historyPushPopSupported? "": "not ") + "supported");
-
-	/**
-	 * 准备就绪的视图ID列表
-	 *
-	 * “准备就绪”的定义：
-	 * 1. 页面DOM加载完毕
-	 * 2. 视图已经呈现过
-	 *
-	 * 视图的“准备就绪”事件只会触发一次，即未就绪状态下进入视图时，触发视图进入事件：“enter”之前触发
-	 */
-	var readyViews = [];
-
-	/**
-	 * 视图参数集合。
-	 *
-	 * 视图参数用于在切换视图时，通过指定参数来达到控制视图的预期行为的目的。
-	 * 视图参数在每次进入前被重置，并使用视图切换操作提供的参数重新赋值。
-	 *
-	 * key：{String} 视图ID
-	 * value：{Any} 参数
-	 */
-	var viewParameters = {};
-
-	/**
-	 * 设置特定视图特定的参数取值
-	 * @param {String} viewId 视图ID
-	 * @param {String} name 要设置的键的名称
-	 * @param {Any} value 要设置的键的取值
-	 */
-	var setViewParameter = function(viewId, name, value){
-		if(!View.isExisting(viewId) && PSVIEW_BACK != viewId && PSVIEW_FORWARD != viewId)
-			throw new ViewNotExistError("View of id: " + viewId + " does not exist.");
-		if(arguments.length < 3)
-			throw new Error("Invalid argument length. Both parameter name and value should be specified.");
-
-		viewParameters[viewId] = viewParameters[viewId] || {};
-		viewParameters[viewId][String(name)] = value;
-
-		return View;
-	};
-
-	/**
-	 * 设置视图入参
-	 * @param {String} viewId 视图ID
-	 * @param {Any} params 入参
-	 */
-	var setViewParameters = function(viewId, params){
-		if(!View.isExisting(viewId) && PSVIEW_BACK != viewId && PSVIEW_FORWARD != viewId)
-			throw new ViewNotExistError("View of id: " + viewId + " does not exist.");
-
-		if(undefined === params)
-			params = null;
-		if(typeof params != "object")
-			throw new Error("Parameters specified should be an object or null.");
-
-		viewParameters[viewId] = params;
-		return View;
-	};
-
-	/**
-	 * 清除特定视图的入参
-	 * @param {String} viewId 视图ID
-	 */
-	var clearViewParameters = function(viewId){
-		delete viewParameters[viewId];
-
-		return View;
-	};
-
 	/**
 	 * 设定参数默认值
 	 * @param ops {Json} 要设定默认值的目标
@@ -342,16 +256,162 @@
 	})();
 
 	/**
-	 * 浏览状态
-	 * @param viewId {String} 视图ID
-	 * @param timestamp {Long} 时间戳
+	 * 为指定的对象附加指定名称的只读的属性
+	 * @param {Object} obj 目标对象
+	 * @param {String} name 属性名称
+	 * @param {Any} val 属性取值
 	 */
-	var ViewState = function(viewId, timestamp){
+	var defineReadOnlyProperty = function(obj, name, val){
+		Object.defineProperty(obj, name, {value: val, configurable: false, writable: false, enumerable: true});
+	};
+
+	/**
+	 * 尝试调用指定的方法
+	 * @param {Function} func 待执行的方法
+	 * @param {Object} ctx 方法执行时的this上下文
+	 * @param {Arguments} args 方法参数列表对象
+	 */
+	var try2exec = function(func, ctx, args){
+		if(null == func || typeof func != "function")
+			return;
+		
+		try{func.apply(ctx, args);}catch(e){globalLogger.error("Error occured while executing function: {}. {}", func.name, e);}
+	};
+
+	/**
+	 * 判断给定的字符串是否是空字符串
+	 * @param {String} str 要判断的字符串
+	 * @param {Boolean} [trim=false] 是否在判断前执行前后空白符号的裁剪操作
+	 */
+	var isEmptyString = function(str, trim){
+		if(arguments.length < 2)
+			trim = false;
+		
+		if(null === str || undefined === str)
+			return true;
+		
+		str = String(str);
+		if(trim)
+			str = str.trim();
+		
+		return str.length == 0;
+	};
+
+	var MOBILE_REGEX = /mobile|tablet|ip(ad|hone|od)|android/i,
+		SUPPORT_TOUCH = ('ontouchstart' in window),
+		IS_MOBILE = MOBILE_REGEX.test(navigator.userAgent);
+
+	/** 使用一个仅内部可见的对象，表示那些json对象中值没有被设置的键 */
+	var NOT_SUPPLIED = new Object();
+
+	var PSVIEW_BACK = ":back",/* 伪视图：后退 */
+		PSVIEW_FORWARD = ":forward";/* 伪视图：前进 */
+
+	var globalLogger = Logger.ofName("View");
+	
+	/** 通过文档扫描得出的配置的视图集合 */
+	var viewInstances = [];
+
+	/** 视图切换动画 */
+	var viewSwitchAnimation = null;
+
+
+	var historyPushPopSupported = ("pushState" in history) && (typeof history.pushState == "function");
+	globalLogger.log("History pushState is " + (historyPushPopSupported? "": "not ") + "supported");
+
+	/**
+	 * 准备就绪的视图ID列表
+	 *
+	 * “准备就绪”的定义：
+	 * 1. 页面DOM加载完毕
+	 * 2. 视图已经呈现过
+	 *
+	 * 视图的“准备就绪”事件只会触发一次，即未就绪状态下进入视图时，触发视图进入事件：“enter”之前触发
+	 */
+	var readyViews = [];
+
+	/**
+	 * 视图参数集合。
+	 *
+	 * 视图参数用于在切换视图时，通过指定参数来达到控制视图的预期行为的目的。
+	 * 视图参数在每次进入前被重置，并使用视图切换操作提供的参数重新赋值。
+	 *
+	 * key：{String} 视图ID（包括伪视图）
+	 * value：{Any} 参数
+	 */
+	var viewParameters = {};
+
+	/**
+	 * 判断指定编号对应的视图是否是伪视图
+	 * @param {String} viewId 视图编号
+	 */
+	var isPseudoView = function(viewId){
+		return PSVIEW_BACK == viewId || PSVIEW_FORWARD == viewId;
+	};
+
+	/**
+	 * 设置特定视图特定的参数取值
+	 * @param {String} viewId 视图ID
+	 * @param {String} name 要设置的键的名称
+	 * @param {Any} value 要设置的键的取值
+	 */
+	var setViewParameter = function(viewId, name, value){
+		if(!View.ifExists(viewId) && !isPseudoView(viewId))
+			throw new ViewNotExistError("View of id: " + viewId + " does not exist.");
+		if(arguments.length < 3)
+			throw new Error("Invalid argument length. Both parameter name and value should be specified.");
+
+		viewParameters[viewId] = viewParameters[viewId] || {};
+		viewParameters[viewId][String(name)] = value;
+
+		return View;
+	};
+
+	/**
+	 * 设置特定视图特定的多个参数取值
+	 * @param {String} viewId 视图ID
+	 * @param {Any} params 入参参数集合
+	 */
+	var setViewParameters = function(viewId, params){
+		if(!View.ifExists(viewId) && !isPseudoView(viewId))
+			throw new ViewNotExistError("View of id: " + viewId + " does not exist.");
+
+		if(undefined === params)
+			params = null;
+		if(typeof params != "object")
+			throw new Error("Parameters specified should be an object or null.");
+
+		viewParameters[viewId] = params;
+		return View;
+	};
+
+	/**
+	 * 清除特定视图的入参
+	 * @param {String} viewId 视图ID
+	 */
+	var clearViewParameters = function(viewId){
+		delete viewParameters[viewId];
+
+		return View;
+	};
+
+	
+
+	/**
+	 * 浏览状态
+	 * @param {String} viewId 视图ID
+	 * @param {Long} timestamp 时间戳
+	 * @param {JsonObject} options 选项集合
+	 */
+	var ViewState = function(viewId, timestamp, options){
+		if(arguments.length < 3)
+			options = null;
 		if(arguments.length < 2)
 			timestamp = Date.now();
 
-		Object.defineProperty(this, "viewId", {value: viewId, configurable: false, writable: false, enumerable: true});
-		Object.defineProperty(this, "timestamp", {value: timestamp, configurable: false, writable: false, enumerable: true});
+		defineReadOnlyProperty(this, "viewId", viewId);
+		defineReadOnlyProperty(this, "timestamp", timestamp);
+		defineReadOnlyProperty(this, "options", options);
 
 		this.toString = function(){
 			return JSON.stringify(this);
@@ -364,57 +424,82 @@
 
 	/**
 	 * 判断特定的对象是否是ViewState的实例
-	 * @param obj {Object} 要判断的对象
+	 * @param {JsonObject} obj 要判断的对象
 	 */
 	ViewState.isConstructorOf = function(obj){
 		if(null == obj || typeof obj != "object")
 			return false;
 
 		return obj.hasOwnProperty("viewId") && obj.hasOwnProperty("timestamp");
-	}
+	};
+
+	/**
+	 * 为给定的字符串进行URI编码
+	 */
+	var xEncodeURIComponent = function(t){
+		return encodeURIComponent(String(t)).replace(/\+/gm, "%2B");
+	};
+
+	/**
+	 * 使用给定的视图编号和视图选项构造地址栏字符串
+	 */
+	var concatViewOptions = function(viewId, options){
+		/** 视图编号与参数集合之间的分隔符 */
+		var sep = "!";
+
+		var str = String(viewId);
+		var paramKeys = null == options? []: Object.keys(options);
+		var tmp = paramKeys.reduce(function(start, e, i, arr){
+			return start + "&" + xEncodeURIComponent(e) + "=" + xEncodeURIComponent(options[e]);
+		}, "");
+		if(tmp.length > 0)
+			str += sep + tmp.substring(1);
+		
+		return str;
+	};
 
 	/**
 	 * 向history中添加view浏览历史
-	 * @param viewId {String} 视图ID
-	 * @param timestamp {String} 视图压入堆栈的时间戳
-	 * @param updateLocation {Boolean} 是否同步更新地址栏。默认为true
+	 * @param {String} viewId 视图ID
+	 * @param {Long} [timestamp=Date.now()] 视图压入堆栈的时间戳
+	 * @param {JsonObject} [options=null] 选项集合
 	 */
-	var pushViewState = function(viewId, timestamp, updateLocation){
+	var pushViewState = function(viewId, timestamp, options){
+		if(arguments.length < 3)
+			options = null;
 		if(arguments.length < 2)
 			timestamp = Date.now();
-		if(arguments.length < 3)
-			updateLocation = true;
 
-		var state = new ViewState(viewId, timestamp).clone();
+		var state = new ViewState(viewId, timestamp, options).clone();
 		globalLogger.log("↓ {}", JSON.stringify(state));
 
 		if(historyPushPopSupported)
-			history.pushState(state, "", "#" + viewId);
+			history.pushState(state, "", "#" + concatViewOptions(viewId, options));
 		else
-			location.hash = viewId;
+			location.hash = concatViewOptions(viewId, options);
 
 		View.currentState = state;
 	};
 
 	/**
 	 * 更新history中最后一个view浏览历史
-	 * @param viewId {String} 视图ID
-	 * @param timestamp {String} 视图压入堆栈的时间戳
-	 * @param updateLocation {Boolean} 是否同步更新地址栏。默认为true
+	 * @param {String} viewId 视图ID
+	 * @param {Long} [timestamp=Date.now()] 视图更新至堆栈的时间戳
+	 * @param {JsonObject} [options=null] 选项集合
 	 */
-	var replaceViewState = function(viewId, timestamp){
+	var replaceViewState = function(viewId, timestamp, options){
+		if(arguments.length < 3)
+			options = null;
 		if(arguments.length < 2)
 			timestamp = Date.now();
-		if(arguments.length < 3)
-			updateLocation = true;
 
-		var state = new ViewState(viewId, timestamp).clone();
-		globalLogger.log("% {}", state.clon);
+		var state = new ViewState(viewId, timestamp, options).clone();
+		globalLogger.log("% {}", JSON.stringify(state));
 
 		if(historyPushPopSupported)
-			history.replaceState(state, "", "#" + viewId);
+			history.replaceState(state, "", "#" + concatViewOptions(viewId, options));
 		else
-			location.hash = viewId;
+			location.hash = concatViewOptions(viewId, options);
 
 		View.currentState = state;
 	};
@@ -540,34 +625,40 @@
 	};
 
 	/**
+	 * 视图上下文
+	 */
+	var ViewContext = function ViewContext(){
+		var obj = {};
+
+		defineReadOnlyProperty(this, "has", function(name){
+			return name in obj;
+		});
+		defineReadOnlyProperty(this, "set", function(name, value){
+			obj[name] = value;
+			return this;
+		});
+		defineReadOnlyProperty(this, "get", function(name){
+			return obj[name];
+		});
+		defineReadOnlyProperty(this, "clear", function(){
+			obj = {};
+			return this;
+		});
+	};
+
+	/**
 	 * 视图类
 	 * @param id {String} 视图对应的DOM元素的id
 	 */
 	var View = function(id){
-		if(null == document.querySelector("#" + id + "[data-view=true]"))
+		if(null === document.querySelector("#" + id + "[data-view=true]"))
 			throw new ViewNotExistError("View of id: " + id + " does not exist(No element matching pattern: '#" + id + "[data-view=true]' found)!");
 
 		/* 存储该视图触发的各个事件的最新数据。key：事件名；value：数据 */
 		var eventData = {};
 
 		/** 上下文，用于存储视图相关的数据等 */
-		var context = (function(){
-			var obj = {};
-
-			Object.defineProperty(obj, "has", {value: function(name){
-				return name in obj;
-			}, configurable: false, writable: false, enumerable: false});
-
-			Object.defineProperty(obj, "set", {value: function(name, value){
-				obj[name] = value;
-			}, configurable: false, writable: false, enumerable: false});
-
-			Object.defineProperty(obj, "get", {value: function(name, value){
-				return obj[name];
-			}, configurable: false, writable: false, enumerable: false});
-
-			return obj;
-		})();
+		var context = new ViewContext();
 
 		/** 视图配置集合 */
 		var configSet = new ViewConfigurationSet();
@@ -582,6 +673,9 @@
 		 */
 		eventDrive(this, document.querySelector("#" + id));
 
+		/**
+		 * 复写事件发起方法，在发起的同时记录附带的数据供后期查询
+		 */
 		var fire = this.fire;
 		this.fire = function(name, value){
 			eventData[name] = value;
@@ -589,10 +683,11 @@
 		};
 
 		/* 日志输出组件 */
-		Object.defineProperty(this, "logger", {value: Logger.ofName("View#" + id), configurable: false, writable: false, enumerable: true});
-
+		defineReadOnlyProperty(this, "logger", Logger.ofName("View#" + id));
 		/* 配置对象 */
-		Object.defineProperty(this, "config", {value: configSet, configurable: false, writable: false, enumerable: true});
+		defineReadOnlyProperty(this, "config", configSet);
+		/* 视图上下文 */
+		defineReadOnlyProperty(this, "context", context);
 
 		/**
 		 * 获取最新的，指定事件对应的数据
@@ -602,7 +697,20 @@
 			return eventData[eventName];
 		};
 
+		/**
+		 * 获取视图上下文
+		 */
+		this.getContext = function(){
+			return context;
+		};
 
+		/**
+		 * 清除视图上下文
+		 */
+		this.clearContext = function(){
+			context.clear();
+			return this;
+		};
 
 		/**
 		 * 返回视图对应的DOM元素的ID
@@ -634,20 +742,6 @@
 		 */
 		this.findAll = function(selector){
 			return this.getDomElement().querySelectorAll(selector);
-		};
-
-		/**
-		 * 获取视图上下文
-		 */
-		this.getContext = function(){
-			return context;
-		};
-
-		/**
-		 * 清除视图上下文
-		 */
-		this.clearContext = function(){
-			context = {};
 		};
 
 		/**
@@ -687,12 +781,12 @@
 		 * 判断当前视图是否可以通过地址栏直接访问
 		 */
 		this.isDirectlyAccessible = function(){
-			var keep = document.documentElement.getAttribute("data-view-directly-accessible");
-			keep = null == keep? "false": keep;
-			keep = keep.toLowerCase();
+			var rootFlag = document.documentElement.getAttribute("data-view-directly-accessible");
+			rootFlag = null == rootFlag? "false": rootFlag;
+			rootFlag = rootFlag.toLowerCase();
 
 			var directAccessable = false;
-			if("true" == keep){/** 如果设定全部可以直接访问 */
+			if("true" == rootFlag){/** 如果设定全部可以直接访问 */
 				/** 判定视图是否可以直接访问 */
 				if("false" == this.getDomElement().getAttribute("data-view-directly-accessible"))
 					directAccessable = false;
@@ -721,14 +815,14 @@
 				/** 取出配置的视图 */
 				var fallbackViewId = view.getDomElement().getAttribute("data-view-fallback");
 				/** 判断是否配置且配置的视图是否存在 */
-				if(null == fallbackViewId || !View.isExisting(fallbackViewId)){
+				if(null == fallbackViewId || !View.ifExists(fallbackViewId)){
 					globalLogger.warn("View: " + view.getId() + " is not permited to access directly, and no fallback configuration found, thus returning the default view");
 					return View.getDefaultView();
 				}else{
 					view = View.ofId(fallbackViewId);
 
 					if(idChain.indexOf(view.getId()) != -1){/** 循环引用 */
-					globalLogger.error("Cyclical reference of view on fallback configuration on view: {}. Chain: {}, view id: {}", this.getId(), idChain, view.getId());
+						globalLogger.error("Cyclical reference of view on fallback configuration on view: {}. Chain: {}, view id: {}", this.getId(), idChain, view.getId());
 						return View.getDefaultView();
 					}
 
@@ -744,9 +838,6 @@
 		Object.freeze && Object.freeze(this);
 	};
 
-	/**
-	 * 常量定义
-	 */
 	/** 视图切换操作类型：由浏览器前进操作触发 */
 	View.SWITCHTYPE_HISTORYFORWARD = "history.forward";
 	/** 视图切换操作类型：由浏览器后退操作触发 */
@@ -754,12 +845,8 @@
 	/** 视图切换操作类型：由视图切换操作触发 */
 	View.SWITCHTYPE_VIEWSWITCH = "view.switch";
 
-
-	/** 通过文档扫描得出的配置的视图集合 */
-	var viewInstances = [];
-
-	/** 视图切换动画 */
-	var viewSwitchAnimation = null;
+	/** 暴露日志组件，供第三方使用 */
+	View.Logger = Logger;
 
 	/* history的最近一次状态 */
 	View.currentState = null;
@@ -773,7 +860,7 @@
 
 	/**
 	 * 查找给定ID对应的视图实例，如果不存在则创建，否则返回已经存在的实例
-	 * @param id
+	 * @param {String} id 视图编号
 	 */
 	View.ofId = function(id){
 		for(var i = 0; i < viewInstances.length; i++)
@@ -793,13 +880,14 @@
 	 * 判断指定ID的视图是否存在
 	 * @param id 视图ID
 	 */
-	View.isExisting = function(id){
+	View.ifExists = function(id){
 		for(var i = 0; i < viewInstances.length; i++)
 			if(viewInstances[i].getId().trim() == id.trim())
 				return true;
 
 		return false;
 	};
+	View.isExisting = View.ifExists;
 	
 	/**
 	 * 列举所有视图
@@ -809,7 +897,7 @@
 	};
 
 	/**
-	 * 返回当前活动的视图
+	 * 获取当前活动的视图
 	 */
 	View.getActiveView = function(){
 		for(var i = 0; i < viewInstances.length; i++)
@@ -820,7 +908,7 @@
 	};
 
 	/**
-	 * 返回默认视图
+	 * 获取默认视图
 	 */
 	View.getDefaultView = function(){
 		for(var i = 0; i < viewInstances.length; i++)
@@ -832,7 +920,7 @@
 
 	/**
 	 * 设置视图切换动画
-	 * @param animationFunction {Function} 视图切换动画
+	 * @param {Function} animationFunction 视图切换动画
 	 * @return {View} View
 	 */
 	View.setSwitchAnimation = function(animationFunction){
@@ -853,25 +941,63 @@
 	};
 
 	/**
+	 * 从地址栏hash中解析视图信息
+	 * @param {String} hash 地址栏Hash
+	 * @return {JsonObject} {viewId: [视图编号], options: [选项集合]}
+	 */
+	var parseViewInfoFromHash = function(hash){
+		if("" == hash)
+			return null;
+		
+		var r = /^#([\w\$]+)(?:!+(.*))?/;
+		var m = hash.match(r);
+		if(null == m)
+			return null;
+		
+		var viewId = m[1], options = null;
+		if(null != m[2] && "" != m[2].trim()){
+			var kvPairs = m[2].split(/\s*&\s*/);
+			if(0 != kvPairs.length){
+				options = {};
+				kvPairs.forEach(function(pair){
+					var s = pair.split(/\s*=\s*/);
+					options[decodeURIComponent(s[0])] = decodeURIComponent(s[1]);
+				});
+			}
+			
+		}
+		return {viewId: m[1], options: options};
+	};
+
+	/**
+	 * 获取当前活动的视图的视图选项
+	 */
+	View.getActiveViewOptions = function(){
+		var viewInfo = parseViewInfoFromHash(location.hash);
+		return null == viewInfo? null: viewInfo.options;
+	};
+
+	/**
 	 * 切换视图
 	 * @param {View} ops.srcView 源视图
 	 * @param {View} ops.targetView {View} 目标视图
 	 * @param {StringEnum} ops.type 切换操作类型（View.SWITCHTYPE_HISTORYFORWARD || View.SWITCHTYPE_HISTORYBACK || View.SWITCHTYPE_VIEWSWITCH）
 	 * @param {Boolean} ops.withAnimation 是否执行动画
-	 * @param {Any} ops.params 视图参数
+	 * @param {Any} ops.params 视图参数。仅当切换操作类型为：View.SWITCHTYPE_VIEWSWITCH时才会被使用
 	 */
-	var _show = function(ops){
+	var switchView = function(ops){
 		ops = setDftValue(ops, {
 			srcView: null,
 			targetView: null,
 			type: View.SWITCHTYPE_VIEWSWITCH,
 			withAnimation: true,
-			params: NOT_SUPPLIED
+			params: null
 		});
 
 		var srcView = ops.srcView,
 			targetView = ops.targetView,
-			type = ops.type;
+			type = ops.type,
+			params = ops.params;
 
 		if(null == type)
 			type = View.SWITCHTYPE_VIEWSWITCH;
@@ -881,7 +1007,7 @@
 			type = View.SWITCHTYPE_VIEWSWITCH;
 
 		/** 触发前置切换监听器 */
-		View.fire("beforechange", {currentView: srcView, targetView: targetView, type: type});
+		View.fire("beforechange", {currentView: srcView, targetView: targetView, type: type, params: params});
 
 		/* 执行切换操作 */
 		srcView && srcView.fire("leave", {targetView: targetView, type: type});
@@ -895,6 +1021,7 @@
 			/* 视图参数重置 */
 			var targetViewId = targetView.getId();
 			clearViewParameters(targetViewId);
+
 			if(isBack){
 				if(PSVIEW_BACK in viewParameters){
 					/* 用过之后立即销毁，防止污染其它回退操作 */
@@ -907,50 +1034,49 @@
 					setViewParameters(targetViewId, viewParameters[PSVIEW_FORWARD]);
 					delete viewParameters[PSVIEW_FORWARD];
 				}
-			}else if(NOT_SUPPLIED != ops.params)
-				setViewParameters(targetViewId, ops.params);
+			}else
+				setViewParameters(targetViewId, params);
 
-			var eventData = {sourceView: srcView, type: type};
+			var eventData = {sourceView: srcView, type: type, params: params};
 			if(!targetView.isReady()){
 				readyViews.push(targetViewId);
 				targetView.fire("ready", eventData);
 			}
-			targetView.fire("beforeenter", eventData);
-			targetView.fire("enter", eventData);
-			targetView.fire("afterenter", eventData);
+			["beforeenter", "enter", "afterenter"].forEach(function(evtName){
+				targetView.fire(evtName, eventData);
+			});
 		};
 
-		if(!ops.withAnimation){
+		var render = function(){
 			display();
 			enter();
-		}else{
-			var render = function(){
-				display();
-				enter();
-			};
+		};
 
-			if(viewSwitchAnimation){
+		if(!ops.withAnimation)
+			render();
+		else{
+			if(viewSwitchAnimation)
 				viewSwitchAnimation.call(null, srcView? srcView.getDomElement(): null, targetView.getDomElement(), type, render);
-			}else
+			else
 				render();
 		}
 
 		/** 触发后置切换监听器 */
-		View.fire("afterchange", {currentView: srcView, targetView: targetView, type: type});
+		View.fire("afterchange", {currentView: srcView, targetView: targetView, type: type, params: params});
 	};
 
 	/**
 	 * 呈现指定的视图（不操作history）
 	 * @param {String} targetViewId 目标视图ID
-	 * @param {JsonObject} ops 切换配置。详见_show
+	 * @param {JsonObject} ops 切换配置。详见switchView
 	 */
 	var show = function(targetViewId, ops){
 		ops = setDftValue(ops, {
-			type: View.SWITCHTYPE_VIEWSWITCH,
+			type: View.SWITCHTYPE_VIEWSWITCH
 		}, true);
 
 		/** 检查目标视图是否存在 */
-		if(!View.isExisting(targetViewId))
+		if(!View.ifExists(targetViewId))
 			throw new Error("Target view: " + targetViewId + " does not exist!");
 
 		/* 当前活动视图 */
@@ -958,27 +1084,28 @@
 
 		/* 如果切换目标是自己，则直接返回 */
 		if(currentView.getId().toLowerCase() == targetViewId.toLowerCase())
-			return;
+			return View;
 
-		globalLogger.log("{} → {} {}", currentView.getId(), targetViewId, ops.type);
+		globalLogger.log("{} → {} {}", currentView.getId(), targetViewId, JSON.stringify(ops));
 
 		/* 目标视图 */
 		var targetView = View.ofId(targetViewId);
 
 		ops.srcView = currentView;
 		ops.targetView = targetView;
-		_show(ops);
+		switchView(ops);
 
 		return View;
 	};
 	View.show = show;
 
 	/**
+	 * ########### 历史API。待移除 ###########
 	 * 切换视图
 	 * @param {String} targetViewId 目标视图ID
 	 * @param {StringEnum} type 切换操作类型（View.SWITCHTYPE_HISTORYFORWARD || View.SWITCHTYPE_HISTORYBACK || View.SWITCHTYPE_VIEWSWITCH）
 	 * @param {Boolean} withAnimation 是否执行动画
-	 * @param {Any} params 视图参数
+	 * @param {Any} params 视图参数。仅当切换操作类型为：View.SWITCHTYPE_VIEWSWITCH时才会被使用
 	 */
 	View.switchTo = function(targetViewId, type, withAnimation, params){
 		if(arguments.length < 4)
@@ -1002,27 +1129,52 @@
 	 */
 	View.navTo = function(targetViewId, ops){
 		targetViewId = targetViewId.trim();
-		var state = new ViewState(targetViewId, Date.now());
+
+		/* 当前活动视图 */
+		var currentView = View.getActiveView();
+
+		/* 如果切换目标是自己，则直接返回 */
+		if(currentView.getId().toLowerCase() == targetViewId.toLowerCase())
+			return View;
 
 		/** 伪视图支持 */
 		/* 回退操作(":back") */
 		if(PSVIEW_BACK == targetViewId){
 			View.back(ops);
-			return;
+			return View;
 		}
 		/* 前进操作（":forward"） */
 		if(PSVIEW_FORWARD == targetViewId){
 			View.forward(ops);
-			return;
+			return View;
 		}
 
 		show(targetViewId, ops);
-		pushViewState(targetViewId);
+		pushViewState(targetViewId, Date.now(), null);
 
 		return View;
 	};
 	/* 历史api兼容 */
 	View.updateView = View.navTo;
+
+	/**
+	 * 切换视图，同时更新相关状态（更新堆栈）
+	 * @param targetViewId 目标视图ID
+	 * @param {JsonObject} ops 切换配置。详见switchView
+	 */
+	View.changeTo = function(targetViewId, ops){
+		/* 当前活动视图 */
+		var currentView = View.getActiveView();
+
+		/* 如果切换目标是自己，则直接返回 */
+		if(currentView.getId().toLowerCase() == targetViewId.toLowerCase())
+			return View;
+		
+		show(targetViewId, ops);
+		replaceViewState(targetViewId, Date.now(), null);
+
+		return View;
+	};
 
 	/**
 	 * 回退到上一个视图
@@ -1032,10 +1184,8 @@
 	View.back = function(ops){
 		/* 清除旧数据，并仅在指定了参数时才设置参数，防止污染其它回退操作 */
 		clearViewParameters(PSVIEW_BACK);
-		if(null != ops && "params" in ops) {
-			console.log("!!!!", viewParameters);
+		if(null != ops && "params" in ops)
 			setViewParameters(PSVIEW_BACK, ops.params);
-		}
 
 		history.go(-1);
 	};
@@ -1048,25 +1198,12 @@
 	View.forward = function(ops){
 		/* 清除旧数据，并仅在指定了参数时才设置参数，防止污染其它前进操作 */
 		clearViewParameters(PSVIEW_FORWARD);
-		if(null != ops && "params" in ops) {
-			console.log("!!!!", viewParameters);
+		if(null != ops && "params" in ops)
 			setViewParameters(PSVIEW_FORWARD, ops.params);
-		}
 
 		history.go(1);
 	};
 
-	/**
-	 * 切换视图，同时更新相关状态（更新堆栈）
-	 * @param targetViewId 目标视图ID
-	 * @param {JsonObject} ops 切换配置。详见_show
-	 */
-	View.changeTo = function(targetViewId, ops){
-		show(targetViewId, ops);
-		replaceViewState(targetViewId);
-
-		return View;
-	};
 
 	/** 文档标题 */
 	var documentTitle = document.title;
@@ -1075,17 +1212,16 @@
 	 * 设置文档标题。如果特定视图没有自定义标题，则使用文档标题
 	 */
 	var setDocumentTitle = function(title){
-		if(null == title || "" == title){
-			console.warn("Invalid document title: " + title);
-			return;
+		if(isEmptyString(title, true)){
+			globalLogger.warn("Invalid document title: " + title);
+			return View;
 		}
 
 		document.title = documentTitle = title;
+		return View;
 	};
 	View.setDocumentTitle = setDocumentTitle;
 
-	/** 暴露日志组件，供第三方使用 */
-	View.Logger = Logger;
 
 	/**
 	 * 标记视图就绪
@@ -1097,13 +1233,12 @@
 
 		/* 挂起的回调方法列表 */
 		var callbacks = [];
-
 		markViewReady = function(){
 			isReady = true;
 
 			setTimeout(function(){
 				callbacks.forEach(function(cb){
-					cb && cb();
+					try2exec(cb);
 				});
 			}, 0);
 		};
@@ -1114,34 +1249,45 @@
 		return function(callback){
 			/* 如果已经就绪，则立即执行 */
 			if(isReady){
-				callback && callback();
-				return;
+				try2exec(callback);
+				return View;
 			}
 
 			if(callbacks.indexOf(callback) != -1)
-				return;
+				return View;
+			
 			callbacks.push(callback);
-
 			return View;
 		};
 	})();
 
 	/**
+	 * 获取当前的激活视图。如果没有视图处于激活状态，则返回默认视图
+	 */
+	var getActiveOrDefaultView = function(){
+		var v = View.getActiveView();
+		if(null == v)
+			v = View.getDefaultView();
+		
+		return v;
+	};
+
+	/**
 	 * 根据提供的视图ID计算最终映射到的可以呈现出来的视图
-	 * @param viewId {String} 视图ID
+	 * @param {String} viewId 视图ID
 	 * @return {View} 最终视图
 	 */
 	var getFinalView = function(viewId){
 		var targetView = null;
 
-		if(null == viewId || "" == viewId){/** 判断是否指定目标视图 */
-		targetView = View.getActiveView();
-		}else if(!View.isExisting(viewId)){/** 判断指定的视图是否存在 */
-		targetView = View.getActiveView();
-		}else if(View.ofId(viewId).isDirectlyAccessible())/** 判断指定的视图是否支持直接访问 */
-		targetView = View.ofId(viewId);
-		else
-			targetView = View.ofId(viewId).getFallbackView();
+		/** 判断指定的视图是否存在 */
+		if(isEmptyString(viewId, true) || !View.ifExists(viewId)){
+			targetView = getActiveOrDefaultView();
+		}else{
+			targetView = View.ofId(viewId);
+			if(!targetView.isDirectlyAccessible())/** 判断指定的视图是否支持直接访问 */
+				targetView = targetView.getFallbackView();
+		}
 
 		return targetView;
 	};
@@ -1151,37 +1297,57 @@
 	 */
 	var stateChangeListener =  function(e){
 		var currentActiveView = View.getActiveView();
+		var currentActiveViewId = null == currentActiveView? null: currentActiveView.getId();
 
 		globalLogger.log("{} Current: {}", historyPushPopSupported? "State poped!": "Hash changed!", currentActiveView.getId());
 		globalLogger.log("↑ {}", historyPushPopSupported? JSON.stringify(e.state): location.hash);
 
-		var newViewId, type = View.SWITCHTYPE_VIEWSWITCH, targetView = null;
+		var newViewId, type = View.SWITCHTYPE_VIEWSWITCH, options, targetView = null;
 		if(null == e.state){/* 手动输入目标视图ID */
 			type = View.SWITCHTYPE_VIEWSWITCH;
 
-			newViewId = location.hash.replace(/^#/, "");
-			targetView = getFinalView(newViewId);
+			var viewInfo = parseViewInfoFromHash(location.hash);
 
-			replaceViewState(targetView.getId());
+			newViewId = viewInfo.viewId;
+			targetView = getFinalView(newViewId);
+			var targetViewId = targetView.getId();
+
+			var isTargetViewAsSpecified = targetViewId == newViewId,
+				isTargetViewRemainsCurrent = targetViewId == currentActiveViewId;
+
+			/**
+			 * 如果目标视图仍然是当前视图，则不能更改地址栏中的选项内容
+			 * 如果最终视图和地址栏中的视图不是一个视图，则不能再将选项传递给最终视图
+			 */
+			options = isTargetViewRemainsCurrent? View.currentState.options: (isTargetViewAsSpecified? viewInfo.options: null);
+
+			/* history堆栈更新 */
+			replaceViewState(targetViewId, Date.now(), options);
 		}else{
 			var popedNewState = e.state;
-
 			newViewId = popedNewState.viewId;
-			if(View.isExisting(newViewId))
+
+			if(View.ifExists(newViewId)){
 				targetView = View.ofId(newViewId);
-			else{
+				options = popedNewState.options;
+			}else{
 				globalLogger.warn("Poped view: " + newViewId + " does not exist, keeping current.");
 				targetView = currentActiveView;
+
+				/* 如果最终视图和地址栏中的视图不是一个视图，则不能再将选项传递给最终视图 */
+				options = null;
 			}
+			var targetViewId = targetView.getId();
 
 			if(View.currentState != null)
 				type = popedNewState.timestamp < View.currentState.timestamp? View.SWITCHTYPE_HISTORYBACK: View.SWITCHTYPE_HISTORYFORWARD;
 
-			replaceViewState(targetView.getId(), popedNewState.timestamp);
+			/* history堆栈更新 */
+			replaceViewState(targetViewId, popedNewState.timestamp, options);
 		}
 
 		/* 视图切换 */
-		View.show(targetView.getId(), {type: type});
+		View.show(targetView.getId(), {type: type, options: options});
 	};
 
 
@@ -1192,12 +1358,32 @@
 
 		/* 扫描文档，遍历定义视图 */
 		var viewObjs = document.querySelectorAll("*[data-view=true]");
+		[].forEach.call(viewObjs, function(viewObj){
+			/* 定义视图 */
+			View.ofId(viewObj.id);
+
+			/* 去除可能存在的激活状态 */
+			viewObj.classList.remove("active");
+
+			/* 添加样式类 */
+			viewObj.classList.add("view");
+
+			/* 视图标题自动设置 */
+			;(function(){
+				var specifiedTitle = viewObj.getAttribute("data-view-title");
+				var view = View.ofId(viewObj.id);
+				view.on("enter", function(){
+					document.title = null == specifiedTitle? documentTitle: specifiedTitle;
+				});
+			})();
+		});
 
 		/* 默认视图 */
 		var dftViewObj = null;
 
 		/** 确定默认视图 */
 		var determineDefaultView = function(){
+			var dftViewObj = null;
 			var dftViewObjIndex = -1;
 			for(var i = 0; i < viewObjs.length; i++)
 				if("true" == viewObjs[i].getAttribute("data-view-default")){
@@ -1215,66 +1401,46 @@
 			}else if(0 != viewObjs.length){
 				dftViewObj = viewObjs[0];
 				dftViewObj.setAttribute("data-view-default", "true");
-			}
+			}else
+				globalLogger.warn("No view exists to determine the default view.");
 
 			return dftViewObj;
 		};
 
-		[].forEach.call(viewObjs, function(viewObj){
-			/* 定义视图 */
-			View.ofId(viewObj.id);
-
-			/* 去除可能存在的激活状态 */
-			viewObj.classList.remove("active");
-
-			/* 确定默认视图，并添加激活标识 */
-			determineDefaultView();
-			if(null != dftViewObj)
-				dftViewObj.classList.add("active");
-
-			/* 添加样式类 */
-			viewObj.classList.add("view");
-
-			/* 视图标题自动设置 */
-			;(function(){
-				var specifiedTitle = viewObj.getAttribute("data-view-title");
-				var view = View.ofId(viewObj.id);
-				view.on("enter", function(){
-					document.title = null == specifiedTitle? documentTitle: specifiedTitle;
-				});
-			})();
-		});
+		/* 确定默认视图，并添加激活标识 */
+		dftViewObj = determineDefaultView();
+		if(null != dftViewObj)
+			dftViewObj.classList.add("active");
 
 		/**
 		 * 呈现指定视图
 		 */
-		(function(){
-			var defaultViewId = null == dftViewObj? "": dftViewObj.id;
-			var specifiedViewId = location.hash.replace(/^#/i, "").trim();
-			var targetViewId = "" == specifiedViewId? defaultViewId: specifiedViewId;
-			if("" == targetViewId){
+		;(function(){
+			var defaultViewId = null == dftViewObj? null: dftViewObj.id;
+
+			var viewInfo = parseViewInfoFromHash(location.hash);
+			var specifiedViewId = null == viewInfo? null: viewInfo.viewId,
+				options = null == viewInfo? null: viewInfo.options;
+
+			var targetViewId = isEmptyString(specifiedViewId, true)? defaultViewId: specifiedViewId;
+			if(isEmptyString(targetViewId, true)){
 				globalLogger.warn("Can not determine the initial view!");
 				return;
 			}
-			
+
 			var targetView = getFinalView(targetViewId);
+			targetViewId = targetView.getId();
+			/* 如果最终视图和地址栏中的视图不是一个视图，则不能再将选项传递给最终视图 */
+			if(targetViewId != specifiedViewId)
+				options = null;
 
-			globalLogger.log("Initial target view: " + targetView.getId());
+			replaceViewState(targetViewId, Date.now(), options);
 
-			var isViewState = ViewState.isConstructorOf(history.state);
-			if(null != history.state){
-				globalLogger.log("Found existing state: {}, isViewState? {}", JSON.stringify(history.state), isViewState);
-
-				if(!(isViewState && history.state.viewId == targetView.getId()))
-					replaceViewState(targetView.getId());
-			}else{
-				replaceViewState(targetView.getId());
-			}
-
-			_show({
+			switchView({
 				srcView: View.getActiveView(),
 				targetView: targetView,
-				withAnimation: false
+				withAnimation: false,
+				params: null
 			});
 		})();
 
@@ -1291,7 +1457,7 @@
 		 * 指令：data-view-rel-disabled 配置导向开关
 		 * 		取值：true 触摸时不导向至通过data-view-rel指定的视图
 		 */
-		(function(){
+		;(function(){
 			touch.addTapListener(document.documentElement, function(e){
 				var eventTarget = e.changedTouches? e.changedTouches[0].target: e.target;
 
@@ -1335,7 +1501,7 @@
 				}
 
 				var relType = tmp.getAttribute("data-view-rel-type");
-				relType = null == relType || "" == relType.trim()? "nav": relType;
+				relType = isEmptyString(relType, true)? "nav": relType;
 				if(!/^(?:nav)|(?:change)$/.test(relType)){
 					globalLogger.warn("Unknown view switch type: {}. {}", relType, tmp);
 					relType = "nav";
