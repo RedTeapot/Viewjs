@@ -1487,6 +1487,12 @@
 
 				/* 阻止ghost click */
 				e.preventDefault();
+				
+				/* 是否是外部链接 */
+				if(/^(http|https|ftp):\/\//gim.test(targetViewId)){
+					window.location.href = targetViewId;
+					return;
+				}
 
 				/* 回退操作(":back") */
 				if(PSVIEW_BACK == targetViewId.toLowerCase().trim()){
@@ -1497,6 +1503,13 @@
 				/* 前进操作（":forward"） */
 				if(PSVIEW_FORWARD == targetViewId.toLowerCase().trim()){
 					history.go(1);/* browser support */
+					return;
+				}
+				
+				/* 目标视图是当前视图 */
+				var activeView = View.getActiveView();
+				var activeViewId = null == activeView? null: activeView.getId();
+				if(null != activeViewId && activeViewId == targetViewId){
 					return;
 				}
 
