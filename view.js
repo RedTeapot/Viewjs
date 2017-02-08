@@ -518,7 +518,7 @@
 	 */
 	var ViewConfiguration = function ViewConfiguration(_name){
 		var name = _name,/* 配置项名称 */
-		    value,/* 配置项取值 */
+		    value = NOT_SUPPLIED,/* 配置项取值 */
 			application;/* 配置项应用方法 */
 		
 		/**
@@ -530,9 +530,16 @@
 
 		/**
 		 * 获取配置项取值
+		 * @param {Any} dftValue 配置值没有指定时的默认值
 		 */
-		this.getValue = function(){
-			return value;
+		this.getValue = function(dftValue){
+			if(NOT_SUPPLIED == value){
+				if(arguments.length < 1)
+					return undefined;
+				
+				return dftValue;
+			}else
+				return value;
 		};
 
 		/**
