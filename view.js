@@ -956,7 +956,7 @@
 		if("" == hash)
 			return null;
 		
-		var r = /^#([\w\$]+)(?:!+(.*))?/;
+		var r = /^#([\w\$\-]+)(?:!+(.*))?/;
 		var m = hash.match(r);
 		if(null == m)
 			return null;
