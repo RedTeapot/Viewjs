@@ -314,6 +314,15 @@
 
 	/** 视图切换动画 */
 	var viewSwitchAnimation = null;
+	
+	var attr$view = "data-view",
+		attr$view_default = "data-view-default",
+		attr$view_directly_accessible = "data-view-directly-accessible",
+		attr$view_fallback = "data-view-fallback",
+		attr$view_rel = "data-view-rel",
+		attr$view_rel_disabled = "data-view-rel-disabled",
+		attr$view_rel_type = "data-view-rel-type",
+		attr$view_title = "data-view-title";
 
 
 	var historyPushPopSupported = ("pushState" in history) && (typeof history.pushState == "function");
@@ -658,8 +667,8 @@
 	 * @param id {String} 视图对应的DOM元素的id
 	 */
 	var View = function(id){
-		if(null === document.querySelector("#" + id + "[data-view=true]"))
-			throw new ViewNotExistError("View of id: " + id + " does not exist(No element matching pattern: '#" + id + "[data-view=true]' found)!");
+		if(null === document.querySelector("#" + id + "[" + attr$view + "=true]"))
+			throw new ViewNotExistError("View of id: " + id + " does not exist(No element matching pattern: '#" + id + "[" + attr$view + "=true]' found)!");
 
 		/* 存储该视图触发的各个事件的最新数据。key：事件名；value：数据 */
 		var eventData = {};
@@ -781,33 +790,20 @@
 		 * 判断当前视图是否为默认视图
 		 */
 		this.isDefault = function(){
-			return /true/i.test(this.getDomElement().getAttribute("data-view-default"));
+			return /true/i.test(this.getDomElement().getAttribute(attr$view_default));
 		};
 
 		/**
 		 * 判断当前视图是否可以通过地址栏直接访问
 		 */
 		this.isDirectlyAccessible = function(){
-			var rootFlag = document.documentElement.getAttribute("data-view-directly-accessible");
-			rootFlag = null == rootFlag? "false": rootFlag;
-			rootFlag = rootFlag.toLowerCase();
-
-			var directAccessable = false;
-			if("true" == rootFlag){/** 如果设定全部可以直接访问 */
-				/** 判定视图是否可以直接访问 */
-				if("false" == this.getDomElement().getAttribute("data-view-directly-accessible"))
-					directAccessable = false;
-				else
-					directAccessable = true;
-			}else{
-				/** 判定视图是否可以直接访问 */
-				if("true" == this.getDomElement().getAttribute("data-view-directly-accessible"))
-					directAccessable = true;
-				else
-					directAccessable = false;
-			}
-
-			return directAccessable;
+			var attr = this.getDomElement().getAttribute(attr$view_directly_accessible);
+			attr = null == attr? null: attr.toLowerCase();
+			
+			if(View.isDirectlyAccessible())/** 如果设定全部可以直接访问 */
+				return "false" == attr? false: true;
+			else
+				return "true" == attr? true: false;
 		};
 
 		/**
@@ -820,7 +816,7 @@
 
 			do{
 				/** 取出配置的视图 */
-				var fallbackViewId = view.getDomElement().getAttribute("data-view-fallback");
+				var fallbackViewId = view.getDomElement().getAttribute(attr$view_fallback);
 				/** 判断是否配置且配置的视图是否存在 */
 				if(null == fallbackViewId || !View.ifExists(fallbackViewId)){
 					globalLogger.warn("View: " + view.getId() + " is not permited to access directly, and no fallback configuration found, thus returning the default view");
@@ -885,7 +881,7 @@
 
 	/**
 	 * 判断指定ID的视图是否存在
-	 * @param id 视图ID
+	 * @param {String} id 视图ID
 	 */
 	View.ifExists = function(id){
 		for(var i = 0; i < viewInstances.length; i++)
@@ -901,6 +897,48 @@
 	 */
 	View.listAll = function(){
 		return [].concat(viewInstances);
+	};
+	
+	/**
+	 * 设置指定ID的视图为默认视图
+	 * @param {String} id 视图ID
+	 */
+	View.setAsDefault = function(viewId){
+		/* 去除当前的默认视图的默认标记 */
+		var dftView = View.getDefaultView();
+		if(null != dftView){
+			if(dftView.getId() == viewId)
+				return;
+			
+			dftView.getDomElement().removeAttribute(attr$view_default);
+		}
+		
+		/* 设置新的默认视图 */
+		var view = View.ofId(viewId);
+		var dom = view.getDomElement();
+		dom.setAttribute(attr$view_default, "true");
+		
+		return View;
+	};
+	
+	/**
+	 * 判断全局视图是否可以直接访问
+	 */
+	View.isDirectlyAccessible = function(){
+		var rootFlag = document.documentElement.getAttribute(attr$view_directly_accessible);
+		rootFlag = null == rootFlag? "false": rootFlag;
+		rootFlag = rootFlag.toLowerCase();
+
+		return "true" == rootFlag;
+	};
+	
+	/**
+	 * 设置全局视图是否可以直接访问
+	 * @param {Boolean} accessible 是否可以直接访问
+	 */
+	View.setIsDirectlyAccessible = function(accessible){
+		document.documentElement.setAttribute(attr$view_directly_accessible, String(!!accessible).toLowerCase());
+		return View;
 	};
 
 	/**
@@ -1364,7 +1402,7 @@
 		window.addEventListener(historyPushPopSupported? "popstate": "hashchange", stateChangeListener);
 
 		/* 扫描文档，遍历定义视图 */
-		var viewObjs = document.querySelectorAll("*[data-view=true]");
+		var viewObjs = document.querySelectorAll("*[" + attr$view + "=true]");
 		[].forEach.call(viewObjs, function(viewObj){
 			/* 定义视图 */
 			View.ofId(viewObj.id);
@@ -1377,7 +1415,7 @@
 
 			/* 视图标题自动设置 */
 			;(function(){
-				var specifiedTitle = viewObj.getAttribute("data-view-title");
+				var specifiedTitle = viewObj.getAttribute(attr$view_title);
 				var view = View.ofId(viewObj.id);
 				view.on("enter", function(){
 					document.title = null == specifiedTitle? documentTitle: specifiedTitle;
@@ -1393,7 +1431,7 @@
 			var dftViewObj = null;
 			var dftViewObjIndex = -1;
 			for(var i = 0; i < viewObjs.length; i++)
-				if("true" == viewObjs[i].getAttribute("data-view-default")){
+				if("true" == viewObjs[i].getAttribute(attr$view_default)){
 					dftViewObjIndex = i;
 					break;
 				}
@@ -1403,11 +1441,11 @@
 
 				/* 删除多余的声明 */
 				for(var i = dftViewObjIndex + 1; i < viewObjs.length; i++)
-					if("true" == viewObjs[i].getAttribute("data-view-default"))
-						viewObjs[i].removeAttribute("data-view-default");
+					if("true" == viewObjs[i].getAttribute(attr$view_default))
+						viewObjs[i].removeAttribute(attr$view_default);
 			}else if(0 != viewObjs.length){
 				dftViewObj = viewObjs[0];
-				dftViewObj.setAttribute("data-view-default", "true");
+				dftViewObj.setAttribute(attr$view_default, "true");
 			}else
 				globalLogger.warn("No view exists to determine the default view.");
 
@@ -1471,7 +1509,7 @@
 				/* 视图导向定义检测 */
 				var targetViewId;
 				var tmp = eventTarget;
-				while(null == tmp.getAttribute("data-view-rel")){
+				while(null == tmp.getAttribute(attr$view_rel)){
 					tmp = tmp.parentNode;
 
 					if(!(tmp instanceof HTMLElement))
@@ -1480,13 +1518,13 @@
 						break;
 				}
 				if(null != tmp)
-					targetViewId = tmp.getAttribute("data-view-rel");
+					targetViewId = tmp.getAttribute(attr$view_rel);
 
 				if(null == targetViewId)
 					return;
 
 				/* 视图切换禁用标志检测 */
-				var isViewRelDisabled = "true" == tmp.getAttribute("data-view-rel-disabled");
+				var isViewRelDisabled = "true" == tmp.getAttribute(attr$view_rel_disabled);
 
 				/* 如果当前禁用视图跳转 */
 				if(isViewRelDisabled)
@@ -1520,7 +1558,7 @@
 					return;
 				}
 
-				var relType = tmp.getAttribute("data-view-rel-type");
+				var relType = tmp.getAttribute(attr$view_rel_type);
 				relType = isEmptyString(relType, true)? "nav": relType;
 				if(!/^(?:nav)|(?:change)$/.test(relType)){
 					globalLogger.warn("Unknown view switch type: {}. {}", relType, tmp);
