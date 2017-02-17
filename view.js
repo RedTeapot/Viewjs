@@ -177,8 +177,8 @@
 
 	/**
 	 * 为指定的对象添加事件驱动机制
-	 * @param obj 要添加事件驱动机制的对象
-	 * @param ctx 监听器触发时的this上下文
+	 * @param {Object} obj 要添加事件驱动机制的对象
+	 * @param {Object} ctx 监听器触发时的this上下文
 	 */
 	var eventDrive = (function(){
 		/**
@@ -197,61 +197,63 @@
 		};
 
 		return function(obj, ctx){
-			(function(obj, ctx){
-				/* 所有事件处理器。key为事件类型字符串（全小写），value为对应添加的事件处理器数组 */
-				var eventHandlers = {};
+			/* 所有事件处理器。key为事件类型字符串（全小写），value为对应添加的事件处理器数组 */
+			var eventHandlers = {};
 
-				/**
-				 * 添加事件监听器
-				 * @param type 事件类型
-				 * @param handler 事件处理器
-				 */
-				obj.on = function(type, handler){
-					type = type.toLowerCase();
+			var build = function(type){
+				eventHandlers[type] = eventHandlers[type] || [];
+			};
+			
+			/**
+			 * 添加事件监听器
+			 * @param type 事件类型
+			 * @param handler 事件处理器
+			 */
+			obj.on = function(type, handler){
+				type = type.toLowerCase();
 
-					eventHandlers[type] = eventHandlers[type] || [];
-					if(eventHandlers[type].indexOf(handler) != -1)
-						return;
+				build(type);
+				if(eventHandlers[type].indexOf(handler) != -1)
+					return;
 
-					/* 加入列表 */
-					eventHandlers[type].push(handler);
-				};
+				/* 加入列表 */
+				eventHandlers[type].push(handler);
+			};
 
-				/**
-				 * 移除事件监听器
-				 * @param type 事件类型
-				 * @param handler 事件处理器
-				 */
-				obj.off = function(type, handler){
-					type = type.toLowerCase();
+			/**
+			 * 移除事件监听器
+			 * @param type 事件类型
+			 * @param handler 事件处理器
+			 */
+			obj.off = function(type, handler){
+				type = type.toLowerCase();
 
-					eventHandlers[type] = eventHandlers[type] || [];
-					var index = eventHandlers[type].indexOf(handler);
-					if(index == -1)
-						return;
+				build(type);
+				var index = eventHandlers[type].indexOf(handler);
+				if(index == -1)
+					return;
 
-					/* 加入列表 */
-					eventHandlers[type].splice(index, 1);
-				};
+				/* 加入列表 */
+				eventHandlers[type].splice(index, 1);
+			};
 
-				/**
-				 * 触发事件
-				 * @param type {String} 事件类型（名称）
-				 * @param data 需要传递至监听器的数据
-				 */
-				obj.fire = function(type, data){
-					type = type.toLowerCase();
+			/**
+			 * 触发事件
+			 * @param type {String} 事件类型（名称）
+			 * @param data 需要传递至监听器的数据
+			 */
+			obj.fire = function(type, data){
+				type = type.toLowerCase();
 
-					/** 创建事件 */
-					var event = new Event(type, data);
+				/** 创建事件 */
+				var event = new Event(type, data);
 
-					/** 触发监听器 */
-					eventHandlers[type] = eventHandlers[type] || [];
-					eventHandlers[type].forEach(function(handler){
-						handler.call(ctx, event);
-					});
-				};
-			})(obj, ctx);
+				/** 触发监听器 */
+				build(type);
+				eventHandlers[type].forEach(function(handler){
+					handler.call(ctx, event);
+				});
+			};
 		};
 	})();
 
@@ -296,6 +298,60 @@
 		
 		return str.length == 0;
 	};
+	
+	/**
+	 * 判断给定的对象是否是null或undefined
+	 */
+	var isNullOrUndefined = function(t){
+		return null === t || undefined === t;
+	};
+	
+	/**
+	 * 判断给定的两个字符串是否相同
+	 * @param {String} a 字符串1
+	 * @param {String} b 字符串2
+	 * @param {Boolean} [caseSensitive=true] 是否区分大小写
+	 * @param {Boolean} [trim=true] 是否在判断前执行前后空白符号的裁剪操作
+	 */
+	var ifStringEquals = function(a, b, caseSensitive, trim){
+		if(arguments.length < 4)
+			trim = true;
+		if(arguments.length < 3)
+			caseSensitive = true;
+		
+		if(isNullOrUndefined(a)){
+			if(isNullOrUndefined(b))
+				return true;
+			return false;
+		}else{
+			if(isNullOrUndefined(b))
+				return false;
+			
+			if(trim){
+				a = String(a).trim();
+				b = String(b).trim();
+			}
+			if(!caseSensitive){
+				a = a.toLowerCase();
+				b = b.toLowerCase();
+			}
+
+			return a === b;
+		}
+	};
+	
+	/**
+	 * 以“不区分大小写”的方式判断给定的两个字符串是否相同
+	 * @param {String} a 字符串1
+	 * @param {String} b 字符串2
+	 * @param {Boolean} [trim=true] 是否在判断前执行前后空白符号的裁剪操作
+	 */
+	var ifStringEqualsIgnoreCase = function(a, b, trim){
+		if(arguments.length < 3)
+			trim = true;
+		
+		return ifStringEquals(a, b, false, trim);
+	};
 
 	var MOBILE_REGEX = /mobile|tablet|ip(ad|hone|od)|android/i,
 		SUPPORT_TOUCH = ('ontouchstart' in window),
@@ -306,6 +362,8 @@
 
 	var PSVIEW_BACK = ":back",/* 伪视图：后退 */
 		PSVIEW_FORWARD = ":forward";/* 伪视图：前进 */
+	
+	var docEle = document.documentElement;
 
 	var globalLogger = Logger.ofName("View");
 	
@@ -366,7 +424,7 @@
 	 */
 	var setViewParameter = function(viewId, name, value){
 		if(!View.ifExists(viewId) && !isPseudoView(viewId))
-			throw new ViewNotExistError("View of id: " + viewId + " does not exist.");
+			throw new Error("View of id: " + viewId + " does not exist.");
 		if(arguments.length < 3)
 			throw new Error("Invalid argument length. Both parameter name and value should be specified.");
 
@@ -383,7 +441,7 @@
 	 */
 	var setViewParameters = function(viewId, params){
 		if(!View.ifExists(viewId) && !isPseudoView(viewId))
-			throw new ViewNotExistError("View of id: " + viewId + " does not exist.");
+			throw new Error("View of id: " + viewId + " does not exist.");
 
 		if(undefined === params)
 			params = null;
@@ -512,14 +570,6 @@
 
 		View.currentState = state;
 	};
-
-	/**
-	 * 视图不存在错误
-	 */
-	var ViewNotExistError = function ViewNotExistError(msg){
-		Error.call(this, msg);
-	};
-	ViewNotExistError.prototype = Object.create(Error.prototype);
 
 	/**
 	 * 视图配置
@@ -668,7 +718,7 @@
 	 */
 	var View = function(id){
 		if(null === document.querySelector("#" + id + "[" + attr$view + "=true]"))
-			throw new ViewNotExistError("View of id: " + id + " does not exist(No element matching pattern: '#" + id + "[" + attr$view + "=true]' found)!");
+			throw new Error("View of id: " + id + " does not exist(No element matching pattern: '#" + id + "[" + attr$view + "=true]' found)!");
 
 		/* 存储该视图触发的各个事件的最新数据。key：事件名；value：数据 */
 		var eventData = {};
@@ -925,11 +975,8 @@
 	 * 判断全局视图是否可以直接访问
 	 */
 	View.isDirectlyAccessible = function(){
-		var rootFlag = document.documentElement.getAttribute(attr$view_directly_accessible);
-		rootFlag = null == rootFlag? "false": rootFlag;
-		rootFlag = rootFlag.toLowerCase();
-
-		return "true" == rootFlag;
+		var rootFlag = docEle.getAttribute(attr$view_directly_accessible);
+		return ifStringEqualsIgnoreCase("true", rootFlag);
 	};
 	
 	/**
@@ -937,7 +984,7 @@
 	 * @param {Boolean} accessible 是否可以直接访问
 	 */
 	View.setIsDirectlyAccessible = function(accessible){
-		document.documentElement.setAttribute(attr$view_directly_accessible, String(!!accessible).toLowerCase());
+		docEle.setAttribute(attr$view_directly_accessible, String(!!accessible).toLowerCase());
 		return View;
 	};
 
@@ -1046,8 +1093,8 @@
 
 		if(null == type)
 			type = View.SWITCHTYPE_VIEWSWITCH;
-		var isBack = type.toLowerCase() == View.SWITCHTYPE_HISTORYBACK,
-			isForward = type.toLowerCase() == View.SWITCHTYPE_HISTORYFORWARD;
+		var isBack = ifStringEqualsIgnoreCase(type, View.SWITCHTYPE_HISTORYBACK),
+			isForward = ifStringEqualsIgnoreCase(type, View.SWITCHTYPE_HISTORYFORWARD);
 		if(!isBack && !isForward)
 			type = View.SWITCHTYPE_VIEWSWITCH;
 
@@ -1128,7 +1175,7 @@
 		var currentView = View.getActiveView();
 
 		/* 如果切换目标是自己，则直接返回 */
-		if(currentView.getId().toLowerCase() == targetViewId.toLowerCase())
+		if(ifStringEqualsIgnoreCase(currentView.getId(), targetViewId))
 			return View;
 
 		globalLogger.log("{} → {} {}", currentView.getId(), targetViewId, JSON.stringify(ops));
@@ -1179,7 +1226,7 @@
 		var currentView = View.getActiveView();
 
 		/* 如果切换目标是自己，则直接返回 */
-		if(currentView.getId().toLowerCase() == targetViewId.toLowerCase())
+		if(ifStringEqualsIgnoreCase(currentView.getId(), targetViewId))
 			return View;
 
 		/** 伪视图支持 */
@@ -1212,7 +1259,7 @@
 		var currentView = View.getActiveView();
 
 		/* 如果切换目标是自己，则直接返回 */
-		if(currentView.getId().toLowerCase() == targetViewId.toLowerCase())
+		if(ifStringEqualsIgnoreCase(currentView.getId(), targetViewId))
 			return View;
 		
 		show(targetViewId, ops);
@@ -1285,6 +1332,7 @@
 				callbacks.forEach(function(cb){
 					try2exec(cb);
 				});
+				callbacks = [];
 			}, 0);
 		};
 
@@ -1503,7 +1551,7 @@
 		 * 		取值：true 触摸时不导向至通过data-view-rel指定的视图
 		 */
 		;(function(){
-			touch.addTapListener(document.documentElement, function(e){
+			touch.addTapListener(docEle, function(e){
 				var eventTarget = e.changedTouches? e.changedTouches[0].target: e.target;
 
 				/* 视图导向定义检测 */
@@ -1540,13 +1588,13 @@
 				}
 
 				/* 回退操作(":back") */
-				if(PSVIEW_BACK == targetViewId.toLowerCase().trim()){
+				if(ifStringEqualsIgnoreCase(PSVIEW_BACK, targetViewId)){
 					history.go(-1);/* browser support */
 					return;
 				}
 
 				/* 前进操作（":forward"） */
-				if(PSVIEW_FORWARD == targetViewId.toLowerCase().trim()){
+				if(ifStringEqualsIgnoreCase(PSVIEW_FORWARD, targetViewId)){
 					history.go(1);/* browser support */
 					return;
 				}
