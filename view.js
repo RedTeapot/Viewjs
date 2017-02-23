@@ -853,7 +853,9 @@
 		 * 应用所有配置
 		 */
 		this.applyAll = function(){
-			var items = Object.values(configs);
+			var items = Object.keys(configs).map(function(k){
+				return configs[k];
+			});
 			if(0 != items.length)
 				setTimeout(function(){
 					items.forEach(function(c){
