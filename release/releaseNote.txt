@@ -1,0 +1,2 @@
+【1.4.1-B201703141541】
+1. View.navTo以及View.changeTo方法允许在ops中传递视图选项。如：View.changeTo("tar", {options: {a: 1}})
