@@ -1402,6 +1402,7 @@
 	 * 切换视图，同时更新相关状态（压入堆栈）
 	 * @param targetViewId 目标视图ID
 	 * @param {JsonObject} ops 切换配置。详见View.show
+	 * @param {JsonObject} ops.options 视图选项
 	 */
 	View.navTo = function(targetViewId, ops){
 		targetViewId = targetViewId.trim();
@@ -1426,7 +1427,7 @@
 		}
 
 		show(targetViewId, ops);
-		pushViewState(targetViewId, Date.now(), null);
+		pushViewState(targetViewId, Date.now(), ops.options);
 
 		return View;
 	};
@@ -1437,6 +1438,7 @@
 	 * 切换视图，同时更新相关状态（更新堆栈）
 	 * @param targetViewId 目标视图ID
 	 * @param {JsonObject} ops 切换配置。详见switchView
+	 * @param {JsonObject} ops.options 视图选项
 	 */
 	View.changeTo = function(targetViewId, ops){
 		/* 当前活动视图 */
@@ -1447,7 +1449,7 @@
 			return View;
 		
 		show(targetViewId, ops);
-		replaceViewState(targetViewId, Date.now(), null);
+		replaceViewState(targetViewId, Date.now(), ops.options);
 
 		return View;
 	};
