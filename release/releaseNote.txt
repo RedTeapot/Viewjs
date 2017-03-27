@@ -1,2 +1,9 @@
+【1.4.1-B201703271911】
+1. View实例添加API：setAsDirectlyAccessible - 设置当前视图为：允许直接访问
+2. View实例添加API：setFallbackViewId - 设置回退视图
+
+【1.4.1-B201703141851】
+1. 修复故障：View.navTo以及View.changeTo方法调用时，如果没有指定options，则会报错
+
 【1.4.1-B201703141541】
 1. View.navTo以及View.changeTo方法允许在ops中传递视图选项。如：View.changeTo("tar", {options: {a: 1}})

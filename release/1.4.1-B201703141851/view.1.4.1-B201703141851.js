@@ -1039,31 +1039,6 @@
 			else
 				return "true" == attr? true: false;
 		};
-		
-		/**
-		 * 设置当前视图为：允许直接访问
-		 */
-		this.setAsDirectlyAccessible = function(){
-			this.getDomElement().setAttribute(attr$view_directly_accessible, "true");
-		};
-		
-		/**
-		 * 设置回退视图
-		 * @param {String} fallbackViewId 回退视图ID
-		 */
-		this.setFallbackViewId = function(fallbackViewId){
-			if(null == fallbackViewId || "" == fallbackViewId.trim())
-				return this;
-			
-			if(!View.ifExists(fallbackViewId)){
-				globalLogger.warn("No view of id: {} found.", fallbackViewId);
-				return this;
-			}
-			if(this.getId() == fallbackViewId)
-				return this;
-			
-			this.getDomElement().setAttribute(attr$view_fallback, fallbackViewId);
-		};
 
 		/**
 		 * 获取视图不能访问时需要呈现的视图
