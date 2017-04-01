@@ -756,8 +756,9 @@
 	/**
 	 * 视图配置
 	 * @param {String} _name 配置项名称
+	 * @param {String} viewId 关联的视图编号
 	 */
-	var ViewConfiguration = function ViewConfiguration(_name){
+	var ViewConfiguration = function ViewConfiguration(_name, viewId){
 		var name = _name,/* 配置项名称 */
 		    value = NOT_SUPPLIED,/* 配置项取值 */
 			application;/* 配置项应用方法 */
@@ -814,14 +815,31 @@
 				application(value);
 			return this;
 		};
+		
+		/**
+		 * 将配置以"data-*"的方式附加至DOM元素上
+		 */
+		this.reflectToDom = function(){
+			if(null == viewId || "" == viewId.trim())
+				return this;
+			if(!View.ifExists(viewId)){
+				globalLogger.warn("No view of id '{}' found to reflect view config: {}={}.", viewId, this.getName(), this.getValue());
+				return this;
+			}
+			
+			var viewObj = View.ofId(viewId).getDomElement();
+			viewObj.setAttribute("data-" + this.getName(), String(this.getValue()));
+			return this;
+		};
 
 		Object.freeze(this);
 	};
 
 	/**
 	 * 视图配置集合
+	 * @param {String} viewId 关联的视图编号
 	 */
-	var ViewConfigurationSet = function ViewConfigurationSet(){
+	var ViewConfigurationSet = function ViewConfigurationSet(viewId){
 		/** 配置项集合。key：配置项名称；value：ViewConfiguration */
 		var configs = {};
 
@@ -842,7 +860,7 @@
 			if(key in configs)
 				c = configs[key];
 			else{
-				c = new ViewConfiguration(key);
+				c = new ViewConfiguration(key, viewId);
 				configs[key] = c;
 			}
 
@@ -916,7 +934,7 @@
 		var context = new ViewContext();
 
 		/** 视图配置集合 */
-		var configSet = new ViewConfigurationSet();
+		var configSet = new ViewConfigurationSet(id);
 
 		/**
 		 * 启用事件驱动机制
