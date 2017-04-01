@@ -890,6 +890,11 @@
 		defineReadOnlyProperty(this, "get", function(name){
 			return obj[name];
 		});
+		defineReadOnlyProperty(this, "remove", function(name){
+			var value = obj[name];
+			delete obj[name];
+			return value;
+		});
 		defineReadOnlyProperty(this, "clear", function(){
 			obj = {};
 			return this;
@@ -1526,11 +1531,49 @@
 	View.setDocumentTitle = setDocumentTitle;
 
 
+	var markViewReady,/* 标记视图就绪 */
+		
+		markViewToBeInited,/* 标记视图准备初始化 */
+		markViewInited/* 标记视图已完成初始化 */;
+	
 	/**
-	 * 标记视图就绪
+	 * 添加监听器：视图准备初始化
+	 * @param {Function} callback 回调方法
 	 */
-	var markViewReady;
+	View.beforeInit = (function(){
+		var isInited = false;
+		
+		markViewToBeInited = function(){
+			callbacks.forEach(try2exec);
+			callbacks = [];
+		};
+		
+		/* 挂起的回调方法列表 */
+		var callbacks = [];
+		markViewInited = function(){
+			isInited = true;
+		};
+		
+		/**
+		 * 初始化前执行的方法
+		 */
+		return function(callback){
+			/* 如果已经初始化，则不再执行，立即返回 */
+			if(isInited)
+				return View;
 
+			if(callbacks.indexOf(callback) != -1)
+				return View;
+			
+			callbacks.push(callback);
+			return View;
+		};
+	})();
+
+	/**
+	 * 添加监听器：视图就绪
+	 * @param {Function} callback 回调方法
+	 */
 	View.ready = (function(){
 		var isReady = false;
 
@@ -1540,9 +1583,7 @@
 			isReady = true;
 
 			setTimeout(function(){
-				callbacks.forEach(function(cb){
-					try2exec(cb);
-				});
+				callbacks.forEach(try2exec);
 				callbacks = [];
 			}, 0);
 		};
@@ -1657,6 +1698,8 @@
 
 
 	var init = function(){
+		markViewToBeInited();
+		
 		/** 事件监听 */
 		window.addEventListener(historyPushPopSupported? "popstate": "hashchange", stateChangeListener);
 
@@ -1829,6 +1872,9 @@
 			}, {useCapture: true});
 		})();
 
+		/* 标记视图已完成初始化 */
+		markViewInited();
+		
 		/* 标记视图就绪 */
 		markViewReady();
 	};
