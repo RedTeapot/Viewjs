@@ -1682,11 +1682,17 @@
 		if(null == e.state){/* 手动输入目标视图ID */
 			type = View.SWITCHTYPE_VIEWSWITCH;
 
+			var targetViewId;
 			var viewInfo = parseViewInfoFromHash(location.hash);
-
-			newViewId = viewInfo.viewId;
-			targetView = getFinalView(newViewId);
-			var targetViewId = targetView.getId();
+			if(null == viewInfo){
+				targetView = currentActiveView;
+				targetViewId = currentActiveViewId;
+			}else{
+				targetView = getFinalView(newViewId);
+				targetViewId = targetView.getId();
+				
+				newViewId = viewInfo.viewId;
+			}
 
 			var isTargetViewAsSpecified = targetViewId == newViewId,
 				isTargetViewRemainsCurrent = targetViewId == currentActiveViewId;
