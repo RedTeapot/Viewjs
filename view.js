@@ -644,7 +644,21 @@
 		return View;
 	};
 
+	/**
+	 * 从DOM中获取所有声明为视图的DOM元素
+	 * @return {NodeList}
+	 */
+	var getViewObjs = function(){
+		var viewObjs = document.querySelectorAll("*[" + attr$view + "=true]");
+		return viewObjs;
+	};
 	
+	/**
+	 * 从DOM中获取ID为指定编号的视图DOM元素
+	 */
+	var getViewObjOfId = function(viewId){
+		return document.querySelector("#" + viewId + "[" + attr$view + "=true]");
+	};
 
 	/**
 	 * 浏览状态
@@ -1187,18 +1201,17 @@
 	 */
 	View.setAsDefault = function(viewId){
 		/* 去除当前的默认视图的默认标记 */
-		var dftView = View.getDefaultView();
-		if(null != dftView){
-			if(dftView.getId() == viewId)
-				return;
-			
-			dftView.getDomElement().removeAttribute(attr$view_default);
-		}
+		var viewObjs = getViewObjs();
+		for(var i = 0; i < viewObjs.length; i++)
+			viewObjs[i].removeAttribute(attr$view_default);
 		
 		/* 设置新的默认视图 */
-		var view = View.ofId(viewId);
-		var dom = view.getDomElement();
-		dom.setAttribute(attr$view_default, "true");
+		var viewObj = getViewObjOfId(viewId);
+		if(null == viewObj){
+			globalLogger.error("No view dom element of id: {} found to set as default.", viewId);
+			return View;
+		}
+		viewObj.setAttribute(attr$view_default, "true");
 		
 		return View;
 	};
@@ -1722,7 +1735,7 @@
 		window.addEventListener(historyPushPopSupported? "popstate": "hashchange", stateChangeListener);
 
 		/* 扫描文档，遍历定义视图 */
-		var viewObjs = document.querySelectorAll("*[" + attr$view + "=true]");
+		var viewObjs = getViewObjs();
 		[].forEach.call(viewObjs, function(viewObj){
 			/* 定义视图 */
 			View.ofId(viewObj.id);
