@@ -459,7 +459,13 @@
 		if(null == func || typeof func != "function")
 			return;
 		
-		try{func.apply(ctx, args);}catch(e){globalLogger.error("Error occured while executing function: {}. {}", func.name, e);}
+		try{
+			func.apply(ctx, args);
+		}catch(e){
+			var isError = e instanceof Error || (e != null && typeof e == "object" && "stack" in e);
+			var s = "Error occured while executing function: {}. {}" + (isError? " stack:\n{}": "");
+			globalLogger.error(s, func.name, e, isError? e.stack: null);
+		}
 	};
 
 	/**
