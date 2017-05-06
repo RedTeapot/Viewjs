@@ -1046,7 +1046,7 @@
 				return false;
 			
 			var params = viewParameters[this.getId()];
-			return name in params;
+			return null == params? false: (name in params);
 		};
 
 		/**
