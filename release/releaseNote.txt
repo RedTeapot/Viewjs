@@ -1,3 +1,11 @@
+【1.4.2-B201705251731】
+1. 修复故障：当时图可以直接访问的时候，通过地址栏手动访问目标视图失败
+2. View组件添加布局支持：1) 新增组件 View.layout；2) 新增API：view.setLayoutAction
+
+【1.4.1-B201705121020】
+1. 完善视图配置API：setValue，使其识别第二个参数：overrideExistingValue（默认false），从而仅在明确要求覆盖时才覆盖既有取值。如果之前尚未设置取值，则忽略该参数并进行赋值；2. 完善视图配置：data-view-rel，使其识别相对文件路径。配置方式：data-view-rel=@[path]
+2. 完善视图配置方法：apply，使其this指向对应的视图配置项
+
 【1.4.1-B201705061120】
 1. View实例添加API：hasParameter - 判断视图中是否含有指定名称的参数
 
