@@ -1,3 +1,6 @@
+【1.4.2-B201706161146】
+1. 修复故障：View.ready方法晚于view.on("enter")执行
+
 【1.4.2-B201706161059】
 1. View实例添加API：setTitle，用于动态设置视图标题
 2. View实例添加API：getTitle，用于获取视图标题
