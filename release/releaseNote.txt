@@ -1,3 +1,7 @@
+【1.4.2-B201706161059】
+1. View实例添加API：setTitle，用于动态设置视图标题
+2. View实例添加API：getTitle，用于获取视图标题
+
 【1.4.2-B201706121659】
 1. 将视图的事件beforeenter, enter, afterenter的触发方式更改为同步方式
 2. 修复故障：beforeenter触发时机与字面含义不匹配
