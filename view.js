@@ -1775,14 +1775,6 @@
 			}while(true);
 		};
 
-		/**
-		 * 列举当前所有的视图方法
-		 * @return {StringArray}
-		 */
-		this.listApi = function(){
-			return Object.keys(apis);
-		};
-
 		Object.freeze && Object.freeze(this);
 	};
 
