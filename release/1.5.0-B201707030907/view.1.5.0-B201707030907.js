@@ -1522,9 +1522,6 @@
 		/** 视图配置集合 */
 		var configSet = new ViewConfigurationSet(id);
 
-		/** 被定义了的API集合。key：API名称；value：API实现 */
-		var apis = {};
-
 		/**
 		 * 启用事件驱动机制
 		 * 事件 beforeenter：视图进入前触发
@@ -1630,7 +1627,7 @@
 		};
 
 		/**
-		 * 获取视图参数中指定名称的键的取值
+		 * 获取视图参数中指定名称的参数取值
 		 * @param {String} [name] 参数名。区分大小写。如果没有指定参数名，则返回整个参数。
 		 */
 		this.getParameter = function(name){
@@ -1639,6 +1636,31 @@
 				return params;
 
 			return null == params? null: params[name];
+		};
+		
+		/**
+		 * 搜索指定名称的参数取值。搜索顺序：
+		 * 1. 视图参数
+		 * 2. 视图选项
+		 * 3. 地址栏参数
+		 * 
+		 * 注：区分大小写
+		 * 
+		 * @param {String} name 参数名
+		 */
+		this.seekParameter = function(name){
+			if(this.hasParameter(name))
+				return this.getParameter(name);
+			
+			if(View.hasActiveViewOption(name))
+				return View.getActiveViewOption(name);
+			
+			var r = new RegExp("\\b" + name + "\\b=([^&\\?]*)");
+			var paramValue = location.search.match(r);
+			if(null == paramValue)
+				return null;
+			paramValue = decodeURIComponent(paramValue[1]);
+			return paramValue;
 		};
 
 		/**
@@ -1751,45 +1773,6 @@
 					idChain.push(fallbackViewId);
 				}
 			}while(true);
-		};
-
-		/**
-		 * 定义视图方法
-		 * @param {String} apiName 方法名称
-		 * @param {Function} apiFunc 方法实现
-		 */
-		this.define = function(apiName, apiFunc){
-			if(null == apiName || "" == String(apiName).trim())
-				throw new Error("API name can not be empty.");
-			apiName = String(apiName).trim();
-			if(apiName in apis)
-				throw new Error("API of name: '" + apiName + "' exists already.");
-			if(typeof apiFunc != "function")
-				throw new Error("Invalid api implementation. Typeof 'Function' is needed.");
-
-			apis[apiName] = apiFunc;
-		};
-
-		/**
-		 * 调用视图方法
-		 * @param {String} apiName 方法名称
-		 * @param {Any} arguments[1...n] 方法参数集合
-		 */
-		this.call = function(apiName){
-			if(!(apiName in apis)){
-				this.logger.warn("No API of name: '{}' is defined.", apiName);
-				return;
-			}
-
-			var apiFunc = apis[apiName];
-			try{
-				var tmp = "", index = 1;
-				for(var i = index; i < arguments.length; i++)
-					tmp += ",arguments[" + i + "]";
-
-				var self = this;
-				eval("apiFunc.call(self" + tmp + ")");
-			}catch(e){console.error("Error occured while executing function: " + apiFunc.name, e);}
 		};
 
 		/**
@@ -1977,11 +1960,29 @@
 	};
 
 	/**
-	 * 获取当前活动的视图的视图选项
+	 * 获取当前活动的视图的视图选项集合
 	 */
 	View.getActiveViewOptions = function(){
 		var viewInfo = parseViewInfoFromHash(location.hash);
 		return null == viewInfo? null: viewInfo.options;
+	};
+	
+	/**
+	 * 判断当前活动的视图的视图选项中是否含有特定名称的选项。如果视图选项为空，或对应名称的选项不存在，则返回false
+	 * @param {String} name 选项名称
+	 */
+	View.hasActiveViewOption = function(name){
+		var options = View.getActiveViewOptions();
+		return null == options? false: (name in options);
+	};
+	
+	/**
+	 * 获取当前活动的视图的视图选项中特定名称的选项。如果视图选项为空，或对应名称的选项不存在，则返回null
+	 * @param {String} name 选项名称
+	 */
+	View.getActiveViewOption = function(name){
+		var options = View.getActiveViewOptions();
+		return null == options? null: options[name];
 	};
 
 	/**
