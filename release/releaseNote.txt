@@ -1,7 +1,8 @@
-【1.5.0-B201706291750】
-1. 添加API：view.define(apiName, apiFunc)，用于定义视图方法
-2. 添加API：view.call(apiName, args...)，用于调用视图方法
-3. 添加API：view.listApi()，用于列举当前所有的视图方法
+【1.4.3-B201707051617】
+1. 自动为HTML节点附加data-view-os属性（ios, android, wp, unknown），以标明当前识别的系统类型
+
+【1.4.3-B201707030912】
+1. 添加API：view.seekParameter（查找顺序：view parameter -> view option -> locatin parameter）
 
 【1.4.2-B201706231352】
 1. 添加API：View.setInitializer，用于设置视图初 始化器，从而使得应用可以根据需要定制初始化时机
