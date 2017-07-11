@@ -1,3 +1,6 @@
+【1.4.3-B201707111349】
+1. 去除切换类型：View.SWITCHTYPE_VIEWSWITCH，添加View.SWITCHTYPE_VIEWNAV和View.SWITCHTYPE_VIEWCHANGE
+
 【1.4.3-B201707051617】
 1. 自动为HTML节点附加data-view-os属性（ios, android, wp, unknown），以标明当前识别的系统类型
 
