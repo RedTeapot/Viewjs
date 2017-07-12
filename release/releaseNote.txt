@@ -1,3 +1,6 @@
+【1.4.3-B201707121438】
+1. 完善事件发起逻辑，使得出现异常时，开发者可以通过web控制台追踪到错误源
+
 【1.4.3-B201707111349】
 1. 去除切换类型：View.SWITCHTYPE_VIEWSWITCH，添加View.SWITCHTYPE_VIEWNAV和View.SWITCHTYPE_VIEWCHANGE
 
