@@ -256,8 +256,8 @@
 			/**
 			 * 触发事件
 			 * @param type {String} 事件类型（名称）
-			 * @param data {Any} 需要传递至监听器的数据
-			 * @param [async=true] {Boolean} 是否异步执行处理器
+			 * @param data {Any} 附加的数据。亦即，需要传递至监听器的数据
+			 * @param [async=true] {Boolean} 是否以异步的方式执行处理器
 			 */
 			obj.fire = function(type, data, async){
 				if(arguments.length < 3)
@@ -390,7 +390,7 @@
 
 			/**
 			 * 判断日志组件是否启用
-			 * @return {boolean} 当前对象日志输出是否启用
+			 * @return {Boolean} 当前对象日志输出是否启用
 			 */
 			this.isEnabled = function(){
 				return isGloballyEnabled() && isEnabled;
@@ -405,7 +405,9 @@
 				return this;
 			};
 
-			/** 获取名称 */
+			/**
+			 * 获取日志组件名称
+			 */
 			this.getName = function(){
 				return name;
 			};
@@ -452,7 +454,7 @@
 		};
 
 		/**
-		 * 获取指定名称的logger
+		 * 获取指定名称的logger。如果相同名称的实例已经存在，则返回既有的实例。如果不存在，则自动创建一个
 		 * @param {String} name 名称
 		 */
 		var ofName = function(name){
@@ -746,14 +748,14 @@
 		};
 
 		/**
-		 * 获取布局尺寸的宽高比
+		 * 获取当前布局尺寸的宽高比
 		 */
 		var getLayoutWidthHeightRatio = function(){
 			return layoutWidth / layoutHeight;
 		};
 
 		/**
-		 * 获取浏览器窗口尺寸的宽高比
+		 * 获取当前浏览器窗口尺寸的宽高比
 		 */
 		var getBrowserWidthHeightRatio = function(){
 			return getBrowserWidth() / getBrowserHeight();
@@ -884,7 +886,7 @@
 		};
 
 		/**
-		 * 根据设备当前信息自动进行布局
+		 * 根据初始化时设置的各个模式下的浏览方式，结合设备当前的浏览方向和设备类型自动进行布局
 		 */
 		var doLayout = function(){
 			var size;
@@ -920,13 +922,13 @@
 		/**
 		 * 初始化
 		 * @param {JsonObject} ops 初始化参数
-		 * @param {Boolean} ops.autoReLayoutWhenResize 当视口尺寸发生变化时，是否自动重新布局
-		 * @param {Function} ops.layoutAsMobilePortrait 以手机竖屏方式进行布局的方法
-		 * @param {Function} ops.layoutAsMobileLandscape 以手机横屏方式进行布局的方法
-		 * @param {Function} ops.layoutAsTabletLandscape 以平板竖屏方式进行布局的方法
-		 * @param {Function} ops.layoutAsTabletPortrait 以平板横屏方式进行布局的方法
-		 * @param {Function} ops.layoutAsPcPortrait 以桌面竖屏方式进行布局的方法
-		 * @param {Function} ops.layoutAsPcLandscape 以桌面横屏方式进行布局的方法
+		 * @param {Boolean} [ops.autoReLayoutWhenResize=true] 当视口尺寸发生变化时，是否自动重新布局
+		 * @param {Function} [ops.layoutAsMobilePortrait] 手机以竖屏方式使用应用时的布局方式
+		 * @param {Function} [ops.layoutAsMobileLandscape] 手机以横屏方式使用应用时的布局方式
+		 * @param {Function} [ops.layoutAsTabletPortrait] 平板以竖屏方式使用应用时的布局方式
+		 * @param {Function} [ops.layoutAsTabletLandscape] 平板以横屏方式使用应用时的布局方式
+		 * @param {Function} [ops.layoutAsPcPortrait] PC桌面以竖屏方式使用应用时的布局方式
+		 * @param {Function} [ops.layoutAsPcLandscape] PC桌面以横屏方式使用应用时的布局方式
 		 */
 		var init = function(ops){
 			ops = setDftValue(ops, {
@@ -1272,6 +1274,7 @@
 
 		/**
 		 * 设置配置的应用方法
+		 * @param {Function} _application 应用方法
 		 */
 		this.setApplication = function(_application){
 			if(typeof _application != "function"){
@@ -1284,7 +1287,7 @@
 		};
 
 		/**
-		 * 应用配置。This上下文：配置项
+		 * 应用配置。其中this指向的上下文为当前的配置项
 		 */
 		this.apply = function(){
 			if(typeof application == "function"){
@@ -1304,7 +1307,7 @@
 		};
 
 		/**
-		 * 将配置以"data-*"的方式附加至DOM元素上
+		 * 将配置以"data-viewconfig_[name]=[value]"的方式附加至视图的DOM元素上
 		 */
 		this.reflectToDom = function(){
 			if(null == viewId || "" == viewId.trim())
@@ -1390,21 +1393,46 @@
 	var ViewContext = function ViewContext(){
 		var obj = {};
 
+		/**
+		 * 判定上下文中是否含有指定名称的键
+		 * @param {String} name 名称
+		 */
 		defineReadOnlyProperty(this, "has", function(name){
 			return name in obj;
 		});
+		
+		/**
+		 * 设置属性。如果相同名称的属性已经存在，则覆盖。
+		 * @param {String} name 属性名称
+		 * @param {Any} value 属性取值
+		 */
 		defineReadOnlyProperty(this, "set", function(name, value){
 			obj[name] = value;
 			return this;
 		});
+		
+		/**
+		 * 获取指定名称的属性。如果属性不存在，则返回undefined
+		 * @param {String} name 属性名称
+		 */
 		defineReadOnlyProperty(this, "get", function(name){
 			return obj[name];
 		});
+		
+		/**
+		 * 移除指定名称的属性，并返回既有的属性值
+		 * @param {String} name 属性名称
+		 * @returns {Any} 既有取值
+		 */
 		defineReadOnlyProperty(this, "remove", function(name){
 			var value = obj[name];
 			delete obj[name];
 			return value;
 		});
+		
+		/**
+		 * 清空所有属性
+		 */
 		defineReadOnlyProperty(this, "clear", function(){
 			obj = {};
 			return this;
@@ -1572,8 +1600,8 @@
 		defineReadOnlyProperty(this, "context", context);
 
 		/**
-		 * 获取最新的，指定事件对应的数据
-		 * @param {String} eventName 事件名字
+		 * 获取指定名称对应的事件最后一次被触发时所附加的数据
+		 * @param {String} eventName 事件名称。亦即，事件类型
 		 */
 		this.getLatestEventData = function(eventName){
 			return eventData[eventName];
@@ -1587,7 +1615,7 @@
 		};
 
 		/**
-		 * 清除视图上下文
+		 * 清空视图上下文
 		 */
 		this.clearContext = function(){
 			context.clear();
@@ -1595,7 +1623,7 @@
 		};
 
 		/**
-		 * 返回视图对应的DOM元素的ID
+		 * 获取视图编号。视图编号与对应的DOM元素的ID相同
 		 */
 		this.getId = function(){
 			return id;
@@ -1609,7 +1637,7 @@
 		};
 
 		/**
-		 * 在视图内查找元素
+		 * 在视图内查找特定元素
 		 * @param selector {String} 元素选择器
 		 * @return {HTMLElement} 找到的元素
 		 */
@@ -1618,7 +1646,7 @@
 		};
 
 		/**
-		 * 在视图内查找元素
+		 * 在视图内查找多个元素
 		 * @param selector {String} 元素选择器
 		 * @return {NodeList} 找到的元素列表
 		 */
@@ -1627,7 +1655,7 @@
 		};
 
 		/**
-		 * 设置布局方法
+		 * 设置视图布局方法
 		 * @param {Function} _layoutAction 布局方法
 		 * @param {Boolean} [_layoutWhenLayoutChanges=true] 外层布局改变时，是否执行布局动作
 		 */
@@ -1635,6 +1663,8 @@
 			if(arguments.length < 2)
 				_layoutWhenLayoutChanges = true;
 			ViewLayout.ofId(id).setIfLayoutWhenLayoutChanges(!!_layoutWhenLayoutChanges).setLayoutAction(_layoutAction);
+			
+			return this;
 		};
 
 		/**
@@ -1708,23 +1738,28 @@
 		};
 
 		/**
-		 * 判断当前视图是否可以通过地址栏直接访问
+		 * 判断当前视图是否可以通过地址栏手动直接访问
 		 */
 		this.isDirectlyAccessible = function(){
 			var attr = this.getDomElement().getAttribute(attr$view_directly_accessible);
 			attr = null == attr? null: attr.toLowerCase();
 
-			if(View.isDirectlyAccessible())/** 如果设定全部可以直接访问 */
+			if(View.isDirectlyAccessible())/** 如果设定默认可以直接访问 */
 				return "false" == attr? false: true;
 			else
 				return "true" == attr? true: false;
 		};
 
 		/**
-		 * 设置当前视图为：允许直接访问
+		 * 设置当前视图是否通过地址栏手动直接访问
+		 * @param {Boolean} isDirectlyAccessible 视图是否通过地址栏手动直接访问
 		 */
-		this.setAsDirectlyAccessible = function(){
-			this.getDomElement().setAttribute(attr$view_directly_accessible, "true");
+		this.setAsDirectlyAccessible = function(isDirectlyAccessible){
+			if(arguments.lengt < 1)
+				isDirectlyAccessible = true;
+			
+			this.getDomElement().setAttribute(attr$view_directly_accessible, String(isDirectlyAccessible));
+			return this;
 		};
 
 		/**
@@ -1764,6 +1799,7 @@
 				return this;
 
 			this.getDomElement().setAttribute(attr$view_fallback, fallbackViewId);
+			return this;
 		};
 
 		/**
@@ -1899,7 +1935,7 @@
 	};
 
 	/**
-	 * 判断全局视图是否可以直接访问
+	 * 判断视图默认是否可以直接访问
 	 */
 	View.isDirectlyAccessible = function(){
 		var rootFlag = docEle.getAttribute(attr$view_directly_accessible);
@@ -1907,7 +1943,7 @@
 	};
 
 	/**
-	 * 设置全局视图是否可以直接访问
+	 * 设置视图默认是否可以直接访问
 	 * @param {Boolean} accessible 是否可以直接访问
 	 */
 	View.setIsDirectlyAccessible = function(accessible){
@@ -1916,7 +1952,7 @@
 	};
 
 	/**
-	 * 获取当前活动的视图
+	 * 获取当前的活动视图。如果没有视图处于活动状态，则返回null
 	 */
 	View.getActiveView = function(){
 		for(var i = 0; i < viewInstances.length; i++)
@@ -1927,7 +1963,7 @@
 	};
 
 	/**
-	 * 获取默认视图
+	 * 获取默认视图。如果没有默认视图，则返回null
 	 */
 	View.getDefaultView = function(){
 		for(var i = 0; i < viewInstances.length; i++)
@@ -1952,7 +1988,7 @@
 	};
 
 	/**
-	 * 获取视图切换动画
+	 * 获取设置的视图切换动画
 	 * @return {Function} 视图切换动画
 	 */
 	View.getSwitchAnimation = function(){
@@ -1989,7 +2025,7 @@
 	};
 
 	/**
-	 * 获取当前活动的视图的视图选项集合
+	 * 获取当前的活动视图的视图选项集合
 	 */
 	View.getActiveViewOptions = function(){
 		var viewInfo = parseViewInfoFromHash(location.hash);
@@ -1997,7 +2033,7 @@
 	};
 	
 	/**
-	 * 判断当前活动的视图的视图选项中是否含有特定名称的选项。如果视图选项为空，或对应名称的选项不存在，则返回false
+	 * 判断当前的活动视图的视图选项中是否含有特定名称的选项。如果视图选项为空，或对应名称的选项不存在，则返回false
 	 * @param {String} name 选项名称
 	 */
 	View.hasActiveViewOption = function(name){
@@ -2006,7 +2042,7 @@
 	};
 	
 	/**
-	 * 获取当前活动的视图的视图选项中特定名称的选项。如果视图选项为空，或对应名称的选项不存在，则返回null
+	 * 获取当前的活动视图的视图选项中特定名称的选项。如果视图选项为空，或对应名称的选项不存在，则返回null
 	 * @param {String} name 选项名称
 	 */
 	View.getActiveViewOption = function(name){
@@ -2170,7 +2206,7 @@
 	View.switchView = View.switchTo;
 
 	/**
-	 * 切换视图，同时更新相关状态（压入堆栈）
+	 * 以“压入历史堆栈”的方式切换视图
 	 * @param targetViewId 目标视图ID
 	 * @param {JsonObject} ops 切换配置。详见View.show
 	 * @param {JsonObject} ops.options 视图选项
@@ -2208,7 +2244,7 @@
 	View.updateView = View.navTo;
 
 	/**
-	 * 切换视图，同时更新相关状态（更新堆栈）
+	 * 以“替换当前堆栈”的方式切换视图
 	 * @param targetViewId 目标视图ID
 	 * @param {JsonObject} ops 切换配置。详见switchView
 	 * @param {JsonObject} ops.options 视图选项
@@ -2242,6 +2278,8 @@
 			setViewParameters(PSVIEW_BACK, ops.params);
 
 		history.go(-1);
+		
+		return View;
 	};
 
 	/**
@@ -2256,6 +2294,8 @@
 			setViewParameters(PSVIEW_FORWARD, ops.params);
 
 		history.go(1);
+		
+		return View;
 	};
 
 
@@ -2263,7 +2303,8 @@
 	var documentTitle = document.title;
 
 	/**
-	 * 设置文档标题。如果特定视图没有自定义标题，则使用文档标题
+	 * 设置文档标题。开发者可以设定视图级别的标题，但如果特定视图没有自定义标题，将使用文档标题来呈现
+	 * @param {String} title 文档标题
 	 */
 	var setDocumentTitle = function(title){
 		if(isEmptyString(title, true)){
@@ -2604,7 +2645,7 @@
 	};
 
 	/**
-	 * 添加监听器：视图准备初始化
+	 * 添加“视图将要初始化”监听器
 	 * @param {Function} callback 回调方法
 	 */
 	View.beforeInit = (function(){
@@ -2637,7 +2678,7 @@
 	})();
 
 	/**
-	 * 添加监听器：视图就绪
+	 * 添加“视图就绪”监听器
 	 * @param {Function} callback 回调方法
 	 */
 	View.ready = (function(){
