@@ -1,0 +1,11 @@
+<section id = "doc_viewport-title" data-view = "true" data-view-title = "视图标题">
+	<div class = "code html" data-filename = "">
+	开发者可以为视图的HTML结点设置单独的视图标题，从而达到“视图进入后，浏览器标题自动更新为当前视图标题；视图离开后，浏览器标题自动恢复为默认标题”的目的。如：
+	<section id = “myView” data-view = “true” data-view-title = “My view title”>
+		<header></header>
+		<div class = “body”></div>
+		<footer></footer>
+	</section>
+	注：默认标题在View.js加载时通过自动检测浏览器标题获取。如果浏览器标题通过脚本延迟设置，则会出现默认标题为空的情况。此时开发者可以通过调用API：View.setDocumentTitle通知View使用给定的字符串赋值默认标题。
+	</div>
+</section>

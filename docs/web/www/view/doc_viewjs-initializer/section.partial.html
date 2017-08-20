@@ -1,0 +1,19 @@
+<section id = "doc_viewjs-initializer" data-view = "true" data-view-title = "视图初始化器">
+	默认情况下，引用了View.js的页面会在网页加载就绪（DOMContentLoaded）后自动执行初始化动作。但开发者可以通过调用API： View.setInitializer(initializerFunc[, execTime])提供自定义的初始化器延迟执行视图的初始化动作。如：
+	<div class = "code js">
+		View.setInitializer(function(init){
+		//…
+		init();//->执行初始化动作
+		}, “rightnow”);
+	</div>
+
+	视图的初始化动作包括：
+	1)	调用视图初始化监听器
+	2)	在DOM中标识识别的操作系统
+	3)	扫描文档，遍历视图定义
+	4)	确定默认视图
+	5)	添加视图标题自动设置支持
+	6)	使能data-view-rel属性
+	7)	调用视图就绪监听器
+	8)	呈现指定视图
+</section>

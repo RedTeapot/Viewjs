@@ -1,0 +1,9 @@
+<section id = "doc_os-detect" data-view = "true" data-view-title = "设备操作系统检测">
+	View组件在加载完成后，会自动识别当前的移动设备类型，并将识别结果以名称为：“data-view-os”DOM属性的方式附加至DOM树中的html结点上。如：
+	<div class = "code html">
+		<html data-view-os=”android”></html> <!—代表安卓设备 -->
+		<html data-view-os=”ios”></html> <!—代表苹果设备 -->
+		<html data-view-os=”wp”></html><!—代表windows phone设备 -->
+	</div>
+	开发者可以根据该属性为实现“视图在不同操作系统下表现出不同的效果”而撰写不同的CSS样式。
+</section>

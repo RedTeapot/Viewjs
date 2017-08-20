@@ -1,0 +1,9 @@
+<section id = "evt_View-beforechange" data-view = "true" data-view-title = "View - beforechange">
+	[触发时机]：视图准备切换
+	[附加数据]：{currentView：[源视图], targetView：[目标视图], type：[切换类型], params: [视图参数]}
+	[触发方式]：异步（异步触发将不会阻塞当前代码段的顺序执行；同步触发将阻塞当前代码段的顺序执行。）
+	[监听样例]：
+	<div class = "code js" data-filename = "">
+		View.on(“beforechange”, function(e){})
+	</div>
+</section>

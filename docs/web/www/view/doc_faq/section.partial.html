@@ -1,0 +1,19 @@
+<section id = "doc_faq" data-view = "true" data-view-title = "FAQ">
+
+	FAQ：如何确定进入视图的源视图？
+	视图可以在”ready”及”enter”事件的监听句柄中获取进入视图的源视图。如：
+	<div class = "code js" data-filename = "">
+		View.ofId(“detail”).on(“enter”, function(e){
+			View sourceView = e.data.sourceView;
+			console.log(sourceView.getId());
+		});
+	</div>
+
+	FAQ：如何获取要进入到的目标视图？
+	视图可以在“leave”事件的监听句柄中获取要进入到的目标视图。如：
+	<div class = "code js" data-filename = "">
+		View.ofId(“detail”).on(“leave”, function(){
+			console.log(e.data.targetView.getId());
+		})
+	</div>
+</section>

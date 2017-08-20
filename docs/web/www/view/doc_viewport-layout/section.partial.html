@@ -1,0 +1,42 @@
+<section id = "doc_viewport-layout" data-view = "true" data-view-title = "视图布局">
+	由于不同视图呈现的内容不同，因此所执行的布局动作也不同。大部分情况下，视图可以在没有脚本的情况下，通过CSS完成页面布局。但少数情况下，需要借助脚本完成页面的动态布局，如元素高度的动态计算等。
+	View.js假定所有视图都需要执行布局动作，且为简化开发，将在视图每次进入前（亦即，“enter”事件触发前）自动执行开发者指定的布局动作（如果视图第一次进入，则在ready事件触发前执行）。
+	开发者可以通过API：view.setLayoutAction(actionFunc, ifLayoutWhenLayoutChanges) 设定布局动作。如：
+	<div class = "code js">
+		var viewId = "myView";
+		var view = View.ofId(viewId);
+
+		var headerObj = view.find("header");
+		var bodyObj = view.find(".body"),
+		btnObj = view.find(".btn");
+
+		view.setLayoutAction(function(){
+		var totalHeight = View.layout.getLayoutHeight();
+		var height = totalHeight - headerObj.offsetHeight - btnObj.offsetHeight;
+
+		bodyObj.style.height = height + "px";
+		}, true);
+	</div>
+
+	在布局功能的设计上，View.js假定不同分辨率下所需要执行的布局动作是不同的。
+	View.js支持分别为：移动设备的竖屏模式、移动设备的横屏模式、平板设备的竖屏模式、平板设备的横屏模式、PC设备的竖屏模式，PC设备的横屏模式几种场景执行不同的布局动作。开发者只需为不同场景提供不同的布局动作即可，View.js自动完成设备类型及设备方向的识别并调用对应的布局动作。
+	默认情况下，View.js假定移动设备的竖屏模式、移动设备的横屏模式、平板设备的竖屏模式和平板设备的横屏模式表现一致，均为：“宽度渲染为浏览器宽度，高度自动”。
+	当在PC上浏览时，View.js默认将页面以iPhone5的320 * 568分辨率渲染。亦即，PC横屏浏览时，根据浏览器高度动态计算可用高度，并根据iPhone5的分辨率计算宽度，然后将界面水平居中呈现；PC纵屏浏览时，将其以移动设备的竖屏模式对待。
+	开发者可以通过调用API：View.layout.setExpectedWidthHeightRatio(ratio)设定PC横屏浏览时，渲染的纵向效果的宽高比，如：
+	<div class = "code js">
+		/* Layout as iPhone6+ */
+		View.layout.setExpectedWidthHeightRatio(414 / 736).init({
+		autoReLayoutWhenResize: true,
+		layoutAsPcLandscape: function(width, height){
+		document.body.style.cssText = "width: " + width + "px; height: " + height + "px; margin: 0 auto;";
+		},
+		layoutAsMobilePortrait: null,
+		layoutAsMobileLandscape: null,
+		layoutAsTabletLandscape: null,
+		layoutAsTabletPortrait: null,
+		layoutAsPcPortrait: null,
+		}).doLayout();
+	</div>
+	值得注意的时，在这种渲染模式下，如果界面含有position: fixed绝对定位的样式表，表现结果可能与期望并不相符。
+
+</section>

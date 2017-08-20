@@ -1,0 +1,50 @@
+<section id = "doc_event-drive" data-view = "true" data-view-title = "事件驱动">
+	所有视图实例均具备事件驱动特性。
+	视图支持的事件包括：
+	1)	View事件：beforechange - 视图将要切换
+	监听样例：
+	<div class = "code js">View.on(“beforechange”, function(e){});</div>
+
+	2)	View实例事件：ready - 视图就绪
+	监听样例：
+	<div class = "code js">View.ofId(“myView”).on(“ready”, function(e){});</div>
+	注：特定视图的ready事件只会在视图第一次进入时触发一次。视图第二次进入后不会再触发
+	3)	View实例事件：beforeenter - 视图将要进入
+	监听样例：
+	<div class = "code js">View.ofId(“myView”).on(“beforeenter”, function(e){});</div>
+	4)	View实例事件：enter - 视图进入
+	监听样例：
+	<div class = "code js">View.ofId(“myView”).on(“enter”, function(e){});</div>
+	5)	View实例事件：afterenter - 视图进入完成
+	监听样例：
+	<div class = "code js">View.ofId(“myView”).on(“afterenter”, function(e){});</div>
+	6)	View事件：afterchange - 视图切换完成
+	监听样例：
+	<div class = "code js">View.on(“afterchange”, function(e){});</div>
+	除此之外，开发者还可以根据自己需要，发起自定义事件并为这些事件添加监听器。如：
+	<div class = "code js">
+	var view = View.ofId(“myView”);
+	view.on(“myevent”, function(e){
+	view.logger.debug(“Event name: {}, event data: {}”, e.name, e.data);
+	});
+	//…
+	view.fire(“myevent”, {a: 1});//-> 0713 10:20:54 [View#myView]: Event name: null, event data: {"a":1}
+	</div>
+	开发者在创建自定义事件时，需注意事件名的可读性以及见名知意的直观性。虽然任何形式的命名都能驱动程序的正常工作，但处于工程的可维护性，并不建议这样做。
+	开发者在发起自定义事件时，可以为事件附加任意类型的数据。对应的事件监听器在捕获对应的事件时，可以通过“data”属性获取附加的数据。如：
+	<div class = "code js" data-filename = "a.js">
+		View.ofId(“detail”).fire(“goodsDetail.obtained”, {goodsName: “XXXX”, price: 12});
+	</div>
+
+	<div class = "code js" data-filename = "b.js">
+		View.ofId(“detail”).on(“goodsDetail.obtained”, function(e){
+			console.log(e.data);// -> {goodsName: “XXXX”, price: 12}
+		});
+	</div>
+
+	除此之外，开发者还可以通过API：view.getLatestEventData(evtName)获取指定名称的事件最后一次被触发时所附加的数据，如：
+	<div class = "code js" data-filename = "c.js">
+		var goodsDetail = View.ofId(“detail”).getLatestEventData(“goodsDetail.obtained”);
+		console.log(goodsDetail);// -> {goodsName: “XXXX”, price: 12}
+	</div>
+</section>

@@ -1,0 +1,45 @@
+<section id = "doc_identify-browser-action" data-view = "true" data-view-title = "识别浏览器的前进和后退">
+	正如前文所说：“在技术上，View.js利用HTML5的History API，借助地址栏hash完成视图之间的导向和路由”。但视图跳转由于场景不同，所需要执行的操作也不相同。对于需要追溯操作的跳转，View.js将以“压入历史堆栈”的方式记录用户的浏览历史；而对于无需追溯操作的跳转，View.js则以“替换当前历史”的方式更改用户的浏览历史。
+	“压入历史堆栈”和“替换当前历史”，是HTML5新增的两项History操作接口，分别对应于原生API：history.pushState()和history.replaceState()。
+	当用户浏览使用View.js开发的网页时，View.js将为每一次的页面呈现动作（包括第一次）生成一个浏览状态。包括：浏览的视图编号，浏览视图时的客户端本地时间戳，以及视图的浏览选项（在地址栏中呈现的，与特定视图相关的视图级别的参数）。这些状态数据根据开发者执行视图跳转动作时使用的API不同，而动态“压入历史堆栈”或“替换当前历史”。
+	当用户通过物理按键，或借助浏览器提供的“前进”，“回退”按钮功能浏览网页时，这些状态数据会借助浏览器自动触发” popstate”事件通知到View.js。View.js通过比较当前的状态数据与弹出的状态数据的时间，可以判定页面是以“浏览器前进”，还是“浏览器”后退方式进入的，并将这一判定结果与其它相关数据以View事件（如：beforechange, afterchange等）的形式通知给开发者。如此一来，开发者可以通过监听相关事件，实现丰富的页面跳转动画。如：
+
+	<div class = "code js" data-filename = "animation.js">
+		var timer;
+
+		/* 浏览器支持前进后退判断 */
+		var historyPushPopSupported = ("pushState" in history) && (typeof history.pushState == "function");
+		View.setSwitchAnimation(function(srcElement, tarElement, type, render){
+		"hide2left, hide2right, show2left, show2right, fade-in, fade-out".split(/\s*,\s*/).forEach(function(className){
+		srcElement.classList.remove(className);
+		tarElement.classList.remove(className);
+		});
+
+		clearTimeout(timer);
+		timer = setTimeout(function(){
+		render();
+
+		var isNav = type == View.SWITCHTYPE_VIEWNAV,
+		isChange = type == View.SWITCHTYPE_VIEWCHANGE,
+		isHistoryBack = type == View.SWITCHTYPE_HISTORYBACK,
+		isHistoryForward = type == View.SWITCHTYPE_HISTORYFORWARD;
+
+		if(!historyPushPopSupported || isChange){
+		srcElement.classList.add("fade-out");
+		tarElement.classList.add("fade-in");
+		}else if(isHistoryForward || isNav){
+		srcElement.classList.add("hide2left");
+		tarElement.classList.add("show2left");
+		}else{
+		srcElement.classList.add("hide2right");
+		tarElement.classList.add("show2right");
+		}
+		}, 0);
+		});
+	</div>
+
+	视图当前的浏览状态，可以使用属性：View.currentState访问，也可以使用浏览器支持的原生属性：history.state。如：
+	<div class = "code js" data-filename = "">
+		console.log(View. currentState);// {"viewId":"SC_category","timestamp":1501228010961,"options":{"categoryId":"103"}}
+	</div>
+</section>

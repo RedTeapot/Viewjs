@@ -1,0 +1,53 @@
+<section id = "doc_viewport-directly-accessible" data-view = "true" data-view-title = "设定视图是否允许直接访问">
+	在技术上，View.js利用HTML5的History API，借助地址栏hash完成视图之间的导向和路由。由此造就的现象，是在同一html下的不同视图之间进行切换时，浏览器地址栏的hash部分会发生变化。如：
+
+	切换前的地址栏：
+	http://www.mydomain.com/html/index.html#myView
+	执行如下切换动作后：
+	View.navTo(“anotherView”)
+	http://www.mydomain.com/html/index.html#anotherView
+	其中hash部分代表的是当前呈现的视图ID。
+
+	通常情况下，这没什么问题。但对于操作步骤有先后顺序要求的应用而言，当用户在操作时把地址分享给他人，或借助其它手段传播用户当前的URL地址时，就会出现“上一步内容尚未填写或校验就打开了后续步骤界面”的现象。
+	此时，开发者可以通过如下手段解决该问题：
+	1.	使用data-view-directly-accessible属性，并设置取值为”false”设定依赖上一步骤界面的视图不能直接访问；
+	对应的JS API：
+	View.setIsDirectlyAccessible(isDirectlyAccessible) – 配置默认表现；
+	View.ofId(“myView”).setAsDirectlyAccessible() – 配置单个视图；
+	2.	使用data-view-fallback属性设定依赖上一步骤界面的视图的回退视图（可选）；
+	对应的JS API：View.ofId(“myView”).setFallbackViewId(viewId)
+	3.	使用data-view-default属性设置第一步的界面为默认视图
+	对应的JS API：View.setAsDefault(viewId)
+	如：
+
+	<div class = "code html" data-filename = "index.html">
+		<!DOCTYPE HTML>
+		<html>
+		<head>
+			<meta name = "viewport" content = "user-scalable = no, initial-scale = 1, maximum-scale = 1, minimum-scale = 1, width = device-width" />
+		</head>
+		<body>
+		<section id = “step1” data-view = “true” data-view-title = “Step 1” data-view-default></section>
+		<section id = “step2” data-view = “true” data-view-title = “Step 2” data-view-fallback = “step1”></section>
+		</body>
+		</html>
+	</div>
+
+	如此一来，当用户打开的地址中指定的视图不能直接访问时，View.js将自动查找该视图的回退视图（多层次查找，直到找到的视图是可以直接访问的）。如果回退视图不存在，则最终使用默认视图呈现界面，同时更新地址栏中的hash为最终呈现的视图的视图ID。
+	同时，为简化开发，View.js支持以“设定视图默认是否可以直接访问 + 设定单个视图是否可以直接访问”的方式设定视图的表现。如果特定视图没有设置是否可以直接访问，则使用默认配置代替。如果默认配置也没有设置，则以“视图不允许直接访问”方式对待。
+	无论是默认表现，还是特定视图的表现，均可以使用DOM属性：data-view-directly-accessible进行标识。在配置特定视图时，需要将该属性声明在视图级别的DOM结点上；在配置默认表现时，需要将该属性声明在HTML节点上。如下所示：
+
+	<div class = "code html" data-filename = "index.html">
+
+		<!DOCTYPE HTML data-view-directly-accessible = “true”>
+		<html>
+		<head>
+			<meta name = "viewport" content = "user-scalable = no, initial-scale = 1, maximum-scale = 1, minimum-scale = 1, width = device-width" />
+		</head>
+		<body>
+		<section id = “step1” data-view = “true” data-view-title = “Step 1” data-view-default></section>
+		<section id = “step2” data-view = “true” data-view-title = “Step 2” data-view-fallback = “step1” data-view-directly-accessible = “false”></section>
+		</body>
+		</html>
+	</div>
+</section>

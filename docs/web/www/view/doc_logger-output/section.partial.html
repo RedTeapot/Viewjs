@@ -1,0 +1,20 @@
+<section id = "doc_logger-output" data-view = "true" data-view-title = "日志输出">
+	View.js内置了格式化的日志输出组件，以供程序调测使用。所有视图实例均含有日志实例，如：
+	<div class = "code js">
+		var view = View.ofId(“myView”);
+		view.logger.debug(“Hello, view.js”);//-> 0713 11:42:02 [View#myView]: Hello, view.js
+		view.logger.warn(“Hello, {}, {}”, 123, true, false); //-> 0713 11:42:44 [View#SC_home-page]: Hello, 123, true
+		console.log(view.logger.getName();)//->View#myView
+	</div>
+
+	其中“{}”为占位符，一一对应于第二个参数开始的多个参数。可以使用“\\”转义占位符，以输出“{}”。如：
+	<div class = "code js">
+		view.logger.log(“\\{}”);//-> 0713 11:43:54 [View#myView]: {}
+	</div>
+	View日志组件共支持4个日志级别：debug, info, warn, error，以及1个普通的log。
+	开发者可以通过调用API：View.Logger.ofName(loggerName)来创建一个自定义的日志输出器。如：
+	<div class = "code js">
+	var logger = View.Logger.ofName(“WindowUtil”);
+	logger.debug(“test”); //-> 0713 11:56:24 [WindowUtil]: test
+	</div>
+</section>
