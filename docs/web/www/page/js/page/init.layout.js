@@ -22,7 +22,6 @@
 				var headerObj = view.find("header"),
 					bodyObj = view.find(".body");
 
-				console.log(headerObj, totalHeight, headerObj.offsetHeight);
 				bodyObj.style.height = (totalHeight - headerObj.offsetHeight) + "px";
 			}, true);
 		});

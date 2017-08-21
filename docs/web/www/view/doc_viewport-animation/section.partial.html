@@ -2,6 +2,7 @@
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
 		<span>视图切换动画</span>
+		<a class = "menu"></a>
 	</header>
 	<div class = "body">
 		既然View.js属于单页应用框架，那么同一页面下的多个视图切换时，是完全有方式和空间实现页面的切换动画的。
@@ -13,7 +14,7 @@
 		注：视图的切换动画只有这一种方式，如果开发者需要为不同视图之间的跳转呈现不同的动画，则需要在方法体中判定视图切换动作所关联的源视图和目标视图，然后执行不同的动作。
 		如果开发者没有额外定义或重载，View.js默认是没有动画的。此时，非活动视图将隐藏（<span class = "code css">display: none</span>），活动视图显示（<span class = "code css">display: block</span>）。
 		可以参考的视图切换动画代码，如下所示：
-		<div class = "code js" data-filename = "">
+		<div class = "code js" >
 			var timer;
 
 			/* 浏览器支持前进后退判断 */
@@ -46,7 +47,7 @@
 			}, 0);
 		</div>
 
-		<div class = "code scss" data-filename = "">
+		<div class = "code scss" >
 			html{
 				margin: 0;
 				padding: 0;

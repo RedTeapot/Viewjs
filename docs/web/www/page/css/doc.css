@@ -66,15 +66,19 @@ header { position: relative; height: 0.44rem; line-height: 0.44rem; color: white
 
 header .nav-back { position: absolute; left: 0; top: 0; display: inline-block; width: 0.54rem; height: 100%; background-image: url(../../common/img/back.png); background-repeat: no-repeat; background-position: center; background-size: 0.2rem auto; }
 
+header .menu { position: absolute; right: 0; top: 0; display: inline-block; width: 0.54rem; height: 100%; background-image: url(../../common/img/menu.png); background-repeat: no-repeat; background-position: center; background-size: 0.2rem auto; }
+
 .view > .body { padding: 0.12rem; background: white; overflow: auto; -webkit-overflow-scrolling: touch; box-sizing: border-box; word-break: break-all; }
 
 p { text-indent: 2em; line-height: 2em; }
 
-.code { padding: 0 0.1rem; background: #CCCCCC; font-family: Consolas, sans-serif, serif; }
+.code { background: #CCCCCC; font-family: Consolas, sans-serif, serif; }
 
-div.code { position: relative; white-space: pre-wrap; margin: 0.1rem 0; border-radius: 0.05rem; }
+span.code { padding: 0 0.03rem; border-radius: 0.02rem; margin: 0 0.05rem; }
 
-div.code:before { display: block; font-style: italic; content: attr(data-filename); padding: 0.1rem 0; color: #999999; border-bottom: solid 1px #BBBBBB; }
+div.code { position: relative; white-space: pre; padding: 0 0.1rem; margin: 0.1rem 0; border-radius: 0.05rem; overflow: auto; -webkit-overflow-scrolling: touch; }
+
+div.code[data-filename]:before { display: block; font-style: italic; content: attr(data-filename); padding: 0.1rem 0; color: #999999; border-bottom: solid 1px #BBBBBB; }
 
 .warn { text-decoration: underline; }
 
@@ -511,3 +515,7 @@ div.code:before { display: block; font-style: italic; content: attr(data-filenam
     -ms-transform: translate3d(0, 0, 0);
     -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0); } }
+
+.viewjs-doc-menu { position: fixed; right: 0; top: 0; background: rgba(0, 0, 0, 0.8); color: white; width: 50%; height: 100%; padding: 1em; box-sizing: border-box; overflow: auto; -webkit-overflow-scrolling: touch; -webkit-animation: show2left; -moz-animation: show2left; -o-animation: show2left; animation: show2left; }
+
+.viewjs-doc-menu .item { padding: 1em 0; border-bottom: solid 1px #5b5b5b; }

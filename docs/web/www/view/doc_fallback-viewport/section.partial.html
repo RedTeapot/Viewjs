@@ -2,6 +2,7 @@
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
 		<span>回退视图</span>
+		<a class = "menu"></a>
 	</header>
 	<div class = "body">
 		当设置了特定视图不能直接访问时，开发者可以通过设定该视图的回退视图达到呈现该视图的入口视图等效果。例如：开发者可以设定"个人中心"视图：profile可以直接访问，而"个人中心"下的"账户设置"：setting等视图不能直接访问，并设定"账户设置"视图的回退视图为"个人中心"。这样，即时用户打开的界面地址体现的是"账户设置"界面，如：
@@ -11,12 +12,12 @@
 		在技术实现上，当用户打开的地址中指定的视图不能直接访问时， View.js将自动查找该视图的回退视图（多层次查找，直到找到的视图是可以直接访问的）。如果回退视图不存在，则最终使用默认视图呈现界面。最后，View.js将更新地址栏中的hash为最终呈现的视图的视图ID。
 		开发者可以通过JS API：<span class = "code js">setFallbackViewId(viewId)</span>，也可以通过视图HTML节点上的<span class = "code html">data-view-fallback</span>属性设置回退视图ID。如：
 
-		<div class = "code js" data-filename = "">
+		<div class = "code js" >
 			View.ofId("setting").setFallbackViewId("profile")
 		</div>
 
-		<div class = "code html" data-filename = "">
-			<section id = "setting" data-view = "true" data-view-fallback = "profile"></section>
+		<div class = "code html" >
+			&lt;section id = "setting" data-view = "true" data-view-fallback = "profile"&gt;&lt;/section&gt;
 		</div>
 	</div>
 </section>

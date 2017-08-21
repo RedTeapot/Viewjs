@@ -2,6 +2,7 @@
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
 		<span>识别浏览器的前进和后退</span>
+		<a class = "menu"></a>
 	</header>
 	<div class = "body">
 		正如前文所说："在技术上，View.js利用HTML5的History API，借助地址栏hash完成视图之间的导向和路由"。但视图跳转由于场景不同，所需要执行的操作也不相同。对于需要追溯操作的跳转，View.js将以"压入历史堆栈"的方式记录用户的浏览历史；而对于无需追溯操作的跳转，View.js则以"替换当前历史"的方式更改用户的浏览历史。
@@ -43,7 +44,7 @@
 		</div>
 
 		视图当前的浏览状态，可以使用属性：<span class = "code js">View.currentState</span>访问，也可以使用浏览器支持的原生属性：<span class = "code js">history.state</span>。如：
-		<div class = "code js" data-filename = "">
+		<div class = "code js" >
 			console.log(View. currentState);// {"viewId":"SC_category","timestamp":1501228010961,"options":{"categoryId":"103"}}
 		</div>
 	</div>

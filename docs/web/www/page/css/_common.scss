@@ -21,6 +21,18 @@ header{
 		background-position: center;
 		background-size: 0.2rem auto;
 	}
+	.menu{
+		position: absolute;
+		right: 0;
+		top: 0;
+		display: inline-block;
+		width: 0.54rem;
+		height: 100%;
+		background-image: url(../../common/img/menu.png);
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 0.2rem auto;
+	}
 }
 
 .view > .body{
@@ -38,17 +50,25 @@ p{
 }
 
 .code{
-	padding: 0 0.1rem;
 	background: #CCCCCC;
 	font-family: Consolas, sans-serif, serif;
 }
+span.code{
+	padding: 0 0.03rem;
+	border-radius: 0.02rem;
+	margin: 0 0.05rem;
+	font-size: 0.1rem;
+}
 div.code{
 	position: relative;
-	white-space: pre-wrap;
+	white-space: pre;
+	padding: 0 0.1rem;
 	margin: 0.1rem 0;
 	border-radius: 0.05rem;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
 
-	&:before{
+	&[data-filename]:before{
 		display: block;
 		font-style: italic;
 		content: attr(data-filename);
