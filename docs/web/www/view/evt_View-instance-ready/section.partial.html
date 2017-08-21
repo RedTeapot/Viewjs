@@ -1,10 +1,19 @@
 <section id = "evt_View-instance-ready" data-view = "true" data-view-title = "View实例 - ready">
-
-	[触发时机]：视图就绪。该事件仅在对应的视图第一次进入时触发。触发前已完成活动视图的切换和视图布局动作的执行。
-	[附加数据]：{sourceView：[源视图], type: [切换类型], params: [视图参数]}
-	[触发方式]：同步
-	[监听样例]：
-	<div class = "code js" data-filename = "">
-		View.ofId(“detail”).on(“ready”, function(e){})
+	<header>
+		<a class = "nav-back"></a>
+		<span>View实例 - ready</span>
+	</header>
+	<div class = "body">
+		<div class = "evt-trigger-time"></div>
+		<div class = "evt-attached-data"></div>
+		<div class = "evt-async"></div>
+		<div class = "evt-sample"></div>
+		[触发时机]：视图就绪。该事件仅在对应的视图第一次进入时触发。触发前已完成活动视图的切换和视图布局动作的执行。
+		[附加数据]：{sourceView：[源视图], type: [切换类型], params: [视图参数]}
+		[触发方式]：同步
+		[监听样例]：
+		<div class = "code js" data-filename = "">
+			View.ofId("detail").on("ready", function(e){})
+		</div>
 	</div>
 </section>

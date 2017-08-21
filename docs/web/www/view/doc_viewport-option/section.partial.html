@@ -1,40 +1,45 @@
 <section id = "doc_viewport-option" data-view = "true" data-view-title = "视图选项">
-	虽然视图参数能在很大程度上解决开发者传递数据的需要，但对于“目标视图支持页面刷新直接访问”这一应用场景就显得无能为力了。
-	通过视图选项传递的参数，目标视图刷新（视图需要可以被直接访问）后也仍然可以获取对应的参数。
-	视图选项以如下形态体现在浏览器的地址栏中：
-	http://domain/path/index.html#viewId!name1=value1&name2=value2[...]
-	由于视图选项是体现在地址栏中的参数，因而开发者传递参数时，应传递简单类型的参数，如：数字、字符串、布尔值等。但无论是哪一种简单类型，参数的接收方最终得到的，都将是字符串形态的参数。
-	视图选项仅与特定视图相关联，不会对不相关的视图可见，并且仅当关联的视图处于活动状态（亦即，是“活动视图”）时才能通过API得到。如：
-	<div class = "code js" data-filename = "">
-		View.navTo("detail", {options: {a: 1}});
-		View.getActiveView().getId();// -> detail
-		console.log(location.hash);// -> #detail!a=1
-		View.getActiveViewOptions();// -> {a: 1}
+	<header>
+		<a class = "nav-back"></a>
+		<span>视图选项</span>
+	</header>
+	<div class = "body">
+		虽然视图参数能在很大程度上解决开发者传递数据的需要，但对于"目标视图支持页面刷新直接访问"这一应用场景就显得无能为力了。
+		通过视图选项传递的参数，目标视图刷新（视图需要可以被直接访问）后也仍然可以获取对应的参数。
+		视图选项以如下形态体现在浏览器的地址栏中：
+		http://domain/path/index.html#viewId!name1=value1&name2=value2[...]
+		由于视图选项是体现在地址栏中的参数，因而开发者传递参数时，应传递简单类型的参数，如：数字、字符串、布尔值等。但无论是哪一种简单类型，参数的接收方最终得到的，都将是字符串形态的参数。
+		视图选项仅与特定视图相关联，不会对不相关的视图可见，并且仅当关联的视图处于活动状态（亦即，是"活动视图"）时才能通过API得到。如：
+		<div class = "code js" data-filename = "">
+			View.navTo("detail", {options: {a: 1}});
+			View.getActiveView().getId();// -> detail
+			console.log(location.hash);// -> #detail!a=1
+			View.getActiveViewOptions();// -> {a: 1}
+		</div>
+
+		需要注意的是，View.js将视图选项作为地址栏hash的一部分，并将其与视图名绑定在一起，从而使得浏览器前进后退时，视图选项都将再次呈现出来。
+		视图选项与视图参数相得益彰，互相补充。开发者可以根据自己需要选择合适的参数传递方式，甚至是两者的结合，如：
+		<div class = "code js" data-filename = "">
+			var goodsId = null;
+			if(view.hasParameter("goodsId"))
+				goodsId = view.getParameter("goodsId");
+			else{
+				var options = View.getActiveViewOptions();
+				if(null != options)
+				goodsId = options.goodsId;
+			}
+			if(null != goodsId){
+				//…
+			}
+		</div>
+
+		与此同时，View.js提供了简化的智能参数获取API：<span class = "code js">View.seekParameter(name)</span>以简化代码复杂度。该方法将优先从视图参数中查找相同名称的参数，如果参数不存在则从视图选项中查找；如果仍然不存在，则将从地址栏的queryString中查找。如果仍然不存在，则返回null。因此，上面的代码可以简化为：
+
+		<div class = "code js" data-filename = "">
+			var goodsId = view.seekParameter("goodsId");
+			if(null != goodsId){
+				//…
+			}
+		</div>
 	</div>
-
-	需要注意的是，View.js将视图选项作为地址栏hash的一部分，并将其与视图名绑定在一起，从而使得浏览器前进后退时，视图选项都将再次呈现出来。
-	视图选项与视图参数相得益彰，互相补充。开发者可以根据自己需要选择合适的参数传递方式，甚至是两者的结合，如：
-	<div class = "code js" data-filename = "">
-		var goodsId = null;
-		if(view.hasParameter(“goodsId”))
-		goodsId = view.getParameter(“goodsId”);
-		else{
-		var options = View.getActiveViewOptions();
-		if(null != options)
-		goodsId = options.goodsId;
-		}
-		if(null != goodsId){
-		//…
-		}
-	</div>
-
-	与此同时，View.js提供了简化的智能参数获取API：View.seekParameter(name)以简化代码复杂度。该方法将优先从视图参数中查找相同名称的参数，如果参数不存在则从视图选项中查找；如果仍然不存在，则将从地址栏的queryString中查找。如果仍然不存在，则返回null。因此，上面的代码可以简化为：
-
-	<div class = "code js" data-filename = "">
-		var goodsId = view.seekParameter(“goodsId”);
-		if(null != goodsId){
-		//…
-		}
-	</div>
-
 </section>

@@ -2225,14 +2225,24 @@
 
 		/** 伪视图支持 */
 		/* 回退操作(":back") */
-		if(PSVIEW_BACK == targetViewId){
+		if(ifStringEqualsIgnoreCase(PSVIEW_BACK, targetViewId)){
 			View.back(ops);
 			return View;
 		}
 		/* 前进操作（":forward"） */
-		if(PSVIEW_FORWARD == targetViewId){
+		if(ifStringEqualsIgnoreCase(PSVIEW_FORWARD, targetViewId)){
 			View.forward(ops);
 			return View;
+		}
+		/* 默认视图（":default-view"） */
+		if(ifStringEqualsIgnoreCase(PSVIEW_DEFAULT, targetViewId)){
+			var defaultView = View.getDefaultView();
+			if(null == defaultView){
+				globalLogger.error("No default view found.");
+				return;
+			}
+			
+			targetViewId = defaultView.getId();
 		}
 
 		ops.type = View.SWITCHTYPE_VIEWNAV;
@@ -2260,6 +2270,17 @@
 		if(currentView && ifStringEqualsIgnoreCase(currentView.getId(), targetViewId))
 			return View;
 
+		/* 默认视图（":default-view"） */
+		if(ifStringEqualsIgnoreCase(PSVIEW_DEFAULT, targetViewId)){
+			var defaultView = View.getDefaultView();
+			if(null == defaultView){
+				globalLogger.error("No default view found.");
+				return;
+			}
+			
+			targetViewId = defaultView.getId();
+		}
+		
 		ops.type = View.SWITCHTYPE_VIEWCHANGE;
 		show(targetViewId, ops);
 		replaceViewState(targetViewId, Date.now(), null == ops? null: ops.options);
@@ -2298,7 +2319,6 @@
 		
 		return View;
 	};
-
 
 	/** 文档标题 */
 	var documentTitle = document.title;

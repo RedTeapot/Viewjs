@@ -1,20 +1,30 @@
 <section id = "doc_viewport-navigation" data-view = "true" data-view-title = "视图跳转">
-	View.js支持如下几种方式进行视图跳转：
-	1)	A链接，如：
-	<div class = "code html" data-filename = ""><a href = “http://www.mydomain.com/html/index.html#goods-detail”>商品详情</a></div>
-	此时，要求视图：goods-detail为默认视图或可以直接访问。
-	2)	data-view-rel属性，如：
-	<div class = "code html" data-filename = "">
-		<span data-view-rel = “@index.html#goods-detail”>商品详情</span>
-		<span data-view-rel = “@http://www.mydomain.com/index.html#goods-detail”>商品详情</span>
-		<div data-view-rel = “profile” data-view-rel-type = “change”>个人中心</div>
+	<header>
+		<a class = "nav-back"></a>
+		<span>视图跳转</span>
+	</header>
+	<div class = "body">
+		View.js支持如下几种方式进行视图跳转：
+		1)	<span class = "code html">A</span>链接，如：
+		<div class = "code html" data-filename = ""><a href = "http://www.mydomain.com/html/index.html#goods-detail">商品详情</a></div>
+		此时，要求视图：goods-detail为默认视图或可以直接访问。
+
+		2)	<span class = "code html">data-view-rel</span>属性，如：
+		<div class = "code html" data-filename = "">
+			<span data-view-rel = "@index.html#goods-detail">商品详情</span>
+			<span data-view-rel = "@http://www.mydomain.com/index.html#goods-detail">商品详情</span>
+			<div data-view-rel = "profile" data-view-rel-type = "change">个人中心</div>
+		</div>
+		其中"@"符号用于告诉View.js进行页面跳转访问。
+		此时，要求视图：goods-detail为默认视图或可以直接访问。
+
+		3)	JS API：<span class = "code js">View.navTo</span>，如：
+		<div class = "code js" data-filename = "">View.navTo("setting", {params: {a: 1}, options: {b: 2}})</div>
+
+		4)	JS API：<span class = "code js">View.changeTo</span>，如：
+		<div class = "code js" data-filename = "">View.changeTo("setting", {params: {a: 1}, options: {b: 2}})</div>
+
+		其中，1)和2)两种方式无法传参；3)和4)两种方式可以传参。
+		<span class = "code js">View.navTo</span>和<span class = "code js">View.changeTo</span>的差别之处，在于是否向浏览堆栈中添加记录。使用<span class = "code js">View.navTo</span>执行视图A向视图B的跳转时，用户可以在视图B中通过物理返回键返回A；使用<span class = "code js">View.changeTo</span>执行视图A向视图B的跳转时，A的浏览历史将被B所替代，用户在视图B中无法通过物理按键返回A。
 	</div>
-	其中”@”符号用于告诉View.js进行页面跳转访问。
-	此时，要求视图：goods-detail为默认视图或可以直接访问。
-	3)	JS API：View.navTo，如：
-	<div class = "code js" data-filename = "">View.navTo(“setting”, {params: {a: 1}, options: {b: 2}})</div>
-	4)	JS API：View.changeTo，如：
-	<div class = "code js" data-filename = "">View.changeTo(“setting”, {params: {a: 1}, options: {b: 2}})</div>
-	其中，1)和2)两种方式无法传参；3)和4)两种方式可以传参。
-	View.navTo和View.changeTo的差别之处，在于是否向浏览堆栈中添加记录。使用View.navTo执行视图A向视图B的跳转时，用户可以在视图B中通过物理返回键返回A；使用View.changeTo执行视图A向视图B的跳转时，A的浏览历史将被B所替代，用户在视图B中无法通过物理按键返回A。
 </section>
