@@ -1,0 +1,86 @@
+@import "_base";
+
+header{
+	position: relative;
+	height: 0.44rem;
+	line-height: 0.44rem;
+	color: white;
+	text-align: center;
+	font-size: 0.15rem;
+	background-color: #29b482;
+	
+	.nav-back{
+		position: absolute;
+		left: 0;
+		top: 0;
+		display: inline-block;
+		width: 0.54rem;
+		height: 100%;
+		background-image: url(../../common/img/back.png);
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 0.2rem auto;
+	}
+}
+
+.view > .body{
+	padding: 0.12rem;
+	background: white;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	box-sizing: border-box;
+	word-break: break-all;
+}
+
+p{
+	text-indent: 2em;
+	line-height: 2em;
+}
+
+.code{
+	padding: 0 0.1rem;
+	background: #CCCCCC;
+	font-family: Consolas, sans-serif, serif;
+}
+div.code{
+	position: relative;
+	white-space: pre-wrap;
+	margin: 0.1rem 0;
+	border-radius: 0.05rem;
+
+	&:before{
+		display: block;
+		font-style: italic;
+		content: attr(data-filename);
+		padding: 0.1rem 0;
+		color: #999999;
+		border-bottom: solid 1px #BBBBBB;
+	}
+}
+
+.warn{
+	text-decoration: underline;
+}
+
+.btn{
+	display: block;
+	margin: 0 0.12rem;
+	border-top: 0.01rem solid #F1F1EF;
+	height: 0.35rem;
+	line-height: 0.35rem;
+	font-size: 0.12rem;
+	box-sizing: border-box;
+	text-align: center;
+	color: #fff;
+	background: #1599E5;
+
+	&[disabled=disabled]{
+		color: white;
+		background: #CCCCCC;
+	}
+
+	&.grey{
+		color: white;
+		background: #D1D1D1;
+	}
+}

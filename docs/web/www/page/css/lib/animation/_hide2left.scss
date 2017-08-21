@@ -1,0 +1,4 @@
+@include keyframes(hide2left){
+	from{@include transform(translate3d(0, 0, 0) translate(0, 0)); opacity: 1}
+	to{@include transform(translate3d(0, 0, 0) translate(-100%, 0)); opacity: 1}
+}

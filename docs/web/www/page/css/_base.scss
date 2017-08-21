@@ -1,0 +1,102 @@
+html, body{
+	position: relative;
+	font-family: "Microsoft Yahei", sans-serif, serif;
+	font-size: 100px;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	overflow-x: hidden;
+}
+body{
+	font-size: 0.12rem;
+	color: #333333;
+}
+
+input:not([type]), input[type=text], input[type=email], input[type=password], input[type=tel], select, textarea{
+	font-size: inherit;
+	font-family: inherit;
+	border: none;
+	outline: none;
+	background: transparent;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	line-height: normal;
+	color: inherit;
+	border-radius: 0;
+	-webkit-tap-highlight-color: transparent;
+}
+textarea{
+	resize: none;
+	line-height: 1.5em;
+}
+
+a{
+	text-decoration: none;
+	color: inherit;
+}
+
+.clear-float{
+	display: block;
+	clear: both;
+	width: 0;
+	height: 0;
+}
+
+.swiper-container{
+	background: #DFDFDF;
+
+	ul{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	li{
+		float: left;
+	}
+	div.img-wrapper{
+		height: 100%;
+		overflow: hidden;
+
+		&:after{
+			display: inline-block;
+			content: " ";
+			height: 100%;
+			width: 0;
+			vertical-align: middle;
+		}
+	}
+	img{
+		width: 100%;
+		max-height: 100%;
+		vertical-align: middle;
+	}
+
+}
+
+.banner-wrapper{
+	position: relative;
+
+	.pagination{
+		position: absolute;
+		z-index: 1;
+		bottom: 0.1rem;
+		left: 50%;
+		margin-left: -0.33rem;
+		width: 0.66rem;
+		text-align: center;
+	}
+	.swiper-pagination-bullet{
+		display: inline-block;
+		width: 0.05rem;
+		height: 0.05rem;
+		border-radius: 5px;
+		background: #fff;
+		margin: 0 0.02rem;
+		opacity: 0.8;
+		cursor: pointer;
+	}
+	.swiper-pagination-bullet-active{
+		background: #FF6600;
+	}
+}
