@@ -2567,8 +2567,8 @@
 				
 				/* 默认视图（":default-view"） */
 				if(ifStringEqualsIgnoreCase(PSVIEW_DEFAULT, targetViewId)){
-					var tmp = View.getDefaultView();
-					targetViewId = null == tmp? null: tmp.getId();
+					var defaultView = View.getDefaultView();
+					targetViewId = null == defaultView? null: defaultView.getId();
 				}
 
 				/* 目标视图是当前视图 */
