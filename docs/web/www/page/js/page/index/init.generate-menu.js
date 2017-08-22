@@ -2,18 +2,49 @@
 	var menuObj = document.createElement("div"),
 		mskObj = document.createElement("div");
 
-	mskObj.style.cssText = "position: fixed; left: 0; top: 0; width: 100%; height: 100%; background: transparent;";
+	mskObj.style.cssText = "position: fixed; left: 0; top: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.3);";
 
 	document.body.appendChild(mskObj);
 	document.body.appendChild(menuObj);
 
+	var views = [
+		"doc_what-is-viewjs",
+		"doc_how-to-use",
+		"doc_application",
+		"doc_what-is-viewport",
+		"doc_default-viewport",
+		"doc_active-viewport",
+		"doc_pseudo-viewport",
+		"doc_event-drive",
+		"doc_os-detect",
+		"doc_logger-output",
+		"doc_viewport-configuration",
+		"doc_viewport-context",
+		"doc_viewjs-initializer",
+		"doc_viewport-layout",
+		"doc_viewport-title",
+		"doc_viewport-directly-accessible",
+		"doc_fallback-viewport",
+		"doc_viewport-navigation",
+		"doc_identify-browser-action",
+		"doc_viewport-parameter",
+		"doc_viewport-option",
+		"doc_viewport-animation",
+		"doc_query-element",
+		"doc_notice",
+		"doc_license",
+		"doc_best-practise",
+		"doc_contact-me",
+		"doc_faq",
+	];
 	View.ready(function(){
-		var views = View.listAll();
 		menuObj.classList.add("viewjs-doc-menu");
-		views.forEach(function(view){
+		views.forEach(function(viewId, i){
+			var view = View.ofId(viewId);
+
 			var itemObj = document.createElement("div");
 			itemObj.classList.add("item");
-			itemObj.innerHTML = view.getTitle();
+			itemObj.innerHTML = (i + 1) + ". " + view.getTitle();
 			itemObj.setAttribute("data-view-rel", view.getId());
 			menuObj.appendChild(itemObj);
 

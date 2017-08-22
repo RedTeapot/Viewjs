@@ -5,16 +5,16 @@
 		<a class = "menu"></a>
 	</header>
 	<div class = "body">
-		开发者可以为视图的HTML结点设置单独的视图标题，从而达到"视图进入后，浏览器标题自动更新为当前视图标题；视图离开后，浏览器标题自动恢复为默认标题"的目的。如：
+		<p>开发者可以为视图的HTML结点设置单独的视图标题，从而达到"视图进入后，浏览器标题自动更新为当前视图标题；视图离开后，浏览器标题自动恢复为默认标题"的目的。如：</p>
 
 		<div class = "code html" >
-			&lt;section id = "myView" data-view = "true" data-view-title = "My view title"&gt;
-				&lt;header&gt;&lt;/header&gt;
-				&lt;div class = "body"&gt;&lt;/div&gt;
-				&lt;footer&gt;&lt;/footer&gt;
-			&lt;/section&gt;
+&lt;section id = "myView" data-view = "true" data-view-title = "My view title"&gt;
+	&lt;header&gt;&lt;/header&gt;
+	&lt;div class = "body"&gt;&lt;/div&gt;
+	&lt;footer&gt;&lt;/footer&gt;
+&lt;/section&gt;
 		</div>
 
-		注：默认标题在View.js加载时通过自动检测浏览器标题获取。如果浏览器标题通过脚本延迟设置，则会出现默认标题为空的情况。此时开发者可以通过调用API：<span class = "code js">View.setDocumentTitle(title)</span>通知View使用给定的字符串赋值默认标题。
+		<p>注：默认标题在View.js加载时通过自动检测浏览器标题获取。如果浏览器标题通过脚本延迟设置，则会出现默认标题为空的情况。此时开发者可以通过调用API：<span class = "code js">View.setDocumentTitle(title)</span>通知View使用给定的字符串赋值默认标题。</p>
 	</div>
 </section>

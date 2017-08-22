@@ -8,13 +8,13 @@
 	top: 0;
 	background: rgba(0, 0, 0, 0.8);
 	color: white;
-	width: 50%;
+	width: 70%;
 	height: 100%;
 	padding: 1em;
 	box-sizing: border-box;
 	overflow: auto;
 	-webkit-overflow-scrolling: touch;
-	@include animation(show2left);
+	@include animation(show2left ease 0.5s);
 
 	.item{
 		padding: 1em 0;

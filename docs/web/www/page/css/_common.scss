@@ -41,12 +41,20 @@ header{
 	overflow: auto;
 	-webkit-overflow-scrolling: touch;
 	box-sizing: border-box;
+	word-wrap: break-word;
 	word-break: break-all;
 }
 
 p{
 	text-indent: 2em;
 	line-height: 2em;
+
+	&.no-text-indent{
+		text-indent: 0;
+	}
+}
+li{
+	line-height: 1.5em;
 }
 
 .code{
@@ -54,7 +62,7 @@ p{
 	font-family: Consolas, sans-serif, serif;
 }
 span.code{
-	padding: 0 0.03rem;
+	padding: 0.03rem 0.1rem;
 	border-radius: 0.02rem;
 	margin: 0 0.05rem;
 	font-size: 0.1rem;
@@ -62,7 +70,7 @@ span.code{
 div.code{
 	position: relative;
 	white-space: pre;
-	padding: 0 0.1rem;
+	padding: 0.1rem;
 	margin: 0.1rem 0;
 	border-radius: 0.05rem;
 	overflow: auto;
@@ -80,6 +88,11 @@ div.code{
 
 .warn{
 	text-decoration: underline;
+}
+.link{
+	color: #29b482;
+	font-style: italic;
+	font-family: Consolas, sans-serif, serif;
 }
 
 .btn{

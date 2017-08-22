@@ -5,23 +5,23 @@
 		<a class = "menu"></a>
 	</header>
 	<div class = "body">
-		为了满足工程多个脚本文件之间共享变量的需要，以及降低全局环境下变量被污染的可能，View.js为每个视图提供了数据上下文，以供开发者存取数据。如：
+		<p>为了满足工程多个脚本文件之间共享变量的需要，以及降低全局环境下变量被污染的可能，View.js为每个视图提供了数据上下文，以供开发者存取数据。如：</p>
 		<div class = "code js" data-filename = "a.js">
-			var view = View.ofId("myView");
-			var getOrderId = function(){
-				return "ORD001";
-			};
-			view.context.set("getOrderId", getOrderId);
+var view = View.ofId("myView");
+var getOrderId = function(){
+	return "ORD001";
+};
+view.context.set("getOrderId", getOrderId);
 		</div>
 
 		<div class = "code js" data-filename = "b.js">
-			var view = View.ofId("myView");
-			var getOrderId = view.context.get("getOrderId");
-			console.log(getOrderId());//-> ORD001
-			view.context.clear();
-			console.log(view.context.get("getOrderId"));//->undefined
+var view = View.ofId("myView");
+var getOrderId = view.context.get("getOrderId");
+console.log(getOrderId());//-> ORD001
+view.context.clear();
+console.log(view.context.get("getOrderId"));//->undefined
 		</div>
 
-		不同视图拥有不同的上下文，不同视图的上下文中可以存储相同名称的数据。
+		<p>不同视图拥有不同的上下文，不同视图的上下文中可以存储相同名称的数据。</p>
 	</div>
 </section>

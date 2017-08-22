@@ -5,22 +5,26 @@
 		<a class = "menu"></a>
 	</header>
 	<div class = "body">
-		默认情况下，引用了View.js的页面会在网页加载就绪（<span class = "code js"></span>）后自动执行初始化动作。但开发者可以通过调用API： <span class = "code js">View.setInitializer(initializerFunc[, execTime])</span>提供自定义的初始化器延迟执行视图的初始化动作。如：
+		<p>默认情况下，引用了View.js的页面会在网页加载就绪（<span class = "code js">DOMContentLoaded</span>）后自动执行初始化动作。但开发者可以通过调用API： <span class = "code js">View.setInitializer(initializerFunc[, execTime])</span>提供自定义的初始化器延迟执行视图的初始化动作。如：</p>
 		<div class = "code js">
-			View.setInitializer(function(init){
-				//…
-				init();//->执行初始化动作
-			}, "rightnow");
+View.setInitializer(function(init){
+	//…
+	init();//->执行初始化动作
+}, "rightnow");
 		</div>
 
-		视图的初始化动作包括：
-		1)	调用视图初始化监听器
-		2)	在DOM中标识识别的操作系统
-		3)	扫描文档，遍历视图定义
-		4)	确定默认视图
-		5)	添加视图标题自动设置支持
-		6)	使能data-view-rel属性
-		7)	调用视图就绪监听器
-		8)	呈现指定视图
+		<p>
+			视图的初始化动作包括：
+			<ol>
+				<li>调用视图初始化监听器</li>
+				<li>在DOM中标识识别的操作系统</li>
+				<li>扫描文档，遍历视图定义</li>
+				<li>确定默认视图</li>
+				<li>添加视图标题自动设置支持</li>
+				<li>使能data-view-rel属性</li>
+				<li>调用视图就绪监听器</li>
+				<li>呈现指定视图</li>
+			</ol>
+		</p>
 	</div>
 </section>

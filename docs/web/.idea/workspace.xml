@@ -15,11 +15,31 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="init.generate-menu.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="init.layout.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/page/js/page/init.layout.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" column="30" lean-forward="true" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="init.generate-menu.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/page/js/page/index/init.generate-menu.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="799">
-              <caret line="47" column="26" lean-forward="false" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="26" />
+            <state relative-caret-position="-292">
+              <caret line="20" column="18" lean-forward="true" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_common.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/page/css/_common.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-63">
+              <caret line="56" column="23" lean-forward="false" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -28,48 +48,8 @@
       <file leaf-file-name="doc.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/page/css/doc.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="16" lean-forward="false" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_animation.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/page/css/lib/_animation.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="24" lean-forward="false" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_common.scss" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/www/page/css/_common.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="447">
-              <caret line="59" column="22" lean-forward="false" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="section.partial.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/view/[empty]/section.partial.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="27" lean-forward="false" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="section.partial.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/view/doc_logger-output/section.partial.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="6" lean-forward="false" selection-start-line="23" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
+            <state relative-caret-position="272">
+              <caret line="16" column="42" lean-forward="false" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -133,23 +113,18 @@
         <option value="$PROJECT_DIR$/www/page/js/page/index/init.js" />
         <option value="$PROJECT_DIR$/www/page/js/page/init.layout.js" />
         <option value="$PROJECT_DIR$/www/page/html/doc_end.partial.html" />
-        <option value="$PROJECT_DIR$/www/view/doc_active-viewport/section.partial.html" />
-        <option value="$PROJECT_DIR$/www/view/doc_application/section.partial.html" />
-        <option value="$PROJECT_DIR$/www/view/doc_best-practise/section.partial.html" />
-        <option value="$PROJECT_DIR$/www/view/doc_contact-me/section.partial.html" />
-        <option value="$PROJECT_DIR$/www/view/doc_default-viewport/section.partial.html" />
-        <option value="$PROJECT_DIR$/www/view/doc_event-drive/section.partial.html" />
-        <option value="$PROJECT_DIR$/www/view/doc_fallback-viewport/section.partial.html" />
-        <option value="$PROJECT_DIR$/www/view/doc_faq/section.partial.html" />
+        <option value="$PROJECT_DIR$/www/view/doc_what-is-viewjs/section.partial.html" />
+        <option value="$PROJECT_DIR$/www/view/doc_what-is-viewport/section.partial.html" />
+        <option value="$PROJECT_DIR$/www/view/[empty]/section.partial.html" />
+        <option value="$PROJECT_DIR$/www/view/doc_logger-output/section.partial.html" />
+        <option value="$PROJECT_DIR$/www/view/doc_os-detect/section.partial.html" />
+        <option value="$PROJECT_DIR$/www/view/doc_viewport-animation/section.partial.html" />
         <option value="$PROJECT_DIR$/www/view/doc_how-to-use/section.partial.html" />
         <option value="$PROJECT_DIR$/www/view/doc_identify-browser-action/section.partial.html" />
         <option value="$PROJECT_DIR$/www/view/doc_license/section.partial.html" />
         <option value="$PROJECT_DIR$/www/view/doc_notice/section.partial.html" />
-        <option value="$PROJECT_DIR$/www/view/doc_os-detect/section.partial.html" />
         <option value="$PROJECT_DIR$/www/view/doc_pseudo-viewport/section.partial.html" />
         <option value="$PROJECT_DIR$/www/view/doc_query-element/section.partial.html" />
-        <option value="$PROJECT_DIR$/www/view/doc_viewjs-initializer/section.partial.html" />
-        <option value="$PROJECT_DIR$/www/view/doc_viewport-animation/section.partial.html" />
         <option value="$PROJECT_DIR$/www/view/doc_viewport-configuration/section.partial.html" />
         <option value="$PROJECT_DIR$/www/view/doc_viewport-context/section.partial.html" />
         <option value="$PROJECT_DIR$/www/view/doc_viewport-directly-accessible/section.partial.html" />
@@ -158,13 +133,18 @@
         <option value="$PROJECT_DIR$/www/view/doc_viewport-option/section.partial.html" />
         <option value="$PROJECT_DIR$/www/view/doc_viewport-parameter/section.partial.html" />
         <option value="$PROJECT_DIR$/www/view/doc_viewport-title/section.partial.html" />
-        <option value="$PROJECT_DIR$/www/view/doc_what-is-viewjs/section.partial.html" />
-        <option value="$PROJECT_DIR$/www/view/doc_what-is-viewport/section.partial.html" />
-        <option value="$PROJECT_DIR$/www/page/js/page/index/init.generate-menu.js" />
-        <option value="$PROJECT_DIR$/www/page/css/doc.scss" />
-        <option value="$PROJECT_DIR$/www/view/[empty]/section.partial.html" />
-        <option value="$PROJECT_DIR$/www/view/doc_logger-output/section.partial.html" />
+        <option value="$PROJECT_DIR$/www/view/doc_fallback-viewport/section.partial.html" />
+        <option value="$PROJECT_DIR$/www/view/doc_default-viewport/section.partial.html" />
+        <option value="$PROJECT_DIR$/www/view/doc_contact-me/section.partial.html" />
+        <option value="$PROJECT_DIR$/www/view/doc_best-practise/section.partial.html" />
+        <option value="$PROJECT_DIR$/www/view/doc_application/section.partial.html" />
+        <option value="$PROJECT_DIR$/www/view/doc_active-viewport/section.partial.html" />
+        <option value="$PROJECT_DIR$/www/view/doc_event-drive/section.partial.html" />
+        <option value="$PROJECT_DIR$/www/view/doc_viewjs-initializer/section.partial.html" />
         <option value="$PROJECT_DIR$/www/page/css/_common.scss" />
+        <option value="$PROJECT_DIR$/www/view/doc_faq/section.partial.html" />
+        <option value="$PROJECT_DIR$/www/page/css/doc.scss" />
+        <option value="$PROJECT_DIR$/www/page/js/page/index/init.generate-menu.js" />
       </list>
     </option>
   </component>
@@ -766,28 +746,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="doc_contact-me" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="doc_best-practise" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -1134,12 +1092,12 @@
       <updated>1503217356062</updated>
       <workItem from="1503217357624" duration="6282000" />
       <workItem from="1503277669782" duration="13769000" />
-      <workItem from="1503316020965" duration="2887000" />
+      <workItem from="1503316020965" duration="8293000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22938000" />
+    <option name="totallyTimeSpent" value="28344000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1273,255 +1231,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/page/js/page/init.layout.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="30" lean-forward="true" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/page/html/doc_end.partial.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_active-viewport/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="25" lean-forward="true" selection-start-line="3" selection-start-column="25" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_application/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_best-practise/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_contact-me/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_default-viewport/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_event-drive/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_fallback-viewport/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding>
-            <element signature="e#946#950#0" expanded="false" />
-            <element signature="e#1022#1026#0" expanded="false" />
-            <element signature="e#1026#1030#0" expanded="false" />
-            <element signature="e#1038#1042#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_faq/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_how-to-use/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_identify-browser-action/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_license/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_notice/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_os-detect/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_pseudo-viewport/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_query-element/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_viewjs-initializer/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_viewport-animation/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_viewport-configuration/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_viewport-context/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_viewport-directly-accessible/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_viewport-layout/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_viewport-navigation/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_viewport-option/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_viewport-parameter/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_viewport-title/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_what-is-viewjs/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="30" lean-forward="false" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_what-is-viewport/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/page/js/page/index/init.generate-menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="47" column="26" lean-forward="false" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/page/css/doc.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="16" lean-forward="false" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -1550,6 +1263,217 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_what-is-viewport/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_what-is-viewjs/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="30" lean-forward="false" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_viewport-title/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="5" lean-forward="false" selection-start-line="10" selection-start-column="78" selection-end-line="14" selection-end-column="5" />
+          <folding>
+            <element signature="e#341#345#0" expanded="true" />
+            <element signature="e#419#423#0" expanded="true" />
+            <element signature="e#425#429#0" expanded="true" />
+            <element signature="e#435#439#0" expanded="true" />
+            <element signature="e#439#443#0" expanded="true" />
+            <element signature="e#450#454#0" expanded="true" />
+            <element signature="e#456#460#0" expanded="true" />
+            <element signature="e#478#482#0" expanded="true" />
+            <element signature="e#482#486#0" expanded="true" />
+            <element signature="e#490#494#0" expanded="true" />
+            <element signature="e#496#500#0" expanded="true" />
+            <element signature="e#506#510#0" expanded="true" />
+            <element signature="e#510#514#0" expanded="true" />
+            <element signature="e#521#525#0" expanded="true" />
+            <element signature="e#526#530#0" expanded="true" />
+            <element signature="e#538#542#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_viewport-parameter/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="12" column="8" lean-forward="false" selection-start-line="12" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_viewport-option/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="42" column="1" lean-forward="false" selection-start-line="39" selection-start-column="3" selection-end-line="42" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_viewport-navigation/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="43" lean-forward="false" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+          <folding>
+            <element signature="e#601#605#0" expanded="true" />
+            <element signature="e#652#656#0" expanded="true" />
+            <element signature="e#660#664#0" expanded="true" />
+            <element signature="e#669#673#0" expanded="true" />
+            <element signature="e#674#678#0" expanded="true" />
+            <element signature="e#749#753#0" expanded="true" />
+            <element signature="e#757#761#0" expanded="true" />
+            <element signature="e#766#770#0" expanded="true" />
+            <element signature="e#771#775#0" expanded="true" />
+            <element signature="e#834#838#0" expanded="true" />
+            <element signature="e#842#846#0" expanded="true" />
+            <element signature="e#850#854#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_viewport-layout/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="31" column="7" lean-forward="false" selection-start-line="31" selection-start-column="7" selection-end-line="42" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_viewport-directly-accessible/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="617">
+          <caret line="34" column="43" lean-forward="false" selection-start-line="34" selection-start-column="43" selection-end-line="34" selection-end-column="43" />
+          <folding>
+            <element signature="e#1817#1821#0" expanded="true" />
+            <element signature="e#1834#1838#0" expanded="true" />
+            <element signature="e#1839#1843#0" expanded="true" />
+            <element signature="e#1847#1851#0" expanded="true" />
+            <element signature="e#1852#1856#0" expanded="true" />
+            <element signature="e#1860#1864#0" expanded="true" />
+            <element signature="e#1865#1869#0" expanded="true" />
+            <element signature="e#2003#2007#0" expanded="true" />
+            <element signature="e#2008#2012#0" expanded="true" />
+            <element signature="e#2017#2021#0" expanded="true" />
+            <element signature="e#2022#2026#0" expanded="true" />
+            <element signature="e#2030#2034#0" expanded="true" />
+            <element signature="e#2035#2039#0" expanded="true" />
+            <element signature="e#2123#2127#0" expanded="true" />
+            <element signature="e#2127#2131#0" expanded="true" />
+            <element signature="e#2139#2143#0" expanded="true" />
+            <element signature="e#2144#2148#0" expanded="true" />
+            <element signature="e#2243#2247#0" expanded="true" />
+            <element signature="e#2247#2251#0" expanded="true" />
+            <element signature="e#2259#2263#0" expanded="true" />
+            <element signature="e#2264#2268#0" expanded="true" />
+            <element signature="e#2273#2277#0" expanded="true" />
+            <element signature="e#2278#2282#0" expanded="true" />
+            <element signature="e#2287#2291#0" expanded="true" />
+            <element signature="e#2810#2814#0" expanded="true" />
+            <element signature="e#2866#2870#0" expanded="true" />
+            <element signature="e#2871#2875#0" expanded="true" />
+            <element signature="e#2879#2883#0" expanded="true" />
+            <element signature="e#2884#2888#0" expanded="true" />
+            <element signature="e#2892#2896#0" expanded="true" />
+            <element signature="e#2898#2902#0" expanded="true" />
+            <element signature="e#3036#3040#0" expanded="true" />
+            <element signature="e#3041#3045#0" expanded="true" />
+            <element signature="e#3050#3054#0" expanded="true" />
+            <element signature="e#3055#3059#0" expanded="true" />
+            <element signature="e#3063#3067#0" expanded="true" />
+            <element signature="e#3068#3072#0" expanded="true" />
+            <element signature="e#3156#3160#0" expanded="true" />
+            <element signature="e#3160#3164#0" expanded="true" />
+            <element signature="e#3172#3176#0" expanded="true" />
+            <element signature="e#3177#3181#0" expanded="true" />
+            <element signature="e#3316#3320#0" expanded="true" />
+            <element signature="e#3320#3324#0" expanded="true" />
+            <element signature="e#3332#3336#0" expanded="true" />
+            <element signature="e#3337#3341#0" expanded="true" />
+            <element signature="e#3346#3350#0" expanded="true" />
+            <element signature="e#3351#3355#0" expanded="true" />
+            <element signature="e#3360#3364#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_viewport-context/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="16" lean-forward="false" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_viewport-configuration/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="18" column="4" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_viewport-animation/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="43" lean-forward="false" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_query-element/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="11" lean-forward="false" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_pseudo-viewport/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="43" lean-forward="false" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="43" />
+          <folding>
+            <element signature="e#397#401#0" expanded="true" />
+            <element signature="e#432#436#0" expanded="true" />
+            <element signature="e#438#442#0" expanded="true" />
+            <element signature="e#567#571#0" expanded="true" />
+            <element signature="e#599#603#0" expanded="true" />
+            <element signature="e#605#609#0" expanded="true" />
+            <element signature="e#611#615#0" expanded="true" />
+            <element signature="e#746#750#0" expanded="true" />
+            <element signature="e#783#787#0" expanded="true" />
+            <element signature="e#789#793#0" expanded="true" />
+            <element signature="e#795#799#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_os-detect/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="39" lean-forward="false" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_notice/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="50" lean-forward="false" selection-start-line="7" selection-start-column="50" selection-end-line="7" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/view/doc_logger-output/section.partial.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -1558,10 +1482,135 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_license/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="68" lean-forward="false" selection-start-line="7" selection-start-column="68" selection-end-line="7" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_identify-browser-action/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="10" column="25" lean-forward="true" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_how-to-use/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="86" lean-forward="false" selection-start-line="7" selection-start-column="86" selection-end-line="7" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_fallback-viewport/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding>
+            <element signature="e#1037#1041#0" expanded="true" />
+            <element signature="e#1113#1117#0" expanded="true" />
+            <element signature="e#1117#1121#0" expanded="true" />
+            <element signature="e#1129#1133#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_default-viewport/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="11" lean-forward="false" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_contact-me/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="65" lean-forward="false" selection-start-line="8" selection-start-column="65" selection-end-line="8" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_best-practise/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="40" column="13" lean-forward="false" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_application/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="11" lean-forward="false" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_active-viewport/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="11" lean-forward="false" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_event-drive/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="55" column="2" lean-forward="false" selection-start-line="55" selection-start-column="2" selection-end-line="55" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_viewjs-initializer/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="79" lean-forward="false" selection-start-line="7" selection-start-column="79" selection-end-line="7" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/doc_faq/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="20" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/page/css/_common.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="59" column="22" lean-forward="false" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
+        <state relative-caret-position="-63">
+          <caret line="56" column="23" lean-forward="false" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/page/css/doc.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="42" lean-forward="false" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/page/js/page/init.layout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="30" lean-forward="true" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/page/js/page/index/init.generate-menu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-292">
+          <caret line="20" column="18" lean-forward="true" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
           <folding />
         </state>
       </provider>
