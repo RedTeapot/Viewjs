@@ -5,7 +5,7 @@ var gulp = require("gulp"),
 	zip = require("gulp-zip"),
 	del = require("del");
 
-var version = "1.4.3";
+var version = "1.5.0";
 
 /** 获取当前时间 */
 var getTime = function(){
