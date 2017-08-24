@@ -1,3 +1,6 @@
+【1.5.0-B201708241443】
+1. 新增API：view.getLayoutAction() - 获取布局动作
+
 【1.5.0-B201708230938】
 1. 新增视图群组支持，以实现“将若干视图归为同一群组，使用群组进行视图导向”特性
    1) 群组名称声明方式：在视图DOM上生命属性：data-view-group并赋值为群组名称。如：<section id = "profile_N01" data-view = "true" data-view-group = "profile">
