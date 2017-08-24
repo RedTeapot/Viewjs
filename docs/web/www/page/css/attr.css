@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html, body { position: relative; font-family: "Microsoft Yahei", sans-serif, serif; font-size: 100px; margin: 0; padding: 0; width: 100%; overflow-x: hidden; }
 
 body { font-size: 0.12rem; color: #333333; }
@@ -61,38 +62,6 @@ a { text-decoration: none; color: inherit; }
 .banner-wrapper .swiper-pagination-bullet { display: inline-block; width: 0.05rem; height: 0.05rem; border-radius: 5px; background: #fff; margin: 0 0.02rem; opacity: 0.8; cursor: pointer; }
 
 .banner-wrapper .swiper-pagination-bullet-active { background: #FF6600; }
-
-header { position: relative; height: 0.44rem; line-height: 0.44rem; color: white; text-align: center; font-size: 0.15rem; background-color: #29b482; }
-
-header .nav-back { position: absolute; left: 0; top: 0; display: inline-block; width: 0.54rem; height: 100%; background-image: url(../../common/img/back.png); background-repeat: no-repeat; background-position: center; background-size: 0.2rem auto; }
-
-header .menu { position: absolute; right: 0; top: 0; display: inline-block; width: 0.54rem; height: 100%; background-image: url(../../common/img/menu.png); background-repeat: no-repeat; background-position: center; background-size: 0.2rem auto; }
-
-.view > .body { padding: 0.12rem; background: white; overflow: auto; -webkit-overflow-scrolling: touch; box-sizing: border-box; word-wrap: break-word; word-break: break-all; }
-
-p { text-indent: 2em; line-height: 2em; }
-
-p.no-text-indent { text-indent: 0; }
-
-li { line-height: 1.5em; }
-
-.code { background: #CCCCCC; font-family: Consolas, sans-serif, serif; }
-
-span.code { padding: 0.03rem 0.1rem; border-radius: 0.02rem; margin: 0 0.05rem; font-size: 0.1rem; }
-
-div.code { position: relative; white-space: pre; padding: 0.1rem; margin: 0.1rem 0; border-radius: 0.05rem; overflow: auto; -webkit-overflow-scrolling: touch; }
-
-div.code[data-filename]:before { display: block; font-style: italic; content: attr(data-filename); padding: 0.1rem 0; color: #999999; border-bottom: solid 1px #BBBBBB; }
-
-.warn { text-decoration: underline; }
-
-.link { color: #29b482; font-style: italic; font-family: Consolas, sans-serif, serif; }
-
-.btn { display: block; margin: 0 0.12rem; border-top: 0.01rem solid #F1F1EF; height: 0.35rem; line-height: 0.35rem; font-size: 0.12rem; box-sizing: border-box; text-align: center; color: #fff; background: #1599E5; }
-
-.btn[disabled=disabled] { color: white; background: #CCCCCC; }
-
-.btn.grey { color: white; background: #D1D1D1; }
 
 @-webkit-keyframes fadeIn { from { opacity: 0.3; }
   to { opacity: 1; } }
@@ -521,3 +490,53 @@ div.code[data-filename]:before { display: block; font-style: italic; content: at
     -ms-transform: translate3d(0, 0, 0);
     -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0); } }
+
+header { position: relative; height: 0.44rem; line-height: 0.44rem; color: white; text-align: center; font-size: 0.15rem; background-color: #29b482; }
+
+header .nav-back { position: absolute; left: 0; top: 0; display: inline-block; width: 0.54rem; height: 100%; background-image: url(../../common/img/back.png); background-repeat: no-repeat; background-position: center; background-size: 0.2rem auto; }
+
+header .menu { position: absolute; right: 0; top: 0; display: inline-block; width: 0.54rem; height: 100%; background-image: url(../../common/img/menu.png); background-repeat: no-repeat; background-position: center; background-size: 0.2rem auto; }
+
+.viewjs-doc-menu { position: fixed; right: 0; top: 0; background: rgba(0, 0, 0, 0.8); color: white; width: 70%; height: 100%; padding: 1em; box-sizing: border-box; overflow: auto; -webkit-overflow-scrolling: touch; -webkit-animation: show2left ease 0.5s; -moz-animation: show2left ease 0.5s; -o-animation: show2left ease 0.5s; animation: show2left ease 0.5s; }
+
+.viewjs-doc-menu .item { padding: 1em 0; border-bottom: solid 1px #5b5b5b; }
+
+.view > .body { padding: 0.12rem; background: white; overflow: auto; -webkit-overflow-scrolling: touch; box-sizing: border-box; word-wrap: break-word; word-break: break-all; }
+
+p { text-indent: 2em; line-height: 2em; }
+
+p.no-text-indent { text-indent: 0; }
+
+li { line-height: 1.5em; }
+
+.code { background: #CCCCCC; font-family: Consolas, sans-serif, serif; }
+
+span.code { padding: 0.03rem 0.1rem; border-radius: 0.02rem; margin: 0 0.05rem; font-size: 0.1rem; }
+
+span.code.no-margin { margin: 0; }
+
+div.code { position: relative; white-space: pre; padding: 0.1rem; margin: 0.1rem 0; border-radius: 0.05rem; overflow: auto; -webkit-overflow-scrolling: touch; }
+
+div.code[data-filename]:before { display: block; font-style: italic; content: attr(data-filename); padding: 0.1rem 0; color: #999999; border-bottom: solid 1px #BBBBBB; }
+
+.warn { text-decoration: underline; }
+
+.link { color: #29b482; font-style: italic; font-family: Consolas, sans-serif, serif; }
+
+.btn { display: block; margin: 0 0.12rem; border-top: 0.01rem solid #F1F1EF; height: 0.35rem; line-height: 0.35rem; font-size: 0.12rem; box-sizing: border-box; text-align: center; color: #fff; background: #1599E5; }
+
+.btn[disabled=disabled] { color: white; background: #CCCCCC; }
+
+.btn.grey { color: white; background: #D1D1D1; }
+
+.attr-usage, .attr-value, .attr-declare-position { position: relative; margin-top: 0.2rem; line-height: 2em; }
+
+.attr-usage:first-child, .attr-value:first-child, .attr-declare-position:first-child { margin-top: 0; }
+
+.attr-usage:before, .attr-value:before, .attr-declare-position:before { display: block; font-weight: bold; }
+
+.attr-usage:before { content: "用途："; }
+
+.attr-value:before { content: "取值："; }
+
+.attr-declare-position:before { content: "声明位置："; }

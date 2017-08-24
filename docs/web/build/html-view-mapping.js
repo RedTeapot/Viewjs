@@ -7,6 +7,7 @@ var htmlViewMapping = {
 		"doc_default-viewport",
 		"doc_active-viewport",
 		"doc_pseudo-viewport",
+		"doc_viewport-group",
 		"doc_event-drive",
 		"doc_os-detect",
 		"doc_logger-output",
@@ -29,7 +30,17 @@ var htmlViewMapping = {
 		"doc_contact-me",
 		"doc_faq",
 	],
-	"attr": [],
+	"attr": [
+		"attr_data-view",
+		"attr_data-view-default",
+		"attr_data-view-directly-accessible",
+		"attr_data-view-fallback",
+		"attr_data-view-rel",
+		"attr_data-view-rel-disabled",
+		"attr_data-view-rel-type",
+		"attr_data-view-title",
+		"attr_data-view-os"
+	],
 	"evt": [],
 };
 

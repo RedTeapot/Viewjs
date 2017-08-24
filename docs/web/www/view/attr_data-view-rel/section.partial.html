@@ -2,10 +2,11 @@
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
 		<span>data-view-rel</span>
+		<a class = "menu"></a>
 	</header>
 	<div class = "body">
 		<div class = "attr-usage">响应用户触摸，跳转到指定的目标位置。支持伪视图。</div>
-		<div class = "attr-value">任一存在的视图编号，亦即对应的DOM元素的ID，或其它链接。当配置为其它链接地址时，需要添加特殊符号："@"，如：<span class = "code html">&lt;span data-view-rel="@index.html"&gt;首页&lt;/span&gt;</span>，<span class = "code html">&lt;span data-view-rel="@http://www.google.com.tw"&gt;谷歌&lt;/span&gt;</span>。</div>
+		<div class = "attr-value">任一存在的视图编号，亦即对应的DOM元素的ID；或伪视图：":back"（后退），":forward"（前进），":default-view"（默认视图）；或视图群组；或其它链接。当配置为视图群组时，需要添加特殊符号：“~”，如：<span class = "code html">&lt;span data-view-rel="~category"&gt;分类&lt;/span&gt;</span>。当配置为其它链接地址时，需要添加特殊符号：“@”，如：<span class = "code html">&lt;span data-view-rel="@index.html"&gt;首页&lt;/span&gt;</span>，<span class = "code html">&lt;span data-view-rel="@http://www.google.com.tw"&gt;谷歌&lt;/span&gt;</span>。</div>
 		<div class = "attr-declare-position">任一DOM节点</div>
 	</div>
 </section>

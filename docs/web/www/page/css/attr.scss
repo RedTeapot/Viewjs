@@ -1,3 +1,32 @@
 @import "base";
 @import "common";
-@import "lib/animation";
+
+.attr-usage, .attr-value, .attr-declare-position{
+	position: relative;
+	margin-top: 0.2rem;
+	line-height: 2em;
+
+	&:first-child{
+		margin-top: 0;
+	}
+
+	&:before{
+		display: block;
+		font-weight: bold;
+	}
+}
+.attr-usage{
+	&:before{
+		content: "用途："
+	}
+}
+.attr-value{
+	&:before{
+		content: "取值："
+	}
+}
+.attr-declare-position{
+	&:before{
+		content: "声明位置："
+	}
+}

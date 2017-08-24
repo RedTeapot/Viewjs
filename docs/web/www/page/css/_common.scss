@@ -1,4 +1,5 @@
 @import "_base";
+@import "lib/animation";
 
 header{
 	position: relative;
@@ -35,6 +36,26 @@ header{
 	}
 }
 
+.viewjs-doc-menu{
+	position: fixed;
+	right: 0;
+	top: 0;
+	background: rgba(0, 0, 0, 0.8);
+	color: white;
+	width: 70%;
+	height: 100%;
+	padding: 1em;
+	box-sizing: border-box;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	@include animation(show2left ease 0.5s);
+
+	.item{
+		padding: 1em 0;
+		border-bottom: solid 1px #5b5b5b;
+	}
+}
+
 .view > .body{
 	padding: 0.12rem;
 	background: white;
@@ -66,6 +87,10 @@ span.code{
 	border-radius: 0.02rem;
 	margin: 0 0.05rem;
 	font-size: 0.1rem;
+
+	&.no-margin{
+		margin: 0;
+	}
 }
 div.code{
 	position: relative;
