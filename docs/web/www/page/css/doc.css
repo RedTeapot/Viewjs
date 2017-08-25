@@ -527,3 +527,5 @@ div.code[data-filename]:before { display: block; font-style: italic; content: at
 .btn[disabled=disabled] { color: white; background: #CCCCCC; }
 
 .btn.grey { color: white; background: #D1D1D1; }
+
+footer { padding: 0.1rem 0; }

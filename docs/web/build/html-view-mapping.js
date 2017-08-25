@@ -42,7 +42,15 @@ var htmlViewMapping = {
 		"attr_data-view-title",
 		"attr_data-view-os"
 	],
-	"evt": [],
+	"evt": [
+		"evt_View-beforechange",
+		"evt_View-afterchange",
+		"evt_View-instance-ready",
+		"evt_View-instance-beforeenter",
+		"evt_View-instance-enter",
+		"evt_View-instance-afterenter",
+		"evt_View-instance-leave",
+	],
 };
 
 module.exports = htmlViewMapping;

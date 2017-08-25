@@ -17,16 +17,16 @@
 }
 .attr-usage{
 	&:before{
-		content: "用途："
+		content: "用途：";
 	}
 }
 .attr-value{
 	&:before{
-		content: "取值："
+		content: "取值：";
 	}
 }
 .attr-declare-position{
 	&:before{
-		content: "声明位置："
+		content: "声明位置：";
 	}
 }

@@ -529,6 +529,8 @@ div.code[data-filename]:before { display: block; font-style: italic; content: at
 
 .btn.grey { color: white; background: #D1D1D1; }
 
+footer { padding: 0.1rem 0; }
+
 .attr-usage, .attr-value, .attr-declare-position { position: relative; margin-top: 0.2rem; line-height: 2em; }
 
 .attr-usage:first-child, .attr-value:first-child, .attr-declare-position:first-child { margin-top: 0; }

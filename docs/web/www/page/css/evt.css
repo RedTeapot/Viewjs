@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html, body { position: relative; font-family: "Microsoft Yahei", sans-serif, serif; font-size: 100px; margin: 0; padding: 0; width: 100%; overflow-x: hidden; }
 
 body { font-size: 0.12rem; color: #333333; }
@@ -527,3 +528,19 @@ div.code[data-filename]:before { display: block; font-style: italic; content: at
 .btn[disabled=disabled] { color: white; background: #CCCCCC; }
 
 .btn.grey { color: white; background: #D1D1D1; }
+
+footer { padding: 0.1rem 0; }
+
+.evt-trigger-time, .evt-attached-data, .evt-async, .evt-sample { position: relative; margin-top: 0.2rem; line-height: 2em; }
+
+.evt-trigger-time:first-child, .evt-attached-data:first-child, .evt-async:first-child, .evt-sample:first-child { margin-top: 0; }
+
+.evt-trigger-time:before, .evt-attached-data:before, .evt-async:before, .evt-sample:before { display: block; font-weight: bold; }
+
+.evt-trigger-time:before { content: "触发时机："; }
+
+.evt-attached-data:before { content: "附加数据："; }
+
+.evt-async:before { content: "触发方式："; }
+
+.evt-sample:before { content: "代码样例："; }

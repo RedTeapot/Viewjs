@@ -20,9 +20,10 @@
 				var totalHeight = View.layout.getLayoutHeight();
 
 				var headerObj = view.find("header"),
-					bodyObj = view.find(".body");
+					bodyObj = view.find(".body"),
+					footerObj = view.find("footer");
 
-				bodyObj.style.height = (totalHeight - headerObj.offsetHeight) + "px";
+				bodyObj.style.height = (totalHeight - headerObj.offsetHeight - (null == footerObj? 0: footerObj.offsetHeight)) + "px";
 			}, true);
 		});
 	});
