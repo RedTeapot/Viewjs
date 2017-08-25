@@ -15,104 +15,41 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="section.partial.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/view/attr_data-view/section.partial.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="8" column="56" lean-forward="false" selection-start-line="8" selection-start-column="56" selection-end-line="8" selection-end-column="66" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="section.partial.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/view/attr_data-view-default/section.partial.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="66" lean-forward="false" selection-start-line="8" selection-start-column="66" selection-end-line="8" selection-end-column="66" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="section.partial.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/view/attr_data-view-directly-accessible/section.partial.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="66" lean-forward="false" selection-start-line="8" selection-start-column="66" selection-end-line="8" selection-end-column="66" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="section.partial.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/view/attr_data-view-fallback/section.partial.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="section.partial.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/view/attr_data-view-os/section.partial.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="66" lean-forward="false" selection-start-line="8" selection-start-column="66" selection-end-line="8" selection-end-column="66" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="section.partial.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/www/view/attr_data-view-rel/section.partial.html">
+        <entry file="file://$PROJECT_DIR$/www/view/attr_data-view-group/section.partial.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="8" column="447" lean-forward="false" selection-start-line="8" selection-start-column="447" selection-end-line="8" selection-end-column="447" />
-              <folding>
-                <element signature="e#467#471#0" expanded="true" />
-                <element signature="e#501#505#0" expanded="true" />
-                <element signature="e#507#511#0" expanded="true" />
-                <element signature="e#516#520#0" expanded="true" />
-                <element signature="e#581#585#0" expanded="true" />
-                <element signature="e#617#621#0" expanded="true" />
-                <element signature="e#623#627#0" expanded="true" />
-                <element signature="e#632#636#0" expanded="true" />
-                <element signature="e#670#674#0" expanded="true" />
-                <element signature="e#720#724#0" expanded="true" />
-                <element signature="e#726#730#0" expanded="true" />
-                <element signature="e#735#739#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="section.partial.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/view/attr_data-view-rel-disabled/section.partial.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="66" lean-forward="false" selection-start-line="8" selection-start-column="66" selection-end-line="8" selection-end-column="66" />
+            <state relative-caret-position="0">
+              <caret line="0" column="35" lean-forward="false" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="section.partial.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/view/attr_data-view-rel-type/section.partial.html">
+      <file leaf-file-name="install-gulp.bat" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build/install-gulp.bat">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="68" lean-forward="false" selection-start-line="8" selection-start-column="68" selection-end-line="8" selection-end-column="68" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="section.partial.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/view/attr_data-view-title/section.partial.html">
+      <file leaf-file-name="html-view-mapping.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build/html-view-mapping.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+            <state relative-caret-position="595">
+              <caret line="35" column="8" lean-forward="false" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="init.generate-menu.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/page/js/page/attr/init.generate-menu.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="31" lean-forward="false" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -157,7 +94,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/www/view/[empty][attr]/section.partial.html" />
         <option value="$PROJECT_DIR$/www/page/js/page/index/init.js" />
         <option value="$PROJECT_DIR$/www/page/js/page/init.layout.js" />
         <option value="$PROJECT_DIR$/www/page/html/doc_end.partial.html" />
@@ -192,11 +128,9 @@
         <option value="$PROJECT_DIR$/www/view/doc_faq/section.partial.html" />
         <option value="$PROJECT_DIR$/www/page/js/page/index/init.generate-menu.js" />
         <option value="$PROJECT_DIR$/www/view/doc_viewport-group/section.partial.html" />
-        <option value="$PROJECT_DIR$/build/html-view-mapping.js" />
         <option value="$PROJECT_DIR$/www/view/attr_data-view-fallback/section.partial.html" />
         <option value="$PROJECT_DIR$/www/view/attr_data-view-title/section.partial.html" />
         <option value="$PROJECT_DIR$/www/page/html/attr_end.partial.html" />
-        <option value="$PROJECT_DIR$/www/page/js/page/attr/init.generate-menu.js" />
         <option value="$PROJECT_DIR$/www/page/css/doc.scss" />
         <option value="$PROJECT_DIR$/www/page/css/evt.scss" />
         <option value="$PROJECT_DIR$/www/page/css/attr.scss" />
@@ -208,6 +142,9 @@
         <option value="$PROJECT_DIR$/www/view/attr_data-view-rel-disabled/section.partial.html" />
         <option value="$PROJECT_DIR$/www/view/attr_data-view-rel-type/section.partial.html" />
         <option value="$PROJECT_DIR$/www/view/attr_data-view-rel/section.partial.html" />
+        <option value="$PROJECT_DIR$/build/html-view-mapping.js" />
+        <option value="$PROJECT_DIR$/www/page/js/page/attr/init.generate-menu.js" />
+        <option value="$PROJECT_DIR$/www/view/attr_data-view-group/section.partial.html" />
       </list>
     </option>
   </component>
@@ -392,6 +329,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="attr_data-view-os" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="attr_data-view-group" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -654,8 +613,8 @@
       <recent name="G:\代码仓库\js\view\docs\web\www\page" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="G:\代码仓库\js\view\docs\web\www\page\js\page" />
       <recent name="G:\代码仓库\js\view\docs\web\www\view" />
+      <recent name="G:\代码仓库\js\view\docs\web\www\page\js\page" />
       <recent name="G:\代码仓库\js\view\docs\web\www\common\img" />
       <recent name="G:\代码仓库\js\view\docs\web\www\page\js\lib" />
       <recent name="G:\代码仓库\js\view\docs\web\www\page\css\lib" />
@@ -760,12 +719,12 @@
       <workItem from="1503217357624" duration="6282000" />
       <workItem from="1503277669782" duration="13769000" />
       <workItem from="1503316020965" duration="9678000" />
-      <workItem from="1503553134725" duration="4019000" />
+      <workItem from="1503553134725" duration="5440000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33748000" />
+    <option name="totallyTimeSpent" value="35169000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="1" width="1918" height="1038" extended-state="0" />
@@ -802,20 +761,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/www/view/doc_viewport-option/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="42" column="1" lean-forward="false" selection-start-line="39" selection-start-column="3" selection-end-line="42" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/view/doc_viewport-navigation/section.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="43" lean-forward="false" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/view/doc_viewport-layout/section.partial.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
@@ -1016,14 +961,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build/html-view-mapping.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="42" column="5" lean-forward="false" selection-start-line="32" selection-start-column="12" selection-end-line="42" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/view/doc_how-to-use/section.partial.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1072,21 +1009,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/page/js/page/attr/init.generate-menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="557">
-          <caret line="52" column="31" lean-forward="true" selection-start-line="52" selection-start-column="31" selection-end-line="52" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/page/html/attr.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="48" lean-forward="false" selection-start-line="10" selection-start-column="48" selection-end-line="10" selection-end-column="48" />
           <folding>
-            <marker date="1503569211802" expanded="true" signature="2784:2797" ph="..." />
-            <marker date="1503569211802" expanded="true" signature="2784:2808" ph="..." />
+            <marker date="1503621797224" expanded="true" signature="2784:2797" ph="..." />
+            <marker date="1503621797224" expanded="true" signature="2784:2808" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1096,7 +1025,7 @@
         <state relative-caret-position="166">
           <caret line="64" column="5" lean-forward="false" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
           <folding>
-            <marker date="1503569214050" expanded="true" signature="29491:29493" ph="..." />
+            <marker date="1503621799490" expanded="true" signature="29491:29493" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1215,6 +1144,38 @@
             <element signature="e#726#730#0" expanded="true" />
             <element signature="e#735#739#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/install-gulp.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/page/js/page/attr/init.generate-menu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="31" lean-forward="false" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/html-view-mapping.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" column="8" lean-forward="false" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/view/attr_data-view-group/section.partial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="35" lean-forward="false" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>

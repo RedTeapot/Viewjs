@@ -12,18 +12,6 @@
 	<!-- endbuild -->
 </head>
 <body>
-<section id = "attr_data-view-default" data-view = "true" data-view-title = "data-view-default">
-	<header>
-		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>data-view-default</span>
-		<a class = "menu"></a>
-	</header>
-	<div class = "body">
-		<div class = "attr-usage">标明特定视图为默认视图。默认视图是指页面打开后将要呈现的第一个视图。如果没有指定默认视图，则最终呈现DOM顺序上的第一个视图。</div>
-		<div class = "attr-value"><span class = "code js no-margin">true</span></div>
-		<div class = "attr-declare-position">任一视图节点（声明了<span class = "code html">data-view</span>属性，且取值为<span class = "code js">true</span>的DOM节点）</div>
-	</div>
-</section>
 <section id = "attr_data-view" data-view = "true" data-view-title = "data-view">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
@@ -34,6 +22,30 @@
 		<div class = "attr-usage">声明特定的DOM元素为视图。一个视图必须有一个DOM元素与之对应，且DOM元素的id即为视图的编号。尝试通过API：<span class = "code js">View.ofId(viewId)</span>获取一个没有DOM元素与之对应的视图时，View.js将会报错。</div>
 		<div class = "attr-value"><span class = "code js no-margin">true</span></div>
 		<div class = "attr-declare-position">任一DOM节点</div>
+	</div>
+</section>
+<section id = "attr_data-view-group" data-view = "true" data-view-title = "attr_data-view-group">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>attr_data-view-group</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "attr-usage">用于指明视图所隶属的视图群组。</div>
+		<div class = "attr-value">任意字符串</div>
+		<div class = "attr-declare-position">任一视图节点</div>
+	</div>
+</section>
+<section id = "attr_data-view-default" data-view = "true" data-view-title = "data-view-default">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>data-view-default</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "attr-usage">标明特定视图为默认视图。默认视图是指页面打开后将要呈现的第一个视图。如果没有指定默认视图，则最终呈现DOM顺序上的第一个视图。</div>
+		<div class = "attr-value"><span class = "code js no-margin">true</span></div>
+		<div class = "attr-declare-position">任一视图节点（声明了<span class = "code html">data-view</span>属性，且取值为<span class = "code js">true</span>的DOM节点）</div>
 	</div>
 </section>
 <section id = "attr_data-view-directly-accessible" data-view = "true" data-view-title = "data-view-directly-accessible">
@@ -60,18 +72,6 @@
 		<div class = "attr-declare-position">任一视图节点</div>
 	</div>
 </section>
-<section id = "attr_data-view-rel" data-view = "true" data-view-title = "data-view-rel">
-	<header>
-		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>data-view-rel</span>
-		<a class = "menu"></a>
-	</header>
-	<div class = "body">
-		<div class = "attr-usage">响应用户触摸，跳转到指定的目标位置。支持伪视图。</div>
-		<div class = "attr-value">任一存在的视图编号，亦即对应的DOM元素的ID；或伪视图：":back"（后退），":forward"（前进），":default-view"（默认视图）；或视图群组；或其它链接。当配置为视图群组时，需要添加特殊符号：“~”，如：<span class = "code html">&lt;span data-view-rel="~category"&gt;分类&lt;/span&gt;</span>。当配置为其它链接地址时，需要添加特殊符号：“@”，如：<span class = "code html">&lt;span data-view-rel="@index.html"&gt;首页&lt;/span&gt;</span>，<span class = "code html">&lt;span data-view-rel="@http://www.google.com.tw"&gt;谷歌&lt;/span&gt;</span>。</div>
-		<div class = "attr-declare-position">任一DOM节点</div>
-	</div>
-</section>
 <section id = "attr_data-view-rel-disabled" data-view = "true" data-view-title = "data-view-rel-disabled">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
@@ -82,6 +82,18 @@
 		<div class = "attr-usage">禁用触摸跳转。设置为true后，声明了data-view-rel属性的节点将无法响应用户的触摸操作。</div>
 		<div class = "attr-value"><span class = "code js no-margin">true</span>：禁止跳转；<span class = "code js">false</span>：允许跳转</div>
 		<div class = "attr-declare-position">任一声明了<span class = "code html">data-view-rel</span>属性的DOM节点</div>
+	</div>
+</section>
+<section id = "attr_data-view-rel" data-view = "true" data-view-title = "data-view-rel">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>data-view-rel</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "attr-usage">响应用户触摸，跳转到指定的目标位置。支持伪视图。</div>
+		<div class = "attr-value">任一存在的视图编号，亦即对应的DOM元素的ID；或伪视图：":back"（后退），":forward"（前进），":default-view"（默认视图）；或视图群组；或其它链接。当配置为视图群组时，需要添加特殊符号：“~”，如：<span class = "code html">&lt;span data-view-rel="~category"&gt;分类&lt;/span&gt;</span>。当配置为其它链接地址时，需要添加特殊符号：“@”，如：<span class = "code html">&lt;span data-view-rel="@index.html"&gt;首页&lt;/span&gt;</span>，<span class = "code html">&lt;span data-view-rel="@http://www.google.com.tw"&gt;谷歌&lt;/span&gt;</span>。</div>
+		<div class = "attr-declare-position">任一DOM节点</div>
 	</div>
 </section>
 <section id = "attr_data-view-rel-type" data-view = "true" data-view-title = "data-view-rel-type">
@@ -96,18 +108,6 @@
 		<div class = "attr-declare-position">任一声明了<span class = "code html">data-view-rel</span>属性的DOM节点</div>
 	</div>
 </section>
-<section id = "attr_data-view-title" data-view = "true" data-view-title = "data-view-title">
-	<header>
-		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>data-view-title</span>
-		<a class = "menu"></a>
-	</header>
-	<div class = "body">
-		<div class = "attr-usage">用于声明视图标题。声明了视图标题的视图在进入时，View.js将使用视图标题更新文档标题。</div>
-		<div class = "attr-value">任意字符串</div>
-		<div class = "attr-declare-position">任一视图节点</div>
-	</div>
-</section>
 <section id = "attr_data-view-os" data-view = "true" data-view-title = "data-view-os">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
@@ -118,6 +118,18 @@
 		<div class = "attr-usage">该属性由View.js自动附加，代表当前用户使用的设备的类型等</div>
 		<div class = "attr-value"><span class = "code js no-margin">android</span>：安卓操作系统；<span class = "code js">ios</span>：苹果操作系统</div>
 		<div class = "attr-declare-position">HTML节点</div>
+	</div>
+</section>
+<section id = "attr_data-view-title" data-view = "true" data-view-title = "data-view-title">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>data-view-title</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "attr-usage">用于声明视图标题。声明了视图标题的视图在进入时，View.js将使用视图标题更新文档标题。</div>
+		<div class = "attr-value">任意字符串</div>
+		<div class = "attr-declare-position">任一视图节点</div>
 	</div>
 </section>
 

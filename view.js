@@ -1464,7 +1464,7 @@
 			ORIENTATION_LANDSCAPE = "landscape";
 
 		var Clazz = function(viewId){
-			var layoutAction = function(){},/** 布局动作 */
+			var layoutAction = function doNothing(){},/** 布局动作 */
 			layoutWhenLayoutChanges = true,/** 设备方向改变时，是否执行布局动作 */
 			latestLayoutOrientation = NOT_SUPPLIED;/** 最后一次布局时设备的方向（portrait：竖屏；landscape：横屏1） */
 
