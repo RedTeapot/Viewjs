@@ -1,0 +1,31 @@
+<section id = "api_View-navTo" data-view = "true" data-view-title = "View.navTo(targetViewId[, ops])">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.navTo(targetViewId[, ops])</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">以“压入历史堆栈”的方式切换视图。</div>
+		<div class = "api-params"><ol>
+			<li>targetViewId – {String} 目标视图ID，或伪视图，或视图群组<br/>
+				支持的伪视图：
+				<ul>
+					<li>:back – 回退</li>
+					<li>:forward – 前进</li>
+					<li>:default-view 默认视图</li>
+				</ul>
+				视图群组格式：“~groupName”，如：<span class = "code js">View.navTo(“~profile”)</span>。
+			</li>
+			<li>
+				ops – {JsonObject} 可选。切换动作的控制选项
+				<ul>
+					<li>ops.withAnimation – {Boolean} 是否播放动画。默认为：true</li>
+					<li>ops.params – {JsonObject} 视图参数集合。key：参数名称；value：参数取值。默认为：null</li>
+					<li>ops.options – {JsonObject} 视图选项集合。key：选项名称；value：选项取值。默认为：null</li>
+				</ul>
+			</li>
+		</ol></div>
+		<div class = "api-returns">{Function} – View静态对象</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>

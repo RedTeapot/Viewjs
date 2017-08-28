@@ -1,0 +1,23 @@
+<section id = "api_View-setInitializer" data-view = "true" data-view-title = "View.setInitializer(initializer[, execTime])">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.setInitializer(initializer[, execTime])</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">设置视图初始化器。默认情况下，视图在文档就绪后将自动执行初始化动作，但开发者可以通过该API控制期望的初始化时机。</div>
+		<div class = "api-params"><ol>
+			<li>initializer – {Function} 初始化器。View.js在调用该方法时，将传递给该方法一个操作句柄，以使得开发者在决定可以初始化操作时，调用该句柄。如：
+				<div class = "code js">
+View.setInitializer(function(init){
+	//…
+	setTimeout(init, 1000);
+});
+				</div>
+			</li>
+			<li>execTime – {StringEnum} 初始化器的自动执行时机。domready：DOM就绪后执行；rightnow：立即执行。默认为：domready。</li>
+		</ol></div>
+		<div class = "api-returns">{Function} – View静态对象</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>

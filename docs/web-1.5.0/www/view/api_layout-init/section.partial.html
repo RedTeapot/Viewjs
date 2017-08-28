@@ -1,0 +1,31 @@
+<section id = "api_layout-init" data-view = "true" data-view-title = "View.layout.init(ops)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.layout.init(ops)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">初始化，用于设置View的布局方式等。</div>
+		<div class = "api-params"><ol>
+			<li>ops – {JsonObject} 初始化配置</li>
+			<li>[ops.autoReLayoutWhenResize=true] – {Boolean} 当视口尺寸发生变化时，是否自动重新布局</li>
+			<li>[ops.layoutAsMobilePortrait] – {Function} 手机以竖屏方式使用应用时的布局方式。方法可以接受两个参数：width, height，分别代表View.js计算后，可以用来布局的宽度和高度。如下所示：
+				<div class = "code js">
+View.layout.setExpectedWidthHeightRatio(320 / 568).init({
+	autoReLayoutWhenResize: true,
+	layoutAsPcLandscape: function(width, height){
+	document.body.style.cssText = "width: " + width + "px; height: " + height + "px; margin: 0 auto;";
+	}
+}).doLayout();
+				</div>
+			</li>
+			<li>[ops.layoutAsMobileLandscape] – {Function} 手机以横屏方式使用应用时的布局方式。默认的布局方式为：“宽等于浏览器的宽，高等于浏览器的高”</li>
+			<li>[ops.layoutAsTabletPortrait] – {Function} 平板以竖屏方式使用应用时的布局方式。默认的布局方式为：“宽等于浏览器的宽，高等于浏览器的高”</li>
+			<li>[ops.layoutAsTabletLandscape] – {Function} 平板以横屏方式使用应用时的布局方式。默认的布局方式为：“宽等于浏览器的宽，高等于浏览器的高”</li>
+			<li>[ops.layoutAsPcPortrait] – {Function} PC桌面以竖屏方式使用应用时的布局方式。默认的布局方式为：“宽等于浏览器的宽，高等于浏览器的高”</li>
+			<li>[ops.layoutAsPcLandscape] – {Function} PC桌面以横屏方式使用应用时的布局方式。默认的布局方式为：“高等于浏览器的高，宽高比等于设定的蓝图宽高比”</li>
+		</ol></div>
+		<div class = "api-returns">{JsonObject} – View.layout对象</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>

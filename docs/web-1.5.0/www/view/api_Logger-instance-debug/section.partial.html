@@ -1,0 +1,30 @@
+<section id = "api_Logger-instance-debug" data-view = "true" data-view-title = "logger.debug(template[, placeHolderValues...])">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>logger.debug(template[, placeHolderValues...])</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">
+			以DEBUG级别输出日志，如：
+			<div class = "code js">
+var logger = View.ofId(“detail”).logger;
+
+// -> 0629 09:34:51 [View#detail]: hello, world
+logger.debug("hello, {}", "world");
+
+// -> 0629 09:34:51 [View#detail]: Dynamic contents: true, 12, text {}
+logger.error("Dynamic contents: {}, {}, {} \\{}", true, 12, 'text', 33, 45);
+
+logger.setIsEnabled(false);
+logger.info("No output would be generated");
+			</div>
+		</div>
+		<div class = "api-params"><ol>
+			<li>template – {String} 包含占位符的输出内容模板。占位符：{}，使用“\”进行转义。</li>
+			<li>placeHolderValues – {Any} 分别对应于内容模板中占位符的取值。参数个数不限。</li>
+		</ol></div>
+		<div class = "api-returns">无</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>

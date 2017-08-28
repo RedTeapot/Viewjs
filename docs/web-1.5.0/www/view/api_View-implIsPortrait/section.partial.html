@@ -1,0 +1,17 @@
+<section id = "api_View-implIsPortrait" data-view = "true" data-view-title = "View.implIsPortrait(impl)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.implIsPortrait(impl)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">提供自定义的“判断当前是否是竖屏（或需要以竖屏方式渲染）”方法。方法需要返回布尔值。true：竖屏；false：横屏。开发者在通过API：<span class = "code js">view.setLayoutAction(actionFunc)</span>设置视图的布局动作时，可以通过第二个参数：layoutWhenLayoutChanges设定“外层布局改变时，是否执行布局动作”。如果设置为true，则View.js将监听渲染的布局尺寸的变化，当其发生变化时再次执行开发者提供的布局动作。而布局尺寸的变化，对于移动设备的横竖屏切换动作同样适用。
+			View.js默认使用浏览器的宽度和浏览器的高度判定当前是否处于竖屏模式。开发者可以根据自己的布局方式，调整这一标准，以满足“横竖屏切换时，重新布局”的需要。
+		</div>
+		<div class = "api-params"><ol>
+			<li>impl – {Function} 实现方法</li>
+		</ol></div>
+		<div class = "api-returns">{Function} – View静态对象</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>

@@ -1,0 +1,23 @@
+<section id = "api_layout-getExpectedWidthHeightRatio" data-view = "true" data-view-title = "View.layout.getExpectedWidthHeightRatio()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.layout.getExpectedWidthHeightRatio()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">
+			获取蓝图（亦即，高保真效果图）的宽高比。开发者开发应用时，大多是根据特定效果图进行的。效果图的尺寸通常是固定的尺寸，如以iPhone 5的320 * 568为参考标准的设计二倍图：640 * 1136。而应用的实际运行环境是不固定的，此时开发者可以通过设置蓝图宽高比，以达到更好的表现效果。如：设置蓝图的宽高比为 320 / 568 ≈ 0.56，并设定PC上的布局表现方式，以实现“使用PC浏览手机网页时，使用 [高度等于浏览器高度，宽高比为iPhone5的宽高比] 的尺寸来呈现应用主题内容” 的效果。如下所示：
+			<div class = "code js">
+View.layout.setExpectedWidthHeightRatio(320 / 568).init({
+	autoReLayoutWhenResize: true,
+	layoutAsPcLandscape: function(width, height){
+	document.body.style.cssText = "width: " + width + "px; height: " + height + "px; margin: 0 auto;";
+	}
+}).doLayout();
+			</div>
+		</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{Float} – 设置的蓝图宽高比。View.js默认将其设置为iPhone5的宽高比，亦即：320 / 568。如果开发者通过API：setExpectedWidthHeightRatio(ratio)设置了其它的宽高比，则返回开发者设置的数值。</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
