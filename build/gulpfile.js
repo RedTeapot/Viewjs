@@ -1,6 +1,7 @@
 var gulp = require("gulp"),
 	rename = require('gulp-rename'),
 	uglify = require("gulp-uglify"),
+	gap = require("gulp-append-prepend"),
 	cleanCss = require("gulp-clean-css"),
 	zip = require("gulp-zip"),
 	del = require("del");
@@ -31,6 +32,7 @@ var min = function(){
 	gulp.src('../view.js')
 		.pipe(rename("view." + getVersion() + ".min.js"))
         .pipe(uglify())
+		.pipe(gap.prependText('/**\n * View.js v' + getVersion() + '\n * author: Billy, wmjhappy_ok@126.com\n * license: MIT\n */'))
         .pipe(gulp.dest('../'));
 };
 
@@ -48,6 +50,7 @@ var copyMin = function(version){
 	gulp.src('../view.js')
 		.pipe(rename("view." + version + ".min.js"))
         .pipe(uglify())
+		.pipe(gap.prependText('/**\n * View.js v' + getVersion() + '\n * author: Billy, wmjhappy_ok@126.com\n * license: MIT\n */'))
         .pipe(gulp.dest('../release/' + version));
 
 	gulp.src('../view.css')
