@@ -1,0 +1,1480 @@
+<section id = "api_View-ofId" data-view = "true" data-view-title = "View.ofId(id)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.ofId(id)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">查找给定ID对应的视图实例，如果不存在则创建，否则返回已经存在的实例。</div>
+		<div class = "api-params"><ol>
+			<li>id - {String} 视图编号（或视图ID）</li>
+		</ol></div>
+		<div class = "api-returns">{View} - View实例</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-ifExists" data-view = "true" data-view-title = "View.ifExists(id)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.ifExists(id)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">查找给定ID对应的视图实例，如果不存在则创建，否则返回已经存在的实例。</div>
+		<div class = "api-params"><ol>
+			<li>id - {String} 视图编号（或视图ID）</li>
+		</ol></div>
+		<div class = "api-returns">{ViewArray} – 视图实例数组</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-listAllGroups" data-view = "true" data-view-title = "View.listAllGroups()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.listAllGroups()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">列举当前页面的所有视图群组。如果没有一个视图群组，则返回空数组。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{StringArray} – 视图群组名称数组</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-listAll" data-view = "true" data-view-title = "View.listAll([groupName])">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>listAll([groupName])</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">列举当前页面的所有视图，或隶属于指定名称的群组的所有视图。</div>
+		<div class = "api-params"><ol>
+			<li>groupName – {String} 视图群组名称。可选</li>
+		</ol></div>
+		<div class = "api-returns"></div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-setAsDefault" data-view = "true" data-view-title = "View.setAsDefault(id)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.setAsDefault(id)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">设置指定ID的视图为默认视图。</div>
+		<div class = "api-params"><ol>
+			<li>id – {String} 视图编号（或视图ID）</li>
+		</ol></div>
+		<div class = "api-returns">{Function} – View静态对象</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-isDirectlyAccessible" data-view = "true" data-view-title = "View.isDirectlyAccessible()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.isDirectlyAccessible()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">判断视图默认是否可以直接访问</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">视图默认是否可以直接访问。true：可以直接访问；false：不能直接访问</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-setIsDirectlyAccessible" data-view = "true" data-view-title = "View.setIsDirectlyAccessible(accessible)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.setIsDirectlyAccessible(accessible)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">设置视图默认是否可以直接访问</div>
+		<div class = "api-params"><ol>
+			<li>accessible – {Boolean} 是否可以直接访问</li>
+		</ol></div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{Function} – View静态对象</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-getActiveView" data-view = "true" data-view-title = "View.getActiveView()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.getActiveView()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取当前的活动视图。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{View} - View实例。如果没有视图处于活动状态，则返回null</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-setSwitchAnimation" data-view = "true" data-view-title = "View.setSwitchAnimation(animationFunction)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.setSwitchAnimation(animationFunction)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">设置视图切换动画。注：该方法可以接受4个参数，如：
+			animationFunction(srcElement, tarElement, type, render)。其中srcElement是离开的视图对应的DOM元素，tarElement是进入的视图对应的DOM元素，type是视图的切换方式（浏览器后退：View.SWITCHTYPE_HISTORYBACK, 浏览器前进：View.SWITCHTYPE_HISTORYFORWARD, 压入历史堆栈：View.SWITCHTYPE_VIEWNAV, 替换当前堆栈：View.SWITCHTYPE_VIEWCHANGE），render则是动画播放完毕后，通知View.js重新渲染界面的方法（如果设置了视图切换动画，但没有在动画播放完毕后调用该方法，则界面将不会发生变化。）。
+		</div>
+		<div class = "api-params"><ol>
+			<li>animationFunction - {Function} -视图切换动画</li>
+		</ol></div>
+		<div class = "api-returns">{Function} – View静态对象</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-getDefaultView" data-view = "true" data-view-title = "View.getDefaultView()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.getDefaultView()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取默认视图。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{View} - View实例。如果没有默认视图，则返回null</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-getActiveViewOptions" data-view = "true" data-view-title = "View.getActiveViewOptions()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.getActiveViewOptions()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取当前的活动视图的视图选项集合。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{JsonObject} – 视图选项集合。key：选项名称；value：选项取值。如果当前的活动视图没有视图选项，则返回null</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-getActiveViewOption" data-view = "true" data-view-title = "View.getActiveViewOption(name)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.getActiveViewOption(name)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取当前的活动视图的视图选项中特定名称的选项。</div>
+		<div class = "api-params"><ol>
+			<li>name – {String} 选项名称。区分大小写</li>
+		</ol></div>
+		<div class = "api-returns">{String} – 视图选项取值。如果视图选项为空，或对应名称的选项不存在，则返回null</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-getSwitchAnimation" data-view = "true" data-view-title = "View.getSwitchAnimation()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.getSwitchAnimation()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取设置的视图切换动画。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{Function} – 视图切换动画</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-hasActiveViewOption" data-view = "true" data-view-title = "View.hasActiveViewOption(name)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.hasActiveViewOption(name)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">判断当前的活动视图的视图选项中是否含有特定名称的选项。</div>
+		<div class = "api-params"><ol>
+			<li>name – {String} 选项名称。区分大小写</li>
+		</ol></div>
+		<div class = "api-returns">{Boolean} – 给定名称的视图选项是否存在。如果视图选项为空，或对应名称的选项不存在，则返回false</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-implIsPortrait" data-view = "true" data-view-title = "View.implIsPortrait(impl)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.implIsPortrait(impl)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">提供自定义的“判断当前是否是竖屏（或需要以竖屏方式渲染）”方法。方法需要返回布尔值。true：竖屏；false：横屏。开发者在通过API：<span class = "code js">view.setLayoutAction(actionFunc)</span>设置视图的布局动作时，可以通过第二个参数：layoutWhenLayoutChanges设定“外层布局改变时，是否执行布局动作”。如果设置为true，则View.js将监听渲染的布局尺寸的变化，当其发生变化时再次执行开发者提供的布局动作。而布局尺寸的变化，对于移动设备的横竖屏切换动作同样适用。
+			View.js默认使用浏览器的宽度和浏览器的高度判定当前是否处于竖屏模式。开发者可以根据自己的布局方式，调整这一标准，以满足“横竖屏切换时，重新布局”的需要。
+		</div>
+		<div class = "api-params"><ol>
+			<li>impl – {Function} 实现方法</li>
+		</ol></div>
+		<div class = "api-returns">{Function} – View静态对象</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-navTo" data-view = "true" data-view-title = "View.navTo(targetViewId[, ops])">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.navTo(targetViewId[, ops])</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">以“压入历史堆栈”的方式切换视图。</div>
+		<div class = "api-params"><ol>
+			<li>targetViewId – {String} 目标视图ID，或伪视图，或视图群组<br/>
+				支持的伪视图：
+				<ul>
+					<li>:back – 回退</li>
+					<li>:forward – 前进</li>
+					<li>:default-view 默认视图</li>
+				</ul>
+				视图群组格式：“~groupName”，如：<span class = "code js">View.navTo(“~profile”)</span>。
+			</li>
+			<li>
+				ops – {JsonObject} 可选。切换动作的控制选项
+				<ul>
+					<li>ops.withAnimation – {Boolean} 是否播放动画。默认为：true</li>
+					<li>ops.params – {JsonObject} 视图参数集合。key：参数名称；value：参数取值。默认为：null</li>
+					<li>ops.options – {JsonObject} 视图选项集合。key：选项名称；value：选项取值。默认为：null</li>
+				</ul>
+			</li>
+		</ol></div>
+		<div class = "api-returns">{Function} – View静态对象</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-changeTo" data-view = "true" data-view-title = "View.changeTo(targetViewId[, ops])">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.changeTo(targetViewId[, ops])</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">以“替换当前堆栈”的方式切换视图。</div>
+		<div class = "api-params"><ol>
+			<li>a)	targetViewId – {String}目标视图ID，或视图群组
+				视图群组格式：“~groupName”，如：<span class = "code js">View.changeTo(“~profile”)</span>。
+			</li>
+			<li>
+				ops – {JsonObject} 可选。切换动作的控制选项
+				<ul>
+					<li>ops.withAnimation – {Boolean} 是否播放动画。默认为：true</li>
+					<li>ops.params – {JsonObject} 视图参数集合。key：参数名称；value：参数取值。默认为：null</li>
+					<li>ops.options – {JsonObject} 视图选项集合。key：选项名称；value：选项取值。默认为：null</li>
+				</ul>
+			</li>
+		</ol></div>
+		<div class = "api-returns">{Function} – View静态对象</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-back" data-view = "true" data-view-title = "View.back([ops])">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.back([ops])</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">回退到上一个视图。</div>
+		<div class = "api-params"><ol>
+			<li>
+				ops – {JsonObject} 可选。切换动作的控制选项
+				<ul>
+					<li>ops.withAnimation – {Boolean} 是否播放动画。默认为：true</li>
+					<li>ops.params – {JsonObject} 视图参数集合。key：参数名称；value：参数取值。默认为：null</li>
+				</ul>
+			</li>
+		</ol></div>
+		<div class = "api-returns">{Function} – View静态对象</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-forward" data-view = "true" data-view-title = "View.forward(ops)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.forward(ops)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">前进到下一个视图。</div>
+		<div class = "api-params"><ol>
+			<li>
+				ops – {JsonObject} 可选。切换动作的控制选项
+				<ul>
+					<li>ops.withAnimation – {Boolean} 是否播放动画。默认为：true</li>
+					<li>ops.params – {JsonObject} 视图参数集合。key：参数名称；value：参数取值。默认为：null</li>
+				</ul>
+			</li>
+		</ol></div>
+		<div class = "api-returns">{Function} – View静态对象</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-beforeInit" data-view = "true" data-view-title = "View.beforeInit(callback)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.beforeInit(callback)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">添加“视图将要初始化”监听器。</div>
+		<div class = "api-params"><ol>
+			<li>callback – {Function} 回调方法</li>
+		</ol></div>
+		<div class = "api-returns">{Function} – View静态对象</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-setDocumentTitle" data-view = "true" data-view-title = "View.setDocumentTitle(title)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.setDocumentTitle(title)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">开发者可以设定视图级别的标题，但如果特定视图没有自定义标题，将使用文档标题来呈现。</div>
+		<div class = "api-params"><ol>
+			<li>title – {String} 文档标题</li>
+		</ol></div>
+		<div class = "api-returns">{Function} – View静态对象</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-ready" data-view = "true" data-view-title = "View.ready(callback)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.ready(callback)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">添加“视图就绪”监听器。</div>
+		<div class = "api-params"><ol>
+			<li>callback – {Function} 回调方法</li>
+		</ol></div>
+		<div class = "api-returns">{Function} – View静态对象</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-setInitializer" data-view = "true" data-view-title = "View.setInitializer(initializer[, execTime])">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.setInitializer(initializer[, execTime])</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">设置视图初始化器。默认情况下，视图在文档就绪后将自动执行初始化动作，但开发者可以通过该API控制期望的初始化时机。</div>
+		<div class = "api-params"><ol>
+			<li>initializer – {Function} 初始化器。View.js在调用该方法时，将传递给该方法一个操作句柄，以使得开发者在决定可以初始化操作时，调用该句柄。如：
+				<div class = "code js">
+View.setInitializer(function(init){
+	//…
+	setTimeout(init, 1000);
+});
+				</div>
+			</li>
+			<li>execTime – {StringEnum} 初始化器的自动执行时机。domready：DOM就绪后执行；rightnow：立即执行。默认为：domready。</li>
+		</ol></div>
+		<div class = "api-returns">{Function} – View静态对象</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-on" data-view = "true" data-view-title = "View.on(type, handler)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.on(type, handler)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">添加事件监听器。</div>
+		<div class = "api-params"><ol>
+			<li>type – {String} 事件类型。可以同时传入多个类型，多个类型之间使用英文半角逗号分隔</li>
+			<li>handler – {Function} 事件处理器</li>
+		</ol></div>
+		<div class = "api-returns">无</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-fire" data-view = "true" data-view-title = "View.fire(type, data[, async=true])">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.fire(type, data[, async=true])</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">触发事件。</div>
+		<div class = "api-params"><ol>
+			<li>type – {String} 事件类型。可以同时传入多个类型，多个类型之间使用英文半角逗号分隔</li>
+			<li>data – {Any} 附加的数据。亦即，需要传递至监听器的数据</li>
+			<li>async – {Boolean} 可选，默认为true。是否以异步的方式执行处理器。如果为false，则仅当所有处理器都执行完毕后，下一行代码才会被执行。</li>
+		</ol></div>
+		<div class = "api-returns">无</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-off" data-view = "true" data-view-title = "View.off(type, handler)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.off(type, handler)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">移除事件监听器。</div>
+		<div class = "api-params"><ol>
+			<li>type – {String} 事件类型。可以同时传入多个类型，多个类型之间使用英文半角逗号分隔</li>
+			<li>handler – {Function} 事件处理器</li>
+		</ol></div>
+		<div class = "api-returns">无</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-attrs" data-view = "true" data-view-title = "View属性">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View属性</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<ul>
+			<li><span class = "code js">SWITCHTYPE_HISTORYFORWARD</span> - 常量：视图切换操作类型：由浏览器前进操作触发</li>
+			<li><span class = "code js">SWITCHTYPE_HISTORYBACK</span> - 常量：视图切换操作类型：由浏览器后退操作触发</li>
+			<li><span class = "code js">SWITCHTYPE_VIEWNAV</span> - 常量：视图切换操作类型：由视图切换：View.navTo操作触发</li>
+			<li><span class = "code js">SWITCHTYPE_VIEWCHANGE</span> - 常量：视图切换操作类型：由视图切换：View.changeTo操作触发</li>
+			<li><span class = "code js">currentState</span> - {JsonObject} 当前的历史状态（等同于history.state）</li>
+			<li><span class = "code js">Logger</span> - {Function} 日志输出组件构造器</li>
+			<li><span class = "code js">layout</span> - {JsonObject} 布局工具组件</li>
+		</ul>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-instance-on" data-view = "true" data-view-title = "view.on(type, handler)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>view.on(type, handler)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">添加事件监听器。</div>
+		<div class = "api-params"><ol>
+			<li>type – {String} 事件类型。可以同时传入多个类型，多个类型之间使用英文半角逗号分隔</li>
+			<li>handler – {Function} 事件处理器</li>
+		</ol></div>
+		<div class = "api-returns">无</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-instance-fire" data-view = "true" data-view-title = "view.fire(type, data[, async=true])">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>view.fire(type, data[, async=true])</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">触发事件。</div>
+		<div class = "api-params"><ol>
+			<li>type – {String} 事件类型。可以同时传入多个类型，多个类型之间使用英文半角逗号分隔</li>
+			<li>data – {Any} 附加的数据。亦即，需要传递至监听器的数据</li>
+			<li>async – {Boolean} 可选，默认为true。是否以异步的方式执行处理器。如果为false，则仅当所有处理器都执行完毕后，下一行代码才会被执行。</li>
+		</ol></div>
+		<div class = "api-returns">无</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-instance-off" data-view = "true" data-view-title = "view.off(type, handler)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>view.off(type, handler)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">移除事件监听器。</div>
+		<div class = "api-params"><ol>
+			<li>type – {String} 事件类型。可以同时传入多个类型，多个类型之间使用英文半角逗号分隔</li>
+			<li>handler – {Function} 事件处理器</li>
+		</ol></div>
+		<div class = "api-returns">无</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-instance-getLatestEventData" data-view = "true" data-view-title = "view.getLatestEventData(eventName)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>view.getLatestEventData(eventName)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取指定名称对应的事件最后一次被触发时所附加的数据。</div>
+		<div class = "api-params"><ol>
+			<li>eventName – {String} 事件名称。亦即，事件类型</li>
+		</ol></div>
+		<div class = "api-returns">{Any} – 事件最后一次被触发时所附加的数据。如果该事件尚未被触发，或最后一次触发时没有附加数据，则返回null。</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-instance-getContext" data-view = "true" data-view-title = "view.getContext()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>view.getContext()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取视图上下文。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{JsonObject} – 视图上下文。开发者可以在视图上下文中存取数据。</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-instance-clearContext" data-view = "true" data-view-title = "view.clearContext()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>view.clearContext()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">清空视图上下文。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{View} – View实例</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-instance-getId" data-view = "true" data-view-title = "view.getId()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>view.getId()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取视图编号。视图编号与对应的DOM元素的ID相同。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{String} – 视图编号</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-instance-find" data-view = "true" data-view-title = "view.find(selector)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>view.find(selector)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">在视图内查找特定元素。</div>
+		<div class = "api-params"><ol>
+			<li>selector – {String} CSS选择器。有关选择器的详细语法，请查阅document.querySelector</li>
+		</ol></div>
+		<div class = "api-returns">{HTMLElement} - 找到的元素</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-instance-getDomElement" data-view = "true" data-view-title = "view.getDomElement()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>view.getDomElement()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取视图对应的DOM元素。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{HTMLElement} – 视图对应的DOM元素</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-instance-findAll" data-view = "true" data-view-title = "view.findAll(selector)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>view.findAll(selector)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">在视图内查找多个元素。</div>
+		<div class = "api-params"><ol>
+			<li>selector – {String} CSS选择器。有关选择器的详细语法，请查阅document.querySelectorAll</li>
+		</ol></div>
+		<div class = "api-returns">{NodeList} - 找到的元素列表</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-instance-setLayoutAction" data-view = "true" data-view-title = "view.setLayoutAction(layoutAction[,layoutWhenLayoutChanges=true])">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>view.setLayoutAction(layoutAction[,layoutWhenLayoutChanges=true])</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage"></div>
+		<div class = "api-params"><ol>
+			<li>layoutAction – {Function} 布局方法</li>
+			<li>layoutWhenLayoutChanges – {Boolean} 可选，默认为true。外层布局改变时，是否执行布局动作</li>
+		</ol></div>
+		<div class = "api-returns">{View} – View实例</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-instance-getLayoutAction" data-view = "true" data-view-title = "view.getLayoutAction()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>view.getLayoutAction()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取视图布局方法。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{Function} – 布局方法。如果开发者没有设置，则返回一个空方法。</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-instance-hasParameter" data-view = "true" data-view-title = "view.hasParameter(name)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>view.hasParameter(name)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">判断视图参数中是否含有指定名称的参数。</div>
+		<div class = "api-params"><ol>
+			<li>name – {String} 参数名。区分大小写</li>
+		</ol></div>
+		<div class = "api-returns">{Boolean} – 指定名称的参数是否存在。true：存在；false：不存在</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-instance-getParameter" data-view = "true" data-view-title = "view.getParameter(name)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>view.getParameter(name)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取视图参数中指定名称的参数取值。</div>
+		<div class = "api-params"><ol>
+			<li>name – {String} 参数名。区分大小写。</li>
+		</ol></div>
+		<div class = "api-returns">{Any} - 指定名称对应的参数取值。如果指定名称的参数并不存在，则返回null。如果没有指定参数名，则返回整个参数集合</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-instance-seekParameter" data-view = "true" data-view-title = "view.seekParameter(name)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>view.seekParameter(name)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">搜索指定名称的参数取值。区分大小写。搜索顺序：视图参数 > 视图选项 > 地址栏参数。</div>
+		<div class = "api-params"><ol>
+			<li>name – {String} 参数名。区分大小写</li>
+		</ol></div>
+		<div class = "api-returns">{Any} - 指定名称对应的参数取值。如果指定名称的参数并不存在，则返回null</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-instance-isReady" data-view = "true" data-view-title = "view.isReady()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>view.isReady()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">判断当前视图是否已经就绪。视图在第一次进入后变为“已就绪”。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{Boolean} - 视图是否已经就绪</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-instance-isActive" data-view = "true" data-view-title = "view.isActive()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>view.isActive()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">判断当前视图是否为活动视图。亦即，当前视图是否是用户看到的视图。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{Boolean} – 视图是否是活动视图</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-instance-setAsDirectlyAccessible" data-view = "true" data-view-title = "view.setAsDirectlyAccessible(isDirectlyAccessible)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>view.setAsDirectlyAccessible(isDirectlyAccessible)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">设置当前视图是否允许通过地址栏手动直接访问。</div>
+		<div class = "api-params"><ol>
+			<li>isDirectlyAccessible – {Boolean} 是否可以手动直接访问。</li>
+		</ol></div>
+		<div class = "api-returns">{View} – View实例</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-instance-isDefault" data-view = "true" data-view-title = "view.isDefault()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>view.isDefault()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">判断当前视图是否为默认视图。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{Boolean} - 视图是否为默认视图。声明了data-view-default的属性，且取值赋值为true的视图是默认视图。默认视图只能有一个。</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-instance-isDirectlyAccessible" data-view = "true" data-view-title = "view.isDirectlyAccessible()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>view.isDirectlyAccessible()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">判断当前视图是否可以通过地址栏手动直接访问。如果视图级别上没有配置（包括API设置与DOM属性配置），则使用默认配置。如果默认配置也没有设置，则以“视图不允许直接访问”方式对待。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{Boolean} 视图是否可以通过地址栏手动直接访问。</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-instance-setTitle" data-view = "true" data-view-title = "view.setTitle(title)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>view.setTitle(title)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">设置视图标题。</div>
+		<div class = "api-params"><ol>
+			<li>title – {String} 标题。如果为null，则移除对应的DOM属性，改用网页的默认标题</li>
+		</ol></div>
+		<div class = "api-returns">{View} – View实例</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-instance-getTitle" data-view = "true" data-view-title = "view.getTitle()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>view.getTitle()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取视图标题。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">视图标题。如果当前视图没有自定义标题，则返回null</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-instance-setFallbackViewId" data-view = "true" data-view-title = "view.setFallbackViewId(fallbackViewId)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>view.setFallbackViewId(fallbackViewId)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">设置回退视图。</div>
+		<div class = "api-params"><ol>
+			<li>fallbackViewId – {String} 回退视图ID</li>
+		</ol></div>
+		<div class = "api-returns">{View} – View实例</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-instance-attrs" data-view = "true" data-view-title = "View实例属性">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View实例属性</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<ul>
+			<li><span class = "code js">logger</span> - {Logger} 与特定视图相关联的日志输出组件实例</li>
+			<li><span class = "code js">config</span> - {ViewConfigSet} 与特定视图相关联的配置集合实例</li>
+			<li><span class = "code js">context</span> - {ViewContext} 与特定视图相关联的上下文实例</li>
+		</ul>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-instance-getFallbackView" data-view = "true" data-view-title = "view.getFallbackView()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>view.getFallbackView()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取该视图的回退视图。注：该方法返回的视图，是最终可以呈现出来的视图，不一定等同于设定的回退视图（设定的回退视图也可以是不能直接访问的）。如果所有回退视图都不能直接访问，则呈现默认视图。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{View} – View实例</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_ViewConfigurationSet-instance-get" data-view = "true" data-view-title = "viewConfigurationSet.get(name)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>viewConfigurationSet.get(name)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取指定名称对应的配置项，如果对应的配置项不存在，则自动创建一个。</div>
+		<div class = "api-params"><ol>
+			<li>key – {String} 配置项名称</li>
+		</ol></div>
+		<div class = "api-returns">{ViewConfig} – 配置项实例</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_ViewConfigurationSet-instance-has" data-view = "true" data-view-title = "viewConfigurationSet.has(key)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>viewConfigurationSet.has(key)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">判断特定名称的配置项是否存在。</div>
+		<div class = "api-params"><ol>
+			<li>key – {String} 配置项名称</li>
+		</ol></div>
+		<div class = "api-returns">配置项是否存在</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_ViewConfigurationSet-instance-listAll" data-view = "true" data-view-title = "viewConfigurationSet.listAll()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>viewConfigurationSet.listAll()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">列举所有的配置项名称。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{StringArray} - 视图的配置项名称数组</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_ViewConfigurationSet-instance-applyAll" data-view = "true" data-view-title = "viewConfigurationSet.applyAll()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>viewConfigurationSet.applyAll()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">应用所有配置。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">无</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_ViewConfiguration-instance-getName" data-view = "true" data-view-title = "viewConfiguration.getName()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>viewConfig.getName()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取配置项名称。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{String} – 配置项名称</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_ViewConfiguration-instance-getValue" data-view = "true" data-view-title = "viewConfiguration.getValue(dftValue)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>viewConfig.getValue(dftValue)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取配置项取值。</div>
+		<div class = "api-params"><ol>
+			<li>dftValue – {Any} 配置值没有指定时的默认值</li>
+		</ol></div>
+		<div class = "api-returns">{Any} 配置取值</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_ViewConfiguration-instance-getApplication" data-view = "true" data-view-title = "viewConfiguration.getApplication()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>viewConfiguration.getApplication()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取配置的应用方法。应用方法，是指配置项设定新的取值并应用时，需要执行的动作。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{Function} - 配置项的应用方法。如果没有提供应用方法，则返回null</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_ViewConfiguration-instance-setApplication" data-view = "true" data-view-title = "viewConfiguration.setApplication(application)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>viewConfiguration.setApplication(application)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">设置配置的应用方法。</div>
+		<div class = "api-params"><ol>
+			<li>application – {Function} 配置的应用方法。应用方法，是指配置项设定新的取值并应用时，需要执行的动作。</li>
+		</ol></div>
+		<div class = "api-returns">{ViewConfiguration} – 视图配置项</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_ViewConfiguration-instance-apply" data-view = "true" data-view-title = "viewConfiguration.apply()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>viewConfiguration.apply()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">应用配置。其中this指向的上下文为当前的配置项。如果配置项没有提供应用方法，该方法在将什么也不做（但不会报错）。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{ViewConfiguration} – 视图配置项</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_ViewConfiguration-instance-setValue" data-view = "true" data-view-title = "viewConfiguration.setValue(value[,overrideExistingValue=false])">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>viewConfig.setValue(value[,overrideExistingValue=false])</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">设置配置项取值。</div>
+		<div class = "api-params"><ol>
+			<li>value – {Any} 要设定的配置项取值</li>
+			<li>overrideExistingValue – {Boolean} 可选，默认为false。如果已经设置过配置项取值，是否使用新取值覆盖既有取值。如果配置项取值尚未设置过，则无论是否覆盖，均执行赋值动作</li>
+		</ol></div>
+		<div class = "api-returns">{ViewConfiguration} – 视图配置项</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+
+	<span class = "code js"></span>
+	<span class = "code css"></span>
+	<span class = "code html"></span>
+
+	<div class = "code js"></div>
+	<div class = "code css"></div>
+	<div class = "code html"></div>
+</section>
+<section id = "api_ViewConfiguration-instance-reflectToDom" data-view = "true" data-view-title = "viewConfiguration.reflectToDom()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span></span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">将配置以"data-viewconfig_[name]=[value]"的方式附加至视图的DOM元素上。开发者可以使用该特性，以达到“通过CSS响应配置项”的目的。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{ViewConfiguration} – 视图配置项</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_ViewContext-instance-set" data-view = "true" data-view-title = "viewContext.set(name, value)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>viewContext.set(name, value)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">设置属性。如果相同名称的属性已经存在，则覆盖。</div>
+		<div class = "api-params"><ol>
+			<li>name – {String} 属性名称</li>
+			<li>value – {Any} 属性取值</li>
+		</ol></div>
+		<div class = "api-returns">{ViewContext} – 视图上下文</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_ViewContext-instance-has" data-view = "true" data-view-title = "viewContext.has(name)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>viewContext.has(name)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">判定上下文中是否含有指定名称的键。</div>
+		<div class = "api-params"><ol>
+			<li>name – {String} 名称</li>
+		</ol></div>
+		<div class = "api-returns">指定名称的键是否存在。</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_ViewContext-instance-get" data-view = "true" data-view-title = "viewContext.get(name)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>viewContext.get(name)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取指定名称的属性。如果属性不存在，则返回undefined。</div>
+		<div class = "api-params"><ol>
+			<li>name – {String} 属性名称</li>
+		</ol></div>
+		<div class = "api-returns">{Any} - 属性取值。如果属性不存在，则返回undefined</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_ViewContext-instance-clear" data-view = "true" data-view-title = "viewContext.clear()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>viewContext.clear()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">清空所有属性。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{ViewContext} – 视图上下文</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_ViewContext-instance-remove" data-view = "true" data-view-title = "viewContext.remove(name)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>viewContext.remove(name)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">移除指定名称的属性，并返回既有的属性值。</div>
+		<div class = "api-params"><ol>
+			<li>name – {String} 属性名称</li>
+		</ol></div>
+		<div class = "api-returns">{Any} – 属性的既有取值</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_Logger-ofName" data-view = "true" data-view-title = "Logger.ofName(name)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>Logger.ofName(name)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取指定名称的logger。如果相同名称的实例已经存在，则返回既有的实例。如果不存在，则自动创建一个。</div>
+		<div class = "api-params"><ol>
+			<li>name – {String} 实例名称</li>
+		</ol></div>
+		<div class = "api-returns">{Logger} – 日志输出组件实例</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_Logger-isGloballyEnabled" data-view = "true" data-view-title = "Logger.isGloballyEnabled()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>Logger.isGloballyEnabled()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">判断组件的全局状态：是否被启用。如果组件实例被禁用，或全局状态被警用，则任何日志输出都将不可见。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{Boolean} - 是否被启用</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_Logger-setIsGloballyEnabled" data-view = "true" data-view-title = "Logger.setIsGloballyEnabled(isEnabled)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>Logger.setIsGloballyEnabled(isEnabled)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">设置组件的全局状态：是否被启用。</div>
+		<div class = "api-params"><ol>
+			<li>isEnabled – {Boolean} 是否被启用</li>
+		</ol></div>
+		<div class = "api-returns">无</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_Logger-instance-isEnabled" data-view = "true" data-view-title = "logger.isEnabled()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>logger.isEnabled()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">判断日志组件是否启用。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{Boolean} - 日志组件是否启用</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_Logger-instance-setIsEnabled" data-view = "true" data-view-title = "logger.setIsEnabled(isEnabled)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>logger.setIsEnabled(isEnabled)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">设置日志输出的启用状态。</div>
+		<div class = "api-params"><ol>
+			<li>isEnabled – {Boolean} 是否启用</li>
+		</ol></div>
+		<div class = "api-returns">{Logger} – 日志组件实例</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_Logger-instance-debug" data-view = "true" data-view-title = "logger.debug(template[, placeHolderValues...])">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>logger.debug(template[, placeHolderValues...])</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">
+			以DEBUG级别输出日志，如：
+			<div class = "code js">
+var logger = View.ofId(“detail”).logger;
+
+// -> 0629 09:34:51 [View#detail]: hello, world
+logger.debug("hello, {}", "world");
+
+// -> 0629 09:34:51 [View#detail]: Dynamic contents: true, 12, text {}
+logger.error("Dynamic contents: {}, {}, {} \\{}", true, 12, 'text', 33, 45);
+
+logger.setIsEnabled(false);
+logger.info("No output would be generated");
+			</div>
+		</div>
+		<div class = "api-params"><ol>
+			<li>template – {String} 包含占位符的输出内容模板。占位符：{}，使用“\”进行转义。</li>
+			<li>placeHolderValues – {Any} 分别对应于内容模板中占位符的取值。参数个数不限。</li>
+		</ol></div>
+		<div class = "api-returns">无</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_Logger-instance-getName" data-view = "true" data-view-title = "logger.getName()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>logger.getName()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取日志组件名称。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{String} - 日志组件名称</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_Logger-instance-info" data-view = "true" data-view-title = "logger.info(template[, placeHolderValues…])">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>logger.info(template[, placeHolderValues…])</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">以INFO级别输出日志。</div>
+		<div class = "api-params"><ol>
+			<li>template– {String} 包含占位符的输出内容模板。占位符：{}，使用“\”进行转义。</li>
+			<li>placeHolderValues – {Any} 分别对应于内容模板中占位符的取值。参数个数不限。</li>
+		</ol></div>
+		<div class = "api-returns">无</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_Logger-instance-error" data-view = "true" data-view-title = "logger.error(template[, placeHolderValues…])">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>logger.error(template[, placeHolderValues…])</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">以ERROR级别输出日志。</div>
+		<div class = "api-params"><ol>
+			<li>template– {String} 包含占位符的输出内容模板。占位符：{}，使用“\”进行转义。</li>
+			<li>placeHolderValues – {Any} 分别对应于内容模板中占位符的取值。参数个数不限。</li>
+		</ol></div>
+		<div class = "api-returns">无</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_Logger-instance-warn" data-view = "true" data-view-title = "logger.warn(template[, placeHolderValues…])">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>logger.warn(template[, placeHolderValues…])</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">以WARN级别输出日志。</div>
+		<div class = "api-params"><ol>
+			<li>template– {String} 包含占位符的输出内容模板。占位符：{}，使用“\”进行转义。</li>
+			<li>placeHolderValues – {Any} 分别对应于内容模板中占位符的取值。参数个数不限。</li>
+		</ol></div>
+		<div class = "api-returns">无</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_Logger-instance-log" data-view = "true" data-view-title = "logger.log(template[, placeHolderValues…])">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>logger.log(template[, placeHolderValues…])</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">输出日志。</div>
+		<div class = "api-params"><ol>
+			<li>template– {String} 包含占位符的输出内容模板。占位符：{}，使用“\”进行转义。</li>
+			<li>placeHolderValues – {Any} 分别对应于内容模板中占位符的取值。参数个数不限。</li>
+		</ol></div>
+		<div class = "api-returns">无</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_layout-getLayoutWidth" data-view = "true" data-view-title = "View.layout.getLayoutWidth()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.layout.getLayoutWidth()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取布局宽度。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{Integer} – 实际布局的宽度</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_layout-getLayoutHeight" data-view = "true" data-view-title = "View.layout.getLayoutHeight()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.layout.getLayoutHeight()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取布局高度。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{Integer} – 实际布局的高度</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_layout-getBrowserWidth" data-view = "true" data-view-title = "View.layout.getBrowserWidth()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.layout.getBrowserWidth()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取浏览器宽度。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{Integer} – 获取当前浏览器的宽度</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_layout-isLayoutPortrait" data-view = "true" data-view-title = "View.layout.isLayoutPortrait()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.layout.isLayoutPortrait()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">判断当前布局方向是否是竖屏方向（宽小于等于高）。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{Boolean} - 当前布局方向是否是竖屏方向（宽小于等于高）</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_layout-isLayoutLandscape" data-view = "true" data-view-title = "View.layout.isLayoutLandscape()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.layout.isLayoutLandscape()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">判断当前布局方向是否是横屏方向（宽大于高）。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{Boolean} - 当前布局方向是否是横屏方向（宽大于高）</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_layout-getBrowserHeight" data-view = "true" data-view-title = "View.layout.getBrowserHeight()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.layout.getBrowserHeight()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取浏览器高度。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{Integer} – 获取当前浏览器的高度</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_layout-isBrowserPortrait" data-view = "true" data-view-title = "View.layout.isBrowserPortrait()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.layout.isBrowserPortrait()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">判断当前浏览器方向是否是竖屏方向。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{Boolean} - 当前浏览器方向是否是竖屏方向</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_layout-isBrowserLandscape" data-view = "true" data-view-title = "View.layout.isBrowserLandscape()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.layout.isBrowserLandscape()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">判断当前浏览器方向是否是横屏方向。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{Boolean} - 当前浏览器方向是否是横屏方向</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_layout-getLayoutWidthHeightRatio" data-view = "true" data-view-title = "View.layout.getLayoutWidthHeightRatio()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.layout.getLayoutWidthHeightRatio()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取当前布局尺寸的宽高比。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{Float} - 当前布局尺寸的宽高比</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_layout-getBrowserWidthHeightRatio" data-view = "true" data-view-title = "View.layout.getBrowserWidthHeightRatio()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.layout.getBrowserWidthHeightRatio()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取当前浏览器窗口尺寸的宽高比。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{Float} - 当前浏览器窗口尺寸的宽高比</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_layout-getExpectedWidthHeightRatio" data-view = "true" data-view-title = "View.layout.getExpectedWidthHeightRatio()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.layout.getExpectedWidthHeightRatio()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">
+			获取蓝图（亦即，高保真效果图）的宽高比。开发者开发应用时，大多是根据特定效果图进行的。效果图的尺寸通常是固定的尺寸，如以iPhone 5的320 * 568为参考标准的设计二倍图：640 * 1136。而应用的实际运行环境是不固定的，此时开发者可以通过设置蓝图宽高比，以达到更好的表现效果。如：设置蓝图的宽高比为 320 / 568 ≈ 0.56，并设定PC上的布局表现方式，以实现“使用PC浏览手机网页时，使用 [高度等于浏览器高度，宽高比为iPhone5的宽高比] 的尺寸来呈现应用主题内容” 的效果。如下所示：
+			<div class = "code js">
+View.layout.setExpectedWidthHeightRatio(320 / 568).init({
+	autoReLayoutWhenResize: true,
+	layoutAsPcLandscape: function(width, height){
+	document.body.style.cssText = "width: " + width + "px; height: " + height + "px; margin: 0 auto;";
+	}
+}).doLayout();
+			</div>
+		</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{Float} – 设置的蓝图宽高比。View.js默认将其设置为iPhone5的宽高比，亦即：320 / 568。如果开发者通过API：setExpectedWidthHeightRatio(ratio)设置了其它的宽高比，则返回开发者设置的数值。</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_layout-setExpectedWidthHeightRatio" data-view = "true" data-view-title = "View.layout.setExpectedWidthHeightRatio(ratio)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.layout.setExpectedWidthHeightRatio(ratio)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">设置蓝图（亦即，高保真效果图）的宽高比。</div>
+		<div class = "api-params"><ol>
+			<li>ratio – {Float} 蓝图的宽高比</li>
+		</ol></div>
+		<div class = "api-returns">{JsonObject} – View.layout对象</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_layout-doLayout" data-view = "true" data-view-title = "View.layout.doLayout()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.layout.doLayout()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">根据初始化时设置的各个模式下的浏览方式，结合设备当前的浏览方向和设备类型自动进行布局。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{JsonObject} – View.layout对象</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_layout-init" data-view = "true" data-view-title = "View.layout.init(ops)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.layout.init(ops)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">初始化，用于设置View的布局方式等。</div>
+		<div class = "api-params"><ol>
+			<li>ops – {JsonObject} 初始化配置</li>
+			<li>[ops.autoReLayoutWhenResize=true] – {Boolean} 当视口尺寸发生变化时，是否自动重新布局</li>
+			<li>[ops.layoutAsMobilePortrait] – {Function} 手机以竖屏方式使用应用时的布局方式。方法可以接受两个参数：width, height，分别代表View.js计算后，可以用来布局的宽度和高度。如下所示：
+				<div class = "code js">
+View.layout.setExpectedWidthHeightRatio(320 / 568).init({
+	autoReLayoutWhenResize: true,
+	layoutAsPcLandscape: function(width, height){
+	document.body.style.cssText = "width: " + width + "px; height: " + height + "px; margin: 0 auto;";
+	}
+}).doLayout();
+				</div>
+			</li>
+			<li>[ops.layoutAsMobileLandscape] – {Function} 手机以横屏方式使用应用时的布局方式。默认的布局方式为：“宽等于浏览器的宽，高等于浏览器的高”</li>
+			<li>[ops.layoutAsTabletPortrait] – {Function} 平板以竖屏方式使用应用时的布局方式。默认的布局方式为：“宽等于浏览器的宽，高等于浏览器的高”</li>
+			<li>[ops.layoutAsTabletLandscape] – {Function} 平板以横屏方式使用应用时的布局方式。默认的布局方式为：“宽等于浏览器的宽，高等于浏览器的高”</li>
+			<li>[ops.layoutAsPcPortrait] – {Function} PC桌面以竖屏方式使用应用时的布局方式。默认的布局方式为：“宽等于浏览器的宽，高等于浏览器的高”</li>
+			<li>[ops.layoutAsPcLandscape] – {Function} PC桌面以横屏方式使用应用时的布局方式。默认的布局方式为：“高等于浏览器的高，宽高比等于设定的蓝图宽高比”</li>
+		</ol></div>
+		<div class = "api-returns">{JsonObject} – View.layout对象</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_layout-addLayoutChangeListener" data-view = "true" data-view-title = "View.layout.addLayoutChangeListener(listener)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.layout.addLayoutChangeListener(listener)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">添加“布局发生改变”事件监听器。</div>
+		<div class = "api-params"><ol>
+			<li>
+				listener – {Function} 监听器。方法可以接受4个参数：layoutWidth, layoutHeight, browserWidth, browserHeight，分别代表布局宽度、布局高度、浏览器宽度，浏览器高度。如：
+				<div class = "code js">
+View.layout.addLayoutChangeListener(function(layoutWidth, layoutHeight, browserWidth, browserHeight){
+	//…
+});
+				</div>
+			</li>
+		</ol></div>
+		<div class = "api-returns">{JsonObject} – View.layout对象</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_layout-removeLayoutChangeListener" data-view = "true" data-view-title = "View.layout.removeLayoutChangeListener(listener)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.layout.removeLayoutChangeListener(listener)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">移除“布局发生改变”事件监听器。</div>
+		<div class = "api-params"><ol>
+			<li>
+				listener – {Function} 监听器。方法可以接受4个参数：layoutWidth, layoutHeight, browserWidth, browserHeight，分别代表布局宽度、布局高度、浏览器宽度，浏览器高度。如：
+				<div class = "code js">
+View.layout.addLayoutChangeListener(function(layoutWidth, layoutHeight, browserWidth, browserHeight){
+	//…
+});
+				</div>
+			</li>
+		</ol></div>
+		<div class = "api-returns">{JsonObject} – View.layout对象</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>

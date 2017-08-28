@@ -1,4 +1,7 @@
-var gulp = require("gulp"),
+var fs = require("fs"),
+	path = require("path"),
+	Transform = require("stream").Transform,
+	gulp = require("gulp"),
 	rename = require('gulp-rename'),
 	uglify = require("gulp-uglify"),
 	gap = require("gulp-append-prepend"),
@@ -7,6 +10,22 @@ var gulp = require("gulp"),
 	del = require("del");
 
 var version = "1.5.0";
+
+/**
+ * 获取命令行中指定名称的参数
+ * @param {String} name 参数名。区分大小写
+ */
+var getParameter = function(name){
+	var args = process.argv;
+	var index = args.indexOf("--" + name);
+	if(-1 == index)
+		return undefined;
+
+	if(args.length == index + 1)
+		return null;
+
+	return args[index + 1];
+};
 
 /** 获取当前时间 */
 var getTime = function(){
@@ -36,27 +55,33 @@ var min = function(){
         .pipe(gulp.dest('../'));
 };
 
-var copySource = function(version){
+var copySource = function(version, target){
+	if(arguments.length < 2)
+		target = '../release/' + version;
+	
 	gulp.src('../view.js')
 		.pipe(rename("view." + version + ".js"))
-        .pipe(gulp.dest('../release/' + version));
+        .pipe(gulp.dest(target));
 	
 	gulp.src('../view.css')
 		.pipe(rename("view." + version + ".css"))
-        .pipe(gulp.dest('../release/' + version));
+        .pipe(gulp.dest(target));
 };
 
-var copyMin = function(version){
+var copyMin = function(version, target){
+	if(arguments.length < 2)
+		target = '../release/' + version;
+	
 	gulp.src('../view.js')
 		.pipe(rename("view." + version + ".min.js"))
         .pipe(uglify())
-		.pipe(gap.prependText('/**\n * View.js v' + getVersion() + '\n * author: Billy, wmjhappy_ok@126.com\n * license: MIT\n */'))
-        .pipe(gulp.dest('../release/' + version));
+		.pipe(gap.prependText('/**\n * View.js v' + version + '\n * author: Billy, wmjhappy_ok@126.com\n * license: MIT\n */'))
+        .pipe(gulp.dest(target));
 
 	gulp.src('../view.css')
 		.pipe(rename("view." + version + ".min.css"))
         .pipe(cleanCss())
-        .pipe(gulp.dest('../release/' + version));
+        .pipe(gulp.dest(target));
 };
 
 var stage = function(){
@@ -65,5 +90,43 @@ var stage = function(){
 	copyMin(version);
 };
 
+var releaseToDoc = function(){
+	var version = getVersion();
+
+	var docRoot = '../docs/web/www/';
+	var dist = docRoot + "/dist/";
+	
+	var zipFileName = "viewjs-" + version + ".zip",
+		zipStream = zip(zipFileName);
+
+	del.sync(dist + "/**/*", {force: true});
+	gulp.src('../view.js')
+		.pipe(rename("view." + version + ".min.js"))
+        .pipe(uglify())
+		.pipe(gap.prependText('/**\n * View.js v' + version + '\n * author: Billy, wmjhappy_ok@126.com\n * license: MIT\n */'))
+        .pipe(zipStream);
+	gulp.src('../view.css')
+		.pipe(rename("view." + version + ".min.css"))
+        .pipe(cleanCss())
+        .pipe(zipStream);
+	
+	zipStream.on("error", function(e){
+		console.error(e, e.stack);
+	});
+	zipStream.pipe(gulp.dest(dist));
+	
+	/* 创建版本文件 */
+	var ws = fs.createWriteStream(docRoot + "/main/js/page/define.version.js");
+	ws.write(';(function(){\n	window.viewJsNewestVersion = "' + version + '";\n	window.viewJsNewestZipFile = "../../dist/' + zipFileName + '";\n})();');
+	ws.end();
+};
+
+var cleanup = function(){
+	var target = getParameter("target");
+	del.sync(target, {force: true});
+};
+
 gulp.task('min', min);
 gulp.task('stage', stage);
+gulp.task('releaseToDoc', releaseToDoc);
+gulp.task('cleanup', cleanup);
