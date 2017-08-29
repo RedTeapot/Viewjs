@@ -56,8 +56,7 @@ header{
 			background: #6acba8;
 			margin-top: 0.1rem;
 			border-radius: 0.5rem;
-			line-height: 2em;
-			padding: 0 0.1rem 0 0.3rem;
+			padding: 0.05rem 0.1rem 0.05rem 0.3rem;
 			background-image: url(../../common/img/itm.png);
 			background-repeat: no-repeat;
 			background-position: 0.1rem center;
@@ -67,6 +66,8 @@ header{
 
 	.menu-items{
 		font-family: Consolas, sans-serif, serif;
+		word-wrap: break-word;
+		word-break: break-all;
 	}
 
 	.item{
