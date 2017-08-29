@@ -6,6 +6,7 @@ var fs = require("fs"),
 	uglify = require("gulp-uglify"),
 	gap = require("gulp-append-prepend"),
 	cleanCss = require("gulp-clean-css"),
+	gulpif = require("gulp-if"),
 	zip = require("gulp-zip"),
 	del = require("del");
 
@@ -94,30 +95,22 @@ var releaseToDoc = function(){
 	var version = getVersion();
 
 	var docRoot = '../docs/web/www/';
-	var dist = docRoot + "/dist/";
-	
-	var zipFileName = "viewjs-" + version + ".zip",
-		zipStream = zip(zipFileName);
+	var dist = docRoot + "/dist/",
+		zipFileName = "viewjs-" + version + ".zip";
 
 	del.sync(dist + "/**/*", {force: true});
-	gulp.src('../view.js')
-		.pipe(rename("view." + version + ".min.js"))
-        .pipe(uglify())
-		.pipe(gap.prependText('/**\n * View.js v' + version + '\n * author: Billy, wmjhappy_ok@126.com\n * license: MIT\n */'))
-        .pipe(zipStream);
-	gulp.src('../view.css')
-		.pipe(rename("view." + version + ".min.css"))
-        .pipe(cleanCss())
-        .pipe(zipStream);
-	
-	zipStream.on("error", function(e){
-		console.error(e, e.stack);
-	});
-	zipStream.pipe(gulp.dest(dist));
+	gulp.src(['../view.js', '../view.css'])
+		.pipe(gulpif("*.js", rename("view." + version + ".min.js")))
+		.pipe(gulpif("*.js", uglify()))
+		.pipe(gulpif("*.js", gap.prependText('/**\n * View.js v' + version + '\n * author: Billy, wmjhappy_ok@126.com\n * license: MIT\n */')))
+		.pipe(gulpif("*.css", rename("view." + version + ".min.css")))
+		.pipe(gulpif("*.css", cleanCss()))
+		.pipe(zip(zipFileName))
+		.pipe(gulp.dest(dist));
 	
 	/* 创建版本文件 */
-	var ws = fs.createWriteStream(docRoot + "/main/js/page/define.version.js");
-	ws.write(';(function(){\n	window.viewJsNewestVersion = "' + version + '";\n	window.viewJsNewestZipFile = "../../dist/' + zipFileName + '";\n})();');
+	var ws = fs.createWriteStream(docRoot + "js/page/define.version.js");
+	ws.write(';(function(){\n	window.viewJsNewestVersion = "' + version + '";\n	window.viewJsNewestZipFile = "dist/' + zipFileName + '";\n})();');
 	ws.end();
 };
 

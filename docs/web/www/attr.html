@@ -6,9 +6,9 @@
 	<meta name = "msapplication-tap-highlight" content = "no" />
 	<meta name = "viewport" content = "user-scalable = no, initial-scale = 1, maximum-scale = 1, minimum-scale = 1, width = device-width" />
 	
-	<!-- build:css ../css/attr.html.allinone.css -->
-	<link rel = "stylesheet" href="../js/lib/view/view.1.5.0-B201708251200.min.css"/>
-	<link rel = "stylesheet" href="../css/attr.css"/>
+	<!-- build:css css/attr.html.allinone.css -->
+	<link rel = "stylesheet" href="js/lib/view/view.1.5.0-B201708251200.min.css"/>
+	<link rel = "stylesheet" href="css/attr.css"/>
 	<!-- endbuild -->
 </head>
 <body>
@@ -25,19 +25,6 @@
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
-<section id = "attr_data-view-group" data-view = "true" data-view-title = "attr_data-view-group">
-	<header>
-		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>attr_data-view-group</span>
-		<a class = "menu"></a>
-	</header>
-	<div class = "body">
-		<div class = "attr-usage">用于指明视图所隶属的视图群组。</div>
-		<div class = "attr-value">任意字符串</div>
-		<div class = "attr-declare-position">任一视图节点</div>
-	</div>
-	<footer><div class = "btn next">下一节</div></footer>
-</section>
 <section id = "attr_data-view-default" data-view = "true" data-view-title = "data-view-default">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
@@ -48,6 +35,32 @@
 		<div class = "attr-usage">标明特定视图为默认视图。默认视图是指页面打开后将要呈现的第一个视图。如果没有指定默认视图，则最终呈现DOM顺序上的第一个视图。</div>
 		<div class = "attr-value"><span class = "code js no-margin">true</span></div>
 		<div class = "attr-declare-position">任一视图节点（声明了<span class = "code html">data-view</span>属性，且取值为<span class = "code js">true</span>的DOM节点）</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "attr_data-view-directly-accessible" data-view = "true" data-view-title = "data-view-directly-accessible">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>data-view-directly-accessible</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "attr-usage">配置视图是否可以直接访问。一个视图是否能够直接访问（直接访问，是指是否允许用户以手动更改地址栏中地址的方式主动访问特定视图）</div>
+		<div class = "attr-value"><span class = "code js no-margin">true</span>：可以通过直接访问；<span class = "code js">false</span>：不能直接访问。</div>
+		<div class = "attr-declare-position">HTML节点，或任一视图节点</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "attr_data-view-group" data-view = "true" data-view-title = "attr_data-view-group">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>attr_data-view-group</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "attr-usage">用于指明视图所隶属的视图群组。</div>
+		<div class = "attr-value">任意字符串</div>
+		<div class = "attr-declare-position">任一视图节点</div>
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
@@ -64,16 +77,16 @@
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
-<section id = "attr_data-view-directly-accessible" data-view = "true" data-view-title = "data-view-directly-accessible">
+<section id = "attr_data-view-rel" data-view = "true" data-view-title = "data-view-rel">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>data-view-directly-accessible</span>
+		<span>data-view-rel</span>
 		<a class = "menu"></a>
 	</header>
 	<div class = "body">
-		<div class = "attr-usage">配置视图是否可以直接访问。一个视图是否能够直接访问（直接访问，是指是否允许用户以手动更改地址栏中地址的方式主动访问特定视图）</div>
-		<div class = "attr-value"><span class = "code js no-margin">true</span>：可以通过直接访问；<span class = "code js">false</span>：不能直接访问。</div>
-		<div class = "attr-declare-position">HTML节点，或任一视图节点</div>
+		<div class = "attr-usage">响应用户触摸，跳转到指定的目标位置。支持伪视图和视图群组。支持视图选项，如：<span class = "code html">&lt;span data-view-rel=”category!id=1”&gt;分类&lt;/span&gt;</span></div>
+		<div class = "attr-value">任一存在的视图编号，亦即对应的DOM元素的ID；或伪视图：":back"（后退），":forward"（前进），":default-view"（默认视图）；或视图群组；或其它链接。当配置为视图群组时，需要添加特殊符号：“~”，如：<span class = "code html">&lt;span data-view-rel="~category"&gt;分类&lt;/span&gt;</span>。当配置为其它链接地址时，需要添加特殊符号：“@”，如：<span class = "code html">&lt;span data-view-rel="@index.html"&gt;首页&lt;/span&gt;</span>，<span class = "code html">&lt;span data-view-rel="@http://www.google.com.tw"&gt;谷歌&lt;/span&gt;</span>。</div>
+		<div class = "attr-declare-position">任一DOM节点</div>
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
@@ -100,19 +113,6 @@
 		<div class = "attr-usage">声明通过<span class = "code html">data-view-rel</span>属性切换视图时使用的视图切换类型。</div>
 		<div class = "attr-value"><span class = "code html no-margin">nav</span>：以"压入历史堆栈"的方式切换；<span class = "code html">change</span>：以"替换当前堆栈"的方式切换</div>
 		<div class = "attr-declare-position">任一声明了<span class = "code html">data-view-rel</span>属性的DOM节点</div>
-	</div>
-	<footer><div class = "btn next">下一节</div></footer>
-</section>
-<section id = "attr_data-view-rel" data-view = "true" data-view-title = "data-view-rel">
-	<header>
-		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>data-view-rel</span>
-		<a class = "menu"></a>
-	</header>
-	<div class = "body">
-		<div class = "attr-usage">响应用户触摸，跳转到指定的目标位置。支持伪视图和视图群组。支持视图选项，如：<span class = "code html">&lt;span data-view-rel=”category!id=1”&gt;分类&lt;/span&gt;</span></div>
-		<div class = "attr-value">任一存在的视图编号，亦即对应的DOM元素的ID；或伪视图：":back"（后退），":forward"（前进），":default-view"（默认视图）；或视图群组；或其它链接。当配置为视图群组时，需要添加特殊符号：“~”，如：<span class = "code html">&lt;span data-view-rel="~category"&gt;分类&lt;/span&gt;</span>。当配置为其它链接地址时，需要添加特殊符号：“@”，如：<span class = "code html">&lt;span data-view-rel="@index.html"&gt;首页&lt;/span&gt;</span>，<span class = "code html">&lt;span data-view-rel="@http://www.google.com.tw"&gt;谷歌&lt;/span&gt;</span>。</div>
-		<div class = "attr-declare-position">任一DOM节点</div>
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
@@ -143,13 +143,15 @@
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
 
-	<script type = "text/javascript" src = "../js/lib/view/view.1.5.0-B201708251200.min.js"></script>
-	<script type = "text/javascript" src = "../js/lib/hammer.min.js"></script>
+	<!-- build:js attr.html.allinone.js -->
+	<script type = "text/javascript" src = "js/lib/view/view.1.5.0-B201708251200.min.js"></script>
+	<script type = "text/javascript" src = "js/lib/hammer.min.js"></script>
 
-	<script type = "text/javascript" src = "../js/page/define.version.js"></script>
-	<script type = "text/javascript" src = "../js/page/init.layout.js"></script>
-	<script type = "text/javascript" src = "../js/page/animation.js"></script>
+	<script type = "text/javascript" src = "js/page/define.version.js"></script>
+	<script type = "text/javascript" src = "js/page/init.layout.js"></script>
+	<script type = "text/javascript" src = "js/page/animation.js"></script>
 
-	<script type = "text/javascript" src = "../js/page/attr/init.generate-menu.js"></script>
+	<script type = "text/javascript" src = "js/page/attr/init.generate-menu.js"></script>
+	<!-- endbuild -->
 </body>
 </html>

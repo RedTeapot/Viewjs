@@ -493,15 +493,15 @@ a { text-decoration: none; color: inherit; }
 
 header { position: relative; height: 0.44rem; line-height: 0.44rem; color: white; text-align: center; font-size: 0.15rem; background-color: #29b482; }
 
-header .nav-back { position: absolute; left: 0; top: 0; display: inline-block; width: 0.54rem; height: 100%; background-image: url(../../common/img/back.png); background-repeat: no-repeat; background-position: center; background-size: 0.2rem auto; }
+header .nav-back { position: absolute; left: 0; top: 0; display: inline-block; width: 0.54rem; height: 100%; background-image: url(../img/back.png); background-repeat: no-repeat; background-position: center; background-size: 0.2rem auto; }
 
-header .menu { position: absolute; right: 0; top: 0; display: inline-block; width: 0.54rem; height: 100%; background-image: url(../../common/img/menu.png); background-repeat: no-repeat; background-position: center; background-size: 0.2rem auto; }
+header .menu { position: absolute; right: 0; top: 0; display: inline-block; width: 0.54rem; height: 100%; background-image: url(../img/menu.png); background-repeat: no-repeat; background-position: center; background-size: 0.2rem auto; }
 
 .viewjs-doc-menu { position: absolute; right: 0; top: 0; background: rgba(0, 0, 0, 0.8); color: white; width: 70%; height: 100%; padding: 1em; box-sizing: border-box; overflow: auto; -webkit-overflow-scrolling: touch; -webkit-animation: show2left ease 0.5s; -moz-animation: show2left ease 0.5s; -o-animation: show2left ease 0.5s; animation: show2left ease 0.5s; }
 
-.viewjs-doc-menu nav span { display: block; background: #6acba8; margin-top: 0.1rem; border-radius: 0.5rem; line-height: 2em; padding: 0 0.1rem 0 0.3rem; background-image: url(../../common/img/itm.png); background-repeat: no-repeat; background-position: 0.1rem center; background-size: auto 1.2em; }
+.viewjs-doc-menu nav span { display: block; background: #6acba8; margin-top: 0.1rem; border-radius: 0.5rem; padding: 0.05rem 0.1rem 0.05rem 0.3rem; background-image: url(../img/itm.png); background-repeat: no-repeat; background-position: 0.1rem center; background-size: auto 1.2em; }
 
-.viewjs-doc-menu .menu-items { font-family: Consolas, sans-serif, serif; }
+.viewjs-doc-menu .menu-items { font-family: Consolas, sans-serif, serif; word-wrap: break-word; word-break: break-all; }
 
 .viewjs-doc-menu .item { padding: 1em 0; border-bottom: solid 1px #5b5b5b; }
 

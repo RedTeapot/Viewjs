@@ -86,7 +86,7 @@ gulp.task("concatHtml", function(){
 		if(null == root)
 			root = getBuildVersion(false);
 
-		var c = root + "/main/html/",
+		var c = root + "/",
 			v = root + "/view/";
 
 		var stream_begin = gulp.src(c + htmlFileName + "_begin.partial.html"),
@@ -116,7 +116,7 @@ gulp.task("compileScss", function(root){
 	if(null == root)
 		root = getBuildVersion(false);
 
-	var loc = root + "/main/css/";
+	var loc = root + "/css/";
 	var commonPaths = [
 		loc,
 	];
@@ -137,7 +137,7 @@ gulp.task("buildHtml", function(root){
 	if(null == root)
 		root = getBuildVersion(false);
 
-	var p = root + "/main/html/";
+	var p = root;
 	gulp.src(p + "/!(*.partial.html|*.jsref.html)")
 		.pipe(gulpif("*.html", buildHtml()))
 		.pipe(gulpif("*.js", uglify({compress: true})))
@@ -150,9 +150,9 @@ gulp.task("buildHtml", function(root){
  */
 gulp.task("delUseless", function(){
 	var target = getBuildVersion(false);
-	del(target + "/main/css/**/*.scss");
+	del(target + "/css/**/*.scss");
 	del(target + "/view/");
-	del(target + "/main/html/**/*.partial.html");
+	del(target + "/**/*.partial.html");
 });
 
 /**

@@ -1,4 +1,5 @@
 var htmlViewMapping = {
+	"index": [],
 	"doc": [
 		"doc_what-is-viewjs",
 		"doc_how-to-use",
