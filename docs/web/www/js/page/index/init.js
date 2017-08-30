@@ -7,4 +7,6 @@
 
 	versionObj.innerHTML = window.viewJsNewestVersion;
 	downloadObj.setAttribute("data-view-rel", "@" + window.viewJsNewestZipFile);
+
+	View.layout.doLayout();
 })();

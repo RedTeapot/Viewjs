@@ -85,14 +85,16 @@ var copyMin = function(version, target){
         .pipe(gulp.dest(target));
 };
 
-var stage = function(){
-	var version = getVersion();
+var stage = function(version){
+	if(arguments.length < 1)
+		version = getVersion();
 	copySource(version);
 	copyMin(version);
 };
 
-var releaseToDoc = function(){
-	var version = getVersion();
+var releaseToDoc = function(version){
+	if(arguments.length < 1)
+		version = getVersion();
 
 	var docRoot = '../docs/web/www/';
 	var dist = docRoot + "/dist/",
@@ -114,6 +116,12 @@ var releaseToDoc = function(){
 	ws.end();
 };
 
+var stageAndreleaseToDoc = function(){
+	var version = getVersion();
+	stage(version);
+	releaseToDoc(version);
+};
+
 var cleanup = function(){
 	var target = getParameter("target");
 	del.sync(target, {force: true});
@@ -122,4 +130,5 @@ var cleanup = function(){
 gulp.task('min', min);
 gulp.task('stage', stage);
 gulp.task('releaseToDoc', releaseToDoc);
+gulp.task('stageAndreleaseToDoc', stageAndreleaseToDoc);
 gulp.task('cleanup', cleanup);
