@@ -15,9 +15,6 @@
 		clearTimeout(timer);
 		timer = setTimeout(function(){
 			render();
-			srcElement.classList.add("fade-out");
-			tarElement.classList.add("fade-in");
-			return;
 
 			var isNav = type == View.SWITCHTYPE_VIEWNAV,
 				isChange = type == View.SWITCHTYPE_VIEWCHANGE,

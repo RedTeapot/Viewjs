@@ -10,6 +10,7 @@ html, body{
 body{
 	font-size: 0.12rem;
 	color: #333333;
+	overflow: hidden;
 }
 
 input:not([type]), input[type=text], input[type=email], input[type=password], input[type=tel], select, textarea{

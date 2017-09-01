@@ -37,6 +37,7 @@ header{
 }
 
 .viewjs-doc-menu{
+	z-index: 2;
 	position: absolute;
 	right: 0;
 	top: 0;
@@ -167,21 +168,21 @@ footer{
 	padding: 0.1rem 0;
 }
 
-//.view.fade-in{
-//	@include animation(fadeIn 0.1s linear);
-//}
-//.view.fade-out{
-//	@include animation(fadeOut 0.1s linear);
-//}
-//.view.hide2left{
-//	@include animation(hide2left 0.35s ease-out);
-//}
-//.view.show2left{
-//	@include animation(show2left 0.35s ease-out);
-//}
-//.view.hide2right{
-//	@include animation(hide2right 0.35s ease-out);
-//}
-//.view.show2right{
-//	@include animation(show2right 0.35s ease-out);
-//}
+.view.fade-in{
+	@include animation(fadeIn 0.1s linear);
+}
+.view.fade-out{
+	@include animation(fadeOut 0.1s linear);
+}
+.view.hide2left{
+	@include animation(hide2left 0.35s ease-out);
+}
+.view.show2left{
+	@include animation(show2left 0.35s ease-out);
+}
+.view.hide2right{
+	@include animation(hide2right 0.35s ease-out);
+}
+.view.show2right{
+	@include animation(show2right 0.35s ease-out);
+}

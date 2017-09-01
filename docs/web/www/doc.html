@@ -22,6 +22,18 @@
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
+<section id = "doc_application" data-view = "true" data-view-title = "View.js的适用范围">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.js的适用范围</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<p>View.js适用于偏交互性质的网页应用，如：商城、物业管理、股票分析等。对于宣传、广告性质等页面较少，动画较多的H5，使用View.js可能就显得略微笨重了。</p>
+		<p>View.js同样适用于开发混合应用的同学。</p>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
 <section id = "doc_how-to-use" data-view = "true" data-view-title = "如何使用View.js">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
@@ -30,19 +42,6 @@
 	</header>
 	<div class = "body">
 		<p>在html中引入view-{{version}}.js和view-{{version}}.css即可。（其中{{version}}为版本号）。</p>
-	</div>
-	<footer><div class = "btn next">下一节</div></footer>
-</section>
-<section id = "doc_active-viewport" data-view = "true" data-view-title = "活动视图">
-	<header>
-		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>活动视图</span>
-		<a class = "menu"></a>
-	</header>
-	<div class = "body">
-		<p>使用View.js开发的页面会同时包含视图，但页面同时只能有一个视图处于活动状态，亦即被用户看到。这个视图，View.js将其定义为"活动视图"。</p>
-		<p>开发者通过API或DOM属性切换视图时，活动视图将同步发生变化，从而使得任何时刻活动视图都是用户看到的视图。</p>
-		<p>开发者可以通过API：<span class = "code js">View.getActiveView()</span>获取当前的活动视图。</p>
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
@@ -77,6 +76,19 @@
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
+<section id = "doc_active-viewport" data-view = "true" data-view-title = "活动视图">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>活动视图</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<p>使用View.js开发的页面会同时包含视图，但页面同时只能有一个视图处于活动状态，亦即被用户看到。这个视图，View.js将其定义为"活动视图"。</p>
+		<p>开发者通过API或DOM属性切换视图时，活动视图将同步发生变化，从而使得任何时刻活动视图都是用户看到的视图。</p>
+		<p>开发者可以通过API：<span class = "code js">View.getActiveView()</span>获取当前的活动视图。</p>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
 <section id = "doc_default-viewport" data-view = "true" data-view-title = "默认视图">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
@@ -90,15 +102,110 @@
 
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
-<section id = "doc_application" data-view = "true" data-view-title = "View.js的适用范围">
+<section id = "doc_pseudo-viewport" data-view = "true" data-view-title = "伪视图">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>View.js的适用范围</span>
+		<span>伪视图</span>
 		<a class = "menu"></a>
 	</header>
 	<div class = "body">
-		<p>View.js适用于偏交互性质的网页应用，如：商城、物业管理、股票分析等。对于宣传、广告性质等页面较少，动画较多的H5，使用View.js可能就显得略微笨重了。</p>
-		<p>View.js同样适用于开发混合应用的同学。</p>
+		<p>伪视图，是并不存在，但可以指导View.js进行视图切换的视图。</p>
+		<p>View.js支持如下几个伪视图：</p>
+		<ol>
+			<li>
+				":back"
+				<p class = "no-text-indent">代表上一个浏览的视图。如：</p>
+				<div class = "code html" >
+&lt;a data-view-rel = ":back"&gt;返回&lt;/a&gt;
+				</div>
+			</li>
+			<li>
+				":forward"
+				<p class = "no-text-indent">代表下一个浏览的视图。如：</p>
+				<div class = "code html" >
+&lt;a data-view-rel = ":forward"&gt;返回&lt;/a&gt;
+				</div>
+			</li>
+			<li>
+				":default-view"
+				<p class = "no-text-indent">代表当前页面的默认视图。如：</p>
+				<div class = "code html" >
+&lt;a data-view-rel = ":default-view"&gt;首页&lt;/a&gt;
+				</div>
+			</li>
+		</ol>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "doc_event-drive" data-view = "true" data-view-title = "事件驱动">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>事件驱动</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<p>所有视图实例均具备事件驱动特性。</p>
+		<p>视图支持的事件包括：</p>
+		<ol>
+			<li>
+				View事件：<span class = "code js">beforechange</span> - 视图将要切换
+				<p class = "no-text-indent">监听样例：</p>
+				<div class = "code js">View.on("beforechange", function(e){});</div>
+			</li>
+			<li>
+				View实例事件：<span class = "code js">ready</span> - 视图就绪
+				<p class = "no-text-indent">监听样例：</p>
+				<div class = "code js">View.ofId("myView").on("ready", function(e){});</div>
+				<p class = "no-text-indent">注：特定视图的ready事件只会在视图第一次进入时触发一次。视图第二次进入后不会再触发</p>
+			</li>
+			<li>
+				View实例事件：<span class = "code js">beforeenter</span> - 视图将要进入
+				<p class = "no-text-indent">监听样例：</p>
+				<div class = "code js">View.ofId("myView").on("beforeenter", function(e){});</div>
+			</li>
+			<li>
+				View实例事件：<span class = "code js">enter</span> - 视图进入
+				<p class = "no-text-indent">监听样例：</p>
+				<div class = "code js">View.ofId("myView").on("enter", function(e){});</div>
+			</li>
+			<li>
+				View实例事件：<span class = "code js">afterenter</span> - 视图进入完成
+				<p class = "no-text-indent">监听样例：</p>
+				<div class = "code js">View.ofId("myView").on("afterenter", function(e){});</div>
+			</li>
+			<li>
+				View事件：<span class = "code js">afterchange</span> - 视图切换完成
+				<p class = "no-text-indent">监听样例：</p>
+				<div class = "code js">View.on("afterchange", function(e){});</div>
+			</li>
+		</ol>
+
+		<p>除此之外，开发者还可以根据自己需要，发起自定义事件并为这些事件添加监听器。如：</p>
+		<div class = "code js">
+var view = View.ofId("myView");
+view.on("myevent", function(e){
+	view.logger.debug("Event name: {}, event data: {}", e.name, e.data);
+});
+//…
+view.fire("myevent", {a: 1});//-> 0713 10:20:54 [View#myView]: Event name: null, event data: {"a":1}
+		</div>
+		<p>开发者在创建自定义事件时，需注意事件名的可读性以及见名知意的直观性。虽然任何形式的命名都能驱动程序的正常工作，但处于工程的可维护性，并不建议这样做。</p>
+		<p>开发者在发起自定义事件时，可以为事件附加任意类型的数据。对应的事件监听器在捕获对应的事件时，可以通过"data"属性获取附加的数据。如：</p>
+		<div class = "code js" data-filename = "a.js">
+View.ofId("detail").fire("goodsDetail.obtained", {goodsName: "XXXX", price: 12});
+		</div>
+
+		<div class = "code js" data-filename = "b.js">
+View.ofId("detail").on("goodsDetail.obtained", function(e){
+	console.log(e.data);// -> {goodsName: "XXXX", price: 12}
+});
+		</div>
+
+		<p>除此之外，开发者还可以通过API：<span class = "code js">view.getLatestEventData(evtName)</span>获取指定名称的事件最后一次被触发时所附加的数据，如：</p>
+		<div class = "code js" data-filename = "c.js">
+var goodsDetail = View.ofId("detail").getLatestEventData("goodsDetail.obtained");
+console.log(goodsDetail);// -> {goodsName: "XXXX", price: 12}
+		</div>
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
@@ -146,6 +253,36 @@ View.changeTo("~category");
 		</div>
 		<p>开发者可以根据该属性为实现"视图在不同操作系统下表现出不同的效果"而撰写不同的CSS样式。</p>
 	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "doc_logger-output" data-view = "true" data-view-title = "日志输出">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>日志输出</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<p>View.js内置了格式化的日志输出组件，以供程序调测使用。所有视图实例均含有日志实例，如：</p>
+		<div class = "code js">
+var view = View.ofId("myView");
+view.logger.debug("Hello, view.js");//-> 0713 11:42:02 [View#myView]: Hello, view.js
+view.logger.warn("Hello, {}, {}", 123, true, false); //-> 0713 11:42:44 [View#SC_home-page]: Hello, 123, true
+console.log(view.logger.getName();)//->View#myView
+		</div>
+
+		<p>其中"{}"为占位符，一一对应于第二个参数开始的多个参数。可以使用"\\"转义占位符，以输出"{}"。如：</p>
+		<div class = "code js">
+view.logger.log("\\{}");//-> 0713 11:43:54 [View#myView]: {}
+		</div>
+
+		<p>View日志组件共支持4个日志级别：debug, info, warn, error，以及1个普通的log。</p>
+		<p>开发者可以通过调用API：<span class = "code js">View.Logger.ofName(loggerName)</span>来创建一个自定义的日志输出器。如：</p>
+		<div class = "code js">
+var logger = View.Logger.ofName("WindowUtil");
+logger.debug("test"); //-> 0713 11:56:24 [WindowUtil]: test
+		</div>
+	</div>
+
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
 <section id = "doc_viewport-configuration" data-view = "true" data-view-title = "视图配置">
@@ -208,60 +345,6 @@ console.log(view.context.get("getOrderId"));//->undefined
 
 		<p>不同视图拥有不同的上下文，不同视图的上下文中可以存储相同名称的数据。</p>
 	</div>
-	<footer><div class = "btn next">下一节</div></footer>
-</section>
-<section id = "doc_fallback-viewport" data-view = "true" data-view-title = "回退视图">
-	<header>
-		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>回退视图</span>
-		<a class = "menu"></a>
-	</header>
-	<div class = "body">
-		<p>当设置了特定视图不能直接访问时，开发者可以通过设定该视图的回退视图达到呈现该视图的入口视图等效果。例如：开发者可以设定"个人中心"视图：profile可以直接访问，而"个人中心"下的"账户设置"：setting等视图不能直接访问，并设定"账户设置"视图的回退视图为"个人中心"。这样，即时用户打开的界面地址体现的是"账户设置"界面，如：</p>
-		<p><span class = "link">http://www.mydomain.com/html/index.html#setting</span></p>
-		<p>浏览器在页面加载完毕后呈现的也将是个人中心界面，且页面地址会更新为：</p>
-		<p><span class = "link">http://www.mydomain.com/html/index.html#profile</span></p>
-		<p>在技术实现上，当用户打开的地址中指定的视图不能直接访问时， View.js将自动查找该视图的回退视图（多层次查找，直到找到的视图是可以直接访问的）。如果回退视图不存在，则最终使用默认视图呈现界面。最后，View.js将更新地址栏中的hash为最终呈现的视图的视图ID。</p>
-		<p>开发者可以通过JS API：<span class = "code js">setFallbackViewId(viewId)</span>，也可以通过视图HTML节点上的<span class = "code html">data-view-fallback</span>属性设置回退视图ID。如：</p>
-
-		<div class = "code js" >
-View.ofId("setting").setFallbackViewId("profile")
-		</div>
-
-		<div class = "code html" >
-&lt;section id = "setting" data-view = "true" data-view-fallback = "profile"&gt;&lt;/section&gt;
-		</div>
-	</div>
-	<footer><div class = "btn next">下一节</div></footer>
-</section>
-<section id = "doc_logger-output" data-view = "true" data-view-title = "日志输出">
-	<header>
-		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>日志输出</span>
-		<a class = "menu"></a>
-	</header>
-	<div class = "body">
-		<p>View.js内置了格式化的日志输出组件，以供程序调测使用。所有视图实例均含有日志实例，如：</p>
-		<div class = "code js">
-var view = View.ofId("myView");
-view.logger.debug("Hello, view.js");//-> 0713 11:42:02 [View#myView]: Hello, view.js
-view.logger.warn("Hello, {}, {}", 123, true, false); //-> 0713 11:42:44 [View#SC_home-page]: Hello, 123, true
-console.log(view.logger.getName();)//->View#myView
-		</div>
-
-		<p>其中"{}"为占位符，一一对应于第二个参数开始的多个参数。可以使用"\\"转义占位符，以输出"{}"。如：</p>
-		<div class = "code js">
-view.logger.log("\\{}");//-> 0713 11:43:54 [View#myView]: {}
-		</div>
-
-		<p>View日志组件共支持4个日志级别：debug, info, warn, error，以及1个普通的log。</p>
-		<p>开发者可以通过调用API：<span class = "code js">View.Logger.ofName(loggerName)</span>来创建一个自定义的日志输出器。如：</p>
-		<div class = "code js">
-var logger = View.Logger.ofName("WindowUtil");
-logger.debug("test"); //-> 0713 11:56:24 [WindowUtil]: test
-		</div>
-	</div>
-
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
 <section id = "doc_viewport-layout" data-view = "true" data-view-title = "视图布局">
@@ -343,95 +426,24 @@ View.setInitializer(function(init){
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
-<section id = "doc_identify-browser-action" data-view = "true" data-view-title = "识别浏览器的前进和后退">
+<section id = "doc_viewport-title" data-view = "true" data-view-title = "视图标题">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>识别浏览器的前进和后退</span>
+		<span>视图标题</span>
 		<a class = "menu"></a>
 	</header>
 	<div class = "body">
-		<p>正如前文所说："在技术上，View.js利用HTML5的History API，借助地址栏hash完成视图之间的导向和路由"。但视图跳转由于场景不同，所需要执行的操作也不相同。对于需要追溯操作的跳转，View.js将以"压入历史堆栈"的方式记录用户的浏览历史；而对于无需追溯操作的跳转，View.js则以"替换当前历史"的方式更改用户的浏览历史。</p>
-		<p>"压入历史堆栈"和"替换当前历史"，是HTML5新增的两项History操作接口，分别对应于原生API：<span class = "code js">history.pushState()</span>和<span class = "code js">history.replaceState()</span>。</p>
-		<p>当用户浏览使用View.js开发的网页时，View.js将为每一次的页面呈现动作（包括第一次）生成一个浏览状态。包括：浏览的视图编号，浏览视图时的客户端本地时间戳，以及视图的浏览选项（在地址栏中呈现的，与特定视图相关的视图级别的参数）。这些状态数据根据开发者执行视图跳转动作时使用的API不同，而动态"压入历史堆栈"或"替换当前历史"。</p>
-		<p>当用户通过物理按键，或借助浏览器提供的"前进"，"回退"按钮功能浏览网页时，这些状态数据会借助浏览器自动触发<span class = "code js">popstate</span>事件通知到View.js。View.js通过比较当前的状态数据与弹出的状态数据的时间，可以判定页面是以"浏览器前进"，还是"浏览器"后退方式进入的，并将这一判定结果与其它相关数据以View事件（如：<span class = "code js">beforechange</span>, <span class = "code js">afterchange</span>等）的形式通知给开发者。如此一来，开发者可以通过监听相关事件，实现丰富的页面跳转动画。如：</p>
+		<p>开发者可以为视图的HTML结点设置单独的视图标题，从而达到"视图进入后，浏览器标题自动更新为当前视图标题；视图离开后，浏览器标题自动恢复为默认标题"的目的。如：</p>
 
-		<div class = "code js" data-filename = "animation.js">
-var timer;
-
-/* 浏览器支持前进后退判断 */
-var historyPushPopSupported = ("pushState" in history) && (typeof history.pushState == "function");
-View.setSwitchAnimation(function(srcElement, tarElement, type, render){
-	"hide2left, hide2right, show2left, show2right, fade-in, fade-out".split(/\s*,\s*/).forEach(function(className){
-	srcElement.classList.remove(className);
-	tarElement.classList.remove(className);
-});
-
-clearTimeout(timer);
-timer = setTimeout(function(){
-	render();
-
-	var isNav = type == View.SWITCHTYPE_VIEWNAV,
-		isChange = type == View.SWITCHTYPE_VIEWCHANGE,
-		isHistoryBack = type == View.SWITCHTYPE_HISTORYBACK,
-		isHistoryForward = type == View.SWITCHTYPE_HISTORYFORWARD;
-
-	if(!historyPushPopSupported || isChange){
-		srcElement.classList.add("fade-out");
-		tarElement.classList.add("fade-in");
-	}else if(isHistoryForward || isNav){
-		srcElement.classList.add("hide2left");
-		tarElement.classList.add("show2left");
-	}else{
-		srcElement.classList.add("hide2right");
-		tarElement.classList.add("show2right");
-	}
-}, 0);
+		<div class = "code html" >
+&lt;section id = "myView" data-view = "true" data-view-title = "My view title"&gt;
+	&lt;header&gt;&lt;/header&gt;
+	&lt;div class = "body"&gt;&lt;/div&gt;
+	&lt;footer&gt;&lt;/footer&gt;
+&lt;/section&gt;
 		</div>
 
-		<p>视图当前的浏览状态，可以使用属性：<span class = "code js">View.currentState</span>访问，也可以使用浏览器支持的原生属性：<span class = "code js">history.state</span>。如：</p>
-		<div class = "code js" >
-			console.log(View. currentState);// {"viewId":"SC_category","timestamp":1501228010961,"options":{"categoryId":"103"}}
-		</div>
-	</div>
-
-	<footer><div class = "btn next">下一节</div></footer>
-</section>
-<section id = "doc_viewport-navigation" data-view = "true" data-view-title = "视图跳转">
-	<header>
-		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>视图跳转</span>
-		<a class = "menu"></a>
-	</header>
-	<div class = "body">
-		<p>View.js支持如下几种方式进行视图跳转：</p>
-		<ol>
-			<li>
-				<span class = "code html">A</span>链接，如：
-				<div class = "code html" ><a href = "http://www.mydomain.com/html/index.html#goods-detail">商品详情</a></div>
-				<p class = "no-text-indent">此时，要求视图：goods-detail为默认视图或可以直接访问。</p>
-			</li>
-			<li>
-				<span class = "code html">data-view-rel</span>属性，如：
-				<div class = "code html" >
-&lt;span data-view-rel = "@index.html#goods-detail"&gt;商品详情&lt;/span&gt;
-&lt;span data-view-rel = "@http://www.mydomain.com/index.html#goods-detail"&gt;商品详情&lt;/span&gt;
-&lt;div data-view-rel = "profile" data-view-rel-type = "change"&gt;个人中心&lt;/div&gt;
-				</div>
-				<p class = "no-text-indent">其中"@"符号用于告诉View.js进行页面跳转访问。</p>
-				<p class = "no-text-indent">此时，要求视图：goods-detail为默认视图或可以直接访问。</p>
-			</li>
-			<li>
-				JS API：<span class = "code js">View.navTo</span>，如：
-				<div class = "code js" >View.navTo("setting", {params: {a: 1}, options: {b: 2}});</div>
-			</li>
-			<li>
-				JS API：<span class = "code js">View.changeTo</span>，如：
-				<div class = "code js" >View.changeTo("setting", {params: {a: 1}, options: {b: 2}});</div>
-			</li>
-		</ol>
-
-		<p>其中，1)和2)两种方式无法传参；3)和4)两种方式可以传参。</p>
-		<p><span class = "code js">View.navTo</span>和<span class = "code js">View.changeTo</span>的差别之处，在于是否向浏览堆栈中添加记录。使用<span class = "code js">View.navTo</span>执行视图A向视图B的跳转时，用户可以在视图B中通过物理返回键返回A；使用<span class = "code js">View.changeTo</span>执行视图A向视图B的跳转时，A的浏览历史将被B所替代，用户在视图B中无法通过物理按键返回A。</p>
+		<p>注：默认标题在View.js加载时通过自动检测浏览器标题获取。如果浏览器标题通过脚本延迟设置，则会出现默认标题为空的情况。此时开发者可以通过调用API：<span class = "code js">View.setDocumentTitle(title)</span>通知View使用给定的字符串赋值默认标题。</p>
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
@@ -504,86 +516,145 @@ timer = setTimeout(function(){
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
-<section id = "doc_event-drive" data-view = "true" data-view-title = "事件驱动">
+<section id = "doc_fallback-viewport" data-view = "true" data-view-title = "回退视图">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>事件驱动</span>
+		<span>回退视图</span>
 		<a class = "menu"></a>
 	</header>
 	<div class = "body">
-		<p>所有视图实例均具备事件驱动特性。</p>
-		<p>视图支持的事件包括：</p>
-		<ol>
-			<li>
-				View事件：<span class = "code js">beforechange</span> - 视图将要切换
-				<p class = "no-text-indent">监听样例：</p>
-				<div class = "code js">View.on("beforechange", function(e){});</div>
-			</li>
-			<li>
-				View实例事件：<span class = "code js">ready</span> - 视图就绪
-				<p class = "no-text-indent">监听样例：</p>
-				<div class = "code js">View.ofId("myView").on("ready", function(e){});</div>
-				<p class = "no-text-indent">注：特定视图的ready事件只会在视图第一次进入时触发一次。视图第二次进入后不会再触发</p>
-			</li>
-			<li>
-				View实例事件：<span class = "code js">beforeenter</span> - 视图将要进入
-				<p class = "no-text-indent">监听样例：</p>
-				<div class = "code js">View.ofId("myView").on("beforeenter", function(e){});</div>
-			</li>
-			<li>
-				View实例事件：<span class = "code js">enter</span> - 视图进入
-				<p class = "no-text-indent">监听样例：</p>
-				<div class = "code js">View.ofId("myView").on("enter", function(e){});</div>
-			</li>
-			<li>
-				View实例事件：<span class = "code js">afterenter</span> - 视图进入完成
-				<p class = "no-text-indent">监听样例：</p>
-				<div class = "code js">View.ofId("myView").on("afterenter", function(e){});</div>
-			</li>
-			<li>
-				View事件：<span class = "code js">afterchange</span> - 视图切换完成
-				<p class = "no-text-indent">监听样例：</p>
-				<div class = "code js">View.on("afterchange", function(e){});</div>
-			</li>
-		</ol>
+		<p>当设置了特定视图不能直接访问时，开发者可以通过设定该视图的回退视图达到呈现该视图的入口视图等效果。例如：开发者可以设定"个人中心"视图：profile可以直接访问，而"个人中心"下的"账户设置"：setting等视图不能直接访问，并设定"账户设置"视图的回退视图为"个人中心"。这样，即时用户打开的界面地址体现的是"账户设置"界面，如：</p>
+		<p><span class = "link">http://www.mydomain.com/html/index.html#setting</span></p>
+		<p>浏览器在页面加载完毕后呈现的也将是个人中心界面，且页面地址会更新为：</p>
+		<p><span class = "link">http://www.mydomain.com/html/index.html#profile</span></p>
+		<p>在技术实现上，当用户打开的地址中指定的视图不能直接访问时， View.js将自动查找该视图的回退视图（多层次查找，直到找到的视图是可以直接访问的）。如果回退视图不存在，则最终使用默认视图呈现界面。最后，View.js将更新地址栏中的hash为最终呈现的视图的视图ID。</p>
+		<p>开发者可以通过JS API：<span class = "code js">setFallbackViewId(viewId)</span>，也可以通过视图HTML节点上的<span class = "code html">data-view-fallback</span>属性设置回退视图ID。如：</p>
 
-		<p>除此之外，开发者还可以根据自己需要，发起自定义事件并为这些事件添加监听器。如：</p>
-		<div class = "code js">
-var view = View.ofId("myView");
-view.on("myevent", function(e){
-	view.logger.debug("Event name: {}, event data: {}", e.name, e.data);
-});
-//…
-view.fire("myevent", {a: 1});//-> 0713 10:20:54 [View#myView]: Event name: null, event data: {"a":1}
-		</div>
-		<p>开发者在创建自定义事件时，需注意事件名的可读性以及见名知意的直观性。虽然任何形式的命名都能驱动程序的正常工作，但处于工程的可维护性，并不建议这样做。</p>
-		<p>开发者在发起自定义事件时，可以为事件附加任意类型的数据。对应的事件监听器在捕获对应的事件时，可以通过"data"属性获取附加的数据。如：</p>
-		<div class = "code js" data-filename = "a.js">
-View.ofId("detail").fire("goodsDetail.obtained", {goodsName: "XXXX", price: 12});
+		<div class = "code js" >
+View.ofId("setting").setFallbackViewId("profile")
 		</div>
 
-		<div class = "code js" data-filename = "b.js">
-View.ofId("detail").on("goodsDetail.obtained", function(e){
-	console.log(e.data);// -> {goodsName: "XXXX", price: 12}
-});
-		</div>
-
-		<p>除此之外，开发者还可以通过API：<span class = "code js">view.getLatestEventData(evtName)</span>获取指定名称的事件最后一次被触发时所附加的数据，如：</p>
-		<div class = "code js" data-filename = "c.js">
-var goodsDetail = View.ofId("detail").getLatestEventData("goodsDetail.obtained");
-console.log(goodsDetail);// -> {goodsName: "XXXX", price: 12}
+		<div class = "code html" >
+&lt;section id = "setting" data-view = "true" data-view-fallback = "profile"&gt;&lt;/section&gt;
 		</div>
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
-<section id = "doc_notice" data-view = "true" data-view-title = "注意事项">
+<section id = "doc_viewport-navigation" data-view = "true" data-view-title = "视图跳转">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>注意事项</span>
+		<span>视图跳转</span>
 		<a class = "menu"></a>
 	</header>
 	<div class = "body">
-		<p>View.js当下只适用于移动端H5应用开发，并不适用PC端网页开发。</p>
+		<p>View.js支持如下几种方式进行视图跳转：</p>
+		<ol>
+			<li>
+				<span class = "code html">A</span>链接，如：
+				<div class = "code html" ><a href = "http://www.mydomain.com/html/index.html#goods-detail">商品详情</a></div>
+				<p class = "no-text-indent">此时，要求视图：goods-detail为默认视图或可以直接访问。</p>
+			</li>
+			<li>
+				<span class = "code html">data-view-rel</span>属性，如：
+				<div class = "code html" >
+&lt;span data-view-rel = "@index.html#goods-detail"&gt;商品详情&lt;/span&gt;
+&lt;span data-view-rel = "@http://www.mydomain.com/index.html#goods-detail"&gt;商品详情&lt;/span&gt;
+&lt;div data-view-rel = "profile" data-view-rel-type = "change"&gt;个人中心&lt;/div&gt;
+				</div>
+				<p class = "no-text-indent">其中"@"符号用于告诉View.js进行页面跳转访问。</p>
+				<p class = "no-text-indent">此时，要求视图：goods-detail为默认视图或可以直接访问。</p>
+			</li>
+			<li>
+				JS API：<span class = "code js">View.navTo</span>，如：
+				<div class = "code js" >View.navTo("setting", {params: {a: 1}, options: {b: 2}});</div>
+			</li>
+			<li>
+				JS API：<span class = "code js">View.changeTo</span>，如：
+				<div class = "code js" >View.changeTo("setting", {params: {a: 1}, options: {b: 2}});</div>
+			</li>
+		</ol>
+
+		<p>其中，1)和2)两种方式无法传参；3)和4)两种方式可以传参。</p>
+		<p><span class = "code js">View.navTo</span>和<span class = "code js">View.changeTo</span>的差别之处，在于是否向浏览堆栈中添加记录。使用<span class = "code js">View.navTo</span>执行视图A向视图B的跳转时，用户可以在视图B中通过物理返回键返回A；使用<span class = "code js">View.changeTo</span>执行视图A向视图B的跳转时，A的浏览历史将被B所替代，用户在视图B中无法通过物理按键返回A。</p>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "doc_identify-browser-action" data-view = "true" data-view-title = "识别浏览器的前进和后退">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>识别浏览器的前进和后退</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<p>正如前文所说："在技术上，View.js利用HTML5的History API，借助地址栏hash完成视图之间的导向和路由"。但视图跳转由于场景不同，所需要执行的操作也不相同。对于需要追溯操作的跳转，View.js将以"压入历史堆栈"的方式记录用户的浏览历史；而对于无需追溯操作的跳转，View.js则以"替换当前历史"的方式更改用户的浏览历史。</p>
+		<p>"压入历史堆栈"和"替换当前历史"，是HTML5新增的两项History操作接口，分别对应于原生API：<span class = "code js">history.pushState()</span>和<span class = "code js">history.replaceState()</span>。</p>
+		<p>当用户浏览使用View.js开发的网页时，View.js将为每一次的页面呈现动作（包括第一次）生成一个浏览状态。包括：浏览的视图编号，浏览视图时的客户端本地时间戳，以及视图的浏览选项（在地址栏中呈现的，与特定视图相关的视图级别的参数）。这些状态数据根据开发者执行视图跳转动作时使用的API不同，而动态"压入历史堆栈"或"替换当前历史"。</p>
+		<p>当用户通过物理按键，或借助浏览器提供的"前进"，"回退"按钮功能浏览网页时，这些状态数据会借助浏览器自动触发<span class = "code js">popstate</span>事件通知到View.js。View.js通过比较当前的状态数据与弹出的状态数据的时间，可以判定页面是以"浏览器前进"，还是"浏览器"后退方式进入的，并将这一判定结果与其它相关数据以View事件（如：<span class = "code js">beforechange</span>, <span class = "code js">afterchange</span>等）的形式通知给开发者。如此一来，开发者可以通过监听相关事件，实现丰富的页面跳转动画。如：</p>
+
+		<div class = "code js" data-filename = "animation.js">
+var timer;
+
+/* 浏览器支持前进后退判断 */
+var historyPushPopSupported = ("pushState" in history) && (typeof history.pushState == "function");
+View.setSwitchAnimation(function(srcElement, tarElement, type, render){
+	"hide2left, hide2right, show2left, show2right, fade-in, fade-out".split(/\s*,\s*/).forEach(function(className){
+	srcElement.classList.remove(className);
+	tarElement.classList.remove(className);
+});
+
+clearTimeout(timer);
+timer = setTimeout(function(){
+	render();
+
+	var isNav = type == View.SWITCHTYPE_VIEWNAV,
+		isChange = type == View.SWITCHTYPE_VIEWCHANGE,
+		isHistoryBack = type == View.SWITCHTYPE_HISTORYBACK,
+		isHistoryForward = type == View.SWITCHTYPE_HISTORYFORWARD;
+
+	if(!historyPushPopSupported || isChange){
+		srcElement.classList.add("fade-out");
+		tarElement.classList.add("fade-in");
+	}else if(isHistoryForward || isNav){
+		srcElement.classList.add("hide2left");
+		tarElement.classList.add("show2left");
+	}else{
+		srcElement.classList.add("hide2right");
+		tarElement.classList.add("show2right");
+	}
+}, 0);
+		</div>
+
+		<p>视图当前的浏览状态，可以使用属性：<span class = "code js">View.currentState</span>访问，也可以使用浏览器支持的原生属性：<span class = "code js">history.state</span>。如：</p>
+		<div class = "code js" >
+			console.log(View. currentState);// {"viewId":"SC_category","timestamp":1501228010961,"options":{"categoryId":"103"}}
+		</div>
+	</div>
+
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "doc_viewport-parameter" data-view = "true" data-view-title = "视图参数">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>视图参数</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<p>开发过网页程序的同学，尤其是纯前端开发的同学，差不多都会为复杂参数的传递苦恼过。毕竟地址栏参数的承载能力实在有限，基本上只适用于类型简单、尺寸较小的数据。</p>
+		<p>但使用View.js开发的单页应用并不存在该问题。</p>
+		<p>单页应用中，用户视觉效果上的页面切换，在技术上只是同一页面下不同区块的切换。因此，有足够大的空间和足够多的方式传递任意类型的数据，如：方法、数组、对象，以及DOM元素等。</p>
+		<p>View.js为所有视图切换API均加上了参数传递支持，包括：<span class = "code js">View.navTo()</span>, <span class = "code js">View.changeTo()</span>, <span class = "code js">View.back()</span>和<span class = "code js">View.forward()</span>。如：</p>
+		<div class = "code js" >
+View.navTo("detail", {params: {id: "001", count: 2, callback: function(){}});
+View.back({params: {showHeader: true}});
+		</div>
+
+		<p>目标视图则可以使用API：<span class = "code js">view.hasParameter()</span>及<span class = "code js">view.getParameter()</span>等方法检索相关参数，如：</p>
+		<div class = "code js" >
+View.ofId("detail").hasParameter("id");// -> true
+View.ofId("detail").getParameter("id").count;// -> 2
+		</div>
+
+		<p>需要注意的是，视图参数区分大小写，且在离开后均会被清空，并不会保留。如果开发者需要持久化使用相关参数，则可以将其手动放至上下文中。</p>
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
@@ -634,14 +705,15 @@ if(null != goodsId){
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
-<section id = "doc_license" data-view = "true" data-view-title = "软件许可">
+<section id = "doc_query-element" data-view = "true" data-view-title = "DOM元素获取">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>软件许可</span>
+		<span>DOM元素获取</span>
 		<a class = "menu"></a>
 	</header>
 	<div class = "body">
-		<p>MIT (https://opensource.org/licenses/mit-license.php)</p>
+		<p>每个View实例都一一关联着对应的DOM元素，开发者可以通过API：<span class = "code js">view.getDomElement()</span>来获取对应的DOM元素。</p>
+		<p>对于视图内的其它元素，View.js提供了简化版的获取API以减少编码量。包括：<span class = "code js">view.find(selector)</span>以及<span class = "code js">view.findAll(selector)</span>分别对应于原生API：<span class = "code js">domElement.querySelector(selector)</span>和<span class = "code js">domElement.querySelectorAll(selector)</span>。</p>
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
@@ -754,53 +826,25 @@ body{
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
-<section id = "doc_query-element" data-view = "true" data-view-title = "DOM元素获取">
+<section id = "doc_notice" data-view = "true" data-view-title = "注意事项">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>DOM元素获取</span>
+		<span>注意事项</span>
 		<a class = "menu"></a>
 	</header>
 	<div class = "body">
-		<p>每个View实例都一一关联着对应的DOM元素，开发者可以通过API：<span class = "code js">view.getDomElement()</span>来获取对应的DOM元素。</p>
-		<p>对于视图内的其它元素，View.js提供了简化版的获取API以减少编码量。包括：<span class = "code js">view.find(selector)</span>以及<span class = "code js">view.findAll(selector)</span>分别对应于原生API：<span class = "code js">domElement.querySelector(selector)</span>和<span class = "code js">domElement.querySelectorAll(selector)</span>。</p>
+		<p>View.js当下只适用于移动端H5应用开发，并不适用PC端网页开发。</p>
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
-<section id = "doc_viewport-parameter" data-view = "true" data-view-title = "视图参数">
+<section id = "doc_license" data-view = "true" data-view-title = "软件许可">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>视图参数</span>
+		<span>软件许可</span>
 		<a class = "menu"></a>
 	</header>
 	<div class = "body">
-		<p>开发过网页程序的同学，尤其是纯前端开发的同学，差不多都会为复杂参数的传递苦恼过。毕竟地址栏参数的承载能力实在有限，基本上只适用于类型简单、尺寸较小的数据。</p>
-		<p>但使用View.js开发的单页应用并不存在该问题。</p>
-		<p>单页应用中，用户视觉效果上的页面切换，在技术上只是同一页面下不同区块的切换。因此，有足够大的空间和足够多的方式传递任意类型的数据，如：方法、数组、对象，以及DOM元素等。</p>
-		<p>View.js为所有视图切换API均加上了参数传递支持，包括：<span class = "code js">View.navTo()</span>, <span class = "code js">View.changeTo()</span>, <span class = "code js">View.back()</span>和<span class = "code js">View.forward()</span>。如：</p>
-		<div class = "code js" >
-View.navTo("detail", {params: {id: "001", count: 2, callback: function(){}});
-View.back({params: {showHeader: true}});
-		</div>
-
-		<p>目标视图则可以使用API：<span class = "code js">view.hasParameter()</span>及<span class = "code js">view.getParameter()</span>等方法检索相关参数，如：</p>
-		<div class = "code js" >
-View.ofId("detail").hasParameter("id");// -> true
-View.ofId("detail").getParameter("id").count;// -> 2
-		</div>
-
-		<p>需要注意的是，视图参数区分大小写，且在离开后均会被清空，并不会保留。如果开发者需要持久化使用相关参数，则可以将其手动放至上下文中。</p>
-	</div>
-	<footer><div class = "btn next">下一节</div></footer>
-</section>
-<section id = "doc_contact-me" data-view = "true" data-view-title = "联系作者">
-	<header>
-		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>联系作者</span>
-		<a class = "menu"></a>
-	</header>
-	<div class = "body">
-		<p>如果您在使用View.js的过程中有不解之处，或发现View.js有不完善之处，以及其它建议或期望，请以电子邮件的方式联系作者。（主题包含前缀："【View.js】"）</p>
-		<p>作者：Billy, 电子邮箱地址：<a href = "mailto:wmjhappy_ok@126.com">wmjhappy_ok@126.com</a>。</p>
+		<p>MIT (https://opensource.org/licenses/mit-license.php)</p>
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
@@ -848,6 +892,18 @@ View.ofId("detail").getParameter("id").count;// -> 2
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
+<section id = "doc_contact-me" data-view = "true" data-view-title = "联系作者">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>联系作者</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<p>如果您在使用View.js的过程中有不解之处，或发现View.js有不完善之处，以及其它建议或期望，请以电子邮件的方式联系作者。（主题包含前缀："【View.js】"）</p>
+		<p>作者：Billy, 电子邮箱地址：<a href = "mailto:wmjhappy_ok@126.com">wmjhappy_ok@126.com</a>。</p>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
 <section id = "doc_faq" data-view = "true" data-view-title = "FAQ">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
@@ -876,62 +932,6 @@ View.ofId("detail").on("leave", function(){
 				</div>
 			</li>
 		</ol>
-	</div>
-	<footer><div class = "btn next">下一节</div></footer>
-</section>
-<section id = "doc_pseudo-viewport" data-view = "true" data-view-title = "伪视图">
-	<header>
-		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>伪视图</span>
-		<a class = "menu"></a>
-	</header>
-	<div class = "body">
-		<p>伪视图，是并不存在，但可以指导View.js进行视图切换的视图。</p>
-		<p>View.js支持如下几个伪视图：</p>
-		<ol>
-			<li>
-				":back"
-				<p class = "no-text-indent">代表上一个浏览的视图。如：</p>
-				<div class = "code html" >
-&lt;a data-view-rel = ":back"&gt;返回&lt;/a&gt;
-				</div>
-			</li>
-			<li>
-				":forward"
-				<p class = "no-text-indent">代表下一个浏览的视图。如：</p>
-				<div class = "code html" >
-&lt;a data-view-rel = ":forward"&gt;返回&lt;/a&gt;
-				</div>
-			</li>
-			<li>
-				":default-view"
-				<p class = "no-text-indent">代表当前页面的默认视图。如：</p>
-				<div class = "code html" >
-&lt;a data-view-rel = ":default-view"&gt;首页&lt;/a&gt;
-				</div>
-			</li>
-		</ol>
-	</div>
-	<footer><div class = "btn next">下一节</div></footer>
-</section>
-<section id = "doc_viewport-title" data-view = "true" data-view-title = "视图标题">
-	<header>
-		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>视图标题</span>
-		<a class = "menu"></a>
-	</header>
-	<div class = "body">
-		<p>开发者可以为视图的HTML结点设置单独的视图标题，从而达到"视图进入后，浏览器标题自动更新为当前视图标题；视图离开后，浏览器标题自动恢复为默认标题"的目的。如：</p>
-
-		<div class = "code html" >
-&lt;section id = "myView" data-view = "true" data-view-title = "My view title"&gt;
-	&lt;header&gt;&lt;/header&gt;
-	&lt;div class = "body"&gt;&lt;/div&gt;
-	&lt;footer&gt;&lt;/footer&gt;
-&lt;/section&gt;
-		</div>
-
-		<p>注：默认标题在View.js加载时通过自动检测浏览器标题获取。如果浏览器标题通过脚本延迟设置，则会出现默认标题为空的情况。此时开发者可以通过调用API：<span class = "code js">View.setDocumentTitle(title)</span>通知View使用给定的字符串赋值默认标题。</p>
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>

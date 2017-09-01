@@ -21,7 +21,7 @@ var views = [
 
 	menuItemsObj.classList.add("menu-items");
 	menuObj.classList.add("viewjs-doc-menu");
-	mskObj.style.cssText = "position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.3);";
+	mskObj.style.cssText = "z-index: 2; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.3);";
 
 	menuObj.appendChild(navObj);
 	menuObj.appendChild(menuItemsObj);
