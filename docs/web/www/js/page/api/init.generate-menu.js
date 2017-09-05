@@ -19,6 +19,7 @@ var views = [
 	"api_View-back",
 	"api_View-forward",
 	"api_View-setDocumentTitle",
+	"api_View-onceHistoryBack",
 	"api_View-beforeInit",
 	"api_View-ready",
 	"api_View-setInitializer",

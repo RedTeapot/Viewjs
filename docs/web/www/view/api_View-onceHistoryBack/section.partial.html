@@ -1,0 +1,23 @@
+<section id = "api_View-onceHistoryBack" data-view = "true" data-view-title = "View.onceHistoryBack(callback)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.onceHistoryBack(callback)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">
+			添加“浏览器回退”监听器。该监听器只会被触发一次。开发者可以借助该API实现类似：“用户可以通过触摸物理返回按键，以关闭打开的商品规格选择蒙层”的特性等。如：
+			<div class = "code js">
+showDialog();
+View.onceHistoryBack(hideDialog);
+			</div>
+		</div>
+		<div class = "api-params"><ol>
+			<li>
+				callback – {Function} 回调方法
+			</li>
+		</ol></div>
+		<div class = "api-returns">{Function} – View静态对象</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>

@@ -1,3 +1,8 @@
+【1.5.0-B201709051136】
+1. 移除历史API：View.switchTo与View.switchView
+2. 移除历史API：View.updateView
+3. 新增API：View.onceHistoryBack(callback)
+
 【1.5.0-B201708301029】
 1. 修复故障：源视图的leave事件出发时，如果监听器报错，则新视图的enter等事件将无法触发
 2. 修复故障：如果默认视图与页面打开后要呈现的第一个视图相同，则该视图在触发leave事件后又出发enter事件
