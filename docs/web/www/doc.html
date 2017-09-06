@@ -12,6 +12,16 @@
 	<!-- endbuild -->
 </head>
 <body>
+<section id = "doc_what-is-viewjs" data-view = "true" data-view-default = "true" data-view-title = "View.js是什么">
+	<header>
+		<span>View.js是什么</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<p>View.js是一个专门用于开发移动端H5单页应用（SPA，Single Page Application）的底层框架。其核心理念是"视图"，并提供而且仅提供视图相关的API和事件监听等。</p>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
 <section id = "doc_how-to-use" data-view = "true" data-view-title = "如何使用View.js">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
@@ -23,13 +33,15 @@
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
-<section id = "doc_what-is-viewjs" data-view = "true" data-view-default = "true" data-view-title = "View.js是什么">
+<section id = "doc_application" data-view = "true" data-view-title = "View.js的适用范围">
 	<header>
-		<span>View.js是什么</span>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.js的适用范围</span>
 		<a class = "menu"></a>
 	</header>
 	<div class = "body">
-		<p>View.js是一个专门用于开发移动端H5单页应用（SPA，Single Page Application）的底层框架。其核心理念是"视图"，并提供而且仅提供视图相关的API和事件监听等。</p>
+		<p>View.js适用于偏交互性质的网页应用，如：商城、物业管理、股票分析等。对于宣传、广告性质等页面较少，动画较多的H5，使用View.js可能就显得略微笨重了。</p>
+		<p>View.js同样适用于开发混合应用的同学。</p>
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
@@ -61,18 +73,6 @@
 		<p>同一时刻只有一个视图处于显示状态，这个视图被称之为"活动视图"。</p>
 		<p>每个页面都有一个默认视图。默认视图是指页面打开后将要呈现的第一个视图。</p>
 		<p>由于View.js只专注于视图相关的操作，并不涉及其它领域，因此View.js能够很好地和其它优秀的框架一起协同工作，如Hammer、Swiper、 jQuery和zepto等。因为这些不同的框架或库解决的是不同范畴的问题，所以不会出现冲突，因而可以放心使用。<span class = "warn">（View.js会在window上附加名称为"View"的对象。如果您引用的其它框架或库也有这样的名称，那可能会有冲突出现。）</span></p>
-	</div>
-	<footer><div class = "btn next">下一节</div></footer>
-</section>
-<section id = "doc_application" data-view = "true" data-view-title = "View.js的适用范围">
-	<header>
-		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>View.js的适用范围</span>
-		<a class = "menu"></a>
-	</header>
-	<div class = "body">
-		<p>View.js适用于偏交互性质的网页应用，如：商城、物业管理、股票分析等。对于宣传、广告性质等页面较少，动画较多的H5，使用View.js可能就显得略微笨重了。</p>
-		<p>View.js同样适用于开发混合应用的同学。</p>
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
@@ -447,30 +447,6 @@ View.layout.setExpectedWidthHeightRatio(414 / 736).init({
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
-<section id = "doc_fallback-viewport" data-view = "true" data-view-title = "回退视图">
-	<header>
-		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>回退视图</span>
-		<a class = "menu"></a>
-	</header>
-	<div class = "body">
-		<p>当设置了特定视图不能直接访问时，开发者可以通过设定该视图的回退视图达到呈现该视图的入口视图等效果。例如：开发者可以设定"个人中心"视图：profile可以直接访问，而"个人中心"下的"账户设置"：setting等视图不能直接访问，并设定"账户设置"视图的回退视图为"个人中心"。这样，即时用户打开的界面地址体现的是"账户设置"界面，如：</p>
-		<p><span class = "link">http://www.mydomain.com/html/index.html#setting</span></p>
-		<p>浏览器在页面加载完毕后呈现的也将是个人中心界面，且页面地址会更新为：</p>
-		<p><span class = "link">http://www.mydomain.com/html/index.html#profile</span></p>
-		<p>在技术实现上，当用户打开的地址中指定的视图不能直接访问时， View.js将自动查找该视图的回退视图（多层次查找，直到找到的视图是可以直接访问的）。如果回退视图不存在，则最终使用默认视图呈现界面。最后，View.js将更新地址栏中的hash为最终呈现的视图的视图ID。</p>
-		<p>开发者可以通过JS API：<span class = "code js">setFallbackViewId(viewId)</span>，也可以通过视图HTML节点上的<span class = "code html">data-view-fallback</span>属性设置回退视图ID。如：</p>
-
-		<div class = "code js" >
-View.ofId("setting").setFallbackViewId("profile")
-		</div>
-
-		<div class = "code html" >
-&lt;section id = "setting" data-view = "true" data-view-fallback = "profile"&gt;&lt;/section&gt;
-		</div>
-	</div>
-	<footer><div class = "btn next">下一节</div></footer>
-</section>
 <section id = "doc_viewport-directly-accessible" data-view = "true" data-view-title = "设定视图是否允许直接访问">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
@@ -537,6 +513,39 @@ View.ofId("setting").setFallbackViewId("profile")
 &lt;/body&gt;
 &lt;/html&gt;
 		</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "doc_fallback-viewport" data-view = "true" data-view-title = "回退视图">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>回退视图</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<p>当设置了特定视图不能直接访问时，开发者可以通过设定该视图的回退视图达到呈现该视图的入口视图等效果。例如：开发者可以设定"个人中心"视图：profile可以直接访问，而"个人中心"下的"账户设置"：setting等视图不能直接访问，并设定"账户设置"视图的回退视图为"个人中心"。这样，即时用户打开的界面地址体现的是"账户设置"界面，如：</p>
+		<p><span class = "link">http://www.mydomain.com/html/index.html#setting</span></p>
+		<p>浏览器在页面加载完毕后呈现的也将是个人中心界面，且页面地址会更新为：</p>
+		<p><span class = "link">http://www.mydomain.com/html/index.html#profile</span></p>
+		<p>在技术实现上，当用户打开的地址中指定的视图不能直接访问时， View.js将自动查找该视图的回退视图（多层次查找，直到找到的视图是可以直接访问的）。如果回退视图不存在，则最终使用默认视图呈现界面。最后，View.js将更新地址栏中的hash为最终呈现的视图的视图ID。</p>
+		<p>开发者可以通过JS API：<span class = "code js">setFallbackViewId(viewId)</span>，也可以通过视图HTML节点上的<span class = "code html">data-view-fallback</span>属性设置回退视图ID。如：</p>
+
+		<div class = "code js" >
+View.ofId("setting").setFallbackViewId("profile")
+		</div>
+
+		<div class = "code html" >
+&lt;section id = "setting" data-view = "true" data-view-fallback = "profile"&gt;&lt;/section&gt;
+		</div>
+
+		<p>
+			开发者通过API：<span class = "code js">view.setFallbackViewId(viewId)</span>或DOM属性：<span class = "code html">data-view-fallback</span>设置回退视图ID时，可以设定如下几种取值：
+			<ol>
+				<li>任一存在的确切的视图编号；</li>
+				<li>伪视图：<span class = "code html">:default-view</span>（代表默认视图）</li>
+				<li>视图群组：<span class = "code html">~groupName</span>（View.js将自动查找隶属于该群组的第一个视图）</li>
+			</ol>
+		</p>
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
@@ -837,6 +846,17 @@ body{
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
+<section id = "doc_license" data-view = "true" data-view-title = "软件许可">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>软件许可</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<p>MIT (https://opensource.org/licenses/mit-license.php)</p>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
 <section id = "doc_best-practise" data-view = "true" data-view-title = "最佳实践">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
@@ -921,17 +941,6 @@ View.ofId("detail").on("leave", function(){
 				</div>
 			</li>
 		</ol>
-	</div>
-	<footer><div class = "btn next">下一节</div></footer>
-</section>
-<section id = "doc_license" data-view = "true" data-view-title = "软件许可">
-	<header>
-		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>软件许可</span>
-		<a class = "menu"></a>
-	</header>
-	<div class = "body">
-		<p>MIT (https://opensource.org/licenses/mit-license.php)</p>
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>

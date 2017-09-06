@@ -12,21 +12,6 @@
 	<!-- endbuild -->
 </head>
 <body>
-<section id = "api_View-ifExists" data-view = "true" data-view-title = "View.ifExists(id)">
-	<header>
-		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>View.ifExists(id)</span>
-		<a class = "menu"></a>
-	</header>
-	<div class = "body">
-		<div class = "api-usage">查找给定ID对应的视图实例，如果不存在则创建，否则返回已经存在的实例。</div>
-		<div class = "api-params"><ol>
-			<li>id - {String} 视图编号（或视图ID）</li>
-		</ol></div>
-		<div class = "api-returns">{ViewArray} – 视图实例数组</div>
-	</div>
-	<footer><div class = "btn next">下一节</div></footer>
-</section>
 <section id = "api_View-ofId" data-view = "true" data-view-title = "View.ofId(id)">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
@@ -39,6 +24,21 @@
 			<li>id - {String} 视图编号（或视图ID）</li>
 		</ol></div>
 		<div class = "api-returns">{View} - View实例</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-ifExists" data-view = "true" data-view-title = "View.ifExists(id)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.ifExists(id)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">查找给定ID对应的视图实例，如果不存在则创建，否则返回已经存在的实例。</div>
+		<div class = "api-params"><ol>
+			<li>id - {String} 视图编号（或视图ID）</li>
+		</ol></div>
+		<div class = "api-returns">{ViewArray} – 视图实例数组</div>
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
@@ -343,21 +343,6 @@
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
-<section id = "api_View-beforeInit" data-view = "true" data-view-title = "View.beforeInit(callback)">
-	<header>
-		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>View.beforeInit(callback)</span>
-		<a class = "menu"></a>
-	</header>
-	<div class = "body">
-		<div class = "api-usage">添加“视图将要初始化”监听器。</div>
-		<div class = "api-params"><ol>
-			<li>callback – {Function} 回调方法</li>
-		</ol></div>
-		<div class = "api-returns">{Function} – View静态对象</div>
-	</div>
-	<footer><div class = "btn next">下一节</div></footer>
-</section>
 <section id = "api_View-onceHistoryBack" data-view = "true" data-view-title = "View.onceHistoryBack(callback)">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
@@ -376,6 +361,21 @@ View.onceHistoryBack(hideDialog);
 			<li>
 				callback – {Function} 回调方法
 			</li>
+		</ol></div>
+		<div class = "api-returns">{Function} – View静态对象</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-beforeInit" data-view = "true" data-view-title = "View.beforeInit(callback)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.beforeInit(callback)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">添加“视图将要初始化”监听器。</div>
+		<div class = "api-params"><ol>
+			<li>callback – {Function} 回调方法</li>
 		</ol></div>
 		<div class = "api-returns">{Function} – View静态对象</div>
 	</div>
@@ -662,21 +662,6 @@ View.setInitializer(function(init){
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
-<section id = "api_View-instance-getParameter" data-view = "true" data-view-title = "view.getParameter(name)">
-	<header>
-		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>view.getParameter(name)</span>
-		<a class = "menu"></a>
-	</header>
-	<div class = "body">
-		<div class = "api-usage">获取视图参数中指定名称的参数取值。</div>
-		<div class = "api-params"><ol>
-			<li>name – {String} 参数名。区分大小写。</li>
-		</ol></div>
-		<div class = "api-returns">{Any} - 指定名称对应的参数取值。如果指定名称的参数并不存在，则返回null。如果没有指定参数名，则返回整个参数集合</div>
-	</div>
-	<footer><div class = "btn next">下一节</div></footer>
-</section>
 <section id = "api_View-instance-hasParameter" data-view = "true" data-view-title = "view.hasParameter(name)">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
@@ -689,6 +674,21 @@ View.setInitializer(function(init){
 			<li>name – {String} 参数名。区分大小写</li>
 		</ol></div>
 		<div class = "api-returns">{Boolean} – 指定名称的参数是否存在。true：存在；false：不存在</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_View-instance-getParameter" data-view = "true" data-view-title = "view.getParameter(name)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>view.getParameter(name)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取视图参数中指定名称的参数取值。</div>
+		<div class = "api-params"><ol>
+			<li>name – {String} 参数名。区分大小写。</li>
+		</ol></div>
+		<div class = "api-returns">{Any} - 指定名称对应的参数取值。如果指定名称的参数并不存在，则返回null。如果没有指定参数名，则返回整个参数集合</div>
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
@@ -811,7 +811,7 @@ View.setInitializer(function(init){
 	<div class = "body">
 		<div class = "api-usage">设置回退视图。</div>
 		<div class = "api-params"><ol>
-			<li>fallbackViewId – {String} 回退视图ID</li>
+			<li>fallbackViewId – {String} 回退视图ID，或伪视图：":default-view"，或视图群组</li>
 		</ol></div>
 		<div class = "api-returns">{View} – View实例</div>
 	</div>
@@ -901,19 +901,6 @@ View.setInitializer(function(init){
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
-<section id = "api_ViewConfiguration-instance-getName" data-view = "true" data-view-title = "viewConfiguration.getName()">
-	<header>
-		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>viewConfig.getName()</span>
-		<a class = "menu"></a>
-	</header>
-	<div class = "body">
-		<div class = "api-usage">获取配置项名称。</div>
-		<div class = "api-params">无</div>
-		<div class = "api-returns">{String} – 配置项名称</div>
-	</div>
-	<footer><div class = "btn next">下一节</div></footer>
-</section>
 <section id = "api_ViewConfiguration-instance-getValue" data-view = "true" data-view-title = "viewConfiguration.getValue(dftValue)">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
@@ -926,6 +913,19 @@ View.setInitializer(function(init){
 			<li>dftValue – {Any} 配置值没有指定时的默认值</li>
 		</ol></div>
 		<div class = "api-returns">{Any} 配置取值</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_ViewConfiguration-instance-getName" data-view = "true" data-view-title = "viewConfiguration.getName()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>viewConfig.getName()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取配置项名称。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{String} – 配置项名称</div>
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
@@ -1007,6 +1007,21 @@ View.setInitializer(function(init){
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
+<section id = "api_ViewContext-instance-has" data-view = "true" data-view-title = "viewContext.has(name)">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>viewContext.has(name)</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">判定上下文中是否含有指定名称的键。</div>
+		<div class = "api-params"><ol>
+			<li>name – {String} 名称</li>
+		</ol></div>
+		<div class = "api-returns">指定名称的键是否存在。</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
 <section id = "api_ViewContext-instance-set" data-view = "true" data-view-title = "viewContext.set(name, value)">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
@@ -1020,21 +1035,6 @@ View.setInitializer(function(init){
 			<li>value – {Any} 属性取值</li>
 		</ol></div>
 		<div class = "api-returns">{ViewContext} – 视图上下文</div>
-	</div>
-	<footer><div class = "btn next">下一节</div></footer>
-</section>
-<section id = "api_ViewContext-instance-has" data-view = "true" data-view-title = "viewContext.has(name)">
-	<header>
-		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>viewContext.has(name)</span>
-		<a class = "menu"></a>
-	</header>
-	<div class = "body">
-		<div class = "api-usage">判定上下文中是否含有指定名称的键。</div>
-		<div class = "api-params"><ol>
-			<li>name – {String} 名称</li>
-		</ol></div>
-		<div class = "api-returns">指定名称的键是否存在。</div>
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
@@ -1068,6 +1068,19 @@ View.setInitializer(function(init){
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
+<section id = "api_ViewContext-instance-clear" data-view = "true" data-view-title = "viewContext.clear()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>viewContext.clear()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">清空所有属性。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{ViewContext} – 视图上下文</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
 <section id = "api_Logger-ofName" data-view = "true" data-view-title = "Logger.ofName(name)">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
@@ -1080,19 +1093,6 @@ View.setInitializer(function(init){
 			<li>name – {String} 实例名称</li>
 		</ol></div>
 		<div class = "api-returns">{Logger} – 日志输出组件实例</div>
-	</div>
-	<footer><div class = "btn next">下一节</div></footer>
-</section>
-<section id = "api_ViewContext-instance-clear" data-view = "true" data-view-title = "viewContext.clear()">
-	<header>
-		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>viewContext.clear()</span>
-		<a class = "menu"></a>
-	</header>
-	<div class = "body">
-		<div class = "api-usage">清空所有属性。</div>
-		<div class = "api-params">无</div>
-		<div class = "api-returns">{ViewContext} – 视图上下文</div>
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
@@ -1272,19 +1272,6 @@ logger.info("No output would be generated");
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
-<section id = "api_layout-getBrowserWidth" data-view = "true" data-view-title = "View.layout.getBrowserWidth()">
-	<header>
-		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>View.layout.getBrowserWidth()</span>
-		<a class = "menu"></a>
-	</header>
-	<div class = "body">
-		<div class = "api-usage">获取浏览器宽度。</div>
-		<div class = "api-params">无</div>
-		<div class = "api-returns">{Integer} – 获取当前浏览器的宽度</div>
-	</div>
-	<footer><div class = "btn next">下一节</div></footer>
-</section>
 <section id = "api_layout-getLayoutHeight" data-view = "true" data-view-title = "View.layout.getLayoutHeight()">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
@@ -1295,6 +1282,19 @@ logger.info("No output would be generated");
 		<div class = "api-usage">获取布局高度。</div>
 		<div class = "api-params">无</div>
 		<div class = "api-returns">{Integer} – 实际布局的高度</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "api_layout-getBrowserWidth" data-view = "true" data-view-title = "View.layout.getBrowserWidth()">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>View.layout.getBrowserWidth()</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "api-usage">获取浏览器宽度。</div>
+		<div class = "api-params">无</div>
+		<div class = "api-returns">{Integer} – 获取当前浏览器的宽度</div>
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>

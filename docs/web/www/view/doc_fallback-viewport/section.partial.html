@@ -19,6 +19,15 @@ View.ofId("setting").setFallbackViewId("profile")
 		<div class = "code html" >
 &lt;section id = "setting" data-view = "true" data-view-fallback = "profile"&gt;&lt;/section&gt;
 		</div>
+
+		<p>
+			开发者通过API：<span class = "code js">view.setFallbackViewId(viewId)</span>或DOM属性：<span class = "code html">data-view-fallback</span>设置回退视图ID时，可以设定如下几种取值：
+			<ol>
+				<li>任一存在的确切的视图编号；</li>
+				<li>伪视图：<span class = "code html">:default-view</span>（代表默认视图）</li>
+				<li>视图群组：<span class = "code html">~groupName</span>（View.js将自动查找隶属于该群组的第一个视图）</li>
+			</ol>
+		</p>
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>

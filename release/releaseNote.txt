@@ -1,3 +1,9 @@
+【1.5.0-B201709060958】
+1. data-view-fallback支持伪视图：":default-view"
+2. data-view-fallback支持视图群组
+3. setViewId(viewId)支持伪视图：":default-view"
+4. setViewId(viewId)支持视图群组
+
 【1.5.0-B201709051136】
 1. 移除历史API：View.switchTo与View.switchView
 2. 移除历史API：View.updateView
