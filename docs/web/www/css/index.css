@@ -562,4 +562,4 @@ html, body { height: 100%; }
 
 .download { position: relative; margin: 0.4rem 0.2rem 0; text-align: center; color: white; background: #33b084; line-height: 0.4rem; border-radius: 0.5rem; }
 
-.author { margin-top: 0.1rem; width: 100%; color: #999999; font-size: 0.1rem; text-align: center; }
+.author, .beian { margin-top: 0.1rem; width: 100%; color: #999999; font-size: 0.1rem; text-align: center; }

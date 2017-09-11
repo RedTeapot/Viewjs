@@ -25,32 +25,6 @@
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
-<section id = "attr_data-view-default" data-view = "true" data-view-title = "data-view-default">
-	<header>
-		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>data-view-default</span>
-		<a class = "menu"></a>
-	</header>
-	<div class = "body">
-		<div class = "attr-usage">标明特定视图为默认视图。默认视图是指页面打开后将要呈现的第一个视图。如果没有指定默认视图，则最终呈现DOM顺序上的第一个视图。</div>
-		<div class = "attr-value"><span class = "code js no-margin">true</span></div>
-		<div class = "attr-declare-position">任一视图节点（声明了<span class = "code html">data-view</span>属性，且取值为<span class = "code js">true</span>的DOM节点）</div>
-	</div>
-	<footer><div class = "btn next">下一节</div></footer>
-</section>
-<section id = "attr_data-view-group" data-view = "true" data-view-title = "attr_data-view-group">
-	<header>
-		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>attr_data-view-group</span>
-		<a class = "menu"></a>
-	</header>
-	<div class = "body">
-		<div class = "attr-usage">用于指明视图所隶属的视图群组。</div>
-		<div class = "attr-value">任意字符串</div>
-		<div class = "attr-declare-position">任一视图节点</div>
-	</div>
-	<footer><div class = "btn next">下一节</div></footer>
-</section>
 <section id = "attr_data-view-directly-accessible" data-view = "true" data-view-title = "data-view-directly-accessible">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
@@ -61,19 +35,6 @@
 		<div class = "attr-usage">配置视图是否可以直接访问。一个视图是否能够直接访问（直接访问，是指是否允许用户以手动更改地址栏中地址的方式主动访问特定视图）</div>
 		<div class = "attr-value"><span class = "code js no-margin">true</span>：可以通过直接访问；<span class = "code js">false</span>：不能直接访问。</div>
 		<div class = "attr-declare-position">HTML节点，或任一视图节点</div>
-	</div>
-	<footer><div class = "btn next">下一节</div></footer>
-</section>
-<section id = "attr_data-view-fallback" data-view = "true" data-view-title = "data-view-fallback">
-	<header>
-		<a class = "nav-back" data-view-rel = ":back"></a>
-		<span>data-view-fallback</span>
-		<a class = "menu"></a>
-	</header>
-	<div class = "body">
-		<div class = "attr-usage">用于指定视图不能直接访问时，将要呈现的回退视图编号。可以指定一个同样不能直接访问的视图，此时将递归搜索，直到找到一个可以直接访问的回退视图。如果搜索链上的所有视图都不能直接访问，则最终呈现默认视图。</div>
-		<div class = "attr-value">任一存在的视图编号，亦即对应的DOM元素的ID；或伪视图：<span class = "code html">:default-view</span>；或视图群组：<span class = "code html">~groupName</span></div>
-		<div class = "attr-declare-position">任一视图节点</div>
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
@@ -116,6 +77,19 @@
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
+<section id = "attr_data-view-fallback" data-view = "true" data-view-title = "data-view-fallback">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>data-view-fallback</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "attr-usage">用于指定视图不能直接访问时，将要呈现的回退视图编号。可以指定一个同样不能直接访问的视图，此时将递归搜索，直到找到一个可以直接访问的回退视图。如果搜索链上的所有视图都不能直接访问，则最终呈现默认视图。</div>
+		<div class = "attr-value">任一存在的视图编号，亦即对应的DOM元素的ID；或伪视图：<span class = "code html">:default-view</span>；或视图群组：<span class = "code html">~groupName</span></div>
+		<div class = "attr-declare-position">任一视图节点</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
 <section id = "attr_data-view-title" data-view = "true" data-view-title = "data-view-title">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
@@ -126,6 +100,32 @@
 		<div class = "attr-usage">用于声明视图标题。声明了视图标题的视图在进入时，View.js将使用视图标题更新文档标题。</div>
 		<div class = "attr-value">任意字符串</div>
 		<div class = "attr-declare-position">任一视图节点</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "attr_data-view-group" data-view = "true" data-view-title = "attr_data-view-group">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>attr_data-view-group</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "attr-usage">用于指明视图所隶属的视图群组。</div>
+		<div class = "attr-value">任意字符串</div>
+		<div class = "attr-declare-position">任一视图节点</div>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
+<section id = "attr_data-view-default" data-view = "true" data-view-title = "data-view-default">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>data-view-default</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<div class = "attr-usage">标明特定视图为默认视图。默认视图是指页面打开后将要呈现的第一个视图。如果没有指定默认视图，则最终呈现DOM顺序上的第一个视图。</div>
+		<div class = "attr-value"><span class = "code js no-margin">true</span></div>
+		<div class = "attr-declare-position">任一视图节点（声明了<span class = "code html">data-view</span>属性，且取值为<span class = "code js">true</span>的DOM节点）</div>
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
