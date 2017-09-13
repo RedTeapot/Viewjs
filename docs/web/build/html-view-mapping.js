@@ -152,4 +152,6 @@ var htmlViewMapping = {
 	]
 };
 
+htmlViewMapping["doc-sp"] = htmlViewMapping.doc;
+
 module.exports = htmlViewMapping;

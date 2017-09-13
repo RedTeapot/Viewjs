@@ -44,60 +44,56 @@ a{
 	height: 0;
 }
 
-.swiper-container{
-	background: #DFDFDF;
+p{
+	text-indent: 2em;
+	line-height: 2em;
 
-	ul{
-		margin: 0;
-		padding: 0;
-		list-style: none;
+	&.no-text-indent{
+		text-indent: 0;
 	}
-	li{
-		float: left;
-	}
-	div.img-wrapper{
-		height: 100%;
-		overflow: hidden;
-
-		&:after{
-			display: inline-block;
-			content: " ";
-			height: 100%;
-			width: 0;
-			vertical-align: middle;
-		}
-	}
-	img{
-		width: 100%;
-		max-height: 100%;
-		vertical-align: middle;
-	}
-
+}
+li{
+	line-height: 1.5em;
 }
 
-.banner-wrapper{
-	position: relative;
+.code{
+	background: #CCCCCC;
+	font-family: Consolas, sans-serif, serif;
+}
+span.code{
+	padding: 0.03rem 0.1rem;
+	border-radius: 0.02rem;
+	margin: 0 0.05rem;
+	font-size: 0.1rem;
 
-	.pagination{
-		position: absolute;
-		z-index: 1;
-		bottom: 0.1rem;
-		left: 50%;
-		margin-left: -0.33rem;
-		width: 0.66rem;
-		text-align: center;
+	&.no-margin{
+		margin: 0;
 	}
-	.swiper-pagination-bullet{
-		display: inline-block;
-		width: 0.05rem;
-		height: 0.05rem;
-		border-radius: 5px;
-		background: #fff;
-		margin: 0 0.02rem;
-		opacity: 0.8;
-		cursor: pointer;
+}
+div.code{
+	position: relative;
+	white-space: pre;
+	padding: 0.1rem;
+	margin: 0.1rem 0;
+	border-radius: 0.05rem;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+
+	&[data-filename]:before{
+		display: block;
+		font-style: italic;
+		content: attr(data-filename);
+		padding: 0.1rem 0;
+		color: #999999;
+		border-bottom: solid 1px #BBBBBB;
 	}
-	.swiper-pagination-bullet-active{
-		background: #FF6600;
-	}
+}
+
+.warn{
+	text-decoration: underline;
+}
+.link{
+	color: #29b482;
+	font-style: italic;
+	font-family: Consolas, sans-serif, serif;
 }

@@ -1,0 +1,24 @@
+@import "_base";
+
+header{
+	position: relative;
+	height: 0.44rem;
+	line-height: 0.44rem;
+	font-size: 0.15rem;
+
+	.nav-back{
+		display: none;
+	}
+	.menu{
+		display: none;
+	}
+}
+
+.viewjs-doc-menu{
+	display: none;
+}
+
+footer{
+	display: none;
+}
+
