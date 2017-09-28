@@ -1,3 +1,7 @@
+【1.5.1-B201709281619】
+1. 添加属性：data-view-container：视图容器
+2. View.layout布局方式调整（API向后兼容）
+
 【1.5.0-B201709060958】
 1. data-view-fallback支持伪视图：":default-view"
 2. data-view-fallback支持视图群组

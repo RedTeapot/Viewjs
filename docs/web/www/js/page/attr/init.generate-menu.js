@@ -2,6 +2,7 @@ var views = [
 	"attr_data-view",
 	"attr_data-view-default",
 	"attr_data-view-group",
+	"attr_data-view-container",
 	"attr_data-view-directly-accessible",
 	"attr_data-view-fallback",
 	"attr_data-view-rel",

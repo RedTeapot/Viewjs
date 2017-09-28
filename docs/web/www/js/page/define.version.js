@@ -1,4 +1,4 @@
 ;(function(){
-	window.viewJsNewestVersion = "1.5.0-B201709061010";
-	window.viewJsNewestZipFile = "dist/viewjs-1.5.0-B201709061010.zip";
+	window.viewJsNewestVersion = "1.5.1-B201709281619";
+	window.viewJsNewestZipFile = "dist/viewjs-1.5.1-B201709281619.zip";
 })();

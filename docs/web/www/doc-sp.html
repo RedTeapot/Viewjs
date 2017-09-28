@@ -162,6 +162,19 @@ View.changeTo("~category");
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>
 </section>
+<section id = "doc_viewport-container" data-view = "true" data-view-title = "视图容器">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>视图容器</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<p>View.js建议开发者将所有的视图对应的DOM元素统一定义至特定元素下，以便于View.js完成整体级别的页面布局。该元素即为视图容器。</p>
+		<p>除非额外指定，否则View.js将使用document.body作为视图容器。</p>
+		<p>开发者可以使用DOM属性：data-view-container来定义视图容器所对应的DOM元素。</p>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>
 <section id = "doc_event-drive" data-view = "true" data-view-title = "事件驱动">
 	<header>
 		<a class = "nav-back" data-view-rel = ":back"></a>
@@ -556,7 +569,7 @@ View.ofId("setting").setFallbackViewId("profile")
 		<ol>
 			<li>
 				<span class = "code html">A</span>链接，如：
-				<div class = "code html" ><a href = "http://www.mydomain.com/html/index.html#goods-detail">商品详情</a></div>
+				<div class = "code html" >&lt;a href = "http://www.mydomain.com/html/index.html#goods-detail"&gt;商品详情&lt;/a&gt;</div>
 				<p class = "no-text-indent">此时，要求视图：goods-detail为默认视图或可以直接访问。</p>
 			</li>
 			<li>

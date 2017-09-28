@@ -7,6 +7,7 @@ var views = [
 	"doc_active-viewport",
 	"doc_pseudo-viewport",
 	"doc_viewport-group",
+	"doc_viewport-container",
 	"doc_event-drive",
 	"doc_os-detect",
 	"doc_logger-output",

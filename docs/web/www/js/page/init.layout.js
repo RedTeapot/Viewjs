@@ -7,12 +7,7 @@
 		return Math.floor(ratio * 100) + "px";
 	})();
 
-	View.layout.setExpectedWidthHeightRatio(320 / 568).init({
-		autoReLayoutWhenResize: true,
-		layoutAsPcLandscape: function(width, height){
-			document.body.style.cssText = "width: " + width + "px; height: " + height + "px; margin: 0 auto;";
-		}
-	}).doLayout();
+	View.layout.setExpectedWidthHeightRatio(320 / 568).init().doLayout();
 
 	View.ready(function(){
 		View.listAll().forEach(function(view){
