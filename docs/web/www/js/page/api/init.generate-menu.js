@@ -13,6 +13,7 @@ var views = [
 	"api_View-getActiveViewOptions",
 	"api_View-hasActiveViewOption",
 	"api_View-getActiveViewOption",
+	"api_View-setActiveViewOption",
 	"api_View-implIsPortrait",
 	"api_View-navTo",
 	"api_View-changeTo",

@@ -1,3 +1,6 @@
+【1.5.1-B201710171133】
+1. 新增API：View.setActiveViewOption(name, value)
+
 【1.5.1-B201709281619】
 1. 添加属性：data-view-container：视图容器
 2. View.layout布局方式调整（API向后兼容）
