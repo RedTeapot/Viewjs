@@ -2349,7 +2349,7 @@
 		options = options.options || {};
 		options[name] = value;
 
-		replaceViewState(activeView.getId(), null, options);
+		replaceViewState(activeView.getId(), View.currentState? View.currentState.sn: null, options);
 
 		return View;
 	};
