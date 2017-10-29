@@ -2984,12 +2984,6 @@
 			}, {useCapture: true});
 		})();
 
-		/* 标记视图已完成初始化 */
-		markViewInited();
-
-		/* 标记视图就绪 */
-		markViewReady();
-
 		/**
 		 * 呈现指定视图
 		 */
@@ -3035,17 +3029,25 @@
 			if(!ifViewRemainsTheSame)
 				options = null;
 
+			globalLogger.info("Showing view: {}", targetViewId);
+			
 			replaceViewState(targetViewId, null, options);
-			if(!ifViewRemainsTheSame){
-				var currentActiveView = View.getActiveView();
-				switchView({
-					srcView: currentActiveView == targetView? null: currentActiveView,
-					targetView: targetView,
-					withAnimation: false,
-					params: null
-				});
-			}
+			var currentActiveView = View.getActiveView();
+			switchView({
+				srcView: currentActiveView == targetView? null: currentActiveView,
+				targetView: targetView,
+				withAnimation: false,
+				params: null
+			});
 		})();
+		
+		globalLogger.info("Marking View as initialized and ready");
+		
+		/* 标记视图已完成初始化 */
+		markViewInited();
+
+		/* 标记视图就绪 */
+		markViewReady();
 	};
 
 	/**
