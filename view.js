@@ -2731,7 +2731,7 @@
 		var currentActiveView = View.getActiveView();
 		var currentActiveViewId = null == currentActiveView? null: currentActiveView.getId();
 
-		globalLogger.log("{} Current: {}", historyPushPopSupported? "State poped!": "Hash changed!", currentActiveView.getId());
+		globalLogger.log("{} Current: {}", historyPushPopSupported? "State poped!": "Hash changed!", currentActiveView && currentActiveView.getId());
 		globalLogger.log("↑ {}", historyPushPopSupported? JSON.stringify(e.state): location.hash);
 
 		/* 视图切换 */
@@ -2903,7 +2903,7 @@
 				if(null != tmp)
 					targetViewId = tmp.getAttribute(attr$view_rel);
 
-				if(null == targetViewId)
+				if(null == targetViewId || "" == targetViewId.trim())
 					return;
 
 				/* 视图切换禁用标志检测 */
