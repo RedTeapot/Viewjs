@@ -127,8 +127,8 @@ var cleanup = function(){
 	del.sync(target, {force: true});
 };
 
-gulp.task('min', min);
-gulp.task('stage', stage);
+gulp.task('min', function(){min();});
+gulp.task('stage', function(){stage();});
 gulp.task('releaseToDoc', releaseToDoc);
 gulp.task('stageAndreleaseToDoc', stageAndreleaseToDoc);
 gulp.task('cleanup', cleanup);
