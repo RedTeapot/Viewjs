@@ -129,6 +129,6 @@ var cleanup = function(){
 
 gulp.task('min', function(){min();});
 gulp.task('stage', function(){stage();});
-gulp.task('releaseToDoc', releaseToDoc);
+gulp.task('releaseToDoc', function(){releaseToDoc();});
 gulp.task('stageAndreleaseToDoc', stageAndreleaseToDoc);
 gulp.task('cleanup', cleanup);

@@ -1,6 +1,9 @@
 var htmlViewMapping = {
 	"index": [],
 	"doc": [
+		"doc_what-is-spa",
+		"doc_impl-spa",
+		"doc_spa-advantage-disadvantage",
 		"doc_what-is-viewjs",
 		"doc_how-to-use",
 		"doc_application",

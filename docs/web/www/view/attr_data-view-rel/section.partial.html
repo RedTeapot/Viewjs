@@ -5,8 +5,19 @@
 		<a class = "menu"></a>
 	</header>
 	<div class = "body">
+		<div class = "attr-name">data-view-rel</div>
 		<div class = "attr-usage">响应用户触摸，跳转到指定的目标位置。支持伪视图和视图群组。支持视图选项，如：<span class = "code html">&lt;span data-view-rel=”category!id=1”&gt;分类&lt;/span&gt;</span></div>
-		<div class = "attr-value">任一存在的视图编号，亦即对应的DOM元素的ID；或伪视图：":back"（后退），":forward"（前进），":default-view"（默认视图）；或视图群组；或其它链接。当配置为视图群组时，需要添加特殊符号：“~”，如：<span class = "code html">&lt;span data-view-rel="~category"&gt;分类&lt;/span&gt;</span>。当配置为其它链接地址时，需要添加特殊符号：“@”，如：<span class = "code html">&lt;span data-view-rel="@index.html"&gt;首页&lt;/span&gt;</span>，<span class = "code html">&lt;span data-view-rel="@http://www.google.com.tw"&gt;谷歌&lt;/span&gt;</span>。</div>
+		<div class = "attr-value">
+			<ul>
+				<li>任一存在的视图编号，亦即对应的DOM元素的ID；</li>
+				<li>伪视图：":back"（后退），":forward"（前进），":default-view"（默认视图）</li>
+				<li>视图群组</li>
+				<li>其它链接</li>
+			</ul>
+			<p>当配置为视图群组时，需要添加特殊符号：“~”，如：<span class = "code html">&lt;span data-view-rel="~category"&gt;分类&lt;/span&gt;</span>。</p>
+			<p>当取值为视图编号，或视图群组时，开发者可以使用”!”作为分隔符传递参数。如：<span class = "code">&lt;span data-view-rel=”category!id=1”&gt;分类&lt;/span&gt; &lt;span data-view-rel=”~category!id=1&name=XXXX”&gt;分类&lt;/span&gt;</span>。多个参数之间使用符号：“&”分隔。</p>
+			<p>当配置为其它链接地址时，需要添加特殊符号：“@”，如：<span class = "code html">&lt;span data-view-rel="@index.html"&gt;首页&lt;/span&gt;</span></p>
+		</div>
 		<div class = "attr-declare-position">任一DOM节点</div>
 	</div>
 	<footer><div class = "btn next">下一节</div></footer>

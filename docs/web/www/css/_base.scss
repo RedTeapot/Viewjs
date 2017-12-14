@@ -52,19 +52,23 @@ p{
 		text-indent: 0;
 	}
 }
-li{
-	line-height: 1.5em;
+ol, ul{
+	font-size: 0.1rem;
+    border: solid 1px #EEEEEE;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+    line-height: 2em;
 }
 
 .code{
-	background: #CCCCCC;
+	background: #EEEEEE;
+	font-size: 0.1rem;
 	font-family: Consolas, sans-serif, serif;
 }
 span.code{
-	padding: 0.03rem 0.1rem;
+	padding: 0.03rem;
 	border-radius: 0.02rem;
 	margin: 0 0.05rem;
-	font-size: 0.1rem;
 
 	&.no-margin{
 		margin: 0;
@@ -75,6 +79,7 @@ div.code{
 	white-space: pre;
 	padding: 0.1rem;
 	margin: 0.1rem 0;
+	line-height: 1.6em;
 	border-radius: 0.05rem;
 	overflow: auto;
 	-webkit-overflow-scrolling: touch;

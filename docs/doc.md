@@ -1,3 +1,152 @@
+# 什么是单页应用
+
+单页应用，是指将用户视觉上的多个页面（以下简称“视图”）在技术上使用一个载体来实现的应用。放到web前端环境中，这个载体就是单独的html文件。
+
+# 初步实现单页应用
+
+实现单页应用其实并不复杂。
+我们可以将多个不同的视图使用div等标签预先定义到html中，然后通过脚本动态控制特定视图的呈现与隐藏。例如：
+
+```html
+<!DOCTYPE HTML>
+<html>
+<head>...</head>
+<body>
+	<div id = "view1" class = "view">page1</div>
+	<div id = "view2" class = "view">page2</div>
+</body>
+</html>
+```
+
+```js
+/* 切换呈现的视图 */
+document.querySelector(".view.active").classList.remove("active");
+document.querySelector("#view2.view").classList.add("active");
+```
+
+对于简单的场景，这种做法基本还能勉强应对。但面对更高的要求，如：“界面数据需要根据用户操作而动态变化”等时，逻辑就要再复杂一些。如果我们需要使用视图呈现商品详情并响应立即购买动作，那代码逻辑可能就要这么写：
+
+```html
+<div id = "goodsList" class = "view">Goods list</div>
+<div id = "goodsDetail" class = "view">
+	<span class = "nav-back"></span>
+	<div class = "name">商品名称</div>
+	<div class = "detail">商品图文详情</div>
+	<span class = "btn buy">立即购买</span>
+</div>
+```
+
+```js
+var find = function(selector){
+	return document.querySelector(selector);
+};
+
+/**
+ * 呈现商品列表
+ * @param {JsonObjectList} list 商品列表
+ */
+var showGoodsList = function(list){
+	/* 切换呈现的视图 */
+	find(".view.active").classList.remove("active");
+	find("#goodsList").classList.add("active");
+	
+	list.forEach(function(goodsDetail){
+		//TODO
+	});
+};
+
+/**
+ * 重置商品详情界面
+ */
+var resetGoodsDetail = function(){
+	find("#goodsDetail").removeAttribute("data-goodsId");
+	find(".name").innerHTML = "";
+	find(".detail").innerHTML = "";
+};
+
+/**
+ * 呈现商品详情
+ * @param {JsonObject} goodsDetail 商品详情
+ */
+var showGoodsDetail = function(goodsDetail){
+	/* 切换呈现的视图 */
+	find(".view.active").classList.remove("active");
+	find("#goodsDetail").classList.add("active");
+
+	resetGoodsDetail();
+	
+	find("#goodsDetail").setAttribute("data-goodsId", goodsDetail.id);
+	find("#goodsDetail .name").innerHTML = goodsDetail.name;
+	find("#goodsDetail .detail").innerHTML = goodsDetail.detailHtml;
+};
+
+/* 立即购买 */
+var buyObj = find("#goodsDetail .btn.buy");
+Hammer(buyObj).on("tap", function(){
+	var goodsId = find("#goodsDetail").getAttribute("data-goodsId");
+	//TODO
+});
+
+/* 返回 */
+var backObj = find("#goodsDetail .nav-back");
+Hammer(backObj).on("tap", function(){
+	var list;
+	/* 获取商品列表 */
+	//TODO
+	
+	showGoodsList(list);
+});
+
+document.addEventListener("DOMContentLoaded", function(){
+	var goodsList;
+	/* 获取商品列表 */
+	//TODO
+	
+	showGoodsList(list);
+	
+	/* 返回 */
+	var backObj = find("#goodsDetail .nav-back");
+	Hammer(backObj).on("tap", function(){
+		var list;
+		/* 获取商品列表 */
+		//TODO
+		
+		showGoodsList(list);
+	});
+});
+```
+
+看上去确实没什么问题，应该可以正常工作。是的，确实是这样。但程序开发，并不青睐一个人单独作战，而是需要多人协作的。这个例子只证明了这种方案的可行性，但可行性与量产还不是同一个问题。如何以更优雅地方式在实现功能的前提下提升多人协作的便捷性，也是项目管理过程中的一个重要议题。
+
+就上面的例子而言，存在如下几个方面的问题：
+1.	商品列表的逻辑与商品详情的逻辑无法清晰的剥离开来；
+2.	视图之间的数据传递完全依赖带参数的渲染方法的主动调用；
+3.	特定视图的数据暂存无法得到有效处理。如，渲染商品详情视图所需要的商品详情数据；
+4.	特定视图打开后，无法借助URL传播。亦即用户A打开商品G的商品详情后，如果将URL发给B，B打开链接后看到的并不是商品G的商品详情，而是商品列表界面
+
+上面描述的种种问题，都需要一个业务无关的底层框架给予解决，使得应用开发者基本上只考虑各个视图的业务逻辑与视图之间的参数传递问题即可。
+
+# 单页应用的优点与缺点
+
+相比传统的开发方式，单页应用有如下几方面的显著优点：
+1.	页面切换速度快。视觉上页面的切换，只是技术上同一页面两个区块之间的切换
+2.	页面之间的可传递所有js支持的数据类型，甚至是一个DOM元素
+3.	可为页面切换过程添加转场动画
+
+与此同时，单页应用也存在如下几方面的缺点：
+1.	所有页面的样式、DOM和JS需要完全加载
+2.	页面打开速度稍慢
+
+对于缺点1，开发者可借助如下手段解决或优化：
+1.	借助gulp.js等构建工具，将所有视图的样式、DOM结构和脚本分别合并之单独的文件中压缩，以降低影响。以复杂类型中等的电商为例，如果一个界面含有80个视图，那么通过构建工具合并压缩之后的脚本也只有1.1M左右
+2.	拆解客户端功能，仅将共属于同一操作范畴的视图构建至同一html中。不同操作范畴的视图隶属于不同html文件
+
+对于缺点2，开发者可以通过配置web服务器，为页面加上缓存控制，从而降低影响，使得页面的第二次及其后的加载速度更快。
+
+# 可用的单页应用框架
+
+单页应用框架有view.js、angular.js和vue.js等，不同框架的解决方式各有不同。笔者推荐使用View.js（官网：http://wzhsoft.com）。
+
 # View.js是什么
 
 View.js是一个专门用于开发移动端H5单页应用（SPA，Single Page Application）的底层框架。其核心理念是"视图"，并提供而且仅提供视图相关的API和事件监听等。
@@ -778,6 +927,7 @@ View.js建议开发者在开发应用时，区分功能特性的隶属级别：�
 
 # FAQ
  - FAQ：如何确定进入视图的源视图？
+
 视图可以在ready及enter事件的监听句柄中获取进入视图的源视图。如：
 ```js
 View.ofId("detail").on("enter", function(e){
@@ -786,6 +936,7 @@ View sourceView = e.data.sourceView;
 });
 ```			
  - FAQ：如何获取要进入到的目标视图？
+
 视图可以在leave事件的监听句柄中获取要进入到的目标视图。如：
 
 ```js
@@ -793,3 +944,7 @@ View.ofId("detail").on("leave", function(){
 	console.log(e.data.targetView.getId());
 });
 ```
+
+ - FAQ：为DOM元素添加的click监听为什么没有被触发？
+
+这可能是因为添加click监听的DOM元素声明有data-view-rel属性。之所以这样，是因为View.js在使能data-view-rel时，将其触摸事件preventDefault()了。对于这种情况，开发者可以去除data-view-rel属性，然后使用触摸编程借助View.js的API：View.navTo完成视图导向。触摸框架，推荐使用优秀的Hammer.js。

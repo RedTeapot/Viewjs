@@ -18,7 +18,7 @@
 					bodyObj = view.find(".body"),
 					footerObj = view.find("footer");
 
-				bodyObj.style.height = Math.floor(totalHeight - headerObj.offsetHeight - (null == footerObj? 0: footerObj.offsetHeight)) + "px";
+				bodyObj.style.height = Math.floor(totalHeight - (null == headerObj? 0: headerObj.offsetHeight) - (null == footerObj? 0: footerObj.offsetHeight)) + "px";
 			}, true);
 		});
 	});

@@ -1,0 +1,27 @@
+<section id = "doc_spa-advantage-disadvantage" data-view = "true" data-view-title = "单页应用的优点与缺点">
+	<header>
+		<a class = "nav-back" data-view-rel = ":back"></a>
+		<span>单页应用的优点与缺点</span>
+		<a class = "menu"></a>
+	</header>
+	<div class = "body">
+		<p>相比传统的开发方式，单页应用有如下几方面的显著优点：</p>
+		<ol>
+			<li>页面切换速度快。视觉上页面的切换，只是技术上同一页面两个区块之间的切换</li>
+			<li>页面之间的可传递所有js支持的数据类型，甚至是一个DOM元素</li>
+			<li>可为页面切换过程添加转场动画</li>
+		</ol>
+		<p>与此同时，单页应用也存在如下几方面的缺点：</p>
+		<ol>
+			<li>所有页面的样式、DOM和JS需要完全加载</li>
+			<li>页面打开速度稍慢</li>
+		</ol>
+		<p>对于缺点1，开发者可借助如下手段解决或优化：</p>
+		<ol>
+			<li>借助gulp.js等构建工具，将所有视图的样式、DOM结构和脚本分别合并之单独的文件中压缩，以降低影响。以复杂类型中等的电商为例，如果一个界面含有80个视图，那么通过构建工具合并压缩之后的脚本也只有1.1M左右</li>
+			<li>拆解客户端功能，仅将共属于同一操作范畴的视图构建至同一html中。不同操作范畴的视图隶属于不同html文件</li>
+		</ol>
+		<p>对于缺点2，开发者可以通过配置web服务器，为页面加上缓存控制，从而降低影响，使得页面的第二次及其后的加载速度更快。</p>
+	</div>
+	<footer><div class = "btn next">下一节</div></footer>
+</section>

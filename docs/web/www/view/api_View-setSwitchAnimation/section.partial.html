@@ -5,6 +5,7 @@
 		<a class = "menu"></a>
 	</header>
 	<div class = "body">
+		<div class = "api-name">View.setSwitchAnimation(animationFunction)</div>
 		<div class = "api-usage">设置视图切换动画。注：该方法可以接受4个参数，如：
 			animationFunction(srcElement, tarElement, type, render)。其中srcElement是离开的视图对应的DOM元素，tarElement是进入的视图对应的DOM元素，type是视图的切换方式（浏览器后退：View.SWITCHTYPE_HISTORYBACK, 浏览器前进：View.SWITCHTYPE_HISTORYFORWARD, 压入历史堆栈：View.SWITCHTYPE_VIEWNAV, 替换当前堆栈：View.SWITCHTYPE_VIEWCHANGE），render则是动画播放完毕后，通知View.js重新渲染界面的方法（如果设置了视图切换动画，但没有在动画播放完毕后调用该方法，则界面将不会发生变化。）。
 		</div>

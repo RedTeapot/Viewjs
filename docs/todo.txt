@@ -1,3 +1,1 @@
-1. 添加FAQ：为DOM元素添加的click监听为什么没有被触发？
-   答：这是因为触摸事件被preventDefault()了。这是可以使用触摸编程借助View.js的API：View.navTo完成视图导向。触摸框架，推荐使用优秀的Hammer.js
 2. 添加说明：data-view-rel支持传参（视图ID传参及视图群组传参）

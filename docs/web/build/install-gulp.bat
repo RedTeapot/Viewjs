@@ -1,10 +1,11 @@
-call npm install --save-dev merge2@1.0.3
-call npm install --save-dev gulp
-call npm install --save-dev gulp-concat
-call npm install --save-dev gulp-zip@3.2.0
-call npm install --save-dev del@2.2.2
-call npm install --save-dev gulp-sass
-call npm install --save-dev gulp-build-html
-call npm install --save-dev gulp-cssmin
-call npm install --save-dev gulp-if
-call npm install --save-dev gulp-uglify
+@call cnpm install merge2@1.0.3
+@call cnpm install gulp
+@call cnpm install gulp-concat
+@call cnpm install gulp-zip@3.2.0
+@call cnpm install del@2.2.2
+@call cnpm install gulp-sass
+@call cnpm install gulp-build-html
+@call cnpm install gulp-cssmin
+@call cnpm install gulp-if
+@call cnpm install gulp-uglify
+@call cnpm install xxlogger
