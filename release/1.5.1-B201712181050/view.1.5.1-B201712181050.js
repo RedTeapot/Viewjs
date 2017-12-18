@@ -1992,7 +1992,11 @@
 				return this;
 			}
 
-			this.getDomElement().setAttribute(attr$view_title, String(title));
+			title = String(title);
+			this.getDomElement().setAttribute(attr$view_title, title);
+			if(this.isActive())
+				document.title = title;
+
 			return this;
 		};
 
