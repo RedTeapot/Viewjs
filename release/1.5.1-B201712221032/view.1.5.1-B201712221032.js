@@ -2366,6 +2366,7 @@
 		value = String(value).trim();
 
 		var options = View.getActiveViewOptions() || {};
+		options = options.options || {};
 		options[name] = value;
 
 		replaceViewState(activeView.getId(), View.currentState? View.currentState.sn: null, options);
