@@ -10,7 +10,7 @@ var fs = require("fs"),
 	zip = require("gulp-zip"),
 	del = require("del");
 
-var version = "1.5.1";
+var version = "1.5.2";
 
 /**
  * 获取命令行中指定名称的参数
