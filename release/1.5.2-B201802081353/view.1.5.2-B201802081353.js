@@ -2503,11 +2503,6 @@
 
 		/* 当前活动视图 */
 		var currentView = View.getActiveView();
-
-		/* 如果切换目标是自己，则直接返回 */
-		if(currentView && ifStringEqualsIgnoreCase(currentView.getId(), targetViewId))
-			return View;
-
 		globalLogger.log("{} → {} {}", currentView? currentView.getId(): null, targetViewId, JSON.stringify(ops));
 
 		/* 目标视图 */
