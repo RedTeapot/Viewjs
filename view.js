@@ -390,17 +390,21 @@
 				return obj;
 			else if(typeof obj == "function")
 				return "function " + obj.name + "(){...}";
-			else if(!(obj instanceof Array) && (typeof obj == "object")){
-				if(String(obj) != "[object Object]")
+			else if(typeof obj == "object" && !Array.isArray(obj)){
+				if(String(obj) != "[object Object]")/* 优先使用toString方法 */
 					return String(obj);
 				else{
+					var _s = JSON.stringify(obj);
+					if(_s != "{}")
+						return _s;
+					
 					try{
 						var tmp = {};
 						for(var p in obj)
 							tmp[p] = getNotion(obj[p]);
 						return JSON.stringify(tmp);
 					}catch(e){
-						return String(obj);
+						return _s;
 					}
 				}
 			}else if(obj instanceof Array)
