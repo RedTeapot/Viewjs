@@ -13,7 +13,23 @@ html, body{
 	box-sizing: border-box;
 	-webkit-overflow-scrolling: touch;
 }
+.github{
+	padding-left: 1.5em;
+	font-family: Consolas, sans-serif, serif;
+	font-size: 0.16rem;
+	color: #6acba8;
+	background-image: url(../img/github.png);
+	background-repeat: no-repeat;
+	background-position: 0 center;
+	background-size: 1em auto;
+	cursor: pointer;
+
+	&:hover{
+		color: #33b084;
+	}
+}
 .whoami{
+	position: relative;
 	font-size: 0.3rem;
 	text-align: center;
 	font-family: Consolas, sans-serif, serif;
