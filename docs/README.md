@@ -1,11 +1,20 @@
 # 什么是单页应用
 
-单页应用，是指将用户视觉上的多个页面（以下简称“视图”）在技术上使用一个载体来实现的应用。放到web前端环境中，这个载体就是单独的html文件。
+单页应用，是指将用户视觉上的多个页面在技术上使用一个载体来实现的应用。
+
+换句话来讲，用户视觉效果，与技术实现的载体，并不是一定要一一对应的。采取哪种技术方案，取决于产品设计、技术组成以及方案之间的优劣平衡。
+放到 Web 前端环境中，这个承载了多个视觉效果的载体，就是 html 文件（或 asp，jsp 等）。
+
+为便于描述，本文将使用多个术语。其名称及对应的含义如下所示：
+
+ - 页面：技术上的一个html文件；
+ - 视图：视觉上的一页内容；
+
 
 # 初步实现单页应用
 
-实现单页应用其实并不复杂。
-我们可以将多个不同的视图使用div等标签预先定义到html中，然后通过脚本动态控制特定视图的呈现与隐藏。例如：
+直观效果的单页应用，其实现过程其实并不复杂。
+我们可以使用 `div` 或 `section` 等标签承载视图的展现，并通过脚本实现特定视图的呈现与隐藏。例如：
 
 ```html
 <!DOCTYPE HTML>
@@ -18,111 +27,178 @@
 </html>
 ```
 
-```js
-/* 切换呈现的视图 */
-document.querySelector(".view.active").classList.remove("active");
-document.querySelector("#view2.view").classList.add("active");
+```css
+.view{
+	display: none;
+}
+.view.active{
+	display: block;
+}
 ```
 
-对于简单的场景，这种做法基本还能勉强应对。但面对更高的要求，如：“界面数据需要根据用户操作而动态变化”等时，逻辑就要再复杂一些。如果我们需要使用视图呈现商品详情并响应立即购买动作，那代码逻辑可能就要这么写：
+```js
+var find = function(selector){
+    return document.querySelector(selector);
+};
 
+find(".view.active").classList.remove("active");
+find("#view2.view").classList.add("active");
+```
+
+这可能是最简单的单页应用了。
+面对较为复杂的需求，如：“界面数据需要根据用户操作而动态变化”等时，逻辑就要再复杂一些。
+
+# 单页应用进阶
+
+假设我们要实现这样的一个电商需求：
+
+ 1. 一个视图呈现商品列表；
+ 2. 一个视图呈现商品详情；
+ 3. 在列表视图触摸特定商品后，隐藏列表视图，显示触摸的商品的详情视图；
+ 4. 可以在详情视图返回列表视图；
+ 5. 可以在详情视图中购买商品。
+
+那么代码逻辑可能就要这么实现：
+
+1) 视图DOM搭建
 ```html
-<div id = "goodsList" class = "view">Goods list</div>
-<div id = "goodsDetail" class = "view">
-	<span class = "nav-back"></span>
+<!-- 商品列表视图 -->
+<div id = "goods-list" class = "view active">
+	<div data-id = "apple">红富士苹果</div>
+	<div data-id = "pear">砀山梨</div>
+</div>
+
+<!-- 商品详情视图 -->
+<div id = "goods-detail" class = "view">
+	<span class = "nav-back">返回</span>
 	<div class = "name">商品名称</div>
 	<div class = "detail">商品图文详情</div>
 	<span class = "btn buy">立即购买</span>
 </div>
 ```
 
+2) 撰写脚本：视图数据渲染
 ```js
-var find = function(selector){
-	return document.querySelector(selector);
-};
-
 /**
- * 呈现商品列表
- * @param {JsonObjectList} list 商品列表
+ * 渲染商品列表视图
+ * @param {Array#JsonObject} goodsList 商品列表
+ * @param {JsonObject} goodsList[n] 商品详情
+ * @param {String} goodsList[n].goodsDetail.name 商品名称
+ * @param {String} goodsList[n].goodsDetail.detail 商品图文详情
  */
-var showGoodsList = function(list){
-	/* 切换呈现的视图 */
-	find(".view.active").classList.remove("active");
-	find("#goodsList").classList.add("active");
+var renderGoodsListView = function(goodsList){
+	var goodsListObj = find(".goods-list");
 	
-	list.forEach(function(goodsDetail){
-		//TODO
+	goodsListObj.innerHTML = "";
+	goodsList.forEach(function(goodsDetail){
+		var divObj = document.createElement("div");
+		divObj.data = goodsDetai;/* 附加数据以供后续使用 */
+		divObj.setAttribute("data-goods-id", goodsDetail.id);
+		divObj.innerHTML = goodsDetail.name;
 	});
 };
 
-/**
- * 重置商品详情界面
- */
-var resetGoodsDetail = function(){
-	find("#goodsDetail").removeAttribute("data-goodsId");
-	find(".name").innerHTML = "";
-	find(".detail").innerHTML = "";
-};
+/** 当前正在呈现的商品详情数据 */
+var currentShowingGoodsDetailData = null;
 
 /**
- * 呈现商品详情
+ * 渲染商品详情视图
  * @param {JsonObject} goodsDetail 商品详情
+ * @param {String} goodsDetail.name 商品名称
+ * @param {String} goodsDetail.detail 商品图文详情
  */
-var showGoodsDetail = function(goodsDetail){
-	/* 切换呈现的视图 */
-	find(".view.active").classList.remove("active");
-	find("#goodsDetail").classList.add("active");
-
-	resetGoodsDetail();
+var renderGoodsDetailView = function(goodsDetail){
+	var nameObj = find(".goods-detail .name"),
+		detailObj = find(".goods-detail .detail");
 	
-	find("#goodsDetail").setAttribute("data-goodsId", goodsDetail.id);
-	find("#goodsDetail .name").innerHTML = goodsDetail.name;
-	find("#goodsDetail .detail").innerHTML = goodsDetail.detailHtml;
+	nameObj.innerHTML = goodsDetail.name;
+	detailObj.innerHTML = goodsDetail.detail;
+	
+	currentShowingGoodsDetailData  = goodsDetail;
 };
 
-/* 立即购买 */
-var buyObj = find("#goodsDetail .btn.buy");
-Hammer(buyObj).on("tap", function(){
-	var goodsId = find("#goodsDetail").getAttribute("data-goodsId");
-	//TODO
+/**
+ * 获取当前正在渲染的商品详情数据
+ */
+renderGoodsDetailView.getCurrentShowingGoodsDetailData = function(){
+	return currentShowingGoodsDetailData;
+};
+```
+3) 撰写脚本：视图切换
+```js
+/**
+ * 执行视图切换动作
+ * @param {String} viewId 目标视图ID
+ */
+var switchViewTo = function(viewId){
+	var activeView = find(".view.active");
+	if(null != activeView && activeView.id == viewId)
+		return;
+	
+	if(null != activeView)
+		activeView.classList.remove("active");
+	
+	find(".view#" + viewId).classList.add("active");
+}
+
+/** 当前正在呈现的商品详情数据 */
+var currentShowingGoodsDetailData = null;
+
+/* 列表视图 切换至 详情视图 */
+var goodsListObj = find(".goods-list");
+Hammer(goodsListObj).on("tap", function(e){/* hammer.js是一款处理触摸事件的，优秀的开源框架 */
+	var target = e.srcEvent.target;
+	if(!target.hasAttribute("data-goods-id"))
+		return;
+	
+	currentShowingGoodsDetailData = target.data;/* data属性在渲染时附加，代表对应的商品详情数据 */
+	renderGoodsDetailView(target.data);/* data属性在渲染时附加，代表对应的商品详情数据 */
+	switchViewTo("goods-detail");
 });
 
-/* 返回 */
-var backObj = find("#goodsDetail .nav-back");
-Hammer(backObj).on("tap", function(){
-	var list;
-	/* 获取商品列表 */
-	//TODO
-	
-	showGoodsList(list);
-});
-
-document.addEventListener("DOMContentLoaded", function(){
-	var goodsList;
-	/* 获取商品列表 */
-	//TODO
-	
-	showGoodsList(list);
-	
-	/* 返回 */
-	var backObj = find("#goodsDetail .nav-back");
-	Hammer(backObj).on("tap", function(){
-		var list;
-		/* 获取商品列表 */
-		//TODO
-		
-		showGoodsList(list);
-	});
+/* 详情视图 返回至 列表视图 */
+var navBackObj = find(".goods-detail .nav-back");
+Hammer(navBackObj).on("tap", function(){
+	switchViewTo("goods-list");
 });
 ```
 
-看上去确实没什么问题，应该可以正常工作。是的，确实是这样。但程序开发，并不青睐一个人单独作战，而是需要多人协作的。这个例子只证明了这种方案的可行性，但可行性与量产还不是同一个问题。如何以更优雅地方式在实现功能的前提下提升多人协作的便捷性，也是项目管理过程中的一个重要议题。
+4） 撰写脚本：购买商品
+```js
+var buyObj = find(".goods-detail .btn.buy");
+Hammer(buyObj).on("tap", function(){
+	var goodsDetail = renderGoodsDetailView.getCurrentShowingGoodsDetailData();
+	if(null == goodsDetail)
+		return;
+	
+	console.log("Buying goods of id: " + goodsDetail.id);
+	//TODO 通知服务端
+});
+```
+
+5) 撰写脚本：加载并呈现商品列表
+```js
+document.addEventListener("DOMContentLoaded", function(){
+	var goodsList = [];
+	//TODO 从服务端获取商品列表
+
+	/* 渲染商品列表 */
+	renderGoodsListView(goodsList);
+	
+	/* 默认呈现列表界面 */
+	switchViewTo("goods-list");
+});
+```
+
+看上去确实没什么问题，应该可以正常工作。是的，确实是这样。
+
+但程序开发，并不青睐一个人单独作战，而是需要多人协作的。这个例子只证明了这种方案的可行性，但可行性与量产还不是同一个问题。如何以更优雅地方式在实现功能的前提下提升多人协作的便捷性，也是项目管理过程中的一个重要议题。
 
 就上面的例子而言，存在如下几个方面的问题：
 1.	商品列表的逻辑与商品详情的逻辑无法清晰的剥离开来；
 2.	视图之间的数据传递完全依赖带参数的渲染方法的主动调用；
 3.	特定视图的数据暂存无法得到有效处理。如，渲染商品详情视图所需要的商品详情数据；
-4.	特定视图打开后，无法借助URL传播。亦即用户A打开商品G的商品详情后，如果将URL发给B，B打开链接后看到的并不是商品G的商品详情，而是商品列表界面
+4.	特定视图打开后，无法借助URL传播。亦即用户A打开商品G的商品详情后，如果将URL发给B，B打开链接后看到的并不是商品G的商品详情，而是商品列表视图
 
 上面描述的种种问题，都需要一个业务无关的底层框架给予解决，使得应用开发者基本上只考虑各个视图的业务逻辑与视图之间的参数传递问题即可。
 
@@ -143,13 +219,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 对于缺点2，开发者可以通过配置web服务器，为页面加上缓存控制，从而降低影响，使得页面的第二次及其后的加载速度更快。
 
-# 可用的单页应用框架
+# 有哪些单页应用框架
 
 单页应用框架有view.js、angular.js和vue.js等，不同框架的解决方式各有不同。笔者推荐使用View.js（官网：http://wzhsoft.com）。
 
-# View.js是什么
+# View.js是什么样的单页框架
 
 View.js是一个专门用于开发移动端H5单页应用（SPA，Single Page Application）的底层框架。其核心理念是"视图"，并提供而且仅提供视图相关的API和事件监听等。
+
+除基本的html、css和和js知识外，View.js并不需要什么模板、双向绑定等个人认为画蛇添足的技术。而且开发者能够以事件驱动的方式完成业务逻辑开发。
 
 #  官方网站：
 **http://wzhsoft.com**
@@ -927,7 +1005,6 @@ View.js建议开发者在开发应用时，区分功能特性的隶属级别：�
 
 # FAQ
  - FAQ：如何确定进入视图的源视图？
-
 视图可以在ready及enter事件的监听句柄中获取进入视图的源视图。如：
 ```js
 View.ofId("detail").on("enter", function(e){
@@ -936,7 +1013,6 @@ View sourceView = e.data.sourceView;
 });
 ```			
  - FAQ：如何获取要进入到的目标视图？
-
 视图可以在leave事件的监听句柄中获取要进入到的目标视图。如：
 
 ```js
@@ -946,5 +1022,5 @@ View.ofId("detail").on("leave", function(){
 ```
 
  - FAQ：为DOM元素添加的click监听为什么没有被触发？
-
-这可能是因为添加click监听的DOM元素声明有data-view-rel属性。之所以这样，是因为View.js在使能data-view-rel时，将其触摸事件preventDefault()了。对于这种情况，开发者可以去除data-view-rel属性，然后使用触摸编程借助View.js的API：View.navTo完成视图导向。触摸框架，推荐使用优秀的Hammer.js。
+这可能是因为添加click监听的DOM元素声明有data-view-rel属性。
+之所以这样，是因为View.js在使能data-view-rel时，将其触摸事件preventDefault()了。对于这种情况，开发者可以去除data-view-rel属性，然后使用触摸编程借助View.js的API：View.navTo完成视图导向。触摸框架，推荐使用优秀的Hammer.js。
