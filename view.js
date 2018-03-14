@@ -408,9 +408,9 @@
 					}
 				}
 			}else if(obj instanceof Array)
-				return JSON.stringify(obj.map(function(ele){
+				return "[" + obj.map(function(ele){
 					return getNotion(ele);
-				}));
+				}).join(", ") + "]";
 			else
 				return obj;
 		};
