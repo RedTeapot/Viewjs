@@ -2800,7 +2800,7 @@
 			 * 如果目标视图仍然是当前视图，则不能更改地址栏中的选项内容
 			 * 如果最终视图和地址栏中的视图不是一个视图，则不能再将选项传递给最终视图
 			 */
-			options = isTargetViewRemainsCurrent? View.currentState.options: (isTargetViewAsSpecified? viewInfo.options: null);
+			options = isTargetViewRemainsCurrent? (View.currentState? View.currentState.options: null): (isTargetViewAsSpecified? viewInfo.options: null);
 
 			/* history堆栈更新 */
 			replaceViewState(targetViewId, null, options);
