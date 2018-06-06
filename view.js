@@ -974,7 +974,7 @@
 				width = height * expectedWidthHeightRatio;
 				try2Call(layoutAsMobilePortrait, getViewContainerObj(), width, height);
 			}else
-			try2Call(layoutAsPcLandscape, getViewContainerObj(), width, height);
+				try2Call(layoutAsPcLandscape, getViewContainerObj(), width, height);
 		};
 
 		/**
@@ -1002,8 +1002,12 @@
 
 		/**
 		 * 根据初始化时设置的各个模式下的浏览方式，结合设备当前的浏览方向和设备类型自动进行布局
+		 * @param {Boolean} [async=true] 是否以异步的方式完成布局
 		 */
-		var doLayout = function(){
+		var doLayout = function(async){
+			if(arguments.length < 1)
+				async = true;
+
 			var width = getLayoutWidth(),
 				height = getLayoutHeight();
 
@@ -1020,16 +1024,23 @@
 				browserHeight = getBrowserHeight();
 			
 			var ifLayoutChanges = Math.abs(width - newWidth) >= 0.1 || Math.abs(height - newHeight) >= 0.1;
-			ifLayoutChanges && setTimeout(function(){
-				globalLogger.debug("Layout changes. Layout: {} * {}, browser: {} * {}", newWidth, newHeight, browserWidth, browserHeight);
+			if(ifLayoutChanges){
+				var action = function(){
+					globalLogger.debug("Layout changes. Layout: {} * {}, browser: {} * {}", newWidth, newHeight, browserWidth, browserHeight);
 
-				layoutChangeListeners.forEach(function(cb){
-					if(typeof cb != "function")
-						return;
+					layoutChangeListeners.forEach(function(cb){
+						if(typeof cb != "function")
+							return;
 
-					try2Call(cb, null, newWidth, newHeight, browserWidth, browserHeight);
-				});
-			}, 0);
+						try2Call(cb, null, newWidth, newHeight, browserWidth, browserHeight);
+					});
+				};
+
+				if(async)
+					setTimeout(action, 0);
+				else
+					action();
+			}
 
 			return obj;
 		};
@@ -1711,8 +1722,8 @@
 
 		var Clazz = function(viewId){
 			var layoutAction = function doNothing(){},/** 布局动作 */
-			layoutWhenLayoutChanges = true,/** 设备方向改变时，是否执行布局动作 */
-			latestLayoutOrientation = NOT_SUPPLIED;/** 最后一次布局时设备的方向（portrait：竖屏；landscape：横屏1） */
+				layoutWhenLayoutChanges = true,/** 设备方向改变时，是否执行布局动作 */
+				latestLayoutOrientation = NOT_SUPPLIED;/** 最后一次布局时设备的方向（portrait：竖屏；landscape：横屏1） */
 
 			/**
 			 * 设置布局方法
