@@ -66,18 +66,37 @@
 	 */
 	var try2Call = function(func, ctx, args){
 		if(null == func || typeof func != "function")
-			return;
-
+			return undefined;
+		
 		try{
-			var tmp = "", index = 2;
-			for(var i = index; i < arguments.length; i++)
-				tmp += ",arguments[" + i + "]";
+			var len = arguments.length;
 
-			eval("func.call(ctx" + tmp + ")");
+			if(len == 1)
+				return func();
+			else if(len == 2)
+				return func.call(ctx);
+			else if(len == 3)
+				return func.call(ctx, arguments[2]);
+			else if(len == 4)
+				return func.call(ctx, arguments[2], arguments[3]);
+			else if(len == 5)
+				return func.call(ctx, arguments[2], arguments[3], arguments[4]);
+			else if(len == 6)
+				return func.call(ctx, arguments[2], arguments[3], arguments[4], arguments[5]);
+			else if(len == 7)
+				return func.call(ctx, arguments[2], arguments[3], arguments[4], arguments[5], arguments[6]);
+			else{
+				var tmp = "", index = 2;
+				for(var i = index; i < arguments.length; i++)
+					tmp += ",arguments[" + i + "]";
+
+				var rst;
+				eval("rst = func.call(ctx" + tmp + ")");
+				return rst;
+			}
 		}catch(e){
-			var isError = e instanceof Error || (e != null && typeof e == "object" && "stack" in e);
-			var s = "Error occured while executing function: {}. {}" + (isError? " stack:\n{}": "");
-			globalLogger.error(s, func.name, e, isError? e.stack: null);
+			console.error("Error occured while executing function: " + func.name, e, e.stack);
+			return undefined;
 		}
 	};
 
