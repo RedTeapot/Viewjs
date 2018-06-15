@@ -1724,20 +1724,11 @@
 	var ViewLayout = (function(){
 		var instances = {};
 
-		/**
-		 * 判断当前是否是竖屏（或需要以竖屏方式渲染）的默认实现
-		 */
-		var defaultImplementation_isPortrait = function(){
-			return layout.isLayoutPortrait();
-		};
+		var previousWidth = -1,
+			previousHeight = -1,
 
-		/**
-		 * 判断当前是否是竖屏（或需要以竖屏方式渲染）的方法
-		 */
-		var isPortrait = defaultImplementation_isPortrait;
-
-		var ORIENTATION_PORTRAIT = "portrait",
-			ORIENTATION_LANDSCAPE = "landscape";
+			currentWidth = 0,
+			currentHeight = 0;
 
 		var Clazz = function(viewId){
 			var layoutAction = function doNothing(){},/** 布局动作 */
@@ -1777,17 +1768,17 @@
 					return this;
 				}
 
-				var orientation = isPortrait()? ORIENTATION_PORTRAIT: ORIENTATION_LANDSCAPE;
-				if(latestLayoutOrientation == orientation){
-					globalLogger.debug("Skip doing layout for view of id: {} for orientation remains the same.", viewId);
+				if(Math.abs(currentWidth - previousWidth) < 0.05 && Math.abs(currentHeight - previousHeight) < 0.05){
+					globalLogger.debug("Skip doing layout for view of id: {} for size remains the same.", viewId);
 					return this;
 				}
 
 				globalLogger.debug("Doing layout for view of id: {}", viewId);
-
 				docEle.offsetWidth = docEle.offsetHeight;
 				layoutAction();
-				latestLayoutOrientation = orientation;
+
+				previousWidth = currentWidth;
+				previousHeight = currentHeight;
 
 				return this;
 			});
@@ -1800,7 +1791,7 @@
 			});
 
 			var self = this;
-			layout.addLayoutChangeListener(function(){
+			layout.addLayoutChangeListener(function(newWidth, newHeight){
 				if(!layoutWhenLayoutChanges){
 					globalLogger.debug("Layout changes, but view of id: {} will not respond to this for flag: 'layoutWhenLayoutChanges' is {}.", viewId, layoutWhenLayoutChanges);
 					return;
@@ -1812,6 +1803,9 @@
 				}
 
 				globalLogger.debug("Layout changes, doing layout for view of id: {}", viewId);
+
+				currentWidth = newWidth;
+				currentHeight = newHeight;
 				self.doLayout();
 			});
 		};
@@ -1830,6 +1824,9 @@
 		};
 
 		/**
+		 * 【已废弃】
+		 * @deprecated
+		 *
 		 * 提供自定义的“判断当前是否是竖屏（或需要以竖屏方式渲染）”方法。方法需要返回布尔值。true：竖屏；false：横屏；
 		 * @param {Function} impl 实现方法
 		 */
@@ -1839,7 +1836,8 @@
 				return Clazz;
 			}
 
-			isPortrait = impl;
+			globalLogger.warn("This method is deprecated and will be removed in the future.");
+
 			return Clazz;
 		};
 
