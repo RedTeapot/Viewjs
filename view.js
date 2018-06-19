@@ -1768,13 +1768,11 @@
 					return this;
 				}
 
-				if(Math.abs(currentWidth - previousWidth) < 0.05 && Math.abs(currentHeight - previousHeight) < 0.05){
-					globalLogger.debug("Skip doing layout for view of id: {} for size remains the same.", viewId);
-					return this;
-				}
-
 				globalLogger.debug("Doing layout for view of id: {}", viewId);
-				docEle.offsetWidth = docEle.offsetHeight;
+
+				if(Math.abs(currentWidth - previousWidth) > 0.05 || Math.abs(currentHeight - previousHeight) > 0.05)
+					docEle.offsetWidth = docEle.offsetHeight;
+
 				layoutAction();
 
 				previousWidth = currentWidth;
