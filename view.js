@@ -2584,10 +2584,6 @@
 		var renderingViewId = getRenderingViewId(),
 			currentView = View.getActiveView();/* 当前活动视图 */
 
-		/* 如果切换目标是自己，则直接返回 */
-		if(ifStringEqualsIgnoreCase(renderingViewId, targetViewId))
-			return View;
-
 		/** 伪视图支持 */
 		/* 回退操作(":back") */
 		if(ifStringEqualsIgnoreCase(PSVIEW_BACK, targetViewId)){
@@ -2619,10 +2615,6 @@
 			targetViewId = firstViewId;
 		}
 
-		/* 如果切换目标是自己，则直接返回 */
-		if(ifStringEqualsIgnoreCase(renderingViewId, targetViewId))
-			return View;
-
 		/** 检查目标视图是否存在 */
 		if(!View.ifExists(targetViewId)){
 			globalLogger.log("Trying to navigate to view: {} with params: {}, options: {}", targetViewId, ops.params, ops.options);
@@ -2648,9 +2640,6 @@
 		var renderingViewId = getRenderingViewId(),
 			currentView = View.getActiveView();/* 当前活动视图 */
 
-		if(ifStringEqualsIgnoreCase(renderingViewId, targetViewId))
-			return View;
-
 		/* 默认视图（":default-view"） */
 		if(ifStringEqualsIgnoreCase(PSVIEW_DEFAULT, targetViewId)){
 			var defaultView = View.getDefaultView();
@@ -2670,10 +2659,6 @@
 			
 			targetViewId = firstViewId;
 		}
-
-		/* 如果切换目标是自己，则直接返回 */
-		if(ifStringEqualsIgnoreCase(renderingViewId, targetViewId))
-			return View;
 
 		/** 检查目标视图是否存在 */
 		if(!View.ifExists(targetViewId)){
