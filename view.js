@@ -1,11 +1,12 @@
 /**
  * 事件触发顺序：
  * 1. View.beforechange
- * 2. view.ready
- * 3. view.beforeenter
- * 4. view.enter
- * 5. view.afterenter
- * 6. View.afterchange
+ * 2. View.change
+ * 3. view.ready
+ * 4. view.beforeenter
+ * 5. view.enter
+ * 6. view.afterenter
+ * 7. View.afterchange
  */
 ;(function(ctx, name){
 	/**
@@ -2448,7 +2449,9 @@
 
 		var isBack = ifStringEqualsIgnoreCase(type, View.SWITCHTYPE_HISTORYBACK),
 			isForward = ifStringEqualsIgnoreCase(type, View.SWITCHTYPE_HISTORYFORWARD);
-		
+
+		var viewChangeParams = {currentView: srcView, targetView: targetView, type: type, params: params};
+
 		var render = function(){
 			/* 视图参数重置 */
 			var targetViewId = targetView.getId();
@@ -2492,20 +2495,20 @@
 			/* 进入新视图 */
 			targetView.getDomElement().classList.add("active");
 			ViewLayout.ofId(targetViewId).doLayout();
+			View.fire("change", viewChangeParams);
 			if(!targetView.isReady()){
 				readyViews.push(targetViewId);
-
 				fireEvent("ready", false);
 			}
 			fireEvent("enter", false);
 			fireEvent("afterenter", false);
 
 			/** 触发后置切换监听器 */
-			View.fire("afterchange", {currentView: srcView, targetView: targetView, type: type, params: params});
+			View.fire("afterchange", viewChangeParams);
 		};
 
 		/** 触发前置切换监听器 */
-		View.fire("beforechange", {currentView: srcView, targetView: targetView, type: type, params: params});
+		View.fire("beforechange", viewChangeParams);
 
 		if(!ops.withAnimation)
 			render();
