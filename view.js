@@ -2499,6 +2499,9 @@
 			}
 			fireEvent("enter", false);
 			fireEvent("afterenter", false);
+
+			/** 触发后置切换监听器 */
+			View.fire("afterchange", {currentView: srcView, targetView: targetView, type: type, params: params});
 		};
 
 		/** 触发前置切换监听器 */
@@ -2512,9 +2515,6 @@
 			else
 				render();
 		}
-
-		/** 触发后置切换监听器 */
-		View.fire("afterchange", {currentView: srcView, targetView: targetView, type: type, params: params});
 	};
 
 	/**
@@ -3030,9 +3030,6 @@
 				/* 目标视图是当前视图 */
 				var activeView = View.getActiveView();
 				var activeViewId = null == activeView? null: activeView.getId();
-				if(null != activeViewId && activeViewId == targetViewId){
-					return;
-				}
 
 				var relType = tmp.getAttribute(attr$view_rel_type);
 				relType = isEmptyString(relType, true)? "nav": relType;
