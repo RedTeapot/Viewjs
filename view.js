@@ -46,7 +46,7 @@
 	 * @param {Object} ctx 方法执行时的this上下文
 	 * @param {Arguments} args 方法参数列表对象
 	 */
-	var try2exec = function(func, ctx, args){
+	var try2Apply = function(func, ctx, args){
 		if(null == func || typeof func != "function")
 			return;
 
@@ -2495,7 +2495,7 @@
 			/* 进入新视图 */
 			targetView.getDomElement().classList.add("active");
 			ViewLayout.ofId(targetViewId).doLayout();
-			View.fire("change", viewChangeParams);
+			View.fire("change", viewChangeParams, false);
 			if(!targetView.isReady()){
 				readyViews.push(targetViewId);
 				fireEvent("ready", false);
@@ -2508,7 +2508,7 @@
 		};
 
 		/** 触发前置切换监听器 */
-		View.fire("beforechange", viewChangeParams);
+		View.fire("beforechange", viewChangeParams, false);
 
 		if(!ops.withAnimation)
 			render();
@@ -3127,7 +3127,7 @@
 		var callbacks = [];
 
 		markViewToBeInited = function(){
-			callbacks.forEach(try2exec);
+			callbacks.forEach(try2Apply);
 			callbacks = [];
 		};
 
@@ -3161,7 +3161,7 @@
 		markViewReady = function(){
 			isViewReady = true;
 
-			callbacks.forEach(try2exec);
+			callbacks.forEach(try2Apply);
 			callbacks = [];
 		};
 
@@ -3171,7 +3171,7 @@
 		return function(callback){
 			/* 如果已经就绪，则立即执行 */
 			if(isViewReady){
-				try2exec(callback);
+				try2Apply(callback);
 				return View;
 			}
 
