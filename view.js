@@ -2804,23 +2804,26 @@
 				newViewId = viewInfo.viewId;
 
 				targetView = getFinalView(newViewId);
-				targetViewId = targetView.getId();
+				if(null != targetView)
+					targetViewId = targetView.getId();
 			}
 
-			var isTargetViewAsSpecified = targetViewId == newViewId,
-				isTargetViewRemainsCurrent = targetViewId == currentActiveViewId;
+			if(null != targetViewId){
+				var isTargetViewAsSpecified = targetViewId == newViewId,
+					isTargetViewRemainsCurrent = targetViewId == currentActiveViewId;
 
-			/**
-			 * 如果目标视图仍然是当前视图，则不能更改地址栏中的选项内容
-			 * 如果最终视图和地址栏中的视图不是一个视图，则不能再将选项传递给最终视图
-			 */
-			options = isTargetViewRemainsCurrent? (View.currentState? View.currentState.options: null): (isTargetViewAsSpecified? viewInfo.options: null);
+				/**
+				 * 如果目标视图仍然是当前视图，则不能更改地址栏中的选项内容
+				 * 如果最终视图和地址栏中的视图不是一个视图，则不能再将选项传递给最终视图
+				 */
+				options = isTargetViewRemainsCurrent? (View.currentState? View.currentState.options: null): (isTargetViewAsSpecified? viewInfo.options: null);
 
-			/* history堆栈更新 */
-			replaceViewState(targetViewId, null, options);
+				/* history堆栈更新 */
+				replaceViewState(targetViewId, null, options);
 
-			/* 视图切换 */
-			View.show(targetView.getId(), {type: type, options: options});
+				/* 视图切换 */
+				View.show(targetView.getId(), {type: type, options: options});
+			}
 		}else if(ViewState.isConstructorOf(e.state)){
 			var popedNewState = e.state;
 			newViewId = popedNewState.viewId;
