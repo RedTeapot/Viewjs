@@ -1791,15 +1791,11 @@
 
 			var self = this;
 			layout.addLayoutChangeListener(function(newWidth, newHeight){
-				if(!layoutWhenLayoutChanges){
-					globalLogger.debug("Layout changes, but view of id: {} will not respond to this for flag: 'layoutWhenLayoutChanges' is {}.", viewId, layoutWhenLayoutChanges);
+				if(!layoutWhenLayoutChanges)
 					return;
-				}
 
-				if(!View.ofId(viewId).isActive()){
-					globalLogger.debug("Layout changes, but view of id: {} will not respond to this for view is not active.", viewId);
+				if(!View.ofId(viewId).isActive())
 					return;
-				}
 
 				globalLogger.debug("Layout changes, doing layout for view of id: {}", viewId);
 
