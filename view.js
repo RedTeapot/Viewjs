@@ -1825,10 +1825,14 @@
 
 				currentWidth = newWidth;
 				currentHeight = newHeight;
+			
 				clearTimeout(timer);
-				timer = setTimeout(function(){
+				if(layoutCushionTime > 0)
+					timer = setTimeout(function(){
+						self.doLayout();
+					}, layoutCushionTime);
+				else
 					self.doLayout();
-				}, 50);
 			});
 		};
 
