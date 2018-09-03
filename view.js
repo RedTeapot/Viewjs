@@ -1046,7 +1046,7 @@
 			var ifLayoutChanges = Math.abs(width - newWidth) >= 0.1 || Math.abs(height - newHeight) >= 0.1;
 			if(ifLayoutChanges){
 				var action = function(){
-					globalLogger.debug("Layout changes. Layout: {} * {}, browser: {} * {}", newWidth, newHeight, browserWidth, browserHeight);
+					//globalLogger.debug("Layout changes. Layout: {} * {}, browser: {} * {}", newWidth, newHeight, browserWidth, browserHeight);
 
 					layoutChangeListeners.forEach(function(cb){
 						if(typeof cb != "function")
@@ -1734,6 +1734,7 @@
 		var Clazz = function(viewId){
 			var layoutAction = function doNothing(){},/** 布局动作 */
 				layoutWhenLayoutChanges = true,/** 设备方向改变时，是否执行布局动作 */
+				layoutCushionTime = 50,/** 布局连续发生改变时，缓冲布局动作执行的时长。单位：毫秒 */
 				latestLayoutOrientation = NOT_SUPPLIED;/** 最后一次布局时设备的方向（portrait：竖屏；landscape：横屏1） */
 
 			/**
@@ -1769,7 +1770,7 @@
 					return this;
 				}
 
-				globalLogger.debug("Doing layout for view of id: {}", viewId);
+				//globalLogger.debug("Doing layout for view of id: {}", viewId);
 
 				if(Math.abs(currentWidth - previousWidth) > 0.05 || Math.abs(currentHeight - previousHeight) > 0.05)
 					docEle.offsetWidth = docEle.offsetHeight;
@@ -1781,6 +1782,28 @@
 
 				return this;
 			});
+			
+			/**
+			 * 设置布局缓冲时长
+			 * @param {String} v 缓冲时长。设置0以代表不缓冲立即执行。单位：毫秒
+			 */
+			defineReadOnlyProperty(this, "setLayoutCushionTime", function(v){
+				if(null == v || isNaN(v = Number(v)) || v < 0){
+					globalLogger.error("Invalid layout cusion time. Should be a digit greater than or equal to 0.");
+					return this;
+				}
+				
+				layoutCushionTime = v;
+				return this;
+			});
+			
+			/**
+			 * 获取设置的布局缓冲时长
+			 */
+			defineReadOnlyProperty(this, "getLayoutCushionTime", function(v){
+				return layoutCushionTime;
+			});
+			
 			/**
 			 * 设置布局选项：是否在外层布局发生改变时执行布局动作
 			 */
@@ -1790,6 +1813,7 @@
 			});
 
 			var self = this;
+			var timer;
 			layout.addLayoutChangeListener(function(newWidth, newHeight){
 				if(!layoutWhenLayoutChanges)
 					return;
@@ -1797,11 +1821,14 @@
 				if(!View.ofId(viewId).isActive())
 					return;
 
-				globalLogger.debug("Layout changes, doing layout for view of id: {}", viewId);
+				//globalLogger.debug("Layout changes, doing layout for view of id: {}", viewId);
 
 				currentWidth = newWidth;
 				currentHeight = newHeight;
-				self.doLayout();
+				clearTimeout(timer);
+				timer = setTimeout(function(){
+					self.doLayout();
+				}, 50);
 			});
 		};
 
