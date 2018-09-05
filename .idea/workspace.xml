@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa049d9f-4dea-4860-acf4-da5e7606d47a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/gulpfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/gulpfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/install-gulp.bat" beforeDir="false" afterPath="$PROJECT_DIR$/build/install-gulp.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/dist/viewjs-1.5.3-B201807240943.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/js/page/define.version.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/js/page/define.version.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view.js" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -14,9 +20,15 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -34,6 +46,8 @@
         <option value="$PROJECT_DIR$/docs/web/www/js/page/attr/init.generate-menu.js" />
         <option value="$PROJECT_DIR$/docs/web/www/js/page/doc/init.generate-menu.js" />
         <option value="$PROJECT_DIR$/docs/web/www/js/page/evt/init.generate-menu.js" />
+        <option value="$PROJECT_DIR$/util.js" />
+        <option value="$PROJECT_DIR$/uit.js" />
       </list>
     </option>
   </component>
@@ -47,425 +61,562 @@
     <handled-path value="$PROJECT_DIR$/build/node_modules" />
     <handled-path value="$PROJECT_DIR$/docs/web/build/node_modules" />
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/globby/node_modules/array-union/node_modules/array-uniq/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/globby/node_modules/array-union/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/globby/node_modules/arrify/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/globby/node_modules/glob/node_modules/fs.realpath/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/globby/node_modules/glob/node_modules/inflight/node_modules/wrappy/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/globby/node_modules/glob/node_modules/inflight/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/globby/node_modules/glob/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/globby/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/globby/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/node_modules/concat-map/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/globby/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/globby/node_modules/glob/node_modules/minimatch/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/globby/node_modules/glob/node_modules/once/node_modules/wrappy/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/globby/node_modules/glob/node_modules/once/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/globby/node_modules/glob/node_modules/path-is-absolute/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/globby/node_modules/glob/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/globby/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/is-path-cwd/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/is-path-in-cwd/node_modules/is-path-inside/node_modules/path-is-inside/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/is-path-in-cwd/node_modules/is-path-inside/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/is-path-in-cwd/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/object-assign/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/pify/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/pinkie-promise/node_modules/pinkie/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/pinkie-promise/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/rimraf/node_modules/glob/node_modules/fs.realpath/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/rimraf/node_modules/glob/node_modules/inflight/node_modules/wrappy/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/rimraf/node_modules/glob/node_modules/inflight/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/rimraf/node_modules/glob/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/rimraf/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/rimraf/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/node_modules/concat-map/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/rimraf/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/rimraf/node_modules/glob/node_modules/minimatch/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/rimraf/node_modules/glob/node_modules/once/node_modules/wrappy/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/rimraf/node_modules/glob/node_modules/once/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/rimraf/node_modules/glob/node_modules/path-is-absolute/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/rimraf/node_modules/glob/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/rimraf/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/del/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/array-differ/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/array-uniq/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/beeper/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/chalk/node_modules/ansi-styles/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/chalk/node_modules/escape-string-regexp/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/chalk/node_modules/has-ansi/node_modules/ansi-regex/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/chalk/node_modules/has-ansi/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/chalk/node_modules/strip-ansi/node_modules/ansi-regex/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/chalk/node_modules/strip-ansi/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/chalk/node_modules/supports-color/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/chalk/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/dateformat/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/fancy-log/node_modules/time-stamp/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/fancy-log/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/gulplog/node_modules/glogg/node_modules/sparkles/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/gulplog/node_modules/glogg/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/gulplog/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/has-gulplog/node_modules/sparkles/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/has-gulplog/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/lodash._reescape/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/lodash._reevaluate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/lodash._reinterpolate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash._basecopy/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash._basetostring/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash._basevalues/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash._isiterateecall/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.escape/node_modules/lodash._root/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.escape/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.keys/node_modules/lodash._getnative/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.keys/node_modules/lodash.isarguments/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.keys/node_modules/lodash.isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.keys/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.restparam/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.templatesettings/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/lodash.template/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/minimist/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/multipipe/node_modules/duplexer2/node_modules/readable-stream/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/multipipe/node_modules/duplexer2/node_modules/readable-stream/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/multipipe/node_modules/duplexer2/node_modules/readable-stream/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/multipipe/node_modules/duplexer2/node_modules/readable-stream/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/multipipe/node_modules/duplexer2/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/multipipe/node_modules/duplexer2/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/multipipe/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/object-assign/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/replace-ext/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/vinyl/node_modules/clone-stats/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/vinyl/node_modules/clone/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/node_modules/vinyl/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/gulp-util/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/read-file/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/through2/node_modules/readable-stream/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/through2/node_modules/readable-stream/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/through2/node_modules/readable-stream/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/through2/node_modules/readable-stream/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/through2/node_modules/readable-stream/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/through2/node_modules/readable-stream/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/through2/node_modules/readable-stream/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/through2/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/through2/node_modules/xtend/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/node_modules/through2/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-append-prepend/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/clean-css/node_modules/source-map/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/clean-css/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/array-differ/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/array-uniq/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/beeper/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/chalk/node_modules/ansi-styles/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/chalk/node_modules/escape-string-regexp/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/chalk/node_modules/has-ansi/node_modules/ansi-regex/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/chalk/node_modules/has-ansi/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/chalk/node_modules/strip-ansi/node_modules/ansi-regex/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/chalk/node_modules/strip-ansi/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/chalk/node_modules/supports-color/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/chalk/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/dateformat/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/fancy-log/node_modules/time-stamp/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/fancy-log/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/gulplog/node_modules/glogg/node_modules/sparkles/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/gulplog/node_modules/glogg/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/gulplog/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/has-gulplog/node_modules/sparkles/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/has-gulplog/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/lodash._reescape/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/lodash._reevaluate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/lodash._reinterpolate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash._basecopy/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash._basetostring/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash._basevalues/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash._isiterateecall/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.escape/node_modules/lodash._root/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.escape/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.keys/node_modules/lodash._getnative/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.keys/node_modules/lodash.isarguments/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.keys/node_modules/lodash.isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.keys/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.restparam/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.templatesettings/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/lodash.template/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/minimist/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/multipipe/node_modules/duplexer2/node_modules/readable-stream/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/multipipe/node_modules/duplexer2/node_modules/readable-stream/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/multipipe/node_modules/duplexer2/node_modules/readable-stream/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/multipipe/node_modules/duplexer2/node_modules/readable-stream/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/multipipe/node_modules/duplexer2/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/multipipe/node_modules/duplexer2/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/multipipe/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/object-assign/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/replace-ext/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/vinyl/node_modules/clone-stats/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/vinyl/node_modules/clone/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/node_modules/vinyl/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/gulp-util/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/through2/node_modules/readable-stream/node_modules/buffer-shims/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/through2/node_modules/readable-stream/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/through2/node_modules/readable-stream/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/through2/node_modules/readable-stream/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/through2/node_modules/readable-stream/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/through2/node_modules/readable-stream/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/through2/node_modules/readable-stream/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/through2/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/through2/node_modules/xtend/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/through2/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/vinyl-sourcemaps-apply/node_modules/source-map/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/vinyl-sourcemaps-apply/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/gulp-match/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/gulp-match/node_modules/minimatch/node_modules/brace-expansion/node_modules/concat-map/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/gulp-match/node_modules/minimatch/node_modules/brace-expansion/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/gulp-match/node_modules/minimatch/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/gulp-match/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/ternary-stream/node_modules/duplexify/node_modules/end-of-stream/node_modules/once/node_modules/wrappy/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/ternary-stream/node_modules/duplexify/node_modules/end-of-stream/node_modules/once/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/ternary-stream/node_modules/duplexify/node_modules/end-of-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/ternary-stream/node_modules/duplexify/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/ternary-stream/node_modules/duplexify/node_modules/readable-stream/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/ternary-stream/node_modules/duplexify/node_modules/readable-stream/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/ternary-stream/node_modules/duplexify/node_modules/readable-stream/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/ternary-stream/node_modules/duplexify/node_modules/readable-stream/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/ternary-stream/node_modules/duplexify/node_modules/readable-stream/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/ternary-stream/node_modules/duplexify/node_modules/readable-stream/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/ternary-stream/node_modules/duplexify/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/ternary-stream/node_modules/duplexify/node_modules/stream-shift/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/ternary-stream/node_modules/duplexify/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/ternary-stream/node_modules/fork-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/ternary-stream/node_modules/merge-stream/node_modules/readable-stream/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/ternary-stream/node_modules/merge-stream/node_modules/readable-stream/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/ternary-stream/node_modules/merge-stream/node_modules/readable-stream/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/ternary-stream/node_modules/merge-stream/node_modules/readable-stream/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/ternary-stream/node_modules/merge-stream/node_modules/readable-stream/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/ternary-stream/node_modules/merge-stream/node_modules/readable-stream/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/ternary-stream/node_modules/merge-stream/node_modules/readable-stream/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/ternary-stream/node_modules/merge-stream/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/ternary-stream/node_modules/merge-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/ternary-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/through2/node_modules/readable-stream/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/through2/node_modules/readable-stream/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/through2/node_modules/readable-stream/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/through2/node_modules/readable-stream/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/through2/node_modules/readable-stream/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/through2/node_modules/readable-stream/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/through2/node_modules/readable-stream/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/through2/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/through2/node_modules/xtend/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/through2/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-if/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-rename/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/gulplog/node_modules/glogg/node_modules/sparkles/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/gulplog/node_modules/glogg/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/gulplog/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/has-gulplog/node_modules/sparkles/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/has-gulplog/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/lodash/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/make-error-cause/node_modules/make-error/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/make-error-cause/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/through2/node_modules/readable-stream/node_modules/buffer-shims/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/through2/node_modules/readable-stream/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/through2/node_modules/readable-stream/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/through2/node_modules/readable-stream/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/through2/node_modules/readable-stream/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/through2/node_modules/readable-stream/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/through2/node_modules/readable-stream/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/through2/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/through2/node_modules/xtend/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/through2/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/uglify-js/node_modules/source-map/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/uglify-js/node_modules/uglify-to-browserify/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/uglify-js/node_modules/yargs/node_modules/camelcase/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/uglify-js/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/align-text/node_modules/kind-of/node_modules/is-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/uglify-js/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/align-text/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/uglify-js/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/align-text/node_modules/longest/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/uglify-js/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/align-text/node_modules/repeat-string/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/uglify-js/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/align-text/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/uglify-js/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/lazy-cache/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/uglify-js/node_modules/yargs/node_modules/cliui/node_modules/center-align/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/uglify-js/node_modules/yargs/node_modules/cliui/node_modules/right-align/node_modules/align-text/node_modules/kind-of/node_modules/is-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/uglify-js/node_modules/yargs/node_modules/cliui/node_modules/right-align/node_modules/align-text/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/uglify-js/node_modules/yargs/node_modules/cliui/node_modules/right-align/node_modules/align-text/node_modules/longest/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/uglify-js/node_modules/yargs/node_modules/cliui/node_modules/right-align/node_modules/align-text/node_modules/repeat-string/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/uglify-js/node_modules/yargs/node_modules/cliui/node_modules/right-align/node_modules/align-text/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/uglify-js/node_modules/yargs/node_modules/cliui/node_modules/right-align/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/uglify-js/node_modules/yargs/node_modules/cliui/node_modules/wordwrap/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/uglify-js/node_modules/yargs/node_modules/cliui/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/uglify-js/node_modules/yargs/node_modules/decamelize/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/uglify-js/node_modules/yargs/node_modules/window-size/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/uglify-js/node_modules/yargs/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/uglify-js/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/uglify-save-license/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/vinyl-sourcemaps-apply/node_modules/source-map/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/node_modules/vinyl-sourcemaps-apply/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-uglify/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/chalk/node_modules/ansi-styles/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/chalk/node_modules/escape-string-regexp/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/chalk/node_modules/has-ansi/node_modules/ansi-regex/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/chalk/node_modules/has-ansi/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/chalk/node_modules/strip-ansi/node_modules/ansi-regex/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/chalk/node_modules/strip-ansi/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/chalk/node_modules/supports-color/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/chalk/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/concat-stream/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/concat-stream/node_modules/readable-stream/node_modules/buffer-shims/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/concat-stream/node_modules/readable-stream/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/concat-stream/node_modules/readable-stream/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/concat-stream/node_modules/readable-stream/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/concat-stream/node_modules/readable-stream/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/concat-stream/node_modules/readable-stream/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/concat-stream/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/concat-stream/node_modules/typedarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/concat-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/array-differ/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/array-uniq/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/beeper/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/dateformat/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/fancy-log/node_modules/time-stamp/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/fancy-log/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/gulplog/node_modules/glogg/node_modules/sparkles/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/gulplog/node_modules/glogg/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/gulplog/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/has-gulplog/node_modules/sparkles/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/has-gulplog/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/lodash._reescape/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/lodash._reevaluate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/lodash._reinterpolate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash._basecopy/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash._basetostring/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash._basevalues/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash._isiterateecall/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.escape/node_modules/lodash._root/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.escape/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.keys/node_modules/lodash._getnative/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.keys/node_modules/lodash.isarguments/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.keys/node_modules/lodash.isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.keys/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.restparam/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.templatesettings/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/lodash.template/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/minimist/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/multipipe/node_modules/duplexer2/node_modules/readable-stream/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/multipipe/node_modules/duplexer2/node_modules/readable-stream/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/multipipe/node_modules/duplexer2/node_modules/readable-stream/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/multipipe/node_modules/duplexer2/node_modules/readable-stream/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/multipipe/node_modules/duplexer2/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/multipipe/node_modules/duplexer2/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/multipipe/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/object-assign/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/replace-ext/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/vinyl/node_modules/clone-stats/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/vinyl/node_modules/clone/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/node_modules/vinyl/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/gulp-util/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/through2/node_modules/readable-stream/node_modules/buffer-shims/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/through2/node_modules/readable-stream/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/through2/node_modules/readable-stream/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/through2/node_modules/readable-stream/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/through2/node_modules/readable-stream/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/through2/node_modules/readable-stream/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/through2/node_modules/readable-stream/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/through2/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/through2/node_modules/xtend/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/through2/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/yazl/node_modules/buffer-crc32/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/node_modules/yazl/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-zip/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/archy/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/chalk/node_modules/ansi-styles/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/chalk/node_modules/escape-string-regexp/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/chalk/node_modules/has-ansi/node_modules/ansi-regex/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/chalk/node_modules/has-ansi/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/chalk/node_modules/strip-ansi/node_modules/ansi-regex/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/chalk/node_modules/strip-ansi/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/chalk/node_modules/supports-color/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/chalk/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/deprecated/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/array-differ/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/array-uniq/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/beeper/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/dateformat/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/fancy-log/node_modules/time-stamp/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/fancy-log/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/gulplog/node_modules/glogg/node_modules/sparkles/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/gulplog/node_modules/glogg/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/gulplog/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/has-gulplog/node_modules/sparkles/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/has-gulplog/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/lodash._reescape/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/lodash._reevaluate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/lodash._reinterpolate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash._basecopy/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash._basetostring/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash._basevalues/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash._isiterateecall/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.escape/node_modules/lodash._root/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.escape/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.keys/node_modules/lodash._getnative/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.keys/node_modules/lodash.isarguments/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.keys/node_modules/lodash.isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.keys/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.restparam/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/lodash.template/node_modules/lodash.templatesettings/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/lodash.template/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/multipipe/node_modules/duplexer2/node_modules/readable-stream/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/multipipe/node_modules/duplexer2/node_modules/readable-stream/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/multipipe/node_modules/duplexer2/node_modules/readable-stream/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/multipipe/node_modules/duplexer2/node_modules/readable-stream/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/multipipe/node_modules/duplexer2/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/multipipe/node_modules/duplexer2/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/multipipe/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/object-assign/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/replace-ext/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/through2/node_modules/readable-stream/node_modules/buffer-shims/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/through2/node_modules/readable-stream/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/through2/node_modules/readable-stream/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/through2/node_modules/readable-stream/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/through2/node_modules/readable-stream/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/through2/node_modules/readable-stream/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/through2/node_modules/readable-stream/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/through2/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/through2/node_modules/xtend/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/through2/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/vinyl/node_modules/clone-stats/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/vinyl/node_modules/clone/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/node_modules/vinyl/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/gulp-util/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/interpret/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/extend/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/detect-file/node_modules/fs-exists-sync/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/detect-file/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/is-glob/node_modules/is-extglob/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/is-glob/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/arr-diff/node_modules/arr-flatten/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/arr-diff/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/array-unique/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range/node_modules/is-number/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range/node_modules/isobject/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range/node_modules/isobject/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range/node_modules/randomatic/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range/node_modules/repeat-string/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/braces/node_modules/expand-range/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/braces/node_modules/preserve/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/braces/node_modules/repeat-element/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/braces/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/expand-brackets/node_modules/is-posix-bracket/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/expand-brackets/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/extglob/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/filename-regex/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/is-extglob/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/kind-of/node_modules/is-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/kind-of/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/normalize-path/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/object.omit/node_modules/for-own/node_modules/for-in/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/object.omit/node_modules/for-own/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/object.omit/node_modules/is-extendable/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/object.omit/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/parse-glob/node_modules/glob-base/node_modules/glob-parent/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/parse-glob/node_modules/glob-base/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/parse-glob/node_modules/is-dotfile/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/parse-glob/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/regex-cache/node_modules/is-equal-shallow/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/regex-cache/node_modules/is-primitive/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/node_modules/regex-cache/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/micromatch/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/resolve-dir/node_modules/expand-tilde/node_modules/os-homedir/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/resolve-dir/node_modules/expand-tilde/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/resolve-dir/node_modules/global-modules/node_modules/global-prefix/node_modules/homedir-polyfill/node_modules/parse-passwd/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/resolve-dir/node_modules/global-modules/node_modules/global-prefix/node_modules/homedir-polyfill/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/resolve-dir/node_modules/global-modules/node_modules/global-prefix/node_modules/ini/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/resolve-dir/node_modules/global-modules/node_modules/global-prefix/node_modules/which/node_modules/isexe/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/resolve-dir/node_modules/global-modules/node_modules/global-prefix/node_modules/which/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/resolve-dir/node_modules/global-modules/node_modules/global-prefix/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/resolve-dir/node_modules/global-modules/node_modules/is-windows/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/resolve-dir/node_modules/global-modules/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/resolve-dir/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/fined/node_modules/expand-tilde/node_modules/os-homedir/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/fined/node_modules/expand-tilde/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/fined/node_modules/lodash.assignwith/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/fined/node_modules/lodash.isempty/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/fined/node_modules/lodash.pick/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/fined/node_modules/parse-filepath/node_modules/is-absolute/node_modules/is-relative/node_modules/is-unc-path/node_modules/unc-path-regex/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/fined/node_modules/parse-filepath/node_modules/is-absolute/node_modules/is-relative/node_modules/is-unc-path/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/fined/node_modules/parse-filepath/node_modules/is-absolute/node_modules/is-relative/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/fined/node_modules/parse-filepath/node_modules/is-absolute/node_modules/is-windows/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/fined/node_modules/parse-filepath/node_modules/is-absolute/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/fined/node_modules/parse-filepath/node_modules/map-cache/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/fined/node_modules/parse-filepath/node_modules/path-root/node_modules/path-root-regex/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/fined/node_modules/parse-filepath/node_modules/path-root/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/fined/node_modules/parse-filepath/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/fined/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/flagged-respawn/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/lodash.isplainobject/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/lodash.isstring/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/lodash.mapvalues/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/rechoir/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/resolve/node_modules/path-parse/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/resolve/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/resolve/test/module_dir/zmodules/bbb/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/resolve/test/resolver/baz/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/node_modules/resolve/test/resolver/incorrect_main/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/liftoff/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/minimist/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/orchestrator/node_modules/end-of-stream/node_modules/once/node_modules/wrappy/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/orchestrator/node_modules/end-of-stream/node_modules/once/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/orchestrator/node_modules/end-of-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/orchestrator/node_modules/sequencify/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/orchestrator/node_modules/stream-consume/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/orchestrator/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/pretty-hrtime/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/semver/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/tildify/node_modules/os-homedir/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/tildify/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/v8flags/node_modules/user-home/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/v8flags/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/defaults/node_modules/clone/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/defaults/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-stream/node_modules/glob/node_modules/inflight/node_modules/wrappy/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-stream/node_modules/glob/node_modules/inflight/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-stream/node_modules/glob/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-stream/node_modules/glob/node_modules/once/node_modules/wrappy/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-stream/node_modules/glob/node_modules/once/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-stream/node_modules/glob/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-stream/node_modules/glob2base/node_modules/find-index/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-stream/node_modules/glob2base/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-stream/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-stream/node_modules/minimatch/node_modules/brace-expansion/node_modules/concat-map/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-stream/node_modules/minimatch/node_modules/brace-expansion/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-stream/node_modules/minimatch/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-stream/node_modules/ordered-read-streams/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-stream/node_modules/unique-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-watcher/node_modules/gaze/node_modules/globule/node_modules/glob/node_modules/graceful-fs/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-watcher/node_modules/gaze/node_modules/globule/node_modules/glob/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-watcher/node_modules/gaze/node_modules/globule/node_modules/glob/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-watcher/node_modules/gaze/node_modules/globule/node_modules/lodash/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-watcher/node_modules/gaze/node_modules/globule/node_modules/minimatch/node_modules/lru-cache/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-watcher/node_modules/gaze/node_modules/globule/node_modules/minimatch/node_modules/sigmund/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-watcher/node_modules/gaze/node_modules/globule/node_modules/minimatch/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-watcher/node_modules/gaze/node_modules/globule/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-watcher/node_modules/gaze/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-watcher/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/graceful-fs/node_modules/natives/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/graceful-fs/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/mkdirp/node_modules/minimist/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/mkdirp/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/strip-bom/node_modules/first-chunk-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/strip-bom/node_modules/is-utf8/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/strip-bom/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/through2/node_modules/readable-stream/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/through2/node_modules/readable-stream/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/through2/node_modules/readable-stream/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/through2/node_modules/readable-stream/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/through2/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/through2/node_modules/xtend/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/through2/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/vinyl/node_modules/clone-stats/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/vinyl/node_modules/clone/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/vinyl/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp/package.json" />
+      <path value="$PROJECT_DIR$/docs/web/build/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="-7" />
     <option name="width" value="1924" />
-    <option name="height" value="1056" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-      <manualOrder />
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="docs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="docs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="docs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="page" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="docs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="page" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="index" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="docs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="page" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="evt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="docs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="page" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="doc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="docs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="page" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="attr" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="docs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="page" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="docs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="docs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="docs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="img" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="docs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="docs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
+          <expand>
+            <path>
+              <item name="view" type="b2602c69:ProjectViewProjectNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.jscs" value="true" />
+    <property name="node.js.path.for.package.jscs" value="project" />
+    <property name="node.js.selected.package.jscs" value="" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.file-colors" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="F:/02 版本仓库209 - 电商/03 微信客户端 - 基础/02 源码/branches/dev" />
-    <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="node.js.path.for.package.jscs" value="project" />
-    <property name="nodejs_interpreter_path" value="C:/Program Files (x86)/nodejs/0.12.8/node" />
-    <property name="node.js.detected.package.jscs" value="true" />
-    <property name="node.js.selected.package.jscs" value="" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -485,6 +636,7 @@
     </option>
   </component>
   <component name="RunManager">
+    <configuration name="uit.js" type="NodeJSConfigurationType" factoryName="Node.js" nameIsGenerated="true" path-to-js-file="uit.js" working-dir="$PROJECT_DIR$" />
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <method />
     </configuration>
@@ -522,15 +674,6 @@
       <option name="filePath" />
       <method />
     </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
       <command value="run" />
       <scripts />
@@ -551,9 +694,17 @@
       <recursive>false</recursive>
       <method />
     </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+    </configuration>
   </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
+  <component name="SvnConfiguration">
+    <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -564,90 +715,82 @@
       <updated>1504249164326</updated>
       <workItem from="1504249166170" duration="2950000" />
       <workItem from="1504486157895" duration="593000" />
+      <workItem from="1536046403995" duration="89000" />
+      <workItem from="1536046498511" duration="366000" />
+      <workItem from="1536052384409" duration="637000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3543000" />
+    <option name="totallyTimeSpent" value="4635000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1924" height="1056" extended-state="0" />
+    <frame x="-7" y="0" width="1924" height="1047" extended-state="1" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24960254" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24920467" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection Results" order="8" weight="0.32936078" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="processedProjectFiles" value="true" />
+    <option name="version" value="1" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager />
-    <watches-manager />
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/docs/web/www/css/index.scss">
+    <entry file="file://$PROJECT_DIR$/view.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="606">
-          <caret line="56" column="26" lean-forward="false" selection-start-line="56" selection-start-column="26" selection-end-line="56" selection-end-column="26" />
+        <state relative-caret-position="136">
+          <caret line="8" column="11" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/index.html">
+    <entry file="file://$PROJECT_DIR$/util.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="357">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/web/www/css/index.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="606">
+          <caret line="56" column="26" selection-start-line="56" selection-start-column="26" selection-end-line="56" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/web/www/css/_base.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
-          <caret line="12" column="21" lean-forward="false" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/attr_end.partial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/js/lib/view/view.1.5.0-B201708251200.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="11" lean-forward="false" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/js/page/define.version.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/web/www/js/lib/view/view.1.5.0-B201708251200.min.css" />
     <entry file="file://$PROJECT_DIR$/docs/web/www/js/page/init.layout.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
-          <caret line="3" column="20" lean-forward="false" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+          <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -661,7 +804,7 @@
     <entry file="file://$PROJECT_DIR$/docs/web/www/css/_common.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
-          <caret line="39" column="14" lean-forward="false" selection-start-line="39" selection-start-column="14" selection-end-line="39" selection-end-column="14" />
+          <caret line="39" column="14" selection-start-line="39" selection-start-column="14" selection-end-line="39" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -675,28 +818,39 @@
     <entry file="file://$PROJECT_DIR$/docs/web/www/js/page/attr/init.generate-menu.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
-          <caret line="23" column="40" lean-forward="false" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
+          <caret line="23" column="40" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/web/www/js/page/doc/init.generate-menu.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="748">
-          <caret line="42" column="40" lean-forward="false" selection-start-line="42" selection-start-column="40" selection-end-line="42" selection-end-column="40" />
+          <caret line="42" column="40" selection-start-line="42" selection-start-column="40" selection-end-line="42" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/web/www/js/page/evt/init.generate-menu.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
-          <caret line="20" column="40" lean-forward="false" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
+          <caret line="20" column="40" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/js/page/index/init.js">
+    <entry file="file://$PROJECT_DIR$/uit.js" />
+    <entry file="file://$PROJECT_DIR$/util.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="52">
+          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

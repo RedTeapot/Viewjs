@@ -1,8 +1,10 @@
 var fs = require("fs"),
 	path = require("path"),
+	merge2 = require("merge2"),
 	Transform = require("stream").Transform,
 	gulp = require("gulp"),
 	rename = require('gulp-rename'),
+	concat = require('gulp-concat'),
 	uglify = require("gulp-uglify"),
 	gap = require("gulp-append-prepend"),
 	cleanCss = require("gulp-clean-css"),
@@ -48,8 +50,31 @@ var getVersion = function(){
 	return version + "-B" + getTime();
 };
 
+var concatJs = function(){
+	return gulp.src([
+		"../src/entrance.js",
+		"../src/eventDrive.js",
+		"../src/Logger.js",
+		"../src/util.js",
+		"../src/resolution.js",
+		"../src/layout.js",
+		"../src/touch.js",
+
+		"../src/ViewContext.js",
+		"../src/ViewConfiguration.js",
+		"../src/ViewConfigurationSet.js",
+		"../src/ViewLayout.js",
+		"../src/ViewState.js",
+		"../src/OperationState.js",
+
+		"../src/view.js",
+	])
+		.pipe(concat("view.js"))
+		.pipe(gap.prependText('/**\n * View.js v' + getVersion() + '\n * author: Billy, wmjhappy_ok@126.com\n * license: MIT\n */'));
+};
+
 var min = function(){
-	gulp.src('../view.js')
+	concatJs()
 		.pipe(rename("view." + getVersion() + ".min.js"))
         .pipe(uglify())
 		.pipe(gap.prependText('/**\n * View.js v' + getVersion() + '\n * author: Billy, wmjhappy_ok@126.com\n * license: MIT\n */'))
@@ -60,20 +85,14 @@ var copySource = function(version, target){
 	if(arguments.length < 2)
 		target = '../release/' + version;
 	
-	gulp.src('../view.js')
-		.pipe(rename("view." + version + ".js"))
-        .pipe(gulp.dest(target));
-	
-	gulp.src('../view.css')
-		.pipe(rename("view." + version + ".css"))
-        .pipe(gulp.dest(target));
+	gulp.src("../src/*").pipe(gulp.dest(target + "/src"));
 };
 
 var copyMin = function(version, target){
 	if(arguments.length < 2)
 		target = '../release/' + version;
 	
-	gulp.src('../view.js')
+	concatJs()
 		.pipe(rename("view." + version + ".min.js"))
         .pipe(uglify())
 		.pipe(gap.prependText('/**\n * View.js v' + version + '\n * author: Billy, wmjhappy_ok@126.com\n * license: MIT\n */'))
@@ -101,13 +120,21 @@ var releaseToDoc = function(version){
 		zipFileName = "viewjs-" + version + ".zip";
 
 	del.sync(dist + "/**/*", {force: true});
-	gulp.src(['../view.js', '../view.css'])
-		.pipe(gulpif("*.js", rename("view." + version + ".min.js")))
-		.pipe(gulpif("*.js", uglify()))
-		.pipe(gulpif("*.js", gap.prependText('/**\n * View.js v' + version + '\n * author: Billy, wmjhappy_ok@126.com\n * license: MIT\n */')))
-		.pipe(gulpif("*.css", rename("view." + version + ".min.css")))
-		.pipe(gulpif("*.css", cleanCss()))
-		.pipe(zip(zipFileName))
+
+	var stream = merge2();
+	stream.add(
+		concatJs()
+		.pipe(rename("view." + version + ".min.js"))
+		.pipe(uglify())
+		.pipe(gap.prependText('/**\n * View.js v' + version + '\n * author: Billy, wmjhappy_ok@126.com\n * license: MIT\n */'))
+	);
+	stream.add(
+		gulp.src("../view.css")
+		.pipe(rename("view." + version + ".min.css"))
+		.pipe(cleanCss())
+	);
+	
+	stream.pipe(zip(zipFileName))
 		.pipe(gulp.dest(dist));
 	
 	/* 创建版本文件 */
@@ -127,6 +154,9 @@ var cleanup = function(){
 	del.sync(target, {force: true});
 };
 
+gulp.task('concat', function(){
+	concatJs().pipe(gulp.dest("../"));
+});
 gulp.task('min', function(){min();});
 gulp.task('stage', function(){stage();});
 gulp.task('releaseToDoc', function(){releaseToDoc();});
