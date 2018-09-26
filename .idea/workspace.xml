@@ -4,8 +4,7 @@
     <list default="true" id="aa049d9f-4dea-4860-acf4-da5e7606d47a" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ViewLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewLayout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resolution.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/resolution.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,11 +18,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="view.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/view.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="836">
+              <caret line="1516" column="13" selection-start-line="1516" selection-start-column="13" selection-end-line="1516" selection-end-column="13" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ViewLayout.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ViewLayout.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="446">
-              <caret line="102" column="42" selection-start-line="102" selection-start-column="19" selection-end-line="102" selection-end-column="42" />
+            <state relative-caret-position="-830">
+              <caret line="59" selection-start-line="59" selection-end-line="59" />
             </state>
           </provider>
         </entry>
@@ -33,15 +44,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="479">
               <caret line="299" column="44" selection-start-line="299" selection-start-column="27" selection-end-line="299" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="resolution.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/resolution.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="109" column="53" lean-forward="true" selection-start-line="109" selection-start-column="53" selection-end-line="109" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -70,6 +72,7 @@
       <find>.height</find>
       <find>resolution</find>
       <find>layoutCushionTime</find>
+      <find>init</find>
     </findStrings>
     <dirStrings>
       <dir>G:\代码仓库\js\view\src</dir>
@@ -93,10 +96,10 @@
         <option value="$PROJECT_DIR$/docs/web/www/js/page/evt/init.generate-menu.js" />
         <option value="$PROJECT_DIR$/util.js" />
         <option value="$PROJECT_DIR$/uit.js" />
-        <option value="$PROJECT_DIR$/src/view.js" />
-        <option value="$PROJECT_DIR$/src/ViewLayout.js" />
         <option value="$PROJECT_DIR$/src/layout.js" />
         <option value="$PROJECT_DIR$/src/resolution.js" />
+        <option value="$PROJECT_DIR$/src/ViewLayout.js" />
+        <option value="$PROJECT_DIR$/src/view.js" />
       </list>
     </option>
   </component>
@@ -974,25 +977,26 @@
       <workItem from="1536832486265" duration="1702000" />
       <workItem from="1537863152391" duration="3774000" />
       <workItem from="1537925548259" duration="3113000" />
-      <workItem from="1537944275910" duration="1152000" />
+      <workItem from="1537944275910" duration="2774000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14376000" />
+    <option name="totallyTimeSpent" value="15998000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25237092" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25237092" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32936078" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1002,7 +1006,6 @@
       <window_info anchor="bottom" id="Inspection Results" order="8" weight="0.32936078" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1018,8 +1021,6 @@
           <caret line="944" lean-forward="true" selection-start-line="944" selection-end-line="944" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#36066#38837#0" />
-            <element signature="e#39021#40931#0" />
           </folding>
         </state>
       </provider>
@@ -1051,8 +1052,6 @@
           <caret line="686" column="39" lean-forward="true" selection-start-line="686" selection-start-column="39" selection-end-line="686" selection-end-column="39" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#36066#38837#0" />
-            <element signature="e#39021#40931#0" />
           </folding>
         </state>
       </provider>
@@ -1131,27 +1130,22 @@
         <state relative-caret-position="-1051" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1085">
-          <caret line="1585" column="39" selection-start-line="1585" selection-start-column="39" selection-end-line="1585" selection-end-column="39" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#36066#38837#0" />
-            <element signature="e#39021#40931#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ViewConfiguration.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1136" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/resolution.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="109" column="40" selection-start-line="109" selection-start-column="40" selection-end-line="109" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ViewLayout.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="102" column="42" selection-start-line="102" selection-start-column="19" selection-end-line="102" selection-end-column="42" />
+        <state relative-caret-position="-830">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
         </state>
       </provider>
     </entry>
@@ -1162,10 +1156,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/resolution.js">
+    <entry file="file://$PROJECT_DIR$/src/view.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="109" column="53" lean-forward="true" selection-start-line="109" selection-start-column="53" selection-end-line="109" selection-end-column="53" />
+        <state relative-caret-position="836">
+          <caret line="1516" column="13" selection-start-line="1516" selection-start-column="13" selection-end-line="1516" selection-end-column="13" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

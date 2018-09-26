@@ -1491,6 +1491,31 @@
 			}, {useCapture: true});
 		})();
 
+		/* 使能属性：data-view-whr */
+		;(function(){
+			var whr = document.documentElement.getAttribute(attr$view_whr);
+			if(null == whr || (whr = whr.trim().toLowerCase()) === "")
+				return;
+
+			var r = /(\d+(?:\.\d*)?)\s*\/\s*(\d+(?:\.\d*)?)/i;
+			var tmp = whr.match(r);
+			if(null == tmp){
+				globalLogger.warn("Invalid view expected width height ratio: {}. Value such as '320/568'(iPhone 5) is valid. Using '{}' instead.", whr, defaultWidthHeightRatio);
+				tmp = defaultWidthHeightRatio.exec(r);
+			}else
+				globalLogger.info("Using specified expected width height ratio: {}", whr);
+
+			layout.setExpectedWidthHeightRatio(Number(tmp[1])/Number(tmp[2])).init();
+			var doLayout = function(){
+				/* 移除可能会影响布局的虚拟键盘 */
+				var inputObjs = document.querySelectorAll("input, select, textarea, *[contentEditable]");
+				for(var i = 0; i < inputObjs.length; i++)
+					inputObjs[i].blur();
+				layout.doLayout();
+			};
+			doLayout();
+		})();
+
 		globalLogger.info("Marking View as initialized and ready");
 		
 		/* 标记视图已完成初始化 */
@@ -1558,32 +1583,6 @@
 				withAnimation: false,
 				params: null
 			});
-		})();
-
-		/* 使能属性：data-view-whr */
-		;(function(){
-			var whr = document.documentElement.getAttribute(attr$view_whr);
-			if(null == whr || (whr = whr.trim().toLowerCase()) === "")
-				return;
-
-			var r = /(\d+(?:\.\d*)?)\s*\/\s*(\d+(?:\.\d*)?)/i;
-			var tmp = whr.match(r);
-			if(null == tmp){
-				globalLogger.warn("Invalid view expected width height ratio: {}. Value such as '320/568'(iPhone 5) is valid. Using '{}' instead.", whr, defaultWidthHeightRatio);
-				tmp = defaultWidthHeightRatio.exec(r);
-			}else
-				globalLogger.info("Using specified expected width height ratio: {}", whr);
-
-			layout.setExpectedWidthHeightRatio(Number(tmp[1])/Number(tmp[2])).init();
-			var doLayout = function(){
-				/* 移除可能会影响布局的虚拟键盘 */
-				var inputObjs = document.querySelectorAll("input, select, textarea, *[contentEditable]");
-				for(var i = 0; i < inputObjs.length; i++)
-					inputObjs[i].blur();
-				layout.doLayout();
-			};
-			doLayout();
-			document.addEventListener("DOMContentLoaded", doLayout);
 		})();
 	};
 

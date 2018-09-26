@@ -57,7 +57,6 @@
 				if(typeof layoutAction != "function")
 					return this;
 
-				//globalLogger.debug("Doing layout for view of id: {}", viewId);
 				if(Math.abs(currentWidth - previousWidth) > 0.05 || Math.abs(currentHeight - previousHeight) > 0.05)
 					docEle.offsetWidth = docEle.offsetHeight;
 
@@ -107,7 +106,7 @@
 				if(!View.ofId(viewId).isActive())
 					return;
 
-				//globalLogger.debug("Layout changes, doing layout for view of id: {}", viewId);
+				globalLogger.debug("Layout changes, doing layout for view of id: {}. Width: {}, height: {}", viewId, newWidth, newHeight);
 
 				currentWidth = newWidth;
 				currentHeight = newHeight;
