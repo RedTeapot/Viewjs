@@ -107,7 +107,7 @@
 					h = window.innerHeight;
 
 				var wDelta = Math.abs(w - width);
-				if(wDelta < threshold || h > height){
+				if(wDelta < threshold && h > height){
 					width = w;
 					height = h;
 

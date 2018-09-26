@@ -230,8 +230,8 @@
 		 * @param {Boolean} [async=true] 是否以异步的方式完成布局
 		 */
 		var doLayout = (function(){
-			var width = getBrowserWidth(),
-				height = getBrowserHeight();
+			var width = getLayoutWidth(),
+				height = getLayoutHeight();
 
 			return function(async){
 				if(arguments.length < 1)
@@ -244,8 +244,10 @@
 				else
 					layoutAsMobile();
 
-				var newWidth = getBrowserWidth(),
-					newHeight = getBrowserHeight();
+				var newWidth = getLayoutWidth(),
+					newHeight = getLayoutHeight();
+				var browserWidth = getBrowserWidth(),
+					browserHeight = getBrowserHeight();
 
 				var ifLayoutChanges = Math.abs(width - newWidth) >= 0.1 || Math.abs(height - newHeight) >= 0.1;
 				if(ifLayoutChanges){
@@ -256,7 +258,7 @@
 							if(typeof cb != "function")
 								continue;
 
-							util.try2Call(cb, null, getLayoutWidth(), getLayoutHeight(), newWidth, newHeight);
+							util.try2Call(cb, null, newWidth, newHeight, browserWidth, browserHeight);
 						}
 					};
 

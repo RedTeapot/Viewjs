@@ -75,7 +75,7 @@
 			 */
 			util.defineReadOnlyProperty(this, "setLayoutCushionTime", function(v){
 				if(null == v || isNaN(v = Number(v)) || v < 0){
-					globalLogger.error("Invalid layout cusion time. Should be a digit greater than or equal to 0.");
+					globalLogger.error("Invalid layout cushion time. Should be a digit greater than or equal to 0.");
 					return this;
 				}
 				
