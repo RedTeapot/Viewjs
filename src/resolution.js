@@ -91,9 +91,35 @@
 				}
 			};
 		})();
+
+		/**
+		 * 部分移动设备上虚拟键盘的呈现/隐藏会影响浏览窗口的大小。
+		 * 以“宽度不变，高度变大”的表现形式猜测“虚拟键盘消失”现象。
+		 * 暂不处理虚拟键盘弹出，导致浏览窗口变小的现象（对于固定显示在底部的元素，处理后效果较差，效果等同于绝对定位）
+		 */
+		var detectIfKeyboardDisappears = (function(){
+			var width = 0, height = 0;
+			var threshold = 1e-2;
+			var timer, delay = 20;
+
+			return function(){
+				var w = window.innerWidth,
+					h = window.innerHeight;
+
+				var wDelta = Math.abs(w - width);
+				if(wDelta < threshold || h > height){
+					width = w;
+					height = h;
+
+					clearTimeout(timer);
+					timer = setTimeout(execChangeCallbacks, delay);
+				}
+			};
+		})();
 		
 		if("onorientationchange" in window){
 			window.addEventListener("onorientationchange", detect);
+			setInterval(detectIfKeyboardDisappears, 50);
 		}else
 			window.addEventListener("resize", execChangeCallbacks);
 

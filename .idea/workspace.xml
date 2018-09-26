@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa049d9f-4dea-4860-acf4-da5e7606d47a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/gulpfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/gulpfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/install-gulp.bat" beforeDir="false" afterPath="$PROJECT_DIR$/build/install-gulp.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/dist/viewjs-1.5.3-B201807240943.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/js/page/define.version.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/js/page/define.version.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resolution.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/resolution.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,7 +19,49 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="view.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="649">
+              <caret line="1585" column="39" selection-start-line="1585" selection-start-column="39" selection-end-line="1585" selection-end-column="39" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#36066#38837#0" />
+                <element signature="e#39021#40931#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="layout.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/layout.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="273">
+              <caret line="239" selection-start-line="239" selection-end-line="239" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="resolution.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/resolution.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="428">
+              <caret line="113" column="32" selection-start-line="113" selection-start-column="20" selection-end-line="113" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ViewLayout.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ViewLayout.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="32" lean-forward="true" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -29,6 +69,25 @@
         <option value="JavaScript File" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>parseParams</find>
+      <find>new View(</find>
+      <find>View.navTo</find>
+      <find>container</find>
+      <find>getDomElement</find>
+      <find>View.</find>
+      <find>view_container</find>
+      <find>.style.height</find>
+      <find>height</find>
+      <find>offsetHeight</find>
+      <find>.height</find>
+      <find>resolution</find>
+    </findStrings>
+    <dirStrings>
+      <dir>G:\代码仓库\js\view\src</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -48,6 +107,9 @@
         <option value="$PROJECT_DIR$/docs/web/www/js/page/evt/init.generate-menu.js" />
         <option value="$PROJECT_DIR$/util.js" />
         <option value="$PROJECT_DIR$/uit.js" />
+        <option value="$PROJECT_DIR$/src/view.js" />
+        <option value="$PROJECT_DIR$/src/resolution.js" />
+        <option value="$PROJECT_DIR$/src/layout.js" />
       </list>
     </option>
   </component>
@@ -63,6 +125,124 @@
   </component>
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths>
+      <path value="$PROJECT_DIR$/build/node_modules/_clone-buffer@1.0.0@clone-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_clone-stats@1.0.0@clone-stats/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_clone@2.1.2@clone/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_cloneable-readable@1.1.2@cloneable-readable/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_cloneable-readable@1.1.2@cloneable-readable/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_cloneable-readable@1.1.2@cloneable-readable/node_modules/readable-stream/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_cloneable-readable@1.1.2@cloneable-readable/node_modules/readable-stream/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_cloneable-readable@1.1.2@cloneable-readable/node_modules/readable-stream/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_cloneable-readable@1.1.2@cloneable-readable/node_modules/readable-stream/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_cloneable-readable@1.1.2@cloneable-readable/node_modules/readable-stream/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_cloneable-readable@1.1.2@cloneable-readable/node_modules/readable-stream/node_modules/string_decoder/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_cloneable-readable@1.1.2@cloneable-readable/node_modules/readable-stream/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_cloneable-readable@1.1.2@cloneable-readable/node_modules/readable-stream/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_cloneable-readable@1.1.2@cloneable-readable/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_cloneable-readable@1.1.2@cloneable-readable/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_concat-with-sourcemaps@1.1.0@concat-with-sourcemaps/node_modules/source-map/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_concat-with-sourcemaps@1.1.0@concat-with-sourcemaps/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_core-util-is@1.0.2@core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/concat-with-sourcemaps/node_modules/source-map/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/concat-with-sourcemaps/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/through2/node_modules/readable-stream/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/through2/node_modules/readable-stream/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/through2/node_modules/readable-stream/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/through2/node_modules/readable-stream/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/through2/node_modules/readable-stream/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/through2/node_modules/readable-stream/node_modules/string_decoder/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/through2/node_modules/readable-stream/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/through2/node_modules/readable-stream/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/through2/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/through2/node_modules/xtend/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/through2/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/vinyl/node_modules/clone-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/vinyl/node_modules/clone-stats/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/vinyl/node_modules/clone/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/vinyl/node_modules/cloneable-readable/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/vinyl/node_modules/cloneable-readable/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/string_decoder/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/vinyl/node_modules/cloneable-readable/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/vinyl/node_modules/remove-trailing-separator/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/vinyl/node_modules/replace-ext/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/node_modules/vinyl/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_gulp-concat@2.6.1@gulp-concat/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_inherits@2.0.3@inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_isarray@1.0.0@isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_merge2@1.2.2@merge2/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_process-nextick-args@2.0.0@process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_readable-stream@2.3.6@readable-stream/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_readable-stream@2.3.6@readable-stream/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_readable-stream@2.3.6@readable-stream/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_readable-stream@2.3.6@readable-stream/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_readable-stream@2.3.6@readable-stream/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_readable-stream@2.3.6@readable-stream/node_modules/string_decoder/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_readable-stream@2.3.6@readable-stream/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_readable-stream@2.3.6@readable-stream/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_readable-stream@2.3.6@readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_remove-trailing-separator@1.1.0@remove-trailing-separator/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_replace-ext@1.0.0@replace-ext/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_safe-buffer@5.1.2@safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_source-map@0.6.1@source-map/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_string_decoder@1.1.1@string_decoder/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_string_decoder@1.1.1@string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_through2@2.0.3@through2/node_modules/readable-stream/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_through2@2.0.3@through2/node_modules/readable-stream/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_through2@2.0.3@through2/node_modules/readable-stream/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_through2@2.0.3@through2/node_modules/readable-stream/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_through2@2.0.3@through2/node_modules/readable-stream/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_through2@2.0.3@through2/node_modules/readable-stream/node_modules/string_decoder/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_through2@2.0.3@through2/node_modules/readable-stream/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_through2@2.0.3@through2/node_modules/readable-stream/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_through2@2.0.3@through2/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_through2@2.0.3@through2/node_modules/xtend/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_through2@2.0.3@through2/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_util-deprecate@1.0.2@util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_vinyl@2.2.0@vinyl/node_modules/clone-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_vinyl@2.2.0@vinyl/node_modules/clone-stats/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_vinyl@2.2.0@vinyl/node_modules/clone/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_vinyl@2.2.0@vinyl/node_modules/cloneable-readable/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_vinyl@2.2.0@vinyl/node_modules/cloneable-readable/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_vinyl@2.2.0@vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_vinyl@2.2.0@vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_vinyl@2.2.0@vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_vinyl@2.2.0@vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_vinyl@2.2.0@vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_vinyl@2.2.0@vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/string_decoder/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_vinyl@2.2.0@vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_vinyl@2.2.0@vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_vinyl@2.2.0@vinyl/node_modules/cloneable-readable/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_vinyl@2.2.0@vinyl/node_modules/cloneable-readable/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_vinyl@2.2.0@vinyl/node_modules/remove-trailing-separator/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_vinyl@2.2.0@vinyl/node_modules/replace-ext/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_vinyl@2.2.0@vinyl/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/_xtend@4.0.1@xtend/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/clone-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/clone-stats/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/clone/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/cloneable-readable/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/cloneable-readable/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/string_decoder/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/cloneable-readable/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/cloneable-readable/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/concat-with-sourcemaps/node_modules/source-map/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/concat-with-sourcemaps/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/core-util-is/package.json" />
       <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/globby/node_modules/array-union/node_modules/array-uniq/package.json" />
       <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/globby/node_modules/array-union/package.json" />
       <path value="$PROJECT_DIR$/build/node_modules/del/node_modules/globby/node_modules/arrify/package.json" />
@@ -226,6 +406,38 @@
       <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/vinyl-sourcemaps-apply/node_modules/source-map/package.json" />
       <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/node_modules/vinyl-sourcemaps-apply/package.json" />
       <path value="$PROJECT_DIR$/build/node_modules/gulp-clean-css/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/concat-with-sourcemaps/node_modules/source-map/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/concat-with-sourcemaps/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/through2/node_modules/readable-stream/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/through2/node_modules/readable-stream/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/through2/node_modules/readable-stream/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/through2/node_modules/readable-stream/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/through2/node_modules/readable-stream/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/through2/node_modules/readable-stream/node_modules/string_decoder/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/through2/node_modules/readable-stream/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/through2/node_modules/readable-stream/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/through2/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/through2/node_modules/xtend/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/through2/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/vinyl/node_modules/clone-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/vinyl/node_modules/clone-stats/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/vinyl/node_modules/clone/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/vinyl/node_modules/cloneable-readable/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/vinyl/node_modules/cloneable-readable/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/string_decoder/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/vinyl/node_modules/cloneable-readable/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/vinyl/node_modules/remove-trailing-separator/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/vinyl/node_modules/replace-ext/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/node_modules/vinyl/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/gulp-concat/package.json" />
       <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/gulp-match/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/package.json" />
       <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/gulp-match/node_modules/minimatch/node_modules/brace-expansion/node_modules/concat-map/package.json" />
       <path value="$PROJECT_DIR$/build/node_modules/gulp-if/node_modules/gulp-match/node_modules/minimatch/node_modules/brace-expansion/package.json" />
@@ -579,10 +791,60 @@
       <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/node_modules/vinyl/package.json" />
       <path value="$PROJECT_DIR$/build/node_modules/gulp/node_modules/vinyl-fs/package.json" />
       <path value="$PROJECT_DIR$/build/node_modules/gulp/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/merge2/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/readable-stream/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/readable-stream/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/readable-stream/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/readable-stream/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/readable-stream/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/readable-stream/node_modules/string_decoder/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/readable-stream/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/readable-stream/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/remove-trailing-separator/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/replace-ext/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/source-map/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/string_decoder/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/through2/node_modules/readable-stream/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/through2/node_modules/readable-stream/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/through2/node_modules/readable-stream/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/through2/node_modules/readable-stream/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/through2/node_modules/readable-stream/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/through2/node_modules/readable-stream/node_modules/string_decoder/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/through2/node_modules/readable-stream/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/through2/node_modules/readable-stream/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/through2/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/through2/node_modules/xtend/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/through2/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/vinyl/node_modules/clone-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/vinyl/node_modules/clone-stats/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/vinyl/node_modules/clone/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/vinyl/node_modules/cloneable-readable/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/vinyl/node_modules/cloneable-readable/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/core-util-is/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/isarray/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/process-nextick-args/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/string_decoder/node_modules/safe-buffer/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/string_decoder/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/node_modules/util-deprecate/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/vinyl/node_modules/cloneable-readable/node_modules/readable-stream/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/vinyl/node_modules/cloneable-readable/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/vinyl/node_modules/remove-trailing-separator/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/vinyl/node_modules/replace-ext/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/vinyl/package.json" />
+      <path value="$PROJECT_DIR$/build/node_modules/xtend/package.json" />
       <path value="$PROJECT_DIR$/docs/web/build/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-7" />
     <option name="width" value="1924" />
     <option name="height" value="1047" />
@@ -598,6 +860,11 @@
             <path>
               <item name="view" type="b2602c69:ProjectViewProjectNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="view" type="b2602c69:ProjectViewProjectNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -615,8 +882,7 @@
     <property name="node.js.selected.package.jscs" value="" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.file-colors" />
-    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="Settings.JavaScript.Linters.JSHint" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -636,7 +902,7 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="uit.js" type="NodeJSConfigurationType" factoryName="Node.js" nameIsGenerated="true" path-to-js-file="uit.js" working-dir="$PROJECT_DIR$" />
+    <configuration name="uit.js" type="NodeJSConfigurationType" factoryName="Node.js" nameIsGenerated="true" working-dir="$PROJECT_DIR$" />
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <method />
     </configuration>
@@ -718,26 +984,29 @@
       <workItem from="1536046403995" duration="89000" />
       <workItem from="1536046498511" duration="366000" />
       <workItem from="1536052384409" duration="637000" />
+      <workItem from="1536832486265" duration="1702000" />
+      <workItem from="1537863152391" duration="3774000" />
+      <workItem from="1537925548259" duration="2700000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4635000" />
+    <option name="totallyTimeSpent" value="12811000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="1924" height="1047" extended-state="1" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24920467" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25237092" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -755,23 +1024,53 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/view.js">
+    <entry file="file://$PROJECT_DIR$/src/view.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="11" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+        <state relative-caret-position="16048">
+          <caret line="944" lean-forward="true" selection-start-line="944" selection-end-line="944" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+            <element signature="e#36066#38837#0" />
+            <element signature="e#39021#40931#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/util.js">
+    <entry file="file://$PROJECT_DIR$/src/layout.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="5151">
+          <caret line="303" column="27" selection-start-line="303" selection-start-column="27" selection-end-line="303" selection-end-column="27" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ViewLayout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="32" lean-forward="true" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resolution.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1649">
+          <caret line="97" column="67" lean-forward="true" selection-start-line="97" selection-start-column="67" selection-end-line="97" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11509">
+          <caret line="686" column="39" lean-forward="true" selection-start-line="686" selection-start-column="39" selection-end-line="686" selection-end-column="39" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#36066#38837#0" />
+            <element signature="e#39021#40931#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view.js" />
+    <entry file="file://$PROJECT_DIR$/util.js" />
     <entry file="file://$PROJECT_DIR$/docs/web/www/css/index.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="606">
@@ -837,20 +1136,38 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/uit.js" />
-    <entry file="file://$PROJECT_DIR$/util.js">
+    <entry file="file://$PROJECT_DIR$/util.js" />
+    <entry file="file://$PROJECT_DIR$/view.js" />
+    <entry file="file://$PROJECT_DIR$/src/ViewLayout.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+        <state relative-caret-position="272">
+          <caret line="16" column="32" lean-forward="true" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view.js">
+    <entry file="file://$PROJECT_DIR$/src/view.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+        <state relative-caret-position="649">
+          <caret line="1585" column="39" selection-start-line="1585" selection-start-column="39" selection-end-line="1585" selection-end-column="39" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+            <element signature="e#36066#38837#0" />
+            <element signature="e#39021#40931#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resolution.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="113" column="32" selection-start-line="113" selection-start-column="20" selection-end-line="113" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/layout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="239" selection-start-line="239" selection-end-line="239" />
         </state>
       </provider>
     </entry>

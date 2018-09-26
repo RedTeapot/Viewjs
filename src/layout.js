@@ -48,14 +48,14 @@
 		 * 获取浏览器宽度
 		 */
 		var getBrowserWidth = function(){
-			return docEle.clientWidth;
+			return window.innerWidth || docEle.clientWidth;
 		};
 
 		/**
 		 * 获取浏览器高度
 		 */
 		var getBrowserHeight = function(){
-			return docEle.clientHeight;
+			return window.innerHeight || docEle.clientHeight;
 		};
 
 		/**
@@ -229,51 +229,50 @@
 		 * 根据初始化时设置的各个模式下的浏览方式，结合设备当前的浏览方向和设备类型自动进行布局
 		 * @param {Boolean} [async=true] 是否以异步的方式完成布局
 		 */
-		var doLayout = function(async){
-			if(arguments.length < 1)
-				async = true;
+		var doLayout = (function(){
+			var width = getBrowserWidth(),
+				height = getBrowserHeight();
 
-			var width = getLayoutWidth(),
-				height = getLayoutHeight();
+			return function(async){
+				if(arguments.length < 1)
+					async = true;
 
-			if(util.env.isPc)
-				layoutAsPC();
-			else if(util.env.isTablet)
-				layoutAsTablet();
-			else
-				layoutAsMobile();
-
-			var newWidth = getLayoutWidth(),
-				newHeight = getLayoutHeight();
-			var browserWidth = getBrowserWidth(),
-				browserHeight = getBrowserHeight();
-			
-			var ifLayoutChanges = Math.abs(width - newWidth) >= 0.1 || Math.abs(height - newHeight) >= 0.1;
-			if(ifLayoutChanges){
-				var action = function(){
-					//globalLogger.debug("Layout changes. Layout: {} * {}, browser: {} * {}", newWidth, newHeight, browserWidth, browserHeight);
-
-					for(var i = 0; i < layoutChangeListeners.length; i++){
-						var cb = layoutChangeListeners[i]
-						if(typeof cb != "function")
-							continue;
-
-						util.try2Call(cb, null, newWidth, newHeight, browserWidth, browserHeight);
-					};
-				};
-
-				if(async)
-					setTimeout(action, 0);
+				if(util.env.isPc)
+					layoutAsPC();
+				else if(util.env.isTablet)
+					layoutAsTablet();
 				else
-					action();
-			}
+					layoutAsMobile();
 
-			return obj;
-		};
+				var newWidth = getBrowserWidth(),
+					newHeight = getBrowserHeight();
+
+				var ifLayoutChanges = Math.abs(width - newWidth) >= 0.1 || Math.abs(height - newHeight) >= 0.1;
+				if(ifLayoutChanges){
+					var action = function(){
+						//globalLogger.debug("Layout changes. Layout: {} * {}, browser: {} * {}", newWidth, newHeight, browserWidth, browserHeight);
+						for(var i = 0; i < layoutChangeListeners.length; i++){
+							var cb = layoutChangeListeners[i];
+							if(typeof cb != "function")
+								continue;
+
+							util.try2Call(cb, null, getLayoutWidth(), getLayoutHeight(), newWidth, newHeight);
+						}
+					};
+
+					if(async)
+						setTimeout(action, 0);
+					else
+						action();
+				}
+
+				return obj;
+			};
+		})();
 
 		/**
 		 * 初始化
-		 * @param {JsonObject} ops 初始化参数
+		 * @param {Object} ops 初始化参数
 		 * @param {Boolean} [ops.autoReLayoutWhenResize=true] 当视口尺寸发生变化时，是否自动重新布局
 		 * @param {Function} [ops.layoutAsMobilePortrait] 手机以竖屏方式使用应用时的布局方式
 		 * @param {Function} [ops.layoutAsMobileLandscape] 手机以横屏方式使用应用时的布局方式

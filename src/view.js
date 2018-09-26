@@ -71,8 +71,10 @@
 		attr$view_rel_type = "data-view-rel-type",
 		attr$view_title = "data-view-title",
 		attr$view_container = "data-view-container",
-		
-		attr$view_os = "data-view-os";
+		attr$view_os = "data-view-os",
+		attr$view_whr = "data-view-whr";/* width height ratio. Value: 'w/h' */
+
+	var defaultWidthHeightRatio = "320/568";/* iPhone5 */
 
 	var historyPushPopSupported = ("pushState" in history) && (typeof history.pushState == "function");
 	globalLogger.log("History pushState is " + (historyPushPopSupported? "": "not ") + "supported");
@@ -643,6 +645,18 @@
 	eventDrive(View);
 
 	/**
+	 * 获取视图容器DOM元素
+	 * @returns {HTMLElement}
+	 */
+	View.getViewContainerDomElement = function(){
+		var obj = document.querySelector("[" + attr$view_container + "]");
+		if(null == obj)
+			obj = document.body;
+
+		return obj;
+	};
+
+	/**
 	 * 查找给定ID对应的视图实例，如果不存在则创建，否则返回已经存在的实例
 	 * @param {String} id 视图编号
 	 */
@@ -671,7 +685,10 @@
 
 		return false;
 	};
-	View.isExisting = View.ifExists;
+	View.isExisting = function(){
+		globalLogger.warn("This is method is deprecated, please use 'View.ifExists' instead.");
+		return View.ifExists.apply(View, arguments);
+	};
 
 	/**
 	 * 列举所有视图
@@ -856,7 +873,7 @@
 	 * @param {View} ops.targetView {View} 目标视图
 	 * @param {StringEnum} ops.type 切换操作类型（View.SWITCHTYPE_HISTORYFORWARD || View.SWITCHTYPE_HISTORYBACK || View.SWITCHTYPE_VIEWNAV || View.SWITCHTYPE_VIEWCHANGE）
 	 * @param {Boolean} ops.withAnimation 是否执行动画
-	 * @param {Any} ops.params 视图参数。仅当切换操作类型为：View.SWITCHTYPE_VIEWNAV || View.SWITCHTYPE_VIEWCHANGE时才会被使用
+	 * @param {*} ops.params 视图参数。仅当切换操作类型为：View.SWITCHTYPE_VIEWNAV || View.SWITCHTYPE_VIEWCHANGE时才会被使用
 	 */
 	var switchView = function(ops){
 		ops = util.setDftValue(ops, {
@@ -948,7 +965,7 @@
 	/**
 	 * 呈现指定的视图（不操作history）
 	 * @param {String} targetViewId 目标视图ID
-	 * @param {JsonObject} ops 切换配置。详见switchView
+	 * @param {Object} ops 切换配置。详见switchView
 	 */
 	var show = function(targetViewId, ops){
 		ops = util.setDftValue(ops, {}, true);
@@ -1002,8 +1019,8 @@
 	/**
 	 * 以“压入历史堆栈”的方式切换视图
 	 * @param targetViewId 目标视图ID
-	 * @param {JsonObject} ops 切换配置。详见View.show
-	 * @param {JsonObject} ops.options 视图选项
+	 * @param {Object} ops 切换配置。详见View.show
+	 * @param {Object} ops.options 视图选项
 	 */
 	View.navTo = function(targetViewId, ops){
 		targetViewId = targetViewId.trim();
@@ -1103,8 +1120,8 @@
 
 	/**
 	 * 回退到上一个视图
-	 * @param {JsonObject} ops 切换配置
-	 * @param {JsonObject | null} ops.params 视图切换参数
+	 * @param {Object} ops 切换配置
+	 * @param {Object | null} ops.params 视图切换参数
 	 */
 	View.back = function(ops){
 		/* 清除旧数据，并仅在指定了参数时才设置参数，防止污染其它回退操作 */
@@ -1119,8 +1136,8 @@
 
 	/**
 	 * 前进到下一个视图
-	 * @param {JsonObject} ops 切换配置
-	 * @param {JsonObject | null} ops.params 视图切换参数
+	 * @param {Object} ops 切换配置
+	 * @param {Object | null} ops.params 视图切换参数
 	 */
 	View.forward = function(ops){
 		/* 清除旧数据，并仅在指定了参数时才设置参数，防止污染其它前进操作 */
@@ -1285,7 +1302,7 @@
 		/* 标记识别的操作系统 */
 		docEle.setAttribute(attr$view_os, util.env.isIOS? "ios": (util.env.isAndroid? "android": (util.env.isWindowsPhone? "wp": "unknown")));
 
-		/** 事件监听 */
+		/* 事件监听 */
 		window.addEventListener(historyPushPopSupported? "popstate": "hashchange", stateChangeListener);
 
 		/* 识别视图容器。如果没有元素声明为视图容器，则认定body为视图容器 */
@@ -1482,9 +1499,7 @@
 		/* 标记视图就绪 */
 		markViewReady();
 
-		/**
-		 * 呈现指定视图
-		 */
+		/* 呈现指定视图 */
 		;(function(){
 			/* 如果要呈现的视图，是View.ready方法执行后通过API跳转过来的，则不再重复处理 */
 			if(null != View.currentState){
@@ -1543,6 +1558,32 @@
 				withAnimation: false,
 				params: null
 			});
+		})();
+
+		/* 使能属性：data-view-whr */
+		;(function(){
+			var whr = document.documentElement.getAttribute(attr$view_whr);
+			if(null == whr || (whr = whr.trim().toLowerCase()) === "")
+				return;
+
+			var r = /(\d+(?:\.\d*)?)\s*\/\s*(\d+(?:\.\d*)?)/i;
+			var tmp = whr.match(r);
+			if(null == tmp){
+				globalLogger.warn("Invalid view expected width height ratio: {}. Value such as '320/568'(iPhone 5) is valid. Using '{}' instead.", whr, defaultWidthHeightRatio);
+				tmp = defaultWidthHeightRatio.exec(r);
+			}else
+				globalLogger.info("Using specified expected width height ratio: {}", whr);
+
+			layout.setExpectedWidthHeightRatio(Number(tmp[1])/Number(tmp[2])).init();
+			var doLayout = function(){
+				/* 移除可能会影响布局的虚拟键盘 */
+				var inputObjs = document.querySelectorAll("input, select, textarea, *[contentEditable]");
+				for(var i = 0; i < inputObjs.length; i++)
+					inputObjs[i].blur();
+				layout.doLayout();
+			};
+			doLayout();
+			document.addEventListener("DOMContentLoaded", doLayout);
 		})();
 	};
 
