@@ -1060,10 +1060,14 @@
 			targetViewId = firstViewId;
 		}
 
-		/** 检查目标视图是否存在 */
+		/* 检查目标视图是否存在 */
 		if(!View.ifExists(targetViewId)){
 			globalLogger.log("Trying to navigate to view: {} with params: {}, options: {}", targetViewId, ops.params, ops.options);
-			throw new Error("Target view: " + targetViewId + " does not exist!");
+
+			var e = new Error("Target view: " + targetViewId + " does not exist! Firing event 'viewnotexist'...");
+			console.error(e);
+			View.fire("viewnotexist", {targetViewId: targetViewId});
+			return View;
 		}
 
 		ops.type = View.SWITCHTYPE_VIEWNAV;
@@ -1105,10 +1109,14 @@
 			targetViewId = firstViewId;
 		}
 
-		/** 检查目标视图是否存在 */
+		/* 检查目标视图是否存在 */
 		if(!View.ifExists(targetViewId)){
 			globalLogger.log("Trying to navigate to view: {} with params: {}, options: {}", targetViewId, ops.params, ops.options);
-			throw new Error("Target view: " + targetViewId + " does not exist!");
+
+			var e = new Error("Target view: " + targetViewId + " does not exist! Firing event 'viewnotexist'...");
+			console.error(e);
+			View.fire("viewnotexist", {targetViewId: targetViewId});
+			return View;
 		}
 
 		ops.type = View.SWITCHTYPE_VIEWCHANGE;
