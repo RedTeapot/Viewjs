@@ -7,6 +7,9 @@
  * 5. view.enter
  * 6. view.afterenter
  * 7. View.afterchange
+ *
+ * View其它事件：
+ * 1) viewnotexist：要访问的视图不存在
  */
 ;(function(ctx, name){
 	var util = ctx[name].util,

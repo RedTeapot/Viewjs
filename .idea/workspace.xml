@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa049d9f-4dea-4860-acf4-da5e7606d47a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -20,10 +19,9 @@
       <file leaf-file-name="view.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="1116" column="29" lean-forward="true" selection-start-line="1116" selection-start-column="29" selection-end-line="1116" selection-end-column="29" />
+            <state relative-caret-position="187">
+              <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
               <folding>
-                <element signature="n#!!doc" expanded="true" />
                 <element signature="e#25338#25990#0" />
               </folding>
             </state>
@@ -989,12 +987,12 @@
       <workItem from="1537925548259" duration="3113000" />
       <workItem from="1537944275910" duration="3373000" />
       <workItem from="1538014897919" duration="994000" />
-      <workItem from="1538127289611" duration="597000" />
+      <workItem from="1538127289611" duration="673000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18188000" />
+    <option name="totallyTimeSpent" value="18264000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1046,7 +1044,6 @@
         <state relative-caret-position="25772">
           <caret line="1516" column="13" selection-start-line="1516" selection-start-column="13" selection-end-line="1516" selection-end-column="13" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
             <element signature="e#25338#25990#0" />
           </folding>
         </state>
@@ -1071,7 +1068,6 @@
         <state relative-caret-position="16048">
           <caret line="944" lean-forward="true" selection-start-line="944" selection-end-line="944" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
             <element signature="e#25338#25990#0" />
           </folding>
         </state>
@@ -1103,7 +1099,6 @@
         <state relative-caret-position="11509">
           <caret line="686" column="39" lean-forward="true" selection-start-line="686" selection-start-column="39" selection-end-line="686" selection-end-column="39" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
             <element signature="e#25338#25990#0" />
           </folding>
         </state>
@@ -1211,10 +1206,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="1116" column="29" lean-forward="true" selection-start-line="1116" selection-start-column="29" selection-end-line="1116" selection-end-column="29" />
+        <state relative-caret-position="187">
+          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
             <element signature="e#25338#25990#0" />
           </folding>
         </state>
