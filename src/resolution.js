@@ -1,5 +1,8 @@
 ;(function(ctx, name){
-	var util = ctx[name].util;
+	var util = ctx[name].util,
+		Logger = ctx[name].Logger;
+
+	var globalLogger = Logger.globalLogger;
 
 	/** 分辨率组件 */
 	var resolution = (function(){
@@ -14,12 +17,16 @@
 		/**
 		 * 执行监听回调
 		 */
-		var execChangeCallbacks = function(e){
-			setTimeout(function(){
-				for(var i = 0; i < changeCallbacks.length; i++)
-					util.try2Call(changeCallbacks[i], null, e);
-			}, 0);
-		};
+		var execResolutionChangeCallbacks = (function(){
+			var timer;
+			return function(e){
+				clearTimeout(timer);
+				timer = setTimeout(function(){
+					for(var i = 0; i < changeCallbacks.length; i++)
+						util.try2Call(changeCallbacks[i], null, e);
+				}, 20);
+			};
+		})();
 
 		/**
 		 * 判断当前设备是否处于竖屏模式（宽度小于等于高度）
@@ -40,7 +47,7 @@
 		/**
 		 * 检测浏览器是否完成重绘操作
 		 */
-		var detect = (function(){
+		var detectIfOrientationChangeCompletes = (function(){
 			var isDetecting = false,
 				detectStartTimestamp = -1,
 				isCurrentPortrait = isPortrait();
@@ -66,12 +73,12 @@
 			 */
 			var judgeIfChanges = function(e){
 				if(isCurrentPortrait == isPortrait()){/* 没有改变，继续检测 */
-					setTimeout(detect, interval);
+					setTimeout(detectIfOrientationChangeCompletes, interval);
 				}else{
 					stopDetecting();
 					isCurrentPortrait = isPortrait();
 					
-					execChangeCallbacks(e);
+					execResolutionChangeCallbacks(e);
 				}
 			};
 			
@@ -99,29 +106,90 @@
 		 */
 		var detectIfKeyboardDisappears = (function(){
 			var width = 0, height = 0;
-			var threshold = 1e-2;
-			var timer, delay = 20;
 
-			return function(){
+			var threshold = 1e-2;
+			var delayTimer, delay = 20;
+
+			var reset = function(){
+				width = 0;
+				height = 0;
+			};
+
+			var try2ExecChangeCallbacks = function(){
+				clearTimeout(delayTimer);
+				delayTimer = setTimeout(execResolutionChangeCallbacks, delay);
+			};
+
+			var doDetect = function(){
 				var w = window.innerWidth,
 					h = window.innerHeight;
 
 				var wDelta = Math.abs(w - width);
-				if(wDelta < threshold && h > height){
+
+				if(width == 0 || wDelta < threshold && h > height){
 					width = w;
 					height = h;
 
-					clearTimeout(timer);
-					timer = setTimeout(execChangeCallbacks, delay);
+					try2ExecChangeCallbacks();
 				}
 			};
+			doDetect.reset = reset;
+			doDetect.try2ExecChangeCallbacks = try2ExecChangeCallbacks;
+
+			return doDetect;
 		})();
-		
-		if("onorientationchange" in window){
-			window.addEventListener("onorientationchange", detect);
-			setInterval(detectIfKeyboardDisappears, 50);
-		}else
-			window.addEventListener("resize", execChangeCallbacks);
+
+		/**
+		 * 检测页面的浏览模式（PC浏览还是手机浏览）
+		 */
+		var detectPageViewingMode = (function(){
+			var lastMode = null;
+			var timer;
+
+			var stopDetectIfKeyboardDisappears = function(){
+				detectIfKeyboardDisappears.reset();
+				clearInterval(timer);
+				timer = null;
+			};
+
+			var startDetectIfKeyboardDisappears = function(){
+				stopDetectIfKeyboardDisappears();
+				timer = setInterval(detectIfKeyboardDisappears, 50);
+			};
+
+			return function(){
+				setInterval(function(){
+					util.env.refresh();
+
+					if(util.env.isPc){
+						if(lastMode != "pc"){
+							globalLogger.debug("Page viewing mode to PC mode.");
+
+							stopDetectIfKeyboardDisappears();
+							window.removeEventListener("orientationchange", detectIfOrientationChangeCompletes);
+
+							execResolutionChangeCallbacks();
+							window.addEventListener("resize", execResolutionChangeCallbacks);
+						}
+
+						lastMode = "pc";
+					}else{
+						if(lastMode != "!pc"){
+							globalLogger.debug("Page viewing mode to none-PC mode.");
+
+							window.removeEventListener("resize", execResolutionChangeCallbacks);
+
+							execResolutionChangeCallbacks();
+							window.addEventListener("orientationchange", detectIfOrientationChangeCompletes);
+							startDetectIfKeyboardDisappears();
+						}
+
+						lastMode = "!pc";
+					}
+				}, 30);
+			};
+		})();
+		detectPageViewingMode();
 
 		/**
 		 * 添加方向切换时执行的事件句柄。该句柄只有在界面重绘完成时才会被执行

@@ -232,23 +232,51 @@
 			isMobile = (/(?:Mobile)/.test(ua) && !isIPad) || isWindowsPhone,
 			isPc = !isMobile && !isTablet;
 
-		return {
-			isQB: isQB,
-			isUC: isUC,
-			isSafari: isSafari,
-			isOpera: isOpera,
+		var obj = {};
 
-			isIOS: isIOS,
-			isAndroid: isAndroid,
-			isWindowsPhone: isWindowsPhone,
+		var resetProperty = function(){
+			obj.isQB = isQB;
+			obj.isUC = isUC;
+			obj.isSafari = isSafari;
+			obj.isOpera = isOpera;
 
-			isIPad: isIPad,
-			isIPhone: isIPhone,
+			obj.isIOS = isIOS;
+			obj.isAndroid = isAndroid;
+			obj.isWindowsPhone = isWindowsPhone;
 
-			isTablet: isTablet,
-			isMobile: isMobile,
-			isPc: isPc
+			obj.isIPad = isIPad;
+			obj.isIPhone = isIPhone;
+
+			obj.isTablet = isTablet;
+			obj.isMobile = isMobile;
+			obj.isPc = isPc;
 		};
+
+		var refresh = function(){
+			ua = navigator.userAgent;
+
+			isQB = /(?:MQQBrowser|QQ)/.test(ua);
+			isUC = /(?:UCWEB|UCBrowser)/.test(ua);
+			isSafari = /(?:Safari)/.test(ua);
+			isOpera= /(?:Opera Mini)/.test(ua);
+
+			isIOS = /(?:Mac OS)/.test(ua);
+			isAndroid = /(?:Android)/.test(ua);
+			isWindowsPhone = /(?:Windows Phone)/.test(ua);
+
+			isIPad = isIOS && /(?:iPad)/.test(ua);
+			isIPhone = isIOS && /(?:iPhone)/.test(ua);
+
+			isTablet = /(?:Tablet|PlayBook)/.test(ua) || isIPad;
+			isMobile = (/(?:Mobile)/.test(ua) && !isIPad) || isWindowsPhone;
+			isPc = !isMobile && !isTablet;
+
+			resetProperty();
+			return obj;
+		};
+		obj.refresh = refresh;
+
+		return obj;
 	})();
 
 	ctx[name].util = {
