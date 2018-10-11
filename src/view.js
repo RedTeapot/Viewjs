@@ -391,6 +391,19 @@
 		 * @returns {View}
 		 */
 		this.fulfillWantedData = function(name, data){
+			/**
+			 * View.want()方法在调用但没有传递参数：“数据不存在时的处理方法”时，
+			 * want方法会自动跳转至该视图，并传递名称为该名称的回调方法
+			 *
+			 * @type {string}
+			 */
+			var callbackParamName = name + ":fulFillCallback";
+			var callback = this.getParameter(callbackParamName);
+			if(typeof callback === "function"){
+				globalLogger.info("Found auto attached(by 'View.want()' method) fulfill listener(parameter name: '{}'), auto execute this listener with fulfilled data.", callbackParamName);
+				util.try2Call(callback, null, data);
+			}
+
 			wantedData.fulfill(name, data);
 			return this;
 		};
@@ -895,6 +908,18 @@
 	 */
 	View.wantData = function(viewId, name, callback, notFulfilledCallback){
 		var wantedData = ViewWantedData.ofName(viewId, name);
+
+		if(typeof notFulfilledCallback !== "function"){
+			var paramName = name + ":fulFillCallback";
+			globalLogger.info("No parameter meaning 'callback for situation that wanted data is currently not fulfilled' specified, auto assign as View.navTo('{}', {params: {'{}': function(){...}}})", viewId, paramName);
+
+			var params = {};
+			params[paramName] = callback;
+			notFulfilledCallback = function(){
+				View.navTo(viewId, {params: params});
+			};
+		}
+
 		wantedData.want(callback, notFulfilledCallback);
 		return View;
 	};
