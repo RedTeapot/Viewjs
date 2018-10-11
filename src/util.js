@@ -54,7 +54,7 @@
 	/**
 	 * 尝试调用指定的方法
 	 * @param {Function} func 待执行的方法
-	 * @param {Object} ctx 方法执行时的this上下文
+	 * @param {Object} [ctx] 方法执行时的this上下文
 	 * @param {Any} args... 方法参数列表
 	 */
 	var try2Call = function(func, ctx, args){

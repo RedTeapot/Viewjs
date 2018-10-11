@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="aa049d9f-4dea-4860-acf4-da5e7606d47a" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/env.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resolution.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/resolution.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/gulpfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/gulpfile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,41 +19,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="gulpfile.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build/gulpfile.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="67" column="31" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ViewWantedData.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ViewWantedData.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="547">
+              <caret line="109" lean-forward="true" selection-start-line="109" selection-end-line="109" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="view.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="972">
-              <caret line="1678" column="35" lean-forward="true" selection-start-line="1678" selection-start-column="35" selection-end-line="1678" selection-end-column="35" />
+            <state relative-caret-position="203">
+              <caret line="897" column="18" selection-start-line="897" selection-start-column="8" selection-end-line="897" selection-end-column="18" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="layout.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/layout.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="262" column="22" lean-forward="true" selection-start-line="262" selection-start-column="22" selection-end-line="262" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="resolution.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/resolution.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="129" column="30" lean-forward="true" selection-start-line="129" selection-start-column="30" selection-end-line="129" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="util.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/util.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="232" column="42" lean-forward="true" selection-start-line="232" selection-start-column="42" selection-end-line="232" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -93,6 +84,10 @@
       <find>detectIfKeyboardDisappears</find>
       <find>none-pc</find>
       <find>onorientationchange</find>
+      <find>defineR</find>
+      <find>this.re</find>
+      <find>getUniqueString</find>
+      <find>instances</find>
     </findStrings>
     <dirStrings>
       <dir>G:\代码仓库\js\view\src</dir>
@@ -119,9 +114,12 @@
         <option value="$PROJECT_DIR$/src/layout.js" />
         <option value="$PROJECT_DIR$/src/ViewLayout.js" />
         <option value="$PROJECT_DIR$/src/env.js" />
-        <option value="$PROJECT_DIR$/src/util.js" />
-        <option value="$PROJECT_DIR$/src/view.js" />
         <option value="$PROJECT_DIR$/src/resolution.js" />
+        <option value="$PROJECT_DIR$/src/util.js" />
+        <option value="$PROJECT_DIR$/src/PromiseDefer.js" />
+        <option value="$PROJECT_DIR$/build/gulpfile.js" />
+        <option value="$PROJECT_DIR$/src/view.js" />
+        <option value="$PROJECT_DIR$/src/ViewWantedData.js" />
       </list>
     </option>
   </component>
@@ -1008,35 +1006,36 @@
       <workItem from="1538014897919" duration="994000" />
       <workItem from="1538127289611" duration="1273000" />
       <workItem from="1538200552166" duration="71000" />
-      <workItem from="1538267692707" duration="5273000" />
+      <workItem from="1538267692707" duration="5606000" />
+      <workItem from="1539220363321" duration="9637000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24208000" />
+    <option name="totallyTimeSpent" value="34178000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24815595" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24657534" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32936078" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32936078" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection Results" order="8" weight="0.32936078" />
+      <window_info anchor="bottom" id="Inspection Results" order="10" weight="0.32936078" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1046,6 +1045,37 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28322">
+          <caret line="1678" column="35" lean-forward="true" selection-start-line="1678" selection-start-column="35" selection-end-line="1678" selection-end-column="35" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/layout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4454">
+          <caret line="262" column="22" lean-forward="true" selection-start-line="262" selection-start-column="22" selection-end-line="262" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3944">
+          <caret line="232" column="42" lean-forward="true" selection-start-line="232" selection-start-column="42" selection-end-line="232" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resolution.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2193">
+          <caret line="129" column="30" lean-forward="true" selection-start-line="129" selection-start-column="30" selection-end-line="129" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/view.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -1230,15 +1260,32 @@
     <entry file="file://$PROJECT_DIR$/uit.js" />
     <entry file="file://$PROJECT_DIR$/util.js" />
     <entry file="file://$PROJECT_DIR$/view.js" />
-    <entry file="file://$PROJECT_DIR$/src/ViewConfiguration.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1136" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ViewLayout.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1003">
           <caret line="59" selection-start-line="59" selection-end-line="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/env.js" />
+    <entry file="file://$PROJECT_DIR$/src/layout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4454">
+          <caret line="262" column="22" selection-start-line="262" selection-start-column="22" selection-end-line="262" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resolution.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="145" column="32" lean-forward="true" selection-start-line="145" selection-start-column="32" selection-end-line="145" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/OperationState.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="4" lean-forward="true" selection-end-line="78" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -1249,48 +1296,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build/gulpfile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="59" column="19" selection-start-line="59" selection-start-column="19" selection-end-line="59" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/env.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="700">
-          <caret line="60" column="9" lean-forward="true" selection-start-line="1" selection-start-column="4" selection-end-line="60" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/layout.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="262" column="22" lean-forward="true" selection-start-line="262" selection-start-column="22" selection-end-line="262" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/util.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="232" column="42" lean-forward="true" selection-start-line="232" selection-start-column="42" selection-end-line="232" selection-end-column="42" />
+        <state relative-caret-position="290">
+          <caret line="172" column="8" selection-start-line="172" selection-start-column="8" selection-end-line="172" selection-end-column="8" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/gulpfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="67" column="31" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ViewConfiguration.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="972">
-          <caret line="1678" column="35" lean-forward="true" selection-start-line="1678" selection-start-column="35" selection-end-line="1678" selection-end-column="35" />
+        <state relative-caret-position="203">
+          <caret line="897" column="18" selection-start-line="897" selection-start-column="8" selection-end-line="897" selection-end-column="18" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/resolution.js">
+    <entry file="file://$PROJECT_DIR$/src/ViewWantedData.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="129" column="30" lean-forward="true" selection-start-line="129" selection-start-column="30" selection-end-line="129" selection-end-column="30" />
+        <state relative-caret-position="547">
+          <caret line="109" lean-forward="true" selection-start-line="109" selection-end-line="109" />
         </state>
       </provider>
     </entry>

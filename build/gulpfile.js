@@ -66,6 +66,7 @@ var concatJs = function(){
 		"../src/ViewLayout.js",
 		"../src/ViewState.js",
 		"../src/OperationState.js",
+		"../src/ViewWantedData.js",
 
 		"../src/view.js",
 	])

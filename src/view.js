@@ -23,7 +23,8 @@
 		OperationState = ctx[name].OperationState,
 		ViewConfigurationSet = ctx[name].ViewConfigurationSet,
 		ViewContext = ctx[name].ViewContext,
-		ViewLayout = ctx[name].ViewLayout;
+		ViewLayout = ctx[name].ViewLayout,
+		ViewWantedData = ctx[name].ViewWantedData;
 
 	var globalLogger = Logger.globalLogger;
 
@@ -290,6 +291,9 @@
 		/** 视图配置集合 */
 		var configSet = new ViewConfigurationSet(id);
 
+		/** 被其它地方期待提供的数据 */
+		var wantedData = new ViewWantedData(id);
+
 		/**
 		 * 启用事件驱动机制
 		 * 事件 beforeenter：视图进入前触发
@@ -378,6 +382,26 @@
 		 */
 		this.findAll = function(selector){
 			return this.getDomElement().querySelectorAll(selector);
+		};
+
+		/**
+		 * 满足数据期待
+		 * @param {String} name 数据的标识名称
+		 * @param {*} data 提供的数据
+		 * @returns {View}
+		 */
+		this.fulfillWantedData = function(name, data){
+			wantedData.fulfill(name, data);
+			return this;
+		};
+
+		/**
+		 * 判断给定名称标识对应的数据是否已经存在
+		 * @param {String} name 数据的标识名称
+		 * @returns {boolean}
+		 */
+		this.isWantedDataFulfilled = function(name){
+			return wantedData.isFulfilled(name);
 		};
 
 		/**
@@ -858,6 +882,33 @@
 
 		replaceViewState(activeView.getId(), View.currentState? View.currentState.sn: null, options);
 
+		return View;
+	};
+
+	/**
+	 * 索取特定视图可以提供的数据，如果数据存在，则执行给定的回调方法，否则执行给定的不存在方法
+	 * @param {String} viewId 视图ID
+	 * @param {String} name 数据的标识名称
+	 * @param {Function} callback 数据存在时执行的回调方法
+	 * @param {Function} notFulfilledCallback 数据不存在时执行的方法
+	 * @returns {View}
+	 */
+	View.wantData = function(viewId, name, callback, notFulfilledCallback){
+		var wantedData = ViewWantedData.ofName(viewId, name);
+		wantedData.want(callback, notFulfilledCallback);
+		return View;
+	};
+
+	/**
+	 * 监听特定视图可以提供的数据，并在数据满足时执行特定方法
+	 * @param {String} viewId 视图ID
+	 * @param {String} name 数据的标识名称
+	 * @param {Function} callback 数据被满足时执行的回调方法
+	 * @returns {View}
+	 */
+	View.listenWantedData = function(viewId, name, callback){
+		var wantedData = ViewWantedData.ofName(viewId, name);
+		wantedData.listen(callback);
 		return View;
 	};
 
