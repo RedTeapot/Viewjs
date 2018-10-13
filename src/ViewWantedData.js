@@ -31,7 +31,7 @@
 		 */
 		this.want = function(callback, notFulfilledCallback){
 			if(this.isFulfilled()){
-				util.try2Call(callback, null, data);
+				util.try2Call(callback, null, data, {dataResolveMethod: "provideExisting"});
 			}else
 				util.try2Call(notFulfilledCallback);
 
@@ -93,18 +93,6 @@
 
 		this.want = function(name, callback, notFulfilledCallback){
 			var instance = this.ofName(name);
-
-			if(typeof notFulfilledCallback !== "function"){
-				var paramName = name + ":fulFillCallback";
-				globalLogger.info("No parameter meaning 'callback for situation that wanted data is currently not fulfilled' specified, auto assign as View.navTo('{}', {params: {'{}': function(){...}}})", viewId, paramName);
-
-				var params = {};
-				params[paramName] = callback;
-				notFulfilledCallback = function(){
-					View.navTo(viewId, {params: params});
-				};
-			}
-
 			return instance.want(callback, notFulfilledCallback);
 		};
 

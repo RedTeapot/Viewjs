@@ -401,7 +401,7 @@
 			var callback = this.getParameter(callbackParamName);
 			if(typeof callback === "function"){
 				globalLogger.info("Found auto attached(by 'View.want()' method) fulfill listener(parameter name: '{}'), auto execute this listener with fulfilled data.", callbackParamName);
-				util.try2Call(callback, null, data);
+				util.try2Call(callback, null, data, {dataResolveMethod: "resolveLater"});
 			}
 
 			wantedData.fulfill(name, data);
