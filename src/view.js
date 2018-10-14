@@ -764,9 +764,14 @@
 	
 	/**
 	 * 设置指定ID的视图为默认视图
-	 * @param {String} id 视图ID
+	 * @param {String} viewId 视图ID
 	 */
 	View.setAsDefault = function(viewId){
+		if(util.isEmptyString(viewId, true)){
+			globalLogger.warn("No view id supplied to set as default.");
+			return View;
+		}
+
 		/* 去除当前的默认视图的默认标记 */
 		var viewObjs = getViewObjs();
 		for(var i = 0; i < viewObjs.length; i++)
