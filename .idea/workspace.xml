@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa049d9f-4dea-4860-acf4-da5e7606d47a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ViewState.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewState.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view.1.5.3-B201810141215.min.js" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,8 +19,8 @@
       <file leaf-file-name="view.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="768">
-              <caret line="1794" column="64" selection-start-line="1794" selection-start-column="64" selection-end-line="1794" selection-end-column="64" />
+            <state relative-caret-position="344">
+              <caret line="181" column="18" selection-start-line="181" selection-start-column="12" selection-end-line="181" selection-end-column="18" />
               <folding>
                 <element signature="e#5438#5971#0" />
                 <element signature="e#22033#22583#0" />
@@ -57,11 +54,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>onorientationchange</find>
-      <find>defineR</find>
-      <find>this.re</find>
-      <find>getUniqueString</find>
-      <find>instances</find>
       <find>View.want</find>
       <find>this.ful</find>
       <find>&quot;:fulFillCallback&quot;</find>
@@ -87,6 +79,11 @@
       <find>activeViewId</find>
       <find>123</find>
       <find>var push</find>
+      <find>No view dom element of</find>
+      <find>var View =</find>
+      <find>throw new Error(&quot;View of id: '&quot; + id +</find>
+      <find>var nspc = domElement.getAttribute(attr$view_namespace)</find>
+      <find>var nsp</find>
     </findStrings>
     <dirStrings>
       <dir>G:\代码仓库\js\view\src</dir>
@@ -1010,12 +1007,12 @@
       <workItem from="1539506001705" duration="757000" />
       <workItem from="1539594690803" duration="462000" />
       <workItem from="1539680086607" duration="614000" />
-      <workItem from="1541497529792" duration="3840000" />
+      <workItem from="1541497529792" duration="4622000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44936000" />
+    <option name="totallyTimeSpent" value="45718000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1358,8 +1355,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="768">
-          <caret line="1794" column="64" selection-start-line="1794" selection-start-column="64" selection-end-line="1794" selection-end-column="64" />
+        <state relative-caret-position="344">
+          <caret line="181" column="18" selection-start-line="181" selection-start-column="12" selection-end-line="181" selection-end-column="18" />
           <folding>
             <element signature="e#5438#5971#0" />
             <element signature="e#22033#22583#0" />

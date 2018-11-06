@@ -173,7 +173,15 @@
 			namespace = defaultNamespace;
 		buildNamespace(namespace);
 
-		return document.querySelector("#" + viewId + "[" + attr$view + "=true]" + "[" + attr$view_namespace + "=" + namespace + "]");
+		var ele = document.querySelector("#" + viewId + "[" + attr$view + "=true]");
+		if(null == ele)
+			return ele;
+
+		var nspc = ele.getAttribute(attr$view_namespace);
+		if(util.isEmptyString(nspc, true))
+			nspc = defaultNamespace;
+
+		return nspc === namespace? ele: null;
 	};
 
 	/**
@@ -324,8 +332,14 @@
 		if(arguments.length < 2 || util.isEmptyString(namespace, true))
 			namespace = defaultNamespace;
 
-		var domElement = document.querySelector("#" + id + "[" + attr$view + "=true]" + "[" + attr$view_namespace + "=" + namespace + "]");
-		if(null === domElement)
+		var domElement = document.querySelector("#" + id + "[" + attr$view + "=true]");
+		if(null === domElement || (function(){
+			var nspc = domElement.getAttribute(attr$view_namespace);
+			if(util.isEmptyString(nspc, true))
+				nspc = defaultNamespace;
+
+			return nspc !== namespace;
+		})())
 			throw new Error("View of id: '" + id + "' within namespace: '" + namespace + "' does not exist!");
 
 
@@ -858,7 +872,7 @@
 		/* 设置新的默认视图 */
 		var viewObj = getViewObjOfId(viewId, namespace);
 		if(null == viewObj){
-			globalLogger.error("No view dom element of id: {} found to set as default.", viewId);
+			globalLogger.error("No view dom element of id: '{}' namespace: '{}' found to set as default.", viewId, viewNamespace);
 			return View;
 		}
 		viewObj.setAttribute(attr$view_default, "true");
@@ -1519,8 +1533,10 @@
 		var viewObjs = getViewObjs();
 		[].forEach.call(viewObjs, function(viewObj){
 			var namespace = viewObj.getAttribute(attr$view_namespace);
-			if(util.isEmptyString(namespace, true))
+			if(util.isEmptyString(namespace, true)){
 				namespace = defaultNamespace;
+				viewObj.setAttribute(attr$view_namespace, namespace);
+			}
 
 			var viewId = viewObj.id;
 			if(View.ifExists(viewId, namespace))
