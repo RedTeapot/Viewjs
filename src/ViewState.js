@@ -4,14 +4,15 @@
 	/**
 	 * 浏览状态
 	 * @param {String} viewId 视图ID
+	 * @param {String} viewNamespace 视图隶属的命名空间
 	 * @param {String} [timeBasedUniqueString=util.getUniqueString()] 基于时间戳的浏览操作流水号
-	 * @param {JsonObject} options 选项集合
+	 * @param {Object} options 选项集合
 	 */
 	var ViewState = (function(){
 		var prefix = "ViewState_";
 		var flag = util.randomString(prefix);
 
-		var Clazz = function(viewId, timeBasedUniqueString, options){
+		var Clazz = function(viewId, viewNamespace, timeBasedUniqueString, options){
 			if(arguments.length < 3)
 				options = null;
 			if(arguments.length < 2)
@@ -19,6 +20,7 @@
 			timeBasedUniqueString = timeBasedUniqueString || util.getUniqueString();
 
 			util.defineReadOnlyProperty(this, "viewId", viewId);
+			util.defineReadOnlyProperty(this, "viewNamespace", viewNamespace);
 			util.defineReadOnlyProperty(this, "sn", timeBasedUniqueString);
 			util.defineReadOnlyProperty(this, "options", options);
 			util.defineReadOnlyProperty(this, "flag", flag);
@@ -34,7 +36,7 @@
 
 		/**
 		 * 判断特定的对象是否是ViewState的实例
-		 * @param {JsonObject} obj 要判断的对象
+		 * @param {Object} obj 要判断的对象
 		 */
 		Clazz.isConstructorOf = function(obj){
 			if(null == obj || typeof obj != "object")

@@ -36,8 +36,19 @@
 		PSVIEW_FORWARD = ":forward",/* 伪视图：前进 */
 		PSVIEW_DEFAULT = ":default-view";/* 伪视图：默认视图 */
 
+	var defaultNamespace = "default";
+
 	/** 通过文档扫描得出的配置的视图集合 */
 	var viewInstances = [];
+
+	/**
+	 * 视图实例集合
+	 * key：视图命名空间
+	 * value：视图实例数组
+	 *
+	 * @type {Object<String, View>}
+	 */
+	var viewInstancesMap = {};
 
 	/**
 	 * 准备就绪的视图ID列表
@@ -66,6 +77,7 @@
 
 	/** DOM属性集合 */
 	var attr$view = "data-view",
+		attr$view_namespace = "data-view-namespace",
 		attr$view_default = "data-view-default",
 		attr$view_directly_accessible = "data-view-directly-accessible",
 		attr$view_group = "data-view-group",
@@ -73,6 +85,7 @@
 		attr$view_rel = "data-view-rel",
 		attr$view_rel_disabled = "data-view-rel-disabled",
 		attr$view_rel_type = "data-view-rel-type",
+		attr$view_rel_namespace = "data-view-rel-namespace",
 		attr$view_title = "data-view-title",
 		attr$view_container = "data-view-container",
 		attr$view_os = "data-view-os",
@@ -147,17 +160,28 @@
 		return viewObjs;
 	};
 
+	var buildNamespace = function(namespace){
+		if(!(namespace in viewInstancesMap))
+			viewInstancesMap[namespace] = [];
+	};
+
 	/**
 	 * 从DOM中获取ID为指定编号的视图DOM元素
 	 */
-	var getViewObjOfId = function(viewId){
-		return document.querySelector("#" + viewId + "[" + attr$view + "=true]");
+	var getViewObjOfId = function(viewId, namespace){
+		if(arguments.length < 2 || util.isEmptyString(namespace, true))
+			namespace = defaultNamespace;
+		buildNamespace(namespace);
+
+		return document.querySelector("#" + viewId + "[" + attr$view + "=true]" + "[" + attr$view_namespace + "=" + namespace + "]");
 	};
 
 	/**
 	 * 使用给定的视图编号和视图选项构造地址栏字符串
 	 */
-	var concatViewOptions = function(viewId, options){
+	var concatViewOptions = function(viewId, namespace, options){
+		var nspc = util.isEmptyString(namespace, true) || defaultNamespace === namespace? "": ("@" + String(namespace));
+
 		/** 视图编号与参数集合之间的分隔符 */
 		var sep = "!";
 
@@ -166,8 +190,9 @@
 		var tmp = paramKeys.reduce(function(start, e, i, arr){
 			return start + "&" + util.xEncodeURIComponent(e) + "=" + util.xEncodeURIComponent(options[e]);
 		}, "");
+
 		if(tmp.length > 0)
-			str += sep + tmp.substring(1);
+			str += nspc + sep + tmp.substring(1);
 
 		return str;
 	};
@@ -175,23 +200,28 @@
 	/**
 	 * 向history中添加view浏览历史
 	 * @param {String} viewId 视图ID
+	 * @param {String} viewNamespace 视图隶属的命名空间
 	 * @param {String} [timeBasedUniqueString=util.getUniqueString()] 基于时间戳的视图压入堆栈的唯一标识
-	 * @param {JsonObject} [options=null] 选项集合
+	 * @param {Object} [options=null] 选项集合
 	 */
-	var pushViewState = function(viewId, timeBasedUniqueString, options){
-		if(arguments.length < 3)
+	var pushViewState = function(viewId, viewNamespace, timeBasedUniqueString, options){
+		if(arguments.length < 4)
 			options = null;
-		if(arguments.length < 2)
+		if(arguments.length < 3)
 			timeBasedUniqueString = util.getUniqueString();
+		if(arguments.length < 2 || util.isEmptyString(viewNamespace, true))
+			viewNamespace = defaultNamespace;
+		buildNamespace(viewNamespace);
+
 		timeBasedUniqueString = timeBasedUniqueString || util.getUniqueString();
 
 		var state = new ViewState(viewId, timeBasedUniqueString, options).clone();
 		globalLogger.log("↓ {}", JSON.stringify(state));
 
 		if(historyPushPopSupported)
-			history.pushState(state, "", "#" + concatViewOptions(viewId, options));
+			history.pushState(state, "", "#" + concatViewOptions(viewId, viewNamespace, options));
 		else
-			location.hash = concatViewOptions(viewId, options);
+			location.hash = concatViewOptions(viewId, viewNamespace, options);
 
 		View.currentState = state;
 	};
@@ -199,23 +229,28 @@
 	/**
 	 * 更新history中最后一个view浏览历史
 	 * @param {String} viewId 视图ID
+	 * @param {String} viewNamespace 视图隶属的命名空间
 	 * @param {String} [timeBasedUniqueString=util.getUniqueString()] 基于时间戳的视图更新堆栈的唯一标识
-	 * @param {JsonObject} [options=null] 选项集合
+	 * @param {Object} [options=null] 选项集合
 	 */
-	var replaceViewState = function(viewId, timeBasedUniqueString, options){
-		if(arguments.length < 3)
+	var replaceViewState = function(viewId, viewNamespace, timeBasedUniqueString, options){
+		if(arguments.length < 4)
 			options = null;
-		if(arguments.length < 2)
+		if(arguments.length < 3)
 			timeBasedUniqueString = util.getUniqueString();
+		if(arguments.length < 2 || util.isEmptyString(viewNamespace, true))
+			viewNamespace = defaultNamespace;
+		buildNamespace(viewNamespace);
+
 		timeBasedUniqueString = timeBasedUniqueString || util.getUniqueString();
 
 		var state = new ViewState(viewId, timeBasedUniqueString, options).clone();
 		globalLogger.log("% {}", JSON.stringify(state));
 
 		if(historyPushPopSupported)
-			history.replaceState(state, "", "#" + concatViewOptions(viewId, options));
+			history.replaceState(state, "", "#" + concatViewOptions(viewId, viewNamespace, options));
 		else
-			location.hash = concatViewOptions(viewId, options);
+			location.hash = concatViewOptions(viewId, viewNamespace, options);
 
 		View.currentState = state;
 	};
@@ -245,19 +280,25 @@
 	/**
 	 * 从地址栏hash中解析视图信息
 	 * @param {String} hash 地址栏Hash
-	 * @return {JsonObject} {viewId: [视图编号], options: [选项集合]}
+	 * @return {Object} {viewId: [视图编号], options: [选项集合]}
 	 */
 	var parseViewInfoFromHash = function(hash){
 		if("" == hash)
 			return null;
 
-		var r = /^#([\w\$\-]+)(?:!+(.*))?/;
+		var r = /^#([\w\$\-]+)(?:@([\w\$\-]+))?(?:!+(.*))?/;
 		var m = hash.match(r);
 		if(null == m)
 			return null;
 
-		var viewId = m[1], options = parseParams(m[2]);
-		return {viewId: m[1], options: options};
+		var viewId = m[1],
+			viewNamespace = m[3],
+			options = parseParams(m[4]);
+
+		if(util.isEmptyString(viewNamespace, true))
+			viewNamespace = defaultNamespace;
+
+		return {viewId: viewId, viewNamespace: viewNamespace, options: options};
 	};
 
 	/**
@@ -276,11 +317,17 @@
 
 	/**
 	 * 视图类
-	 * @param id {String} 视图对应的DOM元素的id
+	 * @param {String} id 视图对应的DOM元素的id
+	 * @param {String} [namespace=defaultNamespace] 视图隶属的命名空间，用于分模块存储视图，也用于实现不同命名空间下相同ID的视图共存
 	 */
-	var View = function(id){
-		if(null === document.querySelector("#" + id + "[" + attr$view + "=true]"))
-			throw new Error("View of id: " + id + " does not exist(No element matching pattern: '#" + id + "[" + attr$view + "=true]' found)!");
+	var View = function(id, namespace){
+		if(arguments.length < 2 || util.isEmptyString(namespace, true))
+			namespace = defaultNamespace;
+
+		var domElement = document.querySelector("#" + id + "[" + attr$view + "=true]" + "[" + attr$view_namespace + "=" + namespace + "]");
+		if(null === domElement)
+			throw new Error("View of id: '" + id + "' within namespace: '" + namespace + "' does not exist!");
+
 
 		/* 存储该视图触发的各个事件的最新数据。key：事件名；value：数据 */
 		var eventData = {};
@@ -302,7 +349,7 @@
 		 * 事件 ready：当前视图变为活动视图时，且enter事件触发后触发
 		 * 事件 leave：当前视图由活动视图变为非活动视图时触发
 		 */
-		eventDrive(this, document.querySelector("#" + id));
+		eventDrive(this, domElement);
 
 		/**
 		 * 复写事件发起方法，在发起的同时记录附带的数据供后期查询
@@ -312,6 +359,10 @@
 			eventData[name] = value;
 			fire(name, value, async);
 		};
+
+
+		util.defineReadOnlyProperty(this, "id", id);
+		util.defineReadOnlyProperty(this, "namespace", namespace);
 
 		/* 日志输出组件 */
 		util.defineReadOnlyProperty(this, "logger", Logger.ofName("View#" + id));
@@ -348,6 +399,14 @@
 		 */
 		this.getId = function(){
 			return id;
+		};
+
+		/**
+		 * 获取该视图隶属的命名空间
+		 * @returns {String}
+		 */
+		this.getNamespace = function(){
+			return namespace;
 		};
 
 		/**
@@ -699,14 +758,21 @@
 	/**
 	 * 查找给定ID对应的视图实例，如果不存在则创建，否则返回已经存在的实例
 	 * @param {String} id 视图编号
+	 * @param {String} [namespace=defaultNamespace] 视图隶属的命名空间
 	 */
-	View.ofId = function(id){
+	View.ofId = function(id, namespace){
+		if(arguments.length < 2 || util.isEmptyString(namespace, true))
+			namespace = defaultNamespace;
+		buildNamespace(namespace);
+
+		var viewInstances = viewInstancesMap[namespace];
+
 		for(var i = 0; i < viewInstances.length; i++)
 			if(viewInstances[i].getId().trim() == id.trim())
 				return viewInstances[i];
 
 		/* 创建实例 */
-		var instance = new View(id);
+		var instance = new View(id, namespace);
 
 		/* 加入到管理集合中 */
 		viewInstances.push(instance);
@@ -717,8 +783,15 @@
 	/**
 	 * 判断指定ID的视图是否存在
 	 * @param {String} id 视图ID
+	 * @param {String} [namespace=defaultNamespace] 视图隶属的命名空间
 	 */
-	View.ifExists = function(id){
+	View.ifExists = function(id, namespace){
+		if(arguments.length < 2 || util.isEmptyString(namespace, true))
+			namespace = defaultNamespace;
+		buildNamespace(namespace);
+
+		var viewInstances = viewInstancesMap[namespace];
+
 		for(var i = 0; i < viewInstances.length; i++)
 			if(viewInstances[i].getId().trim() == id.trim())
 				return true;
@@ -765,8 +838,13 @@
 	/**
 	 * 设置指定ID的视图为默认视图
 	 * @param {String} viewId 视图ID
+	 * @param {String} [namespace=defaultNamespace] 视图隶属的命名空间
 	 */
-	View.setAsDefault = function(viewId){
+	View.setAsDefault = function(viewId, namespace){
+		if(arguments.length < 2 || util.isEmptyString(namespace, true))
+			namespace = defaultNamespace;
+		buildNamespace(namespace);
+
 		if(util.isEmptyString(viewId, true)){
 			globalLogger.warn("No view id supplied to set as default.");
 			return View;
@@ -778,7 +856,7 @@
 			viewObjs[i].removeAttribute(attr$view_default);
 
 		/* 设置新的默认视图 */
-		var viewObj = getViewObjOfId(viewId);
+		var viewObj = getViewObjOfId(viewId, namespace);
 		if(null == viewObj){
 			globalLogger.error("No view dom element of id: {} found to set as default.", viewId);
 			return View;
@@ -1049,23 +1127,28 @@
 	/**
 	 * 呈现指定的视图（不操作history）
 	 * @param {String} targetViewId 目标视图ID
+	 * @param {String} [namespace=defaultNamespace] 视图隶属的命名空间
 	 * @param {Object} ops 切换配置。详见switchView
 	 */
-	var show = function(targetViewId, ops){
+	var show = function(targetViewId, namespace, ops){
+		if(arguments.length < 2 || typeof namespace !== "string" || util.isEmptyString(namespace, true))
+			namespace = defaultNamespace;
+		buildNamespace(namespace);
+
 		ops = util.setDftValue(ops, {}, true);
 
 		/** 检查目标视图是否存在 */
-		if(!View.ifExists(targetViewId)){
-			globalLogger.log("Trying to navigate to view: {} with params: {}, options: {}",targetViewId, ops.params, ops.options);
-			throw new Error("Target view: " + targetViewId + " does not exist!");
+		if(!View.ifExists(targetViewId, namespace)){
+			globalLogger.log("Trying to navigate to view: '{}' within namespace: '{}' with params: {}, options: {}", targetViewId, namespace, ops.params, ops.options);
+			throw new Error("Target view: '" + targetViewId + "' within namespace: '" + namespace + "' does not exist!");
 		}
 
 		/* 当前活动视图 */
 		var currentView = View.getActiveView();
-		globalLogger.log("{} → {} {}", currentView? currentView.getId(): null, targetViewId, JSON.stringify(ops));
+		globalLogger.log("{}@{} → {}@{} {}", currentView? currentView.getId(): null, currentView? currentView.getNamespace(): null, targetViewId, namespace, JSON.stringify(ops));
 
 		/* 目标视图 */
-		var targetView = View.ofId(targetViewId);
+		var targetView = View.ofId(targetViewId, namespace);
 
 		ops.srcView = currentView;
 		ops.targetView = targetView;
@@ -1103,10 +1186,15 @@
 	/**
 	 * 以“压入历史堆栈”的方式切换视图
 	 * @param targetViewId 目标视图ID
+	 * @param {String} [namespace=defaultNamespace] 视图隶属的命名空间
 	 * @param {Object} ops 切换配置。详见View.show
 	 * @param {Object} ops.options 视图选项
 	 */
-	View.navTo = function(targetViewId, ops){
+	View.navTo = function(targetViewId, namespace, ops){
+		if(arguments.length < 2 || typeof namespace !== "string" || util.isEmptyString(namespace, true))
+			namespace = defaultNamespace;
+		buildNamespace(namespace);
+
 		targetViewId = targetViewId.trim();
 		ops = util.setDftValue(ops, {});
 
@@ -1145,18 +1233,18 @@
 		}
 
 		/* 检查目标视图是否存在 */
-		if(!View.ifExists(targetViewId)){
-			globalLogger.log("Trying to navigate to view: {} with params: {}, options: {}", targetViewId, ops.params, ops.options);
+		if(!View.ifExists(targetViewId, namespace)){
+			globalLogger.log("Trying to navigate to view: '{}' within namespace: '{}' with params: {}, options: {}", targetViewId, namespace, ops.params, ops.options);
 
-			var e = new Error("Target view: " + targetViewId + " does not exist! Firing event 'viewnotexist'...");
+			var e = new Error("Target view: '" + targetViewId + "' within namespace: '" + namespace + "' does not exist! Firing event 'viewnotexist'...");
 			console.error(e);
-			View.fire("viewnotexist", {targetViewId: targetViewId});
+			View.fire("viewnotexist", {targetViewId: targetViewId, targetViewNamespace: namespace});
 			return View;
 		}
 
 		ops.type = View.SWITCHTYPE_VIEWNAV;
-		pushViewState(targetViewId, null, null == ops? null: ops.options);
-		show(targetViewId, ops);
+		pushViewState(targetViewId, namespace, null, null == ops? null: ops.options);
+		show(targetViewId, namespace, ops);
 
 		return View;
 	};
@@ -1164,10 +1252,15 @@
 	/**
 	 * 以“替换当前堆栈”的方式切换视图
 	 * @param targetViewId 目标视图ID
-	 * @param {JsonObject} ops 切换配置。详见switchView
-	 * @param {JsonObject} ops.options 视图选项
+	 * @param {String} [namespace=defaultNamespace] 视图隶属的命名空间
+	 * @param {Object} ops 切换配置。详见switchView
+	 * @param {Object} ops.options 视图选项
 	 */
-	View.changeTo = function(targetViewId, ops){
+	View.changeTo = function(targetViewId, namespace, ops){
+		if(arguments.length < 2 || typeof namespace !== "string" || util.isEmptyString(namespace, true))
+			namespace = defaultNamespace;
+		buildNamespace(namespace);
+
 		ops = util.setDftValue(ops, {});
 
 		var renderingViewId = getRenderingViewId(),
@@ -1194,18 +1287,18 @@
 		}
 
 		/* 检查目标视图是否存在 */
-		if(!View.ifExists(targetViewId)){
-			globalLogger.log("Trying to navigate to view: {} with params: {}, options: {}", targetViewId, ops.params, ops.options);
+		if(!View.ifExists(targetViewId, namespace)){
+			globalLogger.log("Trying to navigate to view: '{}' within namespace: '{}' with params: {}, options: {}", targetViewId, namespace, ops.params, ops.options);
 
-			var e = new Error("Target view: " + targetViewId + " does not exist! Firing event 'viewnotexist'...");
+			var e = new Error("Target view: '" + targetViewId + "' within namespace: '" + namespace + "' does not exist! Firing event 'viewnotexist'...");
 			console.error(e);
-			View.fire("viewnotexist", {targetViewId: targetViewId});
+			View.fire("viewnotexist", {targetViewId: targetViewId, targetViewNamespace: namespace});
 			return View;
 		}
 
 		ops.type = View.SWITCHTYPE_VIEWCHANGE;
-		replaceViewState(targetViewId, null, null == ops? null: ops.options);
-		show(targetViewId, ops);
+		replaceViewState(targetViewId, namespace, null, null == ops? null: ops.options);
+		show(targetViewId, namespace, ops);
 
 		return View;
 	};
@@ -1297,16 +1390,21 @@
 	/**
 	 * 根据提供的视图ID计算最终映射到的可以呈现出来的视图
 	 * @param {String} viewId 视图ID
+	 * @param {String} [namespace=defaultNamespace] 视图隶属的命名空间
 	 * @return {View} 最终视图
 	 */
-	var getFinalView = function(viewId){
+	var getFinalView = function(viewId, namespace){
+		if(arguments.length < 2 || typeof namespace !== "string" || util.isEmptyString(namespace, true))
+			namespace = defaultNamespace;
+		buildNamespace(namespace);
+
 		var targetView = null;
 
 		/** 判断指定的视图是否存在 */
 		if(util.isEmptyString(viewId, true) || !View.ifExists(viewId)){
 			targetView = getActiveOrDefaultView();
 		}else{
-			targetView = View.ofId(viewId);
+			targetView = View.ofId(viewId, namespace);
 			if(!targetView.isDirectlyAccessible())/** 判断指定的视图是否支持直接访问 */
 				targetView = targetView.getFallbackView();
 		}
@@ -1320,31 +1418,39 @@
 	var stateChangeListener =  function(e){
 		var currentActiveView = View.getActiveView();
 		var currentActiveViewId = null == currentActiveView? null: currentActiveView.getId();
+		var currentActiveViewNamespace = null == currentActiveView? null: currentActiveView.getNamespace();
 
 		globalLogger.log("{} Current: {}", historyPushPopSupported? "State poped!": "Hash changed!", currentActiveView && currentActiveView.getId());
 		globalLogger.log("↑ {}", historyPushPopSupported? JSON.stringify(e.state): location.hash);
 
 		/* 视图切换 */
-		var newViewId, type = View.SWITCHTYPE_VIEWNAV, options, targetView = null;
+		var newViewId,
+			newViewNamespace,
+			type = View.SWITCHTYPE_VIEWNAV, options, targetView = null;
 		if(null == e.state){/* 手动输入目标视图ID */
 			type = View.SWITCHTYPE_VIEWNAV;
 
-			var targetViewId;
+			var targetViewId, targetViewNamespace;
 			var viewInfo = parseViewInfoFromHash(location.hash);
 			if(null == viewInfo){
 				targetView = currentActiveView;
+
 				targetViewId = currentActiveViewId;
+				targetViewNamespace = currentActiveViewNamespace;
 			}else{
 				newViewId = viewInfo.viewId;
+				newViewNamespace = viewInfo.viewNamespace;
 
-				targetView = getFinalView(newViewId);
-				if(null != targetView)
+				targetView = getFinalView(newViewId, newViewNamespace);
+				if(null != targetView){
 					targetViewId = targetView.getId();
+					targetViewNamespace = targetView.getNamespace();
+				}
 			}
 
 			if(null != targetViewId){
-				var isTargetViewAsSpecified = targetViewId == newViewId,
-					isTargetViewRemainsCurrent = targetViewId == currentActiveViewId;
+				var isTargetViewAsSpecified = targetViewId == newViewId && targetViewNamespace == newViewNamespace,
+					isTargetViewRemainsCurrent = targetViewId == currentActiveViewId && targetViewNamespace == currentActiveViewNamespace;
 
 				/**
 				 * 如果目标视图仍然是当前视图，则不能更改地址栏中的选项内容
@@ -1353,35 +1459,37 @@
 				options = isTargetViewRemainsCurrent? (View.currentState? View.currentState.options: null): (isTargetViewAsSpecified? viewInfo.options: null);
 
 				/* history堆栈更新 */
-				replaceViewState(targetViewId, null, options);
+				replaceViewState(targetViewId, targetViewNamespace, null, options);
 
 				/* 视图切换 */
-				View.show(targetView.getId(), {type: type, options: options});
+				View.show(targetView.getId(), targetView.getNamespace(), {type: type, options: options});
 			}
 		}else if(ViewState.isConstructorOf(e.state)){
 			var popedNewState = e.state;
 			newViewId = popedNewState.viewId;
+			newViewNamespace = popedNewState.viewNamespace;
 
-			if(View.ifExists(newViewId)){
-				targetView = View.ofId(newViewId);
+			if(View.ifExists(newViewId, newViewNamespace)){
+				targetView = View.ofId(newViewId, newViewNamespace);
 				options = popedNewState.options;
 			}else{
-				globalLogger.warn("Poped view: " + newViewId + " does not exist, keeping current.");
+				globalLogger.warn("Popped view: '" + newViewId + "' within namespacer: '" + newViewNamespace + "' does not exist, keeping current.");
 				targetView = currentActiveView;
 
 				/* 如果最终视图和地址栏中的视图不是一个视图，则不能再将选项传递给最终视图 */
 				options = null;
 			}
 			var targetViewId = targetView.getId();
+			var targetViewNamespace = targetView.getNamespace();
 
 			if(View.currentState != null)
 				type = popedNewState.sn < View.currentState.sn? View.SWITCHTYPE_HISTORYBACK: View.SWITCHTYPE_HISTORYFORWARD;
 
 			/* history堆栈更新 */
-			replaceViewState(targetViewId, popedNewState.sn, options);
+			replaceViewState(targetViewId, targetViewNamespace, popedNewState.sn, options);
 
 			/* 视图切换 */
-			View.show(targetView.getId(), {type: type, options: options});
+			View.show(targetViewId, targetViewNamespace, {type: type, options: options});
 		}else{
 			globalLogger.info("Skip state: {}", e.state);
 		}
@@ -1410,8 +1518,16 @@
 		/* 扫描文档，遍历定义视图 */
 		var viewObjs = getViewObjs();
 		[].forEach.call(viewObjs, function(viewObj){
+			var namespace = viewObj.getAttribute(attr$view_namespace);
+			if(util.isEmptyString(namespace, true))
+				namespace = defaultNamespace;
+
+			var viewId = viewObj.id;
+			if(View.ifExists(viewId, namespace))
+				globalLogger.warn("Duplicate view of id: '" + viewId + "' exists.");
+
 			/* 定义视图 */
-			View.ofId(viewObj.id);
+			View.ofId(viewId, namespace);
 
 			/* 去除可能存在的激活状态 */
 			viewObj.classList.remove("active");
@@ -1421,7 +1537,7 @@
 
 			/* 视图标题自动设置 */
 			;(function(){
-				var view = View.ofId(viewObj.id);
+				var view = View.ofId(viewId, namespace);
 				view.on("enter", function(){
 					var specifiedTitle = viewObj.getAttribute(attr$view_title);
 					document.title = null == specifiedTitle? documentTitle: specifiedTitle;
@@ -1465,7 +1581,7 @@
 
 		/**
 		 * 指令：data-view-rel配置视图导向
-		 * 		取值：[view-id] 目标视图ID
+		 * 		取值：[view-id(?:@view-namespace)] 目标视图ID
 		 * 		取值：:back 回退至上一个视图
 		 * 		取值：:forward 前进至下一个视图
 		 * 		取值：:default-view 导向至默认视图
@@ -1567,9 +1683,11 @@
 					options = rst.options;
 				}
 
-				/* 目标视图是当前视图 */
-				var activeView = View.getActiveView();
-				var activeViewId = null == activeView? null: activeView.getId();
+				/* 允许同一视图连续跳转 */
+
+				var namespace = tmp.getAttribute(attr$view_rel_namespace);
+				if(util.isEmptyString(namespace, true))
+					namespace = defaultNamespace;
 
 				var relType = tmp.getAttribute(attr$view_rel_type);
 				relType = util.isEmptyString(relType, true)? "nav": relType;
@@ -1579,7 +1697,7 @@
 				}
 
 				/* 呈现ID指定的视图 */
-				View[relType + "To"](targetViewId, {options: options});
+				View[relType + "To"](targetViewId, namespace, {options: options});
 			}, {useCapture: true});
 		})();
 
@@ -1624,26 +1742,32 @@
 				return;
 			}
 
-			var defaultViewId = null == dftViewObj? null: dftViewObj.id;
+			var defaultViewId = null == dftViewObj? null: dftViewObj.id,
+				defaultViewNamespace = null == dftViewObj? null: (dftViewObj.getAttribute(attr$view_namespace) || defaultViewNamespace);
 
 			var viewInfo = parseViewInfoFromHash(location.hash);
 			var specifiedViewId = null == viewInfo? null: viewInfo.viewId,
+				specifiedViewNamespace = null == viewInfo? null: viewInfo.viewNamespace,
 				options = null == viewInfo? null: viewInfo.options;
 
-			var targetViewId = null;
+			var targetViewId = null,
+				targetViewNamespace = null;
 			var isDefaultViewIdEmpty = util.isEmptyString(defaultViewId, true),
 				isSpecifiedViewIdEmpty = util.isEmptyString(specifiedViewId, true);
-			if(!isSpecifiedViewIdEmpty && View.ifExists(specifiedViewId))
+			if(!isSpecifiedViewIdEmpty && View.ifExists(specifiedViewId, specifiedViewNamespace)){
 				targetViewId = specifiedViewId;
-			else{
-				globalLogger.warn("No view of id: {}(specified in the location hash) found, trying to show the default view", specifiedViewId);
+				targetViewNamespace = specifiedViewNamespace;
+			}else{
+				globalLogger.warn("No view of id: '{}' namespace: '{}'(specified in the location hash) found, trying to show the default view", specifiedViewId, specifiedViewNamespace);
 
-				if(!isDefaultViewIdEmpty && View.ifExists(defaultViewId))
+				if(!isDefaultViewIdEmpty && View.ifExists(defaultViewId, defaultViewNamespace)){
 					targetViewId = defaultViewId;
-				else{
-					globalLogger.warn("No default view(id: {}) found.", defaultViewId);
+					targetViewNamespace = defaultViewNamespace;
+				}else{
+					globalLogger.warn("No default view(id: '{}', namespace: '{}') found.", defaultViewId, defaultViewNamespace);
 
 					targetViewId = null;
+					targetViewNamespace = null;
 				}
 			}
 
@@ -1653,21 +1777,22 @@
 				return;
 			}
 
-			var targetView = getFinalView(targetViewId);
+			var targetView = getFinalView(targetViewId, targetViewNamespace);
 			if(null == targetView){
-				globalLogger.error("No final view found for view of id: {}", targetViewId);
+				globalLogger.error("No final view found for view of id: '{}', namespace: '{}'", targetViewId, targetViewNamespace);
 				return;
 			}
 
 			targetViewId = targetView.getId();
-			var ifViewRemainsTheSame = targetViewId == specifiedViewId;
+			targetViewNamespace = targetView.getNamespace();
+			var ifViewRemainsTheSame = targetViewId == specifiedViewId && targetViewNamespace == specifiedViewNamespace;
 			/* 如果最终视图和地址栏中的视图不是一个视图，则不能再将选项传递给最终视图 */
 			if(!ifViewRemainsTheSame)
 				options = null;
 
-			globalLogger.info("Showing view: {}", targetViewId);
+			globalLogger.info("Showing view: '{}' within namespace: '{}'", targetViewId, targetViewNamespace);
 
-			replaceViewState(targetViewId, null, options);
+			replaceViewState(targetViewId, targetViewNamespace, null, options);
 			var currentActiveView = View.getActiveView();
 			switchView({
 				srcView: currentActiveView == targetView? null: currentActiveView,
