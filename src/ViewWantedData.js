@@ -77,9 +77,10 @@
 		}
 	};
 
-	var ViewWantedData = function(viewId){
-		if(viewId in instances)
-			throw new Error("Instance for view of id: " + viewId + " exists already.");
+	var ViewWantedData = function(viewId, viewNamespace){
+		var str = viewId + "@" + viewNamespace;
+		if(str in instances)
+			throw new Error("Instance for view of id: '" + viewId + "' namespace: '" + viewNamespace + "' exists already.");
 
 		var wanted = {};
 
@@ -111,14 +112,15 @@
 			return instance.isFulfilled();
 		};
 
-		instances[viewId] = this;
+		instances[str] = this;
 	};
 
-	ViewWantedData.ofName = function(viewId, name){
-		if(viewId in instances)
-			return instances[viewId].ofName(name);
+	ViewWantedData.ofName = function(viewId, viewNamespace, name){
+		var str = viewId + "@" + viewNamespace;
+		if(str in instances)
+			return instances[str].ofName(name);
 
-		var instance = instances[viewId] = new ViewWantedData(viewId);
+		var instance = instances[str] = new ViewWantedData(viewId, viewNamespace);
 		return instance.ofName(name);
 	};
 

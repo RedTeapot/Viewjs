@@ -6,8 +6,9 @@
 	 * 视图配置
 	 * @param {String} _name 配置项名称
 	 * @param {String} viewId 关联的视图编号
+	 * @param {String} viewNamespace 视图隶属的命名空间
 	 */
-	var ViewConfiguration = function ViewConfiguration(_name, viewId){
+	var ViewConfiguration = function ViewConfiguration(_name, viewId, viewNamespace){
 		var name = _name,/* 配置项名称 */
 			value = NOT_SUPPLIED,/* 配置项取值 */
 			application;/* 配置项应用方法 */
@@ -77,7 +78,7 @@
 				try{
 					application.call(this, value);
 				}catch(e){
-					globalLogger.error("Fail to apply configuration: {} = {} for view of id: {}\n{}", _name, String(value), viewId, e);
+					globalLogger.error("Fail to apply configuration: {} = {} for view of id: '{}' namespace: '{}'\n{}", _name, String(value), viewId, viewNamespace, e);
 					
 					if(e instanceof Error)
 						console.error(e, e.stack);
@@ -95,12 +96,12 @@
 		this.reflectToDom = function(){
 			if(null == viewId || "" == viewId.trim())
 				return this;
-			if(!View.ifExists(viewId)){
-				globalLogger.warn("No view of id '{}' found to reflect view config: {}={}.", viewId, this.getName(), this.getValue());
+			if(!View.ifExists(viewId, viewNamespace)){
+				globalLogger.warn("No view of id '{}' namespace: '{}' found to reflect view config: {}={}.", viewId, viewNamespace, this.getName(), this.getValue());
 				return this;
 			}
 
-			var viewObj = View.ofId(viewId).getDomElement();
+			var viewObj = View.ofId(viewId, viewNamespace).getDomElement();
 			viewObj.setAttribute("data-viewconfig_" + this.getName(), String(this.getValue()));
 			return this;
 		};

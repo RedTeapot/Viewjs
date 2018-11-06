@@ -5,8 +5,9 @@
 	/**
 	 * 视图配置集合
 	 * @param {String} viewId 关联的视图编号
+	 * @param {String} viewNamespace 视图隶属的命名空间
 	 */
-	var ViewConfigurationSet = function ViewConfigurationSet(viewId){
+	var ViewConfigurationSet = function ViewConfigurationSet(viewId, viewNamespace){
 		/** 配置项集合。key：配置项名称；value：ViewConfiguration */
 		var configs = {};
 
@@ -27,7 +28,7 @@
 			if(key in configs)
 				c = configs[key];
 			else{
-				c = new ViewConfiguration(key, viewId);
+				c = new ViewConfiguration(key, viewId, viewNamespace);
 				configs[key] = c;
 			}
 

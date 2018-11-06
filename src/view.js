@@ -38,9 +38,6 @@
 
 	var defaultNamespace = "default";
 
-	/** 通过文档扫描得出的配置的视图集合 */
-	var viewInstances = [];
-
 	/**
 	 * 视图实例集合
 	 * key：视图命名空间
@@ -96,7 +93,7 @@
 	var historyPushPopSupported = ("pushState" in history) && (typeof history.pushState == "function");
 	globalLogger.log("History pushState is " + (historyPushPopSupported? "": "not ") + "supported");
 
-	
+
 	/**
 	 * 判断指定编号对应的视图是否是伪视图
 	 * @param {String} viewId 视图编号
@@ -105,31 +102,30 @@
 		return PSVIEW_BACK == viewId || PSVIEW_FORWARD == viewId || PSVIEW_DEFAULT == viewId;
 	};
 
-	/**
-	 * 设置特定视图特定的参数取值
-	 * @param {String} viewId 视图ID
-	 * @param {String} name 要设置的键的名称
-	 * @param {Any} value 要设置的键的取值
-	 */
-	var setViewParameter = function(viewId, name, value){
-		if(!View.ifExists(viewId) && !isPseudoView(viewId))
-			throw new Error("View of id: " + viewId + " does not exist.");
-		if(arguments.length < 3)
-			throw new Error("Invalid argument length. Both parameter name and value should be specified.");
+	var hasParameters = function(viewId, viewNamespace){
+		return (viewId + "@" + viewNamespace) in viewParameters;
+	};
 
-		viewParameters[viewId] = viewParameters[viewId] || {};
-		viewParameters[viewId][String(name)] = value;
+	var getParameters = function(viewId, viewNamespace){
+		return viewParameters[viewId + "@" + viewNamespace];
+	};
 
-		return View;
+	var setParameters = function(viewId, viewNamespace, params){
+		viewParameters[viewId + "@" + viewNamespace] = params;
+	};
+
+	var removeParameters = function(viewId, viewNamespace){
+		delete viewParameters[viewId + "@" + viewNamespace];
 	};
 
 	/**
 	 * 设置特定视图特定的多个参数取值
 	 * @param {String} viewId 视图ID
+	 * @param {String} viewNamespace 视图隶属的命名空间
 	 * @param {Any} params 入参参数集合
 	 */
-	var setViewParameters = function(viewId, params){
-		if(!View.ifExists(viewId) && !isPseudoView(viewId))
+	var setViewParameters = function(viewId, viewNamespace, params){
+		if(!View.ifExists(viewId, viewNamespace) && !isPseudoView(viewId))
 			throw new Error("View of id: " + viewId + " does not exist.");
 
 		if(undefined === params)
@@ -137,16 +133,17 @@
 		if(typeof params != "object")
 			throw new Error("Parameters specified should be an object or null.");
 
-		viewParameters[viewId] = params;
+		setParameters(viewId, viewNamespace, params);
 		return View;
 	};
 
 	/**
 	 * 清除特定视图的入参
 	 * @param {String} viewId 视图ID
+	 * @param {String} viewNamespace 视图隶属的命名空间
 	 */
-	var clearViewParameters = function(viewId){
-		delete viewParameters[viewId];
+	var clearViewParameters = function(viewId, viewNamespace){
+		delete viewParameters[viewId + "@" + viewNamespace];
 
 		return View;
 	};
@@ -173,15 +170,25 @@
 			namespace = defaultNamespace;
 		buildNamespace(namespace);
 
-		var ele = document.querySelector("#" + viewId + "[" + attr$view + "=true]");
-		if(null == ele)
-			return ele;
+		var domElements = document.querySelectorAll("#" + viewId + "[" + attr$view + "=true]");
+		if(0 === domElements.length)
+			return null;
 
-		var nspc = ele.getAttribute(attr$view_namespace);
-		if(util.isEmptyString(nspc, true))
-			nspc = defaultNamespace;
+		var domElement = null;
+		for(var i = 0; i < domElements.length; i++){
+			var ele = domElements[i];
 
-		return nspc === namespace? ele: null;
+			var nspc = ele.getAttribute(attr$view_namespace);
+			if(util.isEmptyString(nspc, true))
+				nspc = defaultNamespace;
+
+			if(nspc === namespace){
+				domElement = ele;
+				break;
+			}
+		}
+
+		return domElement;
 	};
 
 	/**
@@ -193,14 +200,14 @@
 		/** 视图编号与参数集合之间的分隔符 */
 		var sep = "!";
 
-		var str = String(viewId);
+		var str = String(viewId) + nspc;
 		var paramKeys = null == options? []: Object.keys(options);
 		var tmp = paramKeys.reduce(function(start, e, i, arr){
 			return start + "&" + util.xEncodeURIComponent(e) + "=" + util.xEncodeURIComponent(options[e]);
 		}, "");
 
 		if(tmp.length > 0)
-			str += nspc + sep + tmp.substring(1);
+			str += sep + tmp.substring(1);
 
 		return str;
 	};
@@ -223,7 +230,7 @@
 
 		timeBasedUniqueString = timeBasedUniqueString || util.getUniqueString();
 
-		var state = new ViewState(viewId, timeBasedUniqueString, options).clone();
+		var state = new ViewState(viewId, viewNamespace, timeBasedUniqueString, options).clone();
 		globalLogger.log("↓ {}", JSON.stringify(state));
 
 		if(historyPushPopSupported)
@@ -252,7 +259,7 @@
 
 		timeBasedUniqueString = timeBasedUniqueString || util.getUniqueString();
 
-		var state = new ViewState(viewId, timeBasedUniqueString, options).clone();
+		var state = new ViewState(viewId, viewNamespace, timeBasedUniqueString, options).clone();
 		globalLogger.log("% {}", JSON.stringify(state));
 
 		if(historyPushPopSupported)
@@ -294,14 +301,14 @@
 		if("" == hash)
 			return null;
 
-		var r = /^#([\w\$\-]+)(?:@([\w\$\-]+))?(?:!+(.*))?/;
+		var r = /^#([\w\$\-]+)(?:@([^!]+))?(?:!+(.*))?/;
 		var m = hash.match(r);
 		if(null == m)
 			return null;
 
 		var viewId = m[1],
-			viewNamespace = m[3],
-			options = parseParams(m[4]);
+			viewNamespace = m[2],
+			options = parseParams(m[3]);
 
 		if(util.isEmptyString(viewNamespace, true))
 			viewNamespace = defaultNamespace;
@@ -321,7 +328,7 @@
 		return View.currentState.viewId;
 	};
 
-	
+
 
 	/**
 	 * 视图类
@@ -332,13 +339,23 @@
 		if(arguments.length < 2 || util.isEmptyString(namespace, true))
 			namespace = defaultNamespace;
 
-		var domElement = document.querySelector("#" + id + "[" + attr$view + "=true]");
-		if(null === domElement || (function(){
-			var nspc = domElement.getAttribute(attr$view_namespace);
-			if(util.isEmptyString(nspc, true))
-				nspc = defaultNamespace;
+		var domElement = null;
+		var domElements = document.querySelectorAll("#" + id + "[" + attr$view + "=true]");
+		if(0 === domElements.length || (function(){
+			for(var i = 0; i < domElements.length; i++){
+				var ele = domElements[i];
 
-			return nspc !== namespace;
+				var nspc = ele.getAttribute(attr$view_namespace);
+				if(util.isEmptyString(nspc, true))
+					nspc = defaultNamespace;
+
+				if(nspc === namespace){
+					domElement = ele;
+					break;
+				}
+			}
+
+			return null == domElement;
 		})())
 			throw new Error("View of id: '" + id + "' within namespace: '" + namespace + "' does not exist!");
 
@@ -350,10 +367,10 @@
 		var context = new ViewContext();
 
 		/** 视图配置集合 */
-		var configSet = new ViewConfigurationSet(id);
+		var configSet = new ViewConfigurationSet(id, namespace);
 
 		/** 被其它地方期待提供的数据 */
-		var wantedData = new ViewWantedData(id);
+		var wantedData = new ViewWantedData(id, namespace);
 
 		/**
 		 * 启用事件驱动机制
@@ -427,9 +444,9 @@
 		 * 获取视图对应的DOM元素
 		 */
 		this.getDomElement = function(){
-			return document.querySelector("#" + id);
+			return domElement;
 		};
-		
+
 		/**
 		 * 获取视图的群组名称（不区分大小写）。
 		 * @returns {String} 小写的群组名称
@@ -498,16 +515,16 @@
 		this.setLayoutAction = function(_layoutAction, _layoutWhenLayoutChanges){
 			if(arguments.length < 2)
 				_layoutWhenLayoutChanges = true;
-			ViewLayout.ofId(id).setIfLayoutWhenLayoutChanges(!!_layoutWhenLayoutChanges).setLayoutAction(_layoutAction);
-			
+			ViewLayout.ofId(id, namespace).setIfLayoutWhenLayoutChanges(!!_layoutWhenLayoutChanges).setLayoutAction(_layoutAction);
+
 			return this;
 		};
-		
+
 		/**
 		 * 获取视图布局方法
 		 */
 		this.getLayoutAction = function(){
-			return ViewLayout.ofId(id).getLayoutAction();
+			return ViewLayout.ofId(id, namespace).getLayoutAction();
 		};
 
 		/**
@@ -518,7 +535,7 @@
 			if(null === name || undefined === name)
 				return false;
 
-			var params = viewParameters[this.getId()];
+			var params = getParameters(this.getId(), this.getNamespace());
 			return null == params? false: (name in params);
 		};
 
@@ -527,30 +544,30 @@
 		 * @param {String} [name] 参数名。区分大小写。如果没有指定参数名，则返回整个参数。
 		 */
 		this.getParameter = function(name){
-			var params = viewParameters[this.getId()];
+			var params = getParameters(this.getId(), this.getNamespace());
 			if(arguments.length < 1)
 				return params;
 
 			return null == params? null: params[name];
 		};
-		
+
 		/**
 		 * 搜索指定名称的参数取值。搜索顺序：
 		 * 1. 视图参数
 		 * 2. 视图选项
 		 * 3. 地址栏参数
-		 * 
+		 *
 		 * 注：区分大小写
-		 * 
+		 *
 		 * @param {String} name 参数名
 		 */
 		this.seekParameter = function(name){
 			if(this.hasParameter(name))
 				return this.getParameter(name);
-			
+
 			if(View.hasActiveViewOption(name))
 				return View.getActiveViewOption(name);
-			
+
 			var r = new RegExp("\\b" + name + "\\b=([^&\\?]*)");
 			var paramValue = location.search.match(r);
 			if(null == paramValue)
@@ -600,7 +617,7 @@
 		this.setAsDirectlyAccessible = function(isDirectlyAccessible){
 			if(arguments.lengt < 1)
 				isDirectlyAccessible = true;
-			
+
 			this.getDomElement().setAttribute(attr$view_directly_accessible, String(isDirectlyAccessible));
 			return this;
 		};
@@ -653,7 +670,7 @@
 					globalLogger.warn("No view of group: {} found.", groupName);
 					return this;
 				}
-				
+
 				fallbackViewId = firstViewId;
 			}
 
@@ -691,7 +708,7 @@
 					var firstViewId = findFirstViewIdOfGroupName(groupName);
 					if(null == firstViewId)
 						return View.getDefaultView();
-					
+
 					fallbackViewId = firstViewId;
 				}
 
@@ -727,7 +744,7 @@
 	util.defineReadOnlyProperty(View, "SWITCHTYPE_VIEWNAV", "view.nav");
 	/** 视图切换操作类型：由视图切换：View.changeTo操作触发 */
 	util.defineReadOnlyProperty(View, "SWITCHTYPE_VIEWCHANGE", "view.change");
-	
+
 	var normalizeSwitchType = function(type){
 		if(null == type || "" == String(type).trim())
 			type = View.SWITCHTYPE_VIEWNAV;
@@ -737,7 +754,7 @@
 			isForward = util.ifStringEqualsIgnoreCase(type, View.SWITCHTYPE_HISTORYFORWARD);
 		if(!isBack && !isForward && !isNav && !isChange)
 			type = View.SWITCHTYPE_VIEWNAV;
-		
+
 		return type;
 	};
 
@@ -782,7 +799,7 @@
 		var viewInstances = viewInstancesMap[namespace];
 
 		for(var i = 0; i < viewInstances.length; i++)
-			if(viewInstances[i].getId().trim() == id.trim())
+			if(viewInstances[i].getId().trim() == id.trim() && viewInstances[i].getNamespace().trim() == namespace.trim())
 				return viewInstances[i];
 
 		/* 创建实例 */
@@ -824,16 +841,19 @@
 	View.listAll = function(groupName){
 		if(arguments.length > 1)
 			groupName = String(groupName).toLowerCase();
-		
-		var arr = [].concat(viewInstances);
-		if(arguments.length < 1 || "" == groupName)
+
+		var arr = [];
+		for(var namespace in viewInstancesMap)
+			arr = arr.concat(viewInstancesMap[namespace]);
+
+		if(arguments.length < 1 || util.isEmptyString(groupName, true))
 			return arr;
-		
+
 		return arr.filter(function(v){
 			return groupName == v.getGroupName();
 		});
 	};
-	
+
 	/**
 	 * 列举所有的视图群组
 	 */
@@ -842,13 +862,13 @@
 			var groupName = view.getGroupName();
 			if(null == groupName || "" == String(groupName).trim() || start.indexOf(groupName) != -1)
 				return start;
-			
+
 			start.push(groupName);
 			return start;
 		}, []);
 		return groupNames;
 	};
-	
+
 	/**
 	 * 设置指定ID的视图为默认视图
 	 * @param {String} viewId 视图ID
@@ -901,6 +921,7 @@
 	 * 获取当前的活动视图。如果没有视图处于活动状态，则返回null
 	 */
 	View.getActiveView = function(){
+		var viewInstances = View.listAll();
 		for(var i = 0; i < viewInstances.length; i++)
 			if(viewInstances[i].isActive())
 				return viewInstances[i];
@@ -912,6 +933,7 @@
 	 * 获取默认视图。如果没有默认视图，则返回null
 	 */
 	View.getDefaultView = function(){
+		var viewInstances = View.listAll();
 		for(var i = 0; i < viewInstances.length; i++)
 			if(viewInstances[i].isDefault())
 				return viewInstances[i];
@@ -948,7 +970,7 @@
 		var viewInfo = parseViewInfoFromHash(location.hash);
 		return null == viewInfo? null: viewInfo.options;
 	};
-	
+
 	/**
 	 * 判断当前的活动视图的视图选项中是否含有特定名称的选项。如果视图选项为空，或对应名称的选项不存在，则返回false
 	 * @param {String} name 选项名称
@@ -957,7 +979,7 @@
 		var options = View.getActiveViewOptions();
 		return null == options? false: (name in options);
 	};
-	
+
 	/**
 	 * 获取当前的活动视图的视图选项中特定名称的选项。如果视图选项为空，或对应名称的选项不存在，则返回null
 	 * @param {String} name 选项名称
@@ -990,7 +1012,7 @@
 		var options = View.getActiveViewOptions() || {};
 		options[name] = value;
 
-		replaceViewState(activeView.getId(), View.currentState? View.currentState.sn: null, options);
+		replaceViewState(activeView.getId(), activeView.getNamespace(), View.currentState? View.currentState.sn: null, options);
 
 		return View;
 	};
@@ -998,13 +1020,25 @@
 	/**
 	 * 索取特定视图可以提供的数据，如果数据存在，则执行给定的回调方法，否则执行给定的不存在方法
 	 * @param {String} viewId 视图ID
+	 * @param {String} [viewNamespace=defaultNamespace] 视图隶属的命名空间
 	 * @param {String} name 数据的标识名称
 	 * @param {Function} callback 数据存在时执行的回调方法
 	 * @param {Function} notFulfilledCallback 数据不存在时执行的方法
 	 * @returns {View}
 	 */
-	View.wantData = function(viewId, name, callback, notFulfilledCallback){
-		var wantedData = ViewWantedData.ofName(viewId, name);
+	View.wantData = function(viewId, viewNamespace, name, callback, notFulfilledCallback){
+		if(typeof arguments[0] === "string" && typeof arguments[1] === "string"){
+			if(typeof arguments[2] === "string")
+				;
+			else{//viewId, name, callback, notFulfilledCallback
+				notFulfilledCallback = arguments[3];
+				callback = arguments[2];
+				name = arguments[1];
+				viewNamespace = defaultNamespace;
+			}
+		}
+
+		var wantedData = ViewWantedData.ofName(viewId, viewNamespace, name);
 
 		if(typeof notFulfilledCallback !== "function"){
 			var paramName = name + ":fulFillCallback";
@@ -1013,7 +1047,7 @@
 			var params = {};
 			params[paramName] = callback;
 			notFulfilledCallback = function(){
-				View.navTo(viewId, {params: params});
+				View.navTo(viewId, viewNamespace, {params: params});
 			};
 		}
 
@@ -1024,12 +1058,23 @@
 	/**
 	 * 监听特定视图可以提供的数据，并在数据满足时执行特定方法
 	 * @param {String} viewId 视图ID
+	 * @param {String} [viewNamespace=defaultNamespace] 视图隶属的命名空间
 	 * @param {String} name 数据的标识名称
 	 * @param {Function} callback 数据被满足时执行的回调方法
 	 * @returns {View}
 	 */
-	View.listenWantedData = function(viewId, name, callback){
-		var wantedData = ViewWantedData.ofName(viewId, name);
+	View.listenWantedData = function(viewId, viewNamespace, name, callback){
+		if(typeof arguments[0] === "string" && typeof arguments[1] === "string"){
+			if(typeof arguments[2] === "string")
+				;
+			else{//viewId, name, callback
+				callback = arguments[2];
+				name = arguments[1];
+				viewNamespace = defaultNamespace;
+			}
+		}
+
+		var wantedData = ViewWantedData.ofName(viewId, viewNamespace, name);
 		wantedData.listen(callback);
 		return View;
 	};
@@ -1073,22 +1118,24 @@
 		var render = function(){
 			/* 视图参数重置 */
 			var targetViewId = targetView.getId();
+			var targetViewNamespace = targetView.getNamespace();
 			clearViewParameters(targetViewId);
 
 			if(isBack){
-				if(PSVIEW_BACK in viewParameters){
+				if(hasParameters(PSVIEW_BACK, "")){
 					/* 用过之后立即销毁，防止污染其它回退操作 */
-					setViewParameters(targetViewId, viewParameters[PSVIEW_BACK]);
-					delete viewParameters[PSVIEW_BACK];
+					setViewParameters(targetViewId, targetViewNamespace, getParameters(PSVIEW_BACK, ""));
+					clearViewParameters(PSVIEW_BACK, "");
 				}
 			}else if(isForward){
-				if(PSVIEW_FORWARD in viewParameters){
+				if(hasParameters(PSVIEW_FORWARD, "")){
 					/* 用过之后立即销毁，防止污染其它前进操作 */
-					setViewParameters(targetViewId, viewParameters[PSVIEW_FORWARD]);
-					delete viewParameters[PSVIEW_FORWARD];
+					setViewParameters(targetViewId, targetViewNamespace, getParameters(PSVIEW_FORWARD, ""));
+					clearViewParameters(PSVIEW_FORWARD, "");
+
 				}
 			}else
-				setViewParameters(targetViewId, params);
+				setViewParameters(targetViewId, targetViewNamespace, params);
 
 			var eventData = {sourceView: srcView, type: type, params: params};
 			var fireEvent = function(evt, async){
@@ -1096,7 +1143,7 @@
 					targetView.fire(evt, eventData, async);
 				}catch(e){
 					globalLogger.error("Error occured while firing event: {} with data: {}", evt, eventData);
-					
+
 					if(e instanceof Error)
 						console.error(e, e.stack);
 					else
@@ -1181,22 +1228,22 @@
 			return null;
 		}
 		groupName = String(groupName).trim().toLowerCase();
-		
+
 		var groupViews = View.listAll(groupName);
 		if(null == groupViews || 0 == groupViews.length){
 			globalLogger.error("No view of group: {} found.", groupName);
 			return null;
 		}
-		
+
 		var groupViewIds = groupViews.map(function(v){
 			return v.getId();
 		});
 		targetViewId = groupViewIds[0];
 		globalLogger.info("Found {} views of group: {}: {}, using the first one: {}.", groupViewIds.length, groupName, groupViewIds, targetViewId);
-		
+
 		return targetViewId;
 	};
-	
+
 	/**
 	 * 以“压入历史堆栈”的方式切换视图
 	 * @param targetViewId 目标视图ID
@@ -1205,8 +1252,10 @@
 	 * @param {Object} ops.options 视图选项
 	 */
 	View.navTo = function(targetViewId, namespace, ops){
-		if(arguments.length < 2 || typeof namespace !== "string" || util.isEmptyString(namespace, true))
+		if(arguments.length < 2 || typeof namespace !== "string" || util.isEmptyString(namespace, true)){
+			ops = namespace;
 			namespace = defaultNamespace;
+		}
 		buildNamespace(namespace);
 
 		targetViewId = targetViewId.trim();
@@ -1233,7 +1282,7 @@
 				globalLogger.error("No default view found.");
 				return View;
 			}
-			
+
 			targetViewId = defaultView.getId();
 		}
 		/* 群组视图（"~[groupName]"） */
@@ -1242,7 +1291,7 @@
 			var firstViewId = findFirstViewIdOfGroupName(groupName);
 			if(null == firstViewId)
 				return View;
-			
+
 			targetViewId = firstViewId;
 		}
 
@@ -1271,8 +1320,10 @@
 	 * @param {Object} ops.options 视图选项
 	 */
 	View.changeTo = function(targetViewId, namespace, ops){
-		if(arguments.length < 2 || typeof namespace !== "string" || util.isEmptyString(namespace, true))
+		if(arguments.length < 2 || typeof namespace !== "string" || util.isEmptyString(namespace, true)){
+			ops = namespace;
 			namespace = defaultNamespace;
+		}
 		buildNamespace(namespace);
 
 		ops = util.setDftValue(ops, {});
@@ -1287,7 +1338,7 @@
 				globalLogger.error("No default view found.");
 				return;
 			}
-			
+
 			targetViewId = defaultView.getId();
 		}
 		/* 群组视图（"~[groupName]"） */
@@ -1296,7 +1347,7 @@
 			var firstViewId = findFirstViewIdOfGroupName(groupName);
 			if(null == firstViewId)
 				return View;
-			
+
 			targetViewId = firstViewId;
 		}
 
@@ -1326,10 +1377,10 @@
 		/* 清除旧数据，并仅在指定了参数时才设置参数，防止污染其它回退操作 */
 		clearViewParameters(PSVIEW_BACK);
 		if(null != ops && "params" in ops)
-			setViewParameters(PSVIEW_BACK, ops.params);
+			setViewParameters(PSVIEW_BACK, "", ops.params);
 
 		history.go(-1);
-		
+
 		return View;
 	};
 
@@ -1342,10 +1393,10 @@
 		/* 清除旧数据，并仅在指定了参数时才设置参数，防止污染其它前进操作 */
 		clearViewParameters(PSVIEW_FORWARD);
 		if(null != ops && "params" in ops)
-			setViewParameters(PSVIEW_FORWARD, ops.params);
+			setViewParameters(PSVIEW_FORWARD, "", ops.params);
 
 		history.go(1);
-		
+
 		return View;
 	};
 
@@ -1512,7 +1563,7 @@
 
 	var init = function(){
 		markViewToBeInited();
-		
+
 		/* 标记识别的操作系统 */
 		docEle.setAttribute(attr$view_os, util.env.isIOS? "ios": (util.env.isAndroid? "android": (util.env.isWindowsPhone? "wp": "unknown")));
 
@@ -1531,6 +1582,7 @@
 
 		/* 扫描文档，遍历定义视图 */
 		var viewObjs = getViewObjs();
+		var initedViewIds = [];
 		[].forEach.call(viewObjs, function(viewObj){
 			var namespace = viewObj.getAttribute(attr$view_namespace);
 			if(util.isEmptyString(namespace, true)){
@@ -1539,11 +1591,12 @@
 			}
 
 			var viewId = viewObj.id;
-			if(View.ifExists(viewId, namespace))
-				globalLogger.warn("Duplicate view of id: '" + viewId + "' exists.");
+			if(initedViewIds.indexOf(viewId) !== -1)
+				globalLogger.warn("Multiple view of id: '{}' exists.", viewId);
 
 			/* 定义视图 */
 			View.ofId(viewId, namespace);
+			initedViewIds.push(viewId);
 
 			/* 去除可能存在的激活状态 */
 			viewObj.classList.remove("active");
@@ -1670,13 +1723,13 @@
 					history.go(1);/* browser support */
 					return;
 				}
-				
+
 				/* 默认视图（":default-view"） */
 				if(util.ifStringEqualsIgnoreCase(PSVIEW_DEFAULT, targetViewId)){
 					var defaultView = View.getDefaultView();
 					targetViewId = null == defaultView? null: defaultView.getId();
 				}
-				
+
 				/* 群组视图（"~[groupName]"） */
 				var options = null;
 				if(/^~/.test(targetViewId)){
@@ -1743,7 +1796,7 @@
 		})();
 
 		globalLogger.info("Marking View as initialized and ready");
-		
+
 		/* 标记视图已完成初始化 */
 		markViewInited();
 

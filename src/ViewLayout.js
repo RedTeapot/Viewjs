@@ -9,6 +9,7 @@
 	/**
 	 * 视图布局
 	 * @param {String} viewId 关联的视图编号
+	 * @param {String} viewNamespace 视图隶属的命名空间
 	 */
 	var ViewLayout = (function(){
 		var instances = {};
@@ -19,7 +20,7 @@
 			currentWidth = 0,
 			currentHeight = 0;
 
-		var Clazz = function(viewId){
+		var Clazz = function(viewId, viewNamespace){
 			var layoutAction = function doNothing(){},/** 布局动作 */
 				layoutWhenLayoutChanges = true,/** 设备方向改变时，是否执行布局动作 */
 				layoutCushionTime = 50,/** 布局连续发生改变时，缓冲布局动作执行的时长。单位：毫秒 */
@@ -31,7 +32,7 @@
 			 */
 			util.defineReadOnlyProperty(this, "setLayoutAction", function(_layoutAction){
 				if(typeof _layoutAction != "function"){
-					globalLogger.error("Layout action for view of id: {} should be of type: Function.", viewId);
+					globalLogger.error("Layout action for view of id: '{}' namespace: '{}' should be of type: Function.", viewId, viewNamespace);
 					return this;
 				}
 
@@ -103,10 +104,10 @@
 				if(!layoutWhenLayoutChanges)
 					return;
 
-				if(!View.ofId(viewId).isActive())
+				if(!View.ofId(viewId, viewNamespace).isActive())
 					return;
 
-				globalLogger.debug("Layout changes, doing layout for view of id: {}. Width: {}, height: {}", viewId, newWidth, newHeight);
+				globalLogger.debug("Layout changes, doing layout for view of id: '{}' namespace: '{}'. Width: {}, height: {}", viewId, viewNamespace, newWidth, newHeight);
 
 				currentWidth = newWidth;
 				currentHeight = newHeight;
@@ -124,12 +125,13 @@
 		/**
 		 * 获取指定编号的视图对应的视图布局。如果实例并不存在，则自动创建一个
 		 */
-		Clazz.ofId = function(id){
-			if(id in instances)
-				return instances[id];
+		Clazz.ofId = function(id, namespace){
+			var str = id + namespace;
+			if(str in instances)
+				return instances[str];
 
-			var inst = new Clazz(id);
-			instances[id] = inst;
+			var inst = new Clazz(id, namespace);
+			instances[str] = inst;
 
 			return inst;
 		};
