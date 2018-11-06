@@ -126,7 +126,7 @@
 		 * 获取指定编号的视图对应的视图布局。如果实例并不存在，则自动创建一个
 		 */
 		Clazz.ofId = function(id, namespace){
-			var str = id + namespace;
+			var str = id + "@" + namespace;
 			if(str in instances)
 				return instances[str];
 

@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa049d9f-4dea-4860-acf4-da5e7606d47a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/ViewConfiguration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewConfiguration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ViewConfigurationSet.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewConfigurationSet.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ViewLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewLayout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ViewWantedData.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewWantedData.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -32,8 +29,8 @@
       <file leaf-file-name="view.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="497">
-              <caret line="310" column="37" selection-start-line="310" selection-start-column="37" selection-end-line="310" selection-end-column="37" />
+            <state relative-caret-position="463">
+              <caret line="1095" column="34" lean-forward="true" selection-start-line="1095" selection-start-column="34" selection-end-line="1095" selection-end-column="34" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -44,8 +41,8 @@
       <file leaf-file-name="ViewLayout.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ViewLayout.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="127" column="43" selection-start-line="127" selection-start-column="34" selection-end-line="127" selection-end-column="43" />
+            <state relative-caret-position="-1258">
+              <caret line="22" column="50" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -61,8 +58,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>viewSwitchAnimation</find>
-      <find>switchView</find>
       <find>viewInstances</find>
       <find>View.ofId = function(id, names</find>
       <find>var View =</find>
@@ -81,7 +76,6 @@
       <find>ViewState</find>
       <find>replaceViewState</find>
       <find>pushViewStat</find>
-      <find>ViewLayout</find>
       <find>var pushView</find>
       <find>View.changeTo</find>
       <find>setViewParameters</find>
@@ -91,6 +85,9 @@
       <find>concatViewOptions</find>
       <find>Duplicate view of id:</find>
       <find>parseViewInfoFromHash</find>
+      <find>getRenderingViewId</find>
+      <find>renderingViewId</find>
+      <find>ViewLayout</find>
     </findStrings>
     <dirStrings>
       <dir>G:\代码仓库\js\view\src</dir>
@@ -122,9 +119,9 @@
         <option value="$PROJECT_DIR$/build/gulpfile.js" />
         <option value="$PROJECT_DIR$/src/ViewState.js" />
         <option value="$PROJECT_DIR$/src/ViewWantedData.js" />
-        <option value="$PROJECT_DIR$/src/ViewLayout.js" />
         <option value="$PROJECT_DIR$/src/ViewConfiguration.js" />
         <option value="$PROJECT_DIR$/src/ViewConfigurationSet.js" />
+        <option value="$PROJECT_DIR$/src/ViewLayout.js" />
         <option value="$PROJECT_DIR$/src/view.js" />
       </list>
     </option>
@@ -1016,18 +1013,18 @@
       <workItem from="1539506001705" duration="757000" />
       <workItem from="1539594690803" duration="462000" />
       <workItem from="1539680086607" duration="614000" />
-      <workItem from="1541497529792" duration="10057000" />
+      <workItem from="1541497529792" duration="10381000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51153000" />
+    <option name="totallyTimeSpent" value="51477000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15068494" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15068494" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
@@ -1355,15 +1352,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ViewLayout.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="127" column="43" selection-start-line="127" selection-start-column="34" selection-end-line="127" selection-end-column="43" />
+        <state relative-caret-position="-1258">
+          <caret line="22" column="50" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="50" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
-          <caret line="310" column="37" selection-start-line="310" selection-start-column="37" selection-end-line="310" selection-end-column="37" />
+        <state relative-caret-position="463">
+          <caret line="1095" column="34" lean-forward="true" selection-start-line="1095" selection-start-column="34" selection-end-line="1095" selection-end-column="34" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>

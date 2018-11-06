@@ -1159,7 +1159,7 @@
 
 			/* 进入新视图 */
 			targetView.getDomElement().classList.add("active");
-			ViewLayout.ofId(targetViewId).doLayout();
+			ViewLayout.ofId(targetViewId, targetViewNamespace).doLayout();
 			View.fire("change", viewChangeParams, false);
 			if(!targetView.isReady()){
 				readyViews.push(targetViewId);
