@@ -3,8 +3,8 @@
 
 	/**
 	 * 设定参数默认值
-	 * @param ops {Json} 要设定默认值的目标
-	 * @param dftOps {Json} 提供的默认值配置
+	 * @param {Object} ops 要设定默认值的目标
+	 * @param {Object} dftOps 提供的默认值配置
 	 * @param {Boolean} [overrideNull=false] 如果键已经存在且取值为null，是否使用默认值覆盖null值
 	 */
 	var setDftValue = function(ops, dftOps, overrideNull){
@@ -26,7 +26,7 @@
 	 * 为指定的对象附加指定名称的只读的属性
 	 * @param {Object} obj 目标对象
 	 * @param {String} name 属性名称
-	 * @param {Any} val 属性取值
+	 * @param {*} val 属性取值
 	 */
 	var defineReadOnlyProperty = function(obj, name, val){
 		Object.defineProperty(obj, name, {value: val, configurable: false, writable: false, enumerable: true});
@@ -39,13 +39,13 @@
 	 * @param {Arguments} args 方法参数列表对象
 	 */
 	var try2Apply = function(func, ctx, args){
-		if(null == func || typeof func != "function")
+		if(null == func || typeof func !== "function")
 			return;
 
 		try{
 			func.apply(ctx, args);
 		}catch(e){
-			var isError = e instanceof Error || (e != null && typeof e == "object" && "stack" in e);
+			var isError = e instanceof Error || (e != null && typeof e === "object" && "stack" in e);
 			var s = "Error occured while executing function: {}. {}" + (isError? " stack:\n{}": "");
 			globalLogger.error(s, func.name, e, isError? e.stack: null);
 		}
@@ -55,28 +55,28 @@
 	 * 尝试调用指定的方法
 	 * @param {Function} func 待执行的方法
 	 * @param {Object} [ctx] 方法执行时的this上下文
-	 * @param {Any} args... 方法参数列表
+	 * @param {*} args... 方法参数列表
 	 */
 	var try2Call = function(func, ctx, args){
-		if(null == func || typeof func != "function")
+		if(null == func || typeof func !== "function")
 			return undefined;
 		
 		try{
 			var len = arguments.length;
 
-			if(len == 1)
+			if(len === 1)
 				return func();
-			else if(len == 2)
+			else if(len === 2)
 				return func.call(ctx);
-			else if(len == 3)
+			else if(len === 3)
 				return func.call(ctx, arguments[2]);
-			else if(len == 4)
+			else if(len === 4)
 				return func.call(ctx, arguments[2], arguments[3]);
-			else if(len == 5)
+			else if(len === 5)
 				return func.call(ctx, arguments[2], arguments[3], arguments[4]);
-			else if(len == 6)
+			else if(len === 6)
 				return func.call(ctx, arguments[2], arguments[3], arguments[4], arguments[5]);
-			else if(len == 7)
+			else if(len === 7)
 				return func.call(ctx, arguments[2], arguments[3], arguments[4], arguments[5], arguments[6]);
 			else{
 				var tmp = "", index = 2;
@@ -109,7 +109,7 @@
 		if(trim)
 			str = str.trim();
 
-		return str.length == 0;
+		return str.length === 0;
 	};
 
 	/**

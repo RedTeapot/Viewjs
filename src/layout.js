@@ -109,7 +109,7 @@
 
 		/**
 		 * 设置蓝图的宽高比
-		 * @param {Float} ratio 蓝图的宽高比
+		 * @param {Number} ratio 蓝图的宽高比
 		 */
 		var setExpectedWidthHeightRatio = function(ratio){
 			expectedWidthHeightRatio = ratio;
@@ -118,8 +118,8 @@
 
 		/**
 		 * 以手机版式下的竖屏模式（宽小于高）进行布局。this：视图容器DOM元素
-		 * @param {Integer} width 布局空间的宽度
-		 * @param {Integer} height 布局空间的高度
+		 * @param {Number} width 布局空间的宽度
+		 * @param {Number} height 布局空间的高度
 		 */
 		var layoutAsMobilePortrait_dft = function(width, height){
 			var viewContainerObj = this;
@@ -132,40 +132,40 @@
 
 		/**
 		 * 以手机版式下的横屏模式（宽大于高）进行布局。this：视图容器DOM元素
-		 * @param {Integer} width 布局空间的宽度
-		 * @param {Integer} height 布局空间的高度
+		 * @param {Number} width 布局空间的宽度
+		 * @param {Number} height 布局空间的高度
 		 */
 		var layoutAsMobileLandscape_dft = layoutAsMobilePortrait;
 		var layoutAsMobileLandscape = layoutAsMobileLandscape_dft;
 
 		/**
 		 * 以平板版式下的竖屏模式（宽小于高）进行布局。this：视图容器DOM元素
-		 * @param {Integer} width 布局空间的宽度
-		 * @param {Integer} height 布局空间的高度
+		 * @param {Number} width 布局空间的宽度
+		 * @param {Number} height 布局空间的高度
 		 */
 		var layoutAsTabletPortrait_dft = layoutAsMobilePortrait;
 		var layoutAsTabletPortrait = layoutAsTabletPortrait_dft;
 		
 		/**
 		 * 以平板版式下的横屏模式（宽大于高）进行布局。this：视图容器DOM元素
-		 * @param {Integer} width 布局空间的宽度
-		 * @param {Integer} height 布局空间的高度
+		 * @param {Number} width 布局空间的宽度
+		 * @param {Number} height 布局空间的高度
 		 */
 		var layoutAsTabletLandscape_dft = layoutAsMobileLandscape;
 		var layoutAsTabletLandscape = layoutAsTabletLandscape_dft;
 
 		/**
 		 * 以PC版式下的竖屏模式（宽小于高）进行布局。this：视图容器DOM元素
-		 * @param {Integer} width 布局空间的宽度
-		 * @param {Integer} height 布局空间的高度
+		 * @param {Number} width 布局空间的宽度
+		 * @param {Number} height 布局空间的高度
 		 */
 		var layoutAsPcPortrait_dft = layoutAsMobilePortrait;
 		var layoutAsPcPortrait = layoutAsPcPortrait_dft;
 
 		/**
 		 * 以PC版式下的横屏模式（宽大于高）进行布局。this：视图容器DOM元素
-		 * @param {Integer} width 布局空间的宽度
-		 * @param {Integer} height 布局空间的高度
+		 * @param {Number} width 布局空间的宽度
+		 * @param {Number} height 布局空间的高度
 		 */
 		var layoutAsPcLandscape_dft = layoutAsMobileLandscape;
 		var layoutAsPcLandscape = layoutAsPcLandscape_dft;
@@ -206,7 +206,7 @@
 		 * 添加“布局发生改变”事件监听器
 		 */
 		var addLayoutChangeListener = function(listener){
-			if(layoutChangeListeners.indexOf(listener) != -1)
+			if(layoutChangeListeners.indexOf(listener) !== -1)
 				return;
 
 			layoutChangeListeners.push(listener);
@@ -218,7 +218,7 @@
 		 */
 		var removeLayoutChangeListener = function(listener){
 			var index = layoutChangeListeners.indexOf(listener);
-			if(index == -1)
+			if(index === -1)
 				return;
 
 			layoutChangeListeners.splice(index, 1);
@@ -299,17 +299,17 @@
 			if(autoReLayoutWhenResize)
 				resolution.addChangeListener(doLayout);
 
-			if(typeof ops.layoutAsMobilePortrait == "function")
+			if(typeof ops.layoutAsMobilePortrait === "function")
 				layoutAsMobilePortrait = ops.layoutAsMobilePortrait;
-			if(typeof ops.layoutAsMobileLandscape == "function")
+			if(typeof ops.layoutAsMobileLandscape === "function")
 				layoutAsMobileLandscape = ops.layoutAsMobileLandscape;
-			if(typeof ops.layoutAsTabletPortrait == "function")
+			if(typeof ops.layoutAsTabletPortrait === "function")
 				layoutAsTabletPortrait = ops.layoutAsTabletPortrait;
-			if(typeof ops.layoutAsTabletLandscape == "function")
+			if(typeof ops.layoutAsTabletLandscape === "function")
 				layoutAsTabletLandscape = ops.layoutAsTabletLandscape;
-			if(typeof ops.layoutAsPcPortrait == "function")
+			if(typeof ops.layoutAsPcPortrait === "function")
 				layoutAsPcPortrait = ops.layoutAsPcPortrait;
-			if(typeof ops.layoutAsPcLandscape == "function")
+			if(typeof ops.layoutAsPcLandscape === "function")
 				layoutAsPcLandscape = ops.layoutAsPcLandscape;
 
 			return obj;

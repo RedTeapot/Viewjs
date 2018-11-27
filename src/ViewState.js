@@ -39,7 +39,7 @@
 		 * @param {Object} obj 要判断的对象
 		 */
 		Clazz.isConstructorOf = function(obj){
-			if(null == obj || typeof obj != "object")
+			if(null == obj || typeof obj !== "object")
 				return false;
 
 			return obj.hasOwnProperty("viewId") && obj.hasOwnProperty("sn") && String(obj.flag).startsWith(prefix);

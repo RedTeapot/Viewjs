@@ -30,7 +30,7 @@
 
 
 	var docEle = document.documentElement;
-	var NOT_SUPPLIED = new Object();
+	var NOT_SUPPLIED = {};
 
 	var PSVIEW_BACK = ":back",/* 伪视图：后退 */
 		PSVIEW_FORWARD = ":forward",/* 伪视图：前进 */
@@ -90,7 +90,7 @@
 
 	var defaultWidthHeightRatio = "320/568";/* iPhone5 */
 
-	var historyPushPopSupported = ("pushState" in history) && (typeof history.pushState == "function");
+	var historyPushPopSupported = ("pushState" in history) && (typeof history.pushState === "function");
 	globalLogger.log("History pushState is " + (historyPushPopSupported? "": "not ") + "supported");
 
 
@@ -99,7 +99,7 @@
 	 * @param {String} viewId 视图编号
 	 */
 	var isPseudoView = function(viewId){
-		return PSVIEW_BACK == viewId || PSVIEW_FORWARD == viewId || PSVIEW_DEFAULT == viewId;
+		return PSVIEW_BACK === viewId || PSVIEW_FORWARD === viewId || PSVIEW_DEFAULT === viewId;
 	};
 
 	var hasParameters = function(viewId, viewNamespace){
@@ -122,7 +122,7 @@
 	 * 设置特定视图特定的多个参数取值
 	 * @param {String} viewId 视图ID
 	 * @param {String} viewNamespace 视图隶属的命名空间
-	 * @param {Any} params 入参参数集合
+	 * @param {*} params 入参参数集合
 	 */
 	var setViewParameters = function(viewId, viewNamespace, params){
 		if(!View.ifExists(viewId, viewNamespace) && !isPseudoView(viewId))
@@ -130,7 +130,7 @@
 
 		if(undefined === params)
 			params = null;
-		if(typeof params != "object")
+		if(typeof params !== "object")
 			throw new Error("Parameters specified should be an object or null.");
 
 		setParameters(viewId, viewNamespace, params);
@@ -202,7 +202,7 @@
 
 		var str = String(viewId) + nspc;
 		var paramKeys = null == options? []: Object.keys(options);
-		var tmp = paramKeys.reduce(function(start, e, i, arr){
+		var tmp = paramKeys.reduce(function(start, e){
 			return start + "&" + util.xEncodeURIComponent(e) + "=" + util.xEncodeURIComponent(options[e]);
 		}, "");
 
@@ -273,15 +273,15 @@
 	/**
 	 * 从给定的字符串中解析参数
 	 * @param {String} str 形如：a=1&b=2的字符串
-	 * @returns {JsonObject}
+	 * @returns {Object}
 	 */
 	var parseParams = function(str){
-		if(null == str || "" == String(str).trim())
+		if(null == str || "" === String(str).trim())
 			return null;
 
 		var options = null;
 		var kvPairs = str.split(/\s*&\s*/);
-		if(0 != kvPairs.length){
+		if(0 !== kvPairs.length){
 			options = {};
 			kvPairs.forEach(function(pair){
 				var s = pair.split(/\s*=\s*/);
@@ -298,10 +298,10 @@
 	 * @return {Object} {viewId: [视图编号], options: [选项集合]}
 	 */
 	var parseViewInfoFromHash = function(hash){
-		if("" == hash)
+		if("" === hash)
 			return null;
 
-		var r = /^#([\w\$\-]+)(?:@([^!]+))?(?:!+(.*))?/;
+		var r = /^#([\w$\-]+)(?:@([^!]+))?(?:!+(.*))?/;
 		var m = hash.match(r);
 		if(null == m)
 			return null;
@@ -580,7 +580,7 @@
 		 * 判断当前视图是否已经就绪
 		 */
 		this.isReady = function(){
-			return readyViews.indexOf(this.getId()) != -1;
+			return readyViews.indexOf(this.getId()) !== -1;
 		};
 
 		/**
@@ -605,9 +605,9 @@
 			attr = null == attr? null: attr.toLowerCase();
 
 			if(View.isDirectlyAccessible())/** 如果设定默认可以直接访问 */
-				return "false" == attr? false: true;
+				return "false" === attr? false: true;
 			else
-				return "true" == attr? true: false;
+				return "true" === attr? true: false;
 		};
 
 		/**
@@ -652,7 +652,7 @@
 		 * @param {String} fallbackViewId 回退视图ID，或伪视图：":default-view"，或视图群组
 		 */
 		this.setFallbackViewId = function(fallbackViewId){
-			if(null == fallbackViewId || "" == fallbackViewId.trim())
+			if(null == fallbackViewId || "" === fallbackViewId.trim())
 				return this;
 
 			/* 默认视图（":default-view"） */
@@ -678,7 +678,7 @@
 				globalLogger.warn("No view of id: {} found.", fallbackViewId);
 				return this;
 			}
-			if(this.getId() == fallbackViewId)
+			if(this.getId() === fallbackViewId)
 				return this;
 
 			this.getDomElement().setAttribute(attr$view_fallback, fallbackViewId);
@@ -719,7 +719,7 @@
 				}else{
 					view = View.ofId(fallbackViewId);
 
-					if(idChain.indexOf(view.getId()) != -1){/** 循环引用 */
+					if(idChain.indexOf(view.getId()) !== -1){/** 循环引用 */
 						globalLogger.error("Cyclical reference of view on fallback configuration on view: {}. Chain: {}, view id: {}", this.getId(), idChain, view.getId());
 						return View.getDefaultView();
 					}
@@ -746,7 +746,7 @@
 	util.defineReadOnlyProperty(View, "SWITCHTYPE_VIEWCHANGE", "view.change");
 
 	var normalizeSwitchType = function(type){
-		if(null == type || "" == String(type).trim())
+		if(null == type || "" === String(type).trim())
 			type = View.SWITCHTYPE_VIEWNAV;
 		var isNav = util.ifStringEqualsIgnoreCase(type, View.SWITCHTYPE_VIEWNAV),
 			isChange = util.ifStringEqualsIgnoreCase(type, View.SWITCHTYPE_VIEWCHANGE),
@@ -799,7 +799,7 @@
 		var viewInstances = viewInstancesMap[namespace];
 
 		for(var i = 0; i < viewInstances.length; i++)
-			if(viewInstances[i].getId().trim() == id.trim() && viewInstances[i].getNamespace().trim() == namespace.trim())
+			if(viewInstances[i].getId().trim() === id.trim() && viewInstances[i].getNamespace().trim() === namespace.trim())
 				return viewInstances[i];
 
 		/* 创建实例 */
@@ -824,7 +824,7 @@
 		var viewInstances = viewInstancesMap[namespace];
 
 		for(var i = 0; i < viewInstances.length; i++)
-			if(viewInstances[i].getId().trim() == id.trim())
+			if(viewInstances[i].getId().trim() === id.trim())
 				return true;
 
 		return false;
@@ -850,7 +850,7 @@
 			return arr;
 
 		return arr.filter(function(v){
-			return groupName == v.getGroupName();
+			return groupName === v.getGroupName();
 		});
 	};
 
@@ -860,7 +860,7 @@
 	View.listAllGroups = function(){
 		var groupNames = View.listAll().reduce(function(start, view){
 			var groupName = view.getGroupName();
-			if(null == groupName || "" == String(groupName).trim() || start.indexOf(groupName) != -1)
+			if(null == groupName || "" === String(groupName).trim() || start.indexOf(groupName) !== -1)
 				return start;
 
 			start.push(groupName);
@@ -995,7 +995,7 @@
 	 * @param {String} value 选项取值
 	 */
 	View.setActiveViewOption = function(name, value){
-		if(null == name || "" == String(name).trim()){
+		if(null == name || "" === String(name).trim()){
 			globalLogger.error("Option name should not be empty.");
 			return View;
 		}
@@ -1083,7 +1083,7 @@
 	 * 提供自定义的“判断当前是否是竖屏（或需要以竖屏方式渲染）”方法。方法需要返回布尔值。true：竖屏；false：横屏；
 	 * @param {Function} impl 实现方法
 	 */
-	View.implIsPortrait = function(){
+	View.implIsPortrait = function(impl){
 		ViewLayout.implIsPortrait.apply(ViewLayout, arguments);
 		return View;
 	};
@@ -1092,7 +1092,7 @@
 	 * 切换视图
 	 * @param {View} ops.srcView 源视图
 	 * @param {View} ops.targetView {View} 目标视图
-	 * @param {StringEnum} ops.type 切换操作类型（View.SWITCHTYPE_HISTORYFORWARD || View.SWITCHTYPE_HISTORYBACK || View.SWITCHTYPE_VIEWNAV || View.SWITCHTYPE_VIEWCHANGE）
+	 * @param {String} ops.type 切换操作类型（View.SWITCHTYPE_HISTORYFORWARD || View.SWITCHTYPE_HISTORYBACK || View.SWITCHTYPE_VIEWNAV || View.SWITCHTYPE_VIEWCHANGE）
 	 * @param {Boolean} ops.withAnimation 是否执行动画
 	 * @param {*} ops.params 视图参数。仅当切换操作类型为：View.SWITCHTYPE_VIEWNAV || View.SWITCHTYPE_VIEWCHANGE时才会被使用
 	 */
@@ -1119,7 +1119,7 @@
 			/* 视图参数重置 */
 			var targetViewId = targetView.getId();
 			var targetViewNamespace = targetView.getNamespace();
-			clearViewParameters(targetViewId);
+			clearViewParameters(targetViewId, targetViewNamespace);
 
 			if(isBack){
 				if(hasParameters(PSVIEW_BACK, "")){
@@ -1223,14 +1223,14 @@
 	 * 查找隶属于给定名称的群组的第一个视图的视图ID
 	 */
 	var findFirstViewIdOfGroupName = function(groupName){
-		if(null == groupName || "" == String(groupName).trim()){
+		if(null == groupName || "" === String(groupName).trim()){
 			globalLogger.error("Empty view group name!.");
 			return null;
 		}
 		groupName = String(groupName).trim().toLowerCase();
 
 		var groupViews = View.listAll(groupName);
-		if(null == groupViews || 0 == groupViews.length){
+		if(null == groupViews || 0 === groupViews.length){
 			globalLogger.error("No view of group: {} found.", groupName);
 			return null;
 		}
@@ -1238,15 +1238,36 @@
 		var groupViewIds = groupViews.map(function(v){
 			return v.getId();
 		});
-		targetViewId = groupViewIds[0];
+		var targetViewId = groupViewIds[0];
 		globalLogger.info("Found {} views of group: {}: {}, using the first one: {}.", groupViewIds.length, groupName, groupViewIds, targetViewId);
 
 		return targetViewId;
 	};
 
 	/**
+	 * 以“压入历史堆栈”的方式略过视图，使得在不展现视图的前提下达到返回时可以返回到该视图上的目的
+	 * @param {String} targetViewId 目标视图ID
+	 * @param {String} [namespace=defaultNamespace] 视图隶属的命名空间
+	 */
+	View.passBy = function(targetViewId, namespace){
+		if(arguments.length < 2 || typeof namespace !== "string" || util.isEmptyString(namespace, true)){
+			ops = namespace;
+			namespace = defaultNamespace;
+		}
+		buildNamespace(namespace);
+
+		if(!View.ifExists(targetViewId, namespace)){
+			console.error(new Error("Target view: '" + targetViewId + "' within namespace: '" + namespace + "' does not exist!"));
+			return View;
+		}
+
+		pushViewState(targetViewId, namespace);
+		return View;
+	};
+
+	/**
 	 * 以“压入历史堆栈”的方式切换视图
-	 * @param targetViewId 目标视图ID
+	 * @param {String} targetViewId 目标视图ID
 	 * @param {String} [namespace=defaultNamespace] 视图隶属的命名空间
 	 * @param {Object} ops 切换配置。详见View.show
 	 * @param {Object} ops.options 视图选项
@@ -1407,7 +1428,7 @@
 	 * 设置文档标题。开发者可以设定视图级别的标题，但如果特定视图没有自定义标题，将使用文档标题来呈现
 	 * @param {String} title 文档标题
 	 */
-	var setDocumentTitle = function(title){
+	View.setDocumentTitle = function(title){
 		if(util.isEmptyString(title, true)){
 			globalLogger.warn("Invalid document title: " + title);
 			return View;
@@ -1416,14 +1437,13 @@
 		document.title = documentTitle = title;
 		return View;
 	};
-	View.setDocumentTitle = setDocumentTitle;
 
 	/**
 	 * 添加一次性的浏览器回退事件监听。该监听可以通过浏览器前进和回退重新执行
 	 * @param {Function} callback 回调方法
 	 */
 	View.onceHistoryBack = function(callback){
-		if(typeof callback != "function")
+		if(typeof callback !== "function")
 			throw new Error("Invalid argument! Type of 'Function' is needed.");
 
 		OperationState.pushState(util.randomString(), callback);
@@ -1622,19 +1642,19 @@
 			var dftViewObj = null;
 			var dftViewObjIndex = -1;
 			for(var i = 0; i < viewObjs.length; i++)
-				if("true" == viewObjs[i].getAttribute(attr$view_default)){
+				if("true" === viewObjs[i].getAttribute(attr$view_default)){
 					dftViewObjIndex = i;
 					break;
 				}
 
-			if(-1 != dftViewObjIndex){
+			if(-1 !== dftViewObjIndex){
 				dftViewObj = viewObjs[dftViewObjIndex];
 
 				/* 删除多余的声明 */
 				for(var i = dftViewObjIndex + 1; i < viewObjs.length; i++)
-					if("true" == viewObjs[i].getAttribute(attr$view_default))
+					if("true" === viewObjs[i].getAttribute(attr$view_default))
 						viewObjs[i].removeAttribute(attr$view_default);
-			}else if(0 != viewObjs.length){
+			}else if(0 !== viewObjs.length){
 				dftViewObj = viewObjs[0];
 				dftViewObj.setAttribute(attr$view_default, "true");
 			}else
@@ -1681,11 +1701,11 @@
 				if(null != tmp)
 					targetViewId = tmp.getAttribute(attr$view_rel);
 
-				if(null == targetViewId || "" == targetViewId.trim())
+				if(null == targetViewId || "" === targetViewId.trim())
 					return;
 
 				/* 视图切换禁用标志检测 */
-				var isViewRelDisabled = "true" == tmp.getAttribute(attr$view_rel_disabled);
+				var isViewRelDisabled = "true" === tmp.getAttribute(attr$view_rel_disabled);
 
 				/* 如果当前禁用视图跳转 */
 				if(isViewRelDisabled)
@@ -1703,7 +1723,7 @@
 				/* 是否是外部链接 */
 				if(/^\s*@+/.test(targetViewId)){
 					var path = targetViewId.replace(/^\s*@+/, "").trim();
-					if("" == path){
+					if("" === path){
 						globalLogger.warn("Empty file path for data-view-rel: '{}'", targetViewId);
 						return;
 					}
@@ -1812,7 +1832,7 @@
 			}
 
 			var defaultViewId = null == dftViewObj? null: dftViewObj.id,
-				defaultViewNamespace = null == dftViewObj? null: (dftViewObj.getAttribute(attr$view_namespace) || defaultViewNamespace);
+				defaultViewNamespace = null == dftViewObj? null: (dftViewObj.getAttribute(attr$view_namespace) || defaultNamespace);
 
 			var viewInfo = parseViewInfoFromHash(location.hash);
 			var specifiedViewId = null == viewInfo? null: viewInfo.viewId,
@@ -1898,7 +1918,7 @@
 			if(isViewInited)
 				return View;
 
-			if(callbacks.indexOf(callback) != -1)
+			if(callbacks.indexOf(callback) !== -1)
 				return View;
 
 			callbacks.push(callback);
@@ -1931,7 +1951,7 @@
 				return View;
 			}
 
-			if(callbacks.indexOf(callback) != -1)
+			if(callbacks.indexOf(callback) !== -1)
 				return View;
 
 			callbacks.push(callback);
@@ -1943,17 +1963,17 @@
 	 * 设置视图初始化器
 	 * @param {Function} initializer 初始化器
 	 * @param {Function} initializer#init 执行初始化
-	 * @param {StringEnum} [execTime=domready] 初始化器的自动执行时机。domready：DOM就绪后执行；rightnow：立即执行。默认为：domready
+	 * @param {String} [execTime=domready] 初始化器的自动执行时机。domready：DOM就绪后执行；rightnow：立即执行。默认为：domready
 	 */
 	View.setInitializer = function(initializer, execTime){
-		if(typeof initializer != "function")
+		if(typeof initializer !== "function")
 			return;
 
 		var dftExecTime = "domready";
 		if(arguments.length < 2)
 			execTime = dftExecTime;
 		var supportedExecTimes = "domready, rightnow".split(/\s*,\s*/);
-		if(supportedExecTimes.indexOf(execTime) == -1){
+		if(supportedExecTimes.indexOf(execTime) === -1){
 			globalLogger.warn("Unknown initializer exec time: {}. Supported: {}", execTime, supportedExecTimes);
 			execTime = dftExecTime;
 		}
@@ -1961,7 +1981,7 @@
 		viewInitializer = initializer;
 		viewInitializerExecTime = execTime;
 
-		if(!isViewInited && "rightnow" == execTime){
+		if(!isViewInited && "rightnow" === execTime){
 			globalLogger.info("Calling specified view initializer right now");
 			initializer(init);
 		}
@@ -1971,7 +1991,7 @@
 		if(null == viewInitializer){
 			globalLogger.info("Initializing View automatically");
 			init();
-		}else if("domready" == viewInitializerExecTime){
+		}else if("domready" === viewInitializerExecTime){
 			globalLogger.info("Calling specified view initializer on dom ready");
 			viewInitializer(init);
 		}
