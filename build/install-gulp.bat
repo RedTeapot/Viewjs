@@ -7,5 +7,4 @@
 @cnpm install --save-dev gulp-append-prepend
 @cnpm install --save-dev gulp-if
 @cnpm install --save-dev del
-@cnpm install --save-dev del
 @cnpm install --save-dev merge2

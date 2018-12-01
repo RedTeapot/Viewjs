@@ -34,14 +34,30 @@
 		 * 获取布局宽度
 		 */
 		var getLayoutWidth = function(){
-			return getViewContainerObj().clientWidth;
+			var containerObj = getViewContainerObj();
+			var style = util.getComputedStyle(containerObj);
+			var paddingLeft = Number(style.paddingLeft.replace(/px/, "")),
+				paddingRight = Number(style.paddingRight.replace(/px/, ""));
+			if(isNaN(paddingLeft))
+				paddingLeft = 0;
+			if(isNaN(paddingRight))
+				paddingRight = 0;
+			return containerObj.clientWidth - paddingLeft - paddingRight;
 		};
 
 		/**
 		 * 获取布局高度
 		 */
 		var getLayoutHeight = function(){
-			return getViewContainerObj().clientHeight;
+			var containerObj = getViewContainerObj();
+			var style = util.getComputedStyle(containerObj);
+			var paddingTop = Number(style.paddingTop.replace(/px/, "")),
+				paddingBottom = Number(style.paddingBottom.replace(/px/, ""));
+			if(isNaN(paddingTop))
+				paddingTop = 0;
+			if(isNaN(paddingBottom))
+				paddingBottom = 0;
+			return containerObj.clientHeight - paddingTop - paddingBottom;
 		};
 
 		/**

@@ -1450,6 +1450,17 @@
 		return View;
 	};
 
+	/**
+	 * 根据当前视图容器的样式重新执行所有视图的布局
+	 * @returns View
+	 */
+	View.reDoLayout = function(){
+		View.listAll().forEach(function(v){
+			util.try2Call(v.getLayoutAction());
+		});
+		return View;
+	};
+
 
 	var isViewInited = false,/* 视图是否已经被初始化 */
 		isViewReady = false;/* 视图是否已经就绪 */

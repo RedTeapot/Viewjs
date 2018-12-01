@@ -212,6 +212,19 @@
 		};
 	})();
 
+	/**
+	 * 获取元素的运行时样式
+	 * @param {HTMLElement} obj 要获取样式的元素
+	 * @returns {*}
+	 */
+	var getComputedStyle = function(obj){
+		if(window.getComputedStyle){
+			return window.getComputedStyle(obj);
+		}else{
+			return obj.currentStyle;
+		}
+	};
+
 	/** 设备环境信息组件 */
 	var env = (function() {
 		var ua = navigator.userAgent,
@@ -291,6 +304,7 @@
 		randomString: randomString,
 		xEncodeURIComponent: xEncodeURIComponent,
 		getUniqueString: getUniqueString,
+		getComputedStyle: getComputedStyle,
 
 		env: env
 	};
