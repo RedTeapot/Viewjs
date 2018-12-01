@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="aa049d9f-4dea-4860-acf4-da5e7606d47a" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/install-gulp.bat" beforeDir="false" afterPath="$PROJECT_DIR$/build/install-gulp.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/util.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,8 +18,10 @@
     <session id="-901145528">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.6" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -37,12 +36,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="628" />
+          <entry key="js" value="640" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="628" />
+          <entry key="JavaScript" value="640" />
         </counts>
       </usages-collector>
     </session>
@@ -52,13 +51,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="58">
-              <caret line="1458" column="33" selection-start-line="1458" selection-start-column="33" selection-end-line="1458" selection-end-column="33" />
+            <state relative-caret-position="209">
+              <caret line="1598" column="40" selection-start-line="1598" selection-start-column="28" selection-end-line="1598" selection-end-column="40" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/layout.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="299">
@@ -67,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/util.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="306" column="43" selection-start-line="306" selection-start-column="43" selection-end-line="306" selection-end-column="43" />
+            <state relative-caret-position="312">
+              <caret line="292" column="18" lean-forward="true" selection-start-line="292" selection-start-column="18" selection-end-line="292" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -87,7 +86,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ViewWantedData</find>
       <find>debugger</find>
       <find>viewNamespace</find>
       <find>%</find>
@@ -117,6 +115,7 @@
       <find>computed</find>
       <find>compu</find>
       <find>View.layopu</find>
+      <find>attr$view_os</find>
     </findStrings>
     <dirStrings>
       <dir>G:\代码仓库\js\view\src</dir>
@@ -150,9 +149,9 @@
         <option value="$PROJECT_DIR$/src/ViewConfigurationSet.js" />
         <option value="$PROJECT_DIR$/src/ViewLayout.js" />
         <option value="$PROJECT_DIR$/src/ViewState.js" />
-        <option value="$PROJECT_DIR$/src/util.js" />
         <option value="$PROJECT_DIR$/src/view.js" />
         <option value="$PROJECT_DIR$/src/layout.js" />
+        <option value="$PROJECT_DIR$/src/util.js" />
       </list>
     </option>
   </component>
@@ -182,7 +181,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -199,6 +197,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -279,12 +278,13 @@
       <workItem from="1541993152054" duration="138000" />
       <workItem from="1542955441776" duration="495000" />
       <workItem from="1543306684899" duration="1068000" />
-      <workItem from="1543635496394" duration="2957000" />
+      <workItem from="1543635496394" duration="3057000" />
+      <workItem from="1543640354613" duration="178000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57009000" />
+    <option name="totallyTimeSpent" value="57287000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
@@ -467,27 +467,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/util.js">
+    <entry file="file://$PROJECT_DIR$/view.1.6.0-B201812011246.min.js" />
+    <entry file="file://$PROJECT_DIR$/src/layout.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="306" column="43" selection-start-line="306" selection-start-column="43" selection-end-line="306" selection-end-column="43" />
+        <state relative-caret-position="299">
+          <caret line="58" column="34" lean-forward="true" selection-start-line="58" selection-start-column="34" selection-end-line="58" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="1458" column="33" selection-start-line="1458" selection-start-column="33" selection-end-line="1458" selection-end-column="33" />
+        <state relative-caret-position="209">
+          <caret line="1598" column="40" selection-start-line="1598" selection-start-column="28" selection-end-line="1598" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view.1.6.0-B201812011246.min.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/layout.js">
+    <entry file="file://$PROJECT_DIR$/src/util.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="58" column="34" lean-forward="true" selection-start-line="58" selection-start-column="34" selection-end-line="58" selection-end-column="34" />
+        <state relative-caret-position="312">
+          <caret line="292" column="18" lean-forward="true" selection-start-line="292" selection-start-column="18" selection-end-line="292" selection-end-column="18" />
         </state>
       </provider>
     </entry>

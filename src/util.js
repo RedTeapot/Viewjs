@@ -287,8 +287,10 @@
 			resetProperty();
 			return obj;
 		};
+
 		obj.refresh = refresh;
 
+		refresh();
 		return obj;
 	})();
 
