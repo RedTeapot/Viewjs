@@ -1595,6 +1595,9 @@
 	var init = function(){
 		markViewToBeInited();
 
+		/* 暂存浏览器标题 */
+		documentTitle = document.title;
+		
 		/* 标记识别的操作系统 */
 		docEle.setAttribute(attr$view_os, util.env.isIOS? "ios": (util.env.isAndroid? "android": (util.env.isWindowsPhone? "wp": "unknown")));
 
