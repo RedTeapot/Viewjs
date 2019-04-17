@@ -8,13 +8,13 @@
 	<meta name = "cache-control" content = "no-cache, no-store, must-revalidate"/>
 	<meta name = "viewport" content = "user-scalable = no, initial-scale = 1, maximum-scale = 1, minimum-scale = 1, width = device-width" />
 
-	<link rel = "stylesheet" href="js/plugin/viewjs-1.5.0-B201709061010/view.1.5.0-B201709061010.min.css" />
-	<link rel = "stylesheet" href="css/animation.css" />
+	<link rel = "stylesheet" href="css/view.css" />
 	<link rel = "stylesheet" href="css/index.css" />
 
 	<title>view-switch-animation</title>
 </head>
 <body>
+	<!-- 视图1的DOM骨架 -->
 	<section id = "page1" data-view = "true" data-view-default = "true" >
 		<header>
 			<span class = "nav-back" data-view-rel = ":back"></span>
@@ -23,6 +23,8 @@
 		<h1>This is page 1.</h1>
 		<div data-view-rel = "page2" class = "btn">Navigate to page 2.</div>
 	</section>
+
+	<!-- 视图2的DOM骨架 -->
 	<section id = "page2" data-view = "true">
 		<header>
 			<span class = "nav-back" data-view-rel = ":back"></span>
@@ -31,6 +33,8 @@
 		<h1>This is page 2.</h1>
 		<div data-view-rel = "page3" class = "btn">Navigate to page 3.</div>
 	</section>
+
+	<!-- 视图3的DOM骨架 -->
 	<section id = "page3" data-view = "true">
 		<header>
 			<span class = "nav-back" data-view-rel = ":back"></span>
@@ -40,7 +44,7 @@
 		<div data-view-rel = ":default-view" class = "btn">Navigate to page 1.</div>
 	</section>
 
-	<script type = "text/javascript" src="js/plugin/viewjs-1.5.0-B201709061010/view.1.5.0-B201709061010.min.js"></script>
+	<script type = "text/javascript" src="js/plugin/view.min.js"></script>
 	<script type = "text/javascript" src="js/view.switch.js"></script>
 </body>
 </html>
