@@ -902,8 +902,11 @@ html, body {
   background-color: transparent;
   -webkit-overflow-scrolling: touch; }
 #demos .demo {
-  padding: 0 0.1rem;
-  line-height: 0.4rem;
-  background-color: white; }
+  padding: 0 .1rem;
+  line-height: .4rem;
+  margin-top: .1rem;
+  background-color: #fff; }
+  #demos .demo:first-child {
+    margin-top: 0; }
 
 /*# sourceMappingURL=index.css.map */

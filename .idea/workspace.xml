@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="14ed39e3-f4fc-42c4-b75d-b3c5bc2c830e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/gulpfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/gulpfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/css/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/css/index.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/css/animation.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/css/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/js/plugin/viewjs-1.5.0-B201709061010/view.1.5.0-B201709061010.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/js/plugin/viewjs-1.5.0-B201709061010/view.1.5.0-B201709061010.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/js/view.switch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/css/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/css/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/js/page/define.version.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/js/page/define.version.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/releaseNote.txt" beforeDir="false" afterPath="$PROJECT_DIR$/release/releaseNote.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,28 +19,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view.js">
+        <entry file="file://$PROJECT_DIR$/docs/web/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-14142">
-              <caret line="1139" column="4" selection-start-line="1139" selection-start-column="4" selection-end-line="1139" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build/gulpfile.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+            <state relative-caret-position="578">
+              <caret line="34" column="28" lean-forward="true" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+        <entry file="file://$PROJECT_DIR$/docs/web/www/css/index.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="9" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
+            <state relative-caret-position="773">
+              <caret line="96" column="26" selection-start-line="96" selection-start-column="26" selection-end-line="96" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -104,8 +88,6 @@
       <list>
         <option value="$PROJECT_DIR$/docs/web/www/doc_end.partial.html" />
         <option value="$PROJECT_DIR$/docs/web/www/js/lib/view/view.1.6.0-B201812071500.min.js" />
-        <option value="$PROJECT_DIR$/docs/web/www/css/index.scss" />
-        <option value="$PROJECT_DIR$/docs/web/www/index.html" />
         <option value="$PROJECT_DIR$/src/viewParameter.js" />
         <option value="$PROJECT_DIR$/src/ViewState.js" />
         <option value="$PROJECT_DIR$/src/viewRepresentation.js" />
@@ -123,6 +105,8 @@
         <option value="$PROJECT_DIR$/src/v.github.js" />
         <option value="$PROJECT_DIR$/build/gulpfile.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/docs/web/www/index.html" />
+        <option value="$PROJECT_DIR$/docs/web/www/css/index.scss" />
       </list>
     </option>
   </component>
@@ -174,7 +158,7 @@
               <item name="docs" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="www" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="view" type="b2602c69:ProjectViewProjectNode" />
@@ -182,18 +166,8 @@
               <item name="docs" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="www" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-              <item name="view-switch-animation" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="view" type="b2602c69:ProjectViewProjectNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="www" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-              <item name="view-switch-animation" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+              <item name="index.scss" type="620a8d5e:NestingTreeNode" />
             </path>
           </expand>
           <select />
@@ -260,12 +234,12 @@
       <workItem from="1551428928641" duration="327000" />
       <workItem from="1552035210053" duration="421000" />
       <workItem from="1552626100692" duration="3594000" />
-      <workItem from="1555503794627" duration="913000" />
+      <workItem from="1555503794627" duration="2724000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33964000" />
+    <option name="totallyTimeSpent" value="35775000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -315,20 +289,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/css/index.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="296" selection-start-line="18" selection-start-column="296" selection-end-line="18" selection-end-column="296" />
         </state>
       </provider>
     </entry>
@@ -498,6 +458,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="9" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/build/gulpfile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -505,10 +472,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/1/css/index.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/1/css/view.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="9" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
+        <state relative-caret-position="-576" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/web/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="28" lean-forward="true" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/web/www/css/index.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="773">
+          <caret line="96" column="26" selection-start-line="96" selection-start-column="26" selection-end-line="96" selection-end-column="26" />
         </state>
       </provider>
     </entry>
