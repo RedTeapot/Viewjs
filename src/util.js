@@ -263,6 +263,8 @@
 			obj.isTablet = isTablet;
 			obj.isMobile = isMobile;
 			obj.isPc = isPc;
+
+			obj.isHistoryPushPopSupported = ("pushState" in history) && (typeof history.pushState === "function");
 		};
 
 		var refresh = function(){
@@ -294,6 +296,29 @@
 		return obj;
 	})();
 
+
+	/**
+	 * 从给定的字符串中解析参数
+	 * @param {String} str 形如：a=1&b=2的字符串
+	 * @returns {Object}
+	 */
+	var parseParams = function(str){
+		if(isEmptyString(str, true))
+			return null;
+
+		var options = null;
+		var kvPairs = str.split(/\s*&\s*/);
+		if(0 !== kvPairs.length){
+			options = {};
+			kvPairs.forEach(function(pair){
+				var s = pair.split(/\s*=\s*/);
+				options[decodeURIComponent(s[0])] = decodeURIComponent(s[1]);
+			});
+		}
+
+		return options;
+	};
+
 	ctx[name].util = {
 		setDftValue: setDftValue,
 		defineReadOnlyProperty: defineReadOnlyProperty,
@@ -307,6 +332,7 @@
 		xEncodeURIComponent: xEncodeURIComponent,
 		getUniqueString: getUniqueString,
 		getComputedStyle: getComputedStyle,
+		parseParams: parseParams,
 
 		env: env
 	};

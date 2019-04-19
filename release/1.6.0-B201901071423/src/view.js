@@ -22,7 +22,6 @@
 		OperationState = ctx[name].OperationState,
 		ViewLayout = ctx[name].ViewLayout,
 		ViewWantedData = ctx[name].ViewWantedData,
-		ChainedHandle = ctx[name].ChainedHandle,
 
 		viewRepresentation = ctx[name].viewRepresentation,
 		viewParameter = ctx[name].viewParameter,
@@ -42,14 +41,6 @@
 
 	/** 暴露布局组件，供第三方使用 */
 	View.layout = layout;
-
-	/**
-	 * 检查浏览器的history是否支持支持push/pop特性
-	 * @returns {Boolean}
-	 */
-	View.checkIfBrowserHistorySupportsPushPopAction = function(){
-		return util.env.isHistoryPushPopSupported;
-	};
 
 	/**
 	 * 获取视图容器DOM元素
@@ -173,14 +164,14 @@
 		}
 
 		/* 去除当前的默认视图的默认标记 */
-		var viewObjs = viewInternalVariable.getViewDomElements();
+		var viewObjs = viewInternalVariable.getViewObjs();
 		for(var i = 0; i < viewObjs.length; i++)
 			viewObjs[i].removeAttribute(viewAttribute.attr$view_default);
 
 		/* 设置新的默认视图 */
-		var viewObj = viewInternalVariable.getViewDomElementOfId(viewId, namespace);
+		var viewObj = viewInternalVariable.getViewObjOfId(viewId, namespace);
 		if(null == viewObj){
-			globalLogger.error("No view dom element of id: '{}' namespace: '{}' found to set as default.", viewId, namespace);
+			globalLogger.error("No view dom element of id: '{}' namespace: '{}' found to set as default.", viewId, viewNamespace);
 			return View;
 		}
 		viewObj.setAttribute(viewAttribute.attr$view_default, "true");
@@ -406,15 +397,6 @@
 
 		ViewState.pushViewState(targetViewId, namespace);
 		return View;
-	};
-
-	/**
-	 * 获取指定名称的链式处理器。如果对应实例尚不存在，则自动创建一个
-	 * @param {String} name 处理器名称
-	 * @returns {ChainedHandle}
-	 */
-	View.getChainedHandleByName = function(name){
-		return ChainedHandle.ofName(name);
 	};
 
 	/**
@@ -713,9 +695,6 @@
 	var init = function(){
 		markViewToBeInited();
 
-		/* 暂存浏览器标题 */
-		documentTitle = document.title;
-
 		/* 标记识别的操作系统 */
 		document.documentElement.setAttribute(viewAttribute.attr$view_os, util.env.isIOS? "ios": (util.env.isAndroid? "android": (util.env.isWindowsPhone? "wp": "unknown")));
 
@@ -733,8 +712,8 @@
 		})();
 
 		/* 扫描文档，遍历定义视图 */
-		var viewObjs = viewInternalVariable.getViewDomElements();
-		var initedViews = [];
+		var viewObjs = viewInternalVariable.getViewObjs();
+		var initedViewIds = [];
 		[].forEach.call(viewObjs, function(viewObj){
 			var namespace = viewObj.getAttribute(viewAttribute.attr$view_namespace);
 			if(util.isEmptyString(namespace, true)){
@@ -742,15 +721,13 @@
 				viewObj.setAttribute(viewAttribute.attr$view_namespace, namespace);
 			}
 
-			var viewId = viewInternalVariable.getPotentialViewId(viewObj);
+			var viewId = viewObj.id;
+			if(initedViewIds.indexOf(viewId) !== -1)
+				globalLogger.warn("Multiple view of id: '{}' exists.", viewId);
 
 			/* 定义视图 */
-			var view = View.ofId(viewId, namespace);
-			if(initedViews.indexOf(view) !== -1){
-				globalLogger.warn("Multiple view of id: '{}' within namespace: '{}' exists.", view.id, view.namespace);
-				return;
-			}
-			initedViews.push(view);
+			View.ofId(viewId, namespace);
+			initedViewIds.push(viewId);
 
 			/* 去除可能存在的激活状态 */
 			viewObj.classList.remove("active");
@@ -759,10 +736,13 @@
 			viewObj.classList.add("view");
 
 			/* 视图标题自动设置 */
-			view.on("enter", function(){
-				var specifiedTitle = viewObj.getAttribute(viewAttribute.attr$view_title);
-				document.title = null == specifiedTitle? documentTitle: specifiedTitle;
-			});
+			;(function(){
+				var view = View.ofId(viewId, namespace);
+				view.on("enter", function(){
+					var specifiedTitle = viewObj.getAttribute(viewAttribute.attr$view_title);
+					document.title = null == specifiedTitle? documentTitle: specifiedTitle;
+				});
+			})();
 		});
 
 		/* 默认视图 */
@@ -946,10 +926,8 @@
 		/* 使能属性：data-view-whr */
 		;(function(){
 			var whr = document.documentElement.getAttribute(viewAttribute.attr$view_whr);
-			if(null == whr || (whr = whr.trim().toLowerCase()) === ""){
-				layout.init();
+			if(null == whr || (whr = whr.trim().toLowerCase()) === "")
 				return;
-			}
 
 			var r = /(\d+(?:\.\d*)?)\s*\/\s*(\d+(?:\.\d*)?)/i;
 			var tmp = whr.match(r);
@@ -986,7 +964,7 @@
 				return;
 			}
 
-			var defaultViewId = null == dftViewObj? null: viewInternalVariable.getPotentialViewId(dftViewObj),
+			var defaultViewId = null == dftViewObj? null: dftViewObj.id,
 				defaultViewNamespace = null == dftViewObj? null: (dftViewObj.getAttribute(viewAttribute.attr$view_namespace) || viewInternalVariable.defaultNamespace);
 
 			var viewInfo = viewRepresentation.parseViewInfoFromHash(location.hash);

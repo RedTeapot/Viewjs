@@ -63,12 +63,19 @@ var concatJs = function(){
 		"../src/ViewContext.js",
 		"../src/ViewConfiguration.js",
 		"../src/ViewConfigurationSet.js",
-		"../src/ViewLayout.js",
-		"../src/ViewState.js",
-		"../src/OperationState.js",
 		"../src/ViewWantedData.js",
+		"../src/ViewState.js",
+		"../src/ViewLayout.js",
+		"../src/OperationState.js",
+		"../src/ChainedHandle.js",
 
-		"../src/view.js",
+		"../src/viewAttribute.js",
+		"../src/viewRepresentation.js",
+		"../src/viewParameter.js",
+		"../src/viewInternalVariable.js",
+
+		"../src/ViewConstructor.js",
+		"../src/view.js"
 	])
 		.pipe(concat("view.js"))
 		.pipe(gap.prependText('/**\n * View.js v' + getVersion() + '\n * author: Billy, wmjhappy_ok@126.com\n * license: MIT\n */'));

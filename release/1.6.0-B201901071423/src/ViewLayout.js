@@ -136,6 +136,18 @@
 			return inst;
 		};
 
+		/**
+		 * 【已废弃】
+		 * @deprecated
+		 *
+		 * 提供自定义的“判断当前是否是竖屏（或需要以竖屏方式渲染）”方法。方法需要返回布尔值。true：竖屏；false：横屏；
+		 * @param {Function} impl 实现方法
+		 */
+		Clazz.implIsPortrait = function(impl){
+			globalLogger.warn("This method is redundant and deprecated and will be removed in the future.");
+			return Clazz;
+		};
+
 		return Clazz;
 	})();
 

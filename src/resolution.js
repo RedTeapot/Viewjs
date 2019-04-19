@@ -132,6 +132,9 @@
 
 					try2ExecChangeCallbacks();
 				}
+
+				width = w;
+				height = h;
 			};
 			doDetect.reset = reset;
 			doDetect.try2ExecChangeCallbacks = try2ExecChangeCallbacks;
@@ -163,7 +166,7 @@
 
 					if(util.env.isPc){
 						if(lastMode != "pc"){
-							globalLogger.debug("Page viewing mode to PC mode.");
+							globalLogger.debug("Page viewing mode is PC mode.");
 
 							stopDetectIfKeyboardDisappears();
 							window.removeEventListener("orientationchange", detectIfOrientationChangeCompletes);
@@ -175,7 +178,7 @@
 						lastMode = "pc";
 					}else{
 						if(lastMode != "!pc"){
-							globalLogger.debug("Page viewing mode to none-PC mode.");
+							globalLogger.debug("Page viewing mode is none-PC mode.");
 
 							window.removeEventListener("resize", execResolutionChangeCallbacks);
 

@@ -1,17 +1,34 @@
 【1.6.1-B201904172041】
+1. 添加API：View.passBy(viewId, viewNamespace)
+2. 修复故障：data-view-os 属性没有正常工作
+3. 调整layout.getLayoutWidth() & layout.getLayoutHeight()方法，使其自动减去内边距
+4. 修复故障：没有声明data-view-whr属性时，布局不会随浏览窗口大小的改变而重新布局
+5. 修复故障：在部分虚拟键盘会占据浏览尺寸的安卓机上，虚拟键盘消失后，界面没有自动重新布局
+6. 使能属性：data-view-id，以代替id
+7. 逻辑优化：在初始化阶段捕获浏览器标题
+
+【1.6.0-B201901071423】
 1. 移除不必要的日志输出
-2. 使能属性：data-view-whr(expected width height ratio)
-3. 添加API：view.fulfillWantedData(); view.isWantedDataFulfilled(); View.wantData(); View.listenWantedData()
+2. 检测虚拟键盘的关闭操作并在操作触发时重新布局
+3. 当页面的浏览模式从“模拟移动设备”转换到“不模拟移动设备”时，自动重新布局
 4. 添加命名空间支持
-5. 添加API：View.passBy(viewId, viewNamespace)
-6. 修复故障：data-view-os 属性没有正常工作
-7. 调整layout.getLayoutWidth() & layout.getLayoutHeight()方法，使其自动减去内边距
-8. 添加API：View.find(rootObj, selector); View.findAll(rootObj, selector)
-9. 移除API：View.isExisting(), View.implIsPortrait(), View.show()
-10. 修复故障：没有声明data-view-whr属性时，布局不会随浏览窗口大小的改变而重新布局
-11. 修复故障：在部分虚拟键盘会占据浏览尺寸的安卓机上，虚拟键盘消失后，界面没有自动重新布局
-12. 使能属性：data-view-id，以代替id
-13. 逻辑优化：在初始化阶段捕获浏览器标题
+5. 添加并使能属性：data-view-whr（expected width height ratio）
+6. 调整layout.getLayoutWidth() 和 layout.getLayoutHeight() 方法，使得布局空间自动去除内边距
+7. View添加API：
+   1) View.find(rootObj, selector)
+   2) View.findAll(rootObj, selector)
+8. View实例添加API：
+   1) view.fulfillWantedData()
+   2) view.isWantedDataFulfilled()
+   3) View.wantData();
+   4) View.listenWantedData()
+9. view.layout添加API：
+   1) setLayoutCushionTime(time)
+   2) getLayoutCushionTime()
+10. View去除API：
+   1) View.isExisting();
+   2) View.implIsPortrait();
+   3) View.show();
 
 【1.5.3-B201807240943】
 1. 优化内存使用
