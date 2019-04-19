@@ -3,24 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="14ed39e3-f4fc-42c4-b75d-b3c5bc2c830e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/gulpfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/gulpfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/api.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/api.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/api_end.partial.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/api_end.partial.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/attr.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/attr.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/attr_end.partial.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/attr_end.partial.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/doc.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/doc.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/doc_end.partial.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/doc_end.partial.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/evt.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/evt.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/evt_end.partial.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/evt_end.partial.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/js/lib/view/view.1.5.3-B201807240943.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/releaseNote.txt" beforeDir="false" afterPath="$PROJECT_DIR$/release/releaseNote.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ViewLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewLayout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ViewState.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewState.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/eventDrive.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/eventDrive.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resolution.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/resolution.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/util.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ViewConstructor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/ViewConstructor.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -36,17 +19,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
+            <state relative-caret-position="2788">
               <caret line="164" column="50" selection-start-line="164" selection-start-column="41" selection-end-line="164" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/viewInternalVariable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
-              <caret line="183" column="13" lean-forward="true" selection-start-line="183" selection-start-column="13" selection-end-line="183" selection-end-column="13" />
+            <state relative-caret-position="423">
+              <caret line="191" column="45" selection-start-line="191" selection-start-column="29" selection-end-line="191" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ViewConstructor.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="409">
+              <caret line="145" column="24" selection-start-line="145" selection-start-column="24" selection-end-line="145" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/viewAttribute.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="23" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -64,8 +65,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>wantData</find>
-      <find>groupN</find>
       <find>group</find>
       <find>switch</find>
       <find>&quot;pushState&quot; in history</find>
@@ -94,6 +93,8 @@
       <find>View.befor</find>
       <find>listAll</find>
       <find>setAsDefault</find>
+      <find>getGroupName</find>
+      <find>attr$view_group</find>
     </findStrings>
     <replaceStrings>
       <replace>viewAttribute.$0</replace>
@@ -121,7 +122,6 @@
         <option value="$PROJECT_DIR$/src/resolution.js" />
         <option value="$PROJECT_DIR$/src/viewAttribute.js" />
         <option value="$PROJECT_DIR$/release/1.6.0-B201901071423/src/viewInternalVariable.js" />
-        <option value="$PROJECT_DIR$/src/ViewConstructor.js" />
         <option value="$PROJECT_DIR$/src/viewInternalVariable.js" />
         <option value="$PROJECT_DIR$/src/v.oschina.js" />
         <option value="$PROJECT_DIR$/src/v.github.js" />
@@ -138,6 +138,7 @@
         <option value="$PROJECT_DIR$/docs/web/www/index.html" />
         <option value="$PROJECT_DIR$/docs/web/www/js/lib/view/view.1.5.3-B201807240943.min.js" />
         <option value="$PROJECT_DIR$/build/gulpfile.js" />
+        <option value="$PROJECT_DIR$/src/ViewConstructor.js" />
       </list>
     </option>
   </component>
@@ -247,11 +248,12 @@
       <workItem from="1555635030884" duration="496000" />
       <workItem from="1555635619240" duration="1399000" />
       <workItem from="1555639662067" duration="10339000" />
+      <workItem from="1555664388168" duration="99000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48329000" />
+    <option name="totallyTimeSpent" value="48428000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -370,28 +372,13 @@
     <entry file="file://$PROJECT_DIR$/src/entrance.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$USER_HOME$/Desktop/View.js/src/view.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ViewContext2.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ViewLayout2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1862" />
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Desktop/View.js/src/view.css" />
+    <entry file="file://$PROJECT_DIR$/src/ViewContext2.js" />
+    <entry file="file://$PROJECT_DIR$/src/ViewLayout2.js" />
     <entry file="file://$PROJECT_DIR$/src/view.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="1082" column="4" selection-start-line="1082" selection-start-column="4" selection-end-line="1089" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -442,13 +429,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/viewAttribute.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="19" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/layout.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
@@ -460,13 +440,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="14" lean-forward="true" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/js/lib/view/view.1.6.0-B201812071500.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="5" column="4806" lean-forward="true" selection-end-line="6" selection-end-column="10332" />
         </state>
       </provider>
     </entry>
@@ -497,13 +470,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ViewConstructor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="43" column="38" lean-forward="true" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build/gulpfile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="664">
@@ -518,6 +484,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2788">
+          <caret line="164" column="50" selection-start-line="164" selection-start-column="41" selection-end-line="164" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -525,17 +498,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view.js">
+    <entry file="file://$PROJECT_DIR$/src/viewInternalVariable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="164" column="50" selection-start-line="164" selection-start-column="41" selection-end-line="164" selection-end-column="50" />
+        <state relative-caret-position="423">
+          <caret line="191" column="45" selection-start-line="191" selection-start-column="29" selection-end-line="191" selection-end-column="45" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/viewInternalVariable.js">
+    <entry file="file://$PROJECT_DIR$/src/viewAttribute.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="183" column="13" lean-forward="true" selection-start-line="183" selection-start-column="13" selection-end-line="183" selection-end-column="13" />
+        <state relative-caret-position="136">
+          <caret line="8" column="23" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ViewConstructor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="145" column="24" selection-start-line="145" selection-start-column="24" selection-end-line="145" selection-end-column="24" />
         </state>
       </provider>
     </entry>

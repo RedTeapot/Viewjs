@@ -143,7 +143,7 @@
 				return name;
 
 			name = String(name).toLowerCase();
-			
+			return name;
 		};
 
 		/**
