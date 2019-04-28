@@ -6,7 +6,6 @@
 	var ViewConfigurationSet = ctx[name].ViewConfigurationSet,
 		ViewContext = ctx[name].ViewContext,
 		ViewLayout = ctx[name].ViewLayout,
-		ViewWantedData = ctx[name].ViewWantedData,
 
 		viewRepresentation = ctx[name].viewRepresentation,
 		viewParameter = ctx[name].viewParameter,
@@ -54,9 +53,6 @@
 
 		/** 视图配置集合 */
 		var configSet = new ViewConfigurationSet(id, namespace);
-
-		/** 被其它地方期待提供的数据 */
-		var wantedData = new ViewWantedData(id, namespace);
 
 		/**
 		 * 启用事件驱动机制
@@ -162,39 +158,6 @@
 		 */
 		this.findAll = function(selector){
 			return this.getDomElement().querySelectorAll(selector);
-		};
-
-		/**
-		 * 满足数据期待
-		 * @param {String} name 数据的标识名称
-		 * @param {*} data 提供的数据
-		 * @returns {View}
-		 */
-		this.fulfillWantedData = function(name, data){
-			/**
-			 * View.want()方法在调用但没有传递参数：“数据不存在时的处理方法”时，
-			 * want方法会自动跳转至该视图，并传递名称为该名称的回调方法
-			 *
-			 * @type {string}
-			 */
-			var callbackParamName = name + ":fulFillCallback";
-			var callback = this.getParameter(callbackParamName);
-			if(typeof callback === "function"){
-				globalLogger.info("Found auto attached(by 'View.want()' method) fulfill listener(parameter name: '{}'), auto execute this listener with fulfilled data.", callbackParamName);
-				util.try2Call(callback, null, data, {dataResolveMethod: "resolveLater"});
-			}
-
-			wantedData.fulfill(name, data);
-			return this;
-		};
-
-		/**
-		 * 判断给定名称标识对应的数据是否已经存在
-		 * @param {String} name 数据的标识名称
-		 * @returns {boolean}
-		 */
-		this.isWantedDataFulfilled = function(name){
-			return wantedData.isFulfilled(name);
 		};
 
 		/**

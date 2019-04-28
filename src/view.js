@@ -21,7 +21,6 @@
 		ViewState = ctx[name].ViewState,
 		OperationState = ctx[name].OperationState,
 		ViewLayout = ctx[name].ViewLayout,
-		ViewWantedData = ctx[name].ViewWantedData,
 		ChainedHandle = ctx[name].ChainedHandle,
 
 		viewRepresentation = ctx[name].viewRepresentation,
@@ -302,68 +301,6 @@
 
 		ViewState.replaceViewState(activeView.getId(), activeView.getNamespace(), View.currentState? View.currentState.sn: null, options);
 
-		return View;
-	};
-
-	/**
-	 * 索取特定视图可以提供的数据，如果数据存在，则执行给定的回调方法，否则执行给定的不存在方法
-	 * @param {String} viewId 视图ID
-	 * @param {String} [viewNamespace=defaultNamespace] 视图隶属的命名空间
-	 * @param {String} name 数据的标识名称
-	 * @param {Function} callback 数据存在时执行的回调方法
-	 * @param {Function} notFulfilledCallback 数据不存在时执行的方法
-	 * @returns {View}
-	 */
-	View.wantData = function(viewId, viewNamespace, name, callback, notFulfilledCallback){
-		if(typeof arguments[0] === "string" && typeof arguments[1] === "string"){
-			if(typeof arguments[2] === "string")
-				;
-			else{//viewId, name, callback, notFulfilledCallback
-				notFulfilledCallback = arguments[3];
-				callback = arguments[2];
-				name = arguments[1];
-				viewNamespace = viewInternalVariable.defaultNamespace;
-			}
-		}
-
-		var wantedData = ViewWantedData.ofName(viewId, viewNamespace, name);
-
-		if(typeof notFulfilledCallback !== "function"){
-			var paramName = name + ":fulFillCallback";
-			globalLogger.info("No parameter meaning 'callback for situation that wanted data is currently not fulfilled' specified, auto assign as View.navTo('{}', {params: {'{}': function(){...}}})", viewId, paramName);
-
-			var params = {};
-			params[paramName] = callback;
-			notFulfilledCallback = function(){
-				View.navTo(viewId, viewNamespace, {params: params});
-			};
-		}
-
-		wantedData.want(callback, notFulfilledCallback);
-		return View;
-	};
-
-	/**
-	 * 监听特定视图可以提供的数据，并在数据满足时执行特定方法
-	 * @param {String} viewId 视图ID
-	 * @param {String} [viewNamespace=defaultNamespace] 视图隶属的命名空间
-	 * @param {String} name 数据的标识名称
-	 * @param {Function} callback 数据被满足时执行的回调方法
-	 * @returns {View}
-	 */
-	View.listenWantedData = function(viewId, viewNamespace, name, callback){
-		if(typeof arguments[0] === "string" && typeof arguments[1] === "string"){
-			if(typeof arguments[2] === "string")
-				;
-			else{//viewId, name, callback
-				callback = arguments[2];
-				name = arguments[1];
-				viewNamespace = viewInternalVariable.defaultNamespace;
-			}
-		}
-
-		var wantedData = ViewWantedData.ofName(viewId, viewNamespace, name);
-		wantedData.listen(callback);
 		return View;
 	};
 
