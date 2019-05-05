@@ -7,6 +7,8 @@
 
 	var defaultNamespace = "default";
 
+	var stack = [], pos = -1;
+
 	/**
 	 * 使用给定的视图编号和视图选项构造地址栏字符串
 	 */
@@ -93,6 +95,10 @@
 		else
 			location.hash = concatViewOptions(viewId, viewNamespace, options);
 
+		stack.push(state);
+		pos++;
+		outputStack();
+
 		View.currentState = state;
 	};
 
@@ -121,9 +127,44 @@
 		else
 			location.hash = concatViewOptions(viewId, viewNamespace, options);
 
+		if(0 === stack.length){
+			stack.push(state);
+			pos++;
+		}else{
+			var previous = stack[pos - 1],
+				next = stack[pos + 1];
+			if(null != previous && previous.sn === timeBasedUniqueString){/* 通过浏览器执行回退操作 */
+				pos--;
+			}else if(null != next && next.sn === timeBasedUniqueString){/* 通过浏览器执行前进操作 */
+				pos++;
+			}else{
+				stack[pos] = state;
+			}
+			outputStack();
+		}
+
 		View.currentState = state;
 	};
 
+	/**
+	 * 获取堆栈大小
+	 * @returns {Number}
+	 */
+	ViewState.getStackSize = function(){
+		return stack.length;
+	};
+
+	/**
+	 * 根据当前位置确定是否可以向前返回
+	 * @returns {Boolean}
+	 */
+	ViewState.ifCanGoBack = function(){
+		return pos > 0;
+	};
+
+	var outputStack = function(){
+		globalLogger.debug("View state stack: {}, {}", stack.map(function(v){return v.sn}), pos);
+	};
 
 	ctx[name].ViewState = ViewState;
 })(window, "View");

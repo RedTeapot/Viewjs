@@ -42,7 +42,7 @@
 			var items = Object.keys(configs).map(function(k){
 				return configs[k];
 			});
-			if(0 == items.length)
+			if(0 === items.length)
 				return;
 			
 			setTimeout(function(){

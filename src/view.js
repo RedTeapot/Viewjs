@@ -544,6 +544,11 @@
 		return View;
 	};
 
+	/**
+	 * 根据当前位置确定是否可以向前返回
+	 * @returns {Boolean}
+	 */
+	View.ifCanGoBack = ViewState.ifCanGoBack;
 
 	var isViewInited = false,/* 视图是否已经被初始化 */
 		isViewReady = false;/* 视图是否已经就绪 */
@@ -618,7 +623,7 @@
 				targetView = View.ofId(newViewId, newViewNamespace);
 				options = popedNewState.options;
 			}else{
-				globalLogger.warn("Popped view: '" + newViewId + "' within namespacer: '" + newViewNamespace + "' does not exist, keeping current.");
+				globalLogger.warn("Popped view: '" + newViewId + "' within namespace: '" + newViewNamespace + "' does not exist, keeping current.");
 				targetView = currentActiveView;
 
 				/* 如果最终视图和地址栏中的视图不是一个视图，则不能再将选项传递给最终视图 */

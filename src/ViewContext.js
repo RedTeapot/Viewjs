@@ -18,7 +18,7 @@
 		/**
 		 * 设置属性。如果相同名称的属性已经存在，则覆盖。
 		 * @param {String} name 属性名称
-		 * @param {Any} value 属性取值
+		 * @param {*} value 属性取值
 		 */
 		util.defineReadOnlyProperty(this, "set", function(name, value){
 			obj[name] = value;
@@ -36,7 +36,7 @@
 		/**
 		 * 移除指定名称的属性，并返回既有的属性值
 		 * @param {String} name 属性名称
-		 * @returns {Any} 既有取值
+		 * @returns {*} 既有取值
 		 */
 		util.defineReadOnlyProperty(this, "remove", function(name){
 			var value = obj[name];

@@ -135,7 +135,7 @@
 			if(util.isEmptyString(nspc, true))
 				nspc = defaultNamespace;
 
-			if(viewId == id && nspc === namespace){
+			if(viewId === id && nspc === namespace){
 				domElement = ele;
 				break;
 			}

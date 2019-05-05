@@ -22,10 +22,10 @@
 
 		/**
 		 * 获取配置项取值
-		 * @param {Any} dftValue 配置值没有指定时的默认值
+		 * @param {*} dftValue 配置值没有指定时的默认值
 		 */
 		this.getValue = function(dftValue){
-			if(NOT_SUPPLIED == value){
+			if(NOT_SUPPLIED === value){
 				if(arguments.length < 1)
 					return undefined;
 
@@ -36,14 +36,14 @@
 
 		/**
 		 * 设置配置项取值
-		 * @param {Any} _value 要设定的配置项取值
+		 * @param {*} _value 要设定的配置项取值
 		 * @param {Boolean} [overrideExistingValue=false] 如果已经设置过配置项取值，是否使用新取值覆盖既有取值。如果配置项取值尚未设置过，则无论是否覆盖，均执行赋值动作
 		 */
 		this.setValue = function(_value, overrideExistingValue){
 			if(arguments.length < 2)
 				overrideExistingValue = false;
 
-			if(overrideExistingValue || NOT_SUPPLIED == value)
+			if(overrideExistingValue || NOT_SUPPLIED === value)
 				value = _value;
 
 			return this;
@@ -94,7 +94,7 @@
 		 * 将配置以"data-viewconfig_[name]=[value]"的方式附加至视图的DOM元素上
 		 */
 		this.reflectToDom = function(){
-			if(null == viewId || "" == viewId.trim())
+			if(null == viewId || "" === viewId.trim())
 				return this;
 			if(!View.ifExists(viewId, viewNamespace)){
 				globalLogger.warn("No view of id '{}' namespace: '{}' found to reflect view config: {}={}.", viewId, viewNamespace, this.getName(), this.getValue());
