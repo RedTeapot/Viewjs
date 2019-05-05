@@ -54,13 +54,7 @@
 	 * 获取视图容器DOM元素
 	 * @returns {HTMLElement}
 	 */
-	View.getViewContainerDomElement = function(){
-		var obj = document.querySelector("[" + viewAttribute.attr$view_container + "]");
-		if(null == obj)
-			obj = document.body;
-
-		return obj;
-	};
+	View.getViewContainerDomElement = viewInternalVariable.getViewContainerDomElement;
 
 	/**
 	 * 查找单个元素
@@ -743,6 +737,7 @@
 		 * 		取值：:forward 前进至下一个视图
 		 * 		取值：:default-view 导向至默认视图
 		 * 		取值：~groupName 导向至目标群组的第一个视图
+		 * 	    取值：@[url] 导向至外部页面
 		 *
 		 * 指令：data-view-rel-type 配置视图更新方式
 		 * 		取值：nav（默认） 使用history.pushState以“导向”的方式切换至新视图。采用此方式时，切换多少次视图，就需要返回多少次才能回到初始界面

@@ -29,6 +29,9 @@
 		/**
 		 * width height ratio. Value: 'w/h'
 		 */
-		attr$view_whr: "data-view-whr"
+		attr$view_whr: "data-view-whr",
+
+		attr$active_view_id: "data-active-view-id",
+		attr$active_view_namespace: "data-active-view-namespace"
 	};
 })(window, "View");

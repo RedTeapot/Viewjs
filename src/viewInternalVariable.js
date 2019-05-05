@@ -68,6 +68,18 @@
 	};
 
 	/**
+	 * 获取视图容器DOM元素
+	 * @returns {HTMLElement}
+	 */
+	var getViewContainerDomElement = function(){
+		var obj = document.querySelector("[" + viewAttribute.attr$view_container + "]");
+		if(null == obj)
+			obj = document.body;
+
+		return obj;
+	};
+
+	/**
 	 * 判断给定的DOM元素是否为合法的视图DOM元素
 	 * @param {HTMLElement} domElement
 	 * @returns {Boolean}
@@ -319,6 +331,11 @@
 			fireEvent("enter", false);
 			fireEvent("afterenter", false);
 
+			/* 在视图容器上标记活动视图 */
+			var viewContainerObj = getViewContainerDomElement();
+			viewContainerObj.setAttribute(viewAttribute.attr$active_view_id, targetView.id);
+			viewContainerObj.setAttribute(viewAttribute.attr$active_view_namespace, targetView.namespace);
+
 			/* 触发后置切换监听器 */
 			View.fire("afterchange", viewChangeParams);
 		};
@@ -379,6 +396,7 @@
 		set viewSwitchAnimation(animation){viewSwitchAnimation = animation;},
 
 		getPotentialViewId: getPotentialViewId,
+		getViewContainerDomElement: getViewContainerDomElement,
 		getViewDomElements: getViewDomElements,
 		getViewDomElementOfId: getViewDomElementOfId,
 		getRenderingViewId: getRenderingViewId,
