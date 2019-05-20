@@ -472,6 +472,20 @@
 		return View;
 	};
 
+	var noViewToNavBackAction = null;
+
+	/**
+	 * 设置在“没有视图可以继续向前返回”的情况下要执行的动作
+	 * @param {Function} action 要执行的动作
+	 */
+	View.setNoViewToNavBackAction = function(action){
+		if(typeof action !== "function")
+			throw new Error("Invalid argument! Type of 'Function' is needed.");
+
+		noViewToNavBackAction = action;
+		return View;
+	};
+
 	/**
 	 * 回退到上一个视图
 	 * @param {Object} ops 切换配置
@@ -483,7 +497,10 @@
 		if(null != ops && "params" in ops)
 			viewParameter.setViewParameters(viewRepresentation.PSVIEW_BACK, "", ops.params);
 
-		history.go(-1);
+		if(View.ifCanGoBack() || typeof noViewToNavBackAction !== "function")
+			history.go(-1);
+		else
+			util.try2Call(noViewToNavBackAction);
 
 		return View;
 	};
@@ -802,35 +819,13 @@
 
 				/* 回退操作(":back") */
 				if(util.ifStringEqualsIgnoreCase(viewRepresentation.PSVIEW_BACK, targetViewId)){
-					history.go(-1);
-					// var policy = tmp.getAttribute(viewAttribute.attr$view_back_policy);
-					// if(null != policy)
-					// 	policy = policy.trim().toLowerCase();
-					//
-					// if(null == policy || "mandatory" === policy)
-					// 	history.go(-1);
-					// else if("smart" === policy){
-					// 	var len = history.length;
-					// 	if(null != len){
-					// 		if(len > 2){
-					// 			history.go(-1);
-					// 		}else{
-					// 			globalLogger.info("Change to default view in that view back policy is smart.");
-					// 			View.changeTo(viewRepresentation.PSVIEW_DEFAULT);
-					// 		}
-					// 	}else
-					// 		history.go(-1);
-					// }else{
-					// 	globalLogger.warn("Unknown view back policy: {}. Supported policy: 'mandatory', 'smart'", policy);
-					// 	history.go(-1);
-					// }
-
+					View.back();
 					return;
 				}
 
 				/* 前进操作（":forward"） */
 				if(util.ifStringEqualsIgnoreCase(viewRepresentation.PSVIEW_FORWARD, targetViewId)){
-					history.go(1);/* browser support */
+					View.forward();
 					return;
 				}
 
