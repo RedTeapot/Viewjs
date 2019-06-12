@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html data-view-directly-accessible="true">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta name="format-detection" content="telephone = no">
+	<meta name="msapplication-tap-highlight" content="no">
+	<meta name="progma" content="no-cache">
+	<meta name="cache-control" content="no-cache, no-store, must-revalidate">
+	<meta name="viewport" content="user-scalable = no, initial-scale = 1, maximum-scale = 1, minimum-scale = 1, width = device-width">
+
+	<link rel="stylesheet" href="css/view.css">
+	<link rel="stylesheet" href="css/index.css">
+
+	<title>view-directly-accessible</title>
+</head>
+<body>
+	<section data-view-id="page1" data-view="true" data-view-default="true">
+		<header>
+			<span class="nav-back" data-view-rel=":back"></span>
+			Page 1
+		</header>
+		<h1>This is page 1 in namespace 'default'.</h1>
+		<div
+			data-view-rel="page2"
+			data-view-rel-type = "nav"
+			data-view-rel-namespace = "my-namespace"
+			class="btn">Navigate to page 2.</div>
+	</section>
+	<section data-view-id="page2" data-view-namespace = "my-namespace" data-view="true">
+		<header>
+			<span class="nav-back" data-view-rel=":back"></span>
+			Page 2
+		</header>
+		<h1>This is page 2 in namespace 'my-namespace'.</h1>
+		<div
+			data-view-rel="page3"
+			data-view-rel-type = "nav"
+			data-view-rel-namespace = "my-namespace"
+			class="btn">Navigate to page 3.</div>
+	</section>
+	<section data-view-id="page3" data-view-namespace = "my-namespace" data-view="true" data-view-directly-accessible="true">
+		<header>
+			<span class="nav-back" data-view-rel=":back"></span>
+			Page 3
+		</header>
+		<h1>This is page 3 in namespace 'my-namespace'.</h1>
+		<div
+			data-view-rel="page1"
+			data-view-rel-type = "nav"
+			data-view-rel-namespace = "default"
+			class="btn">Navigate to page 1.</div>
+	</section>
+
+	
+	<script type = "text/javascript" src = "js/view.min.js"></script>
+	<script type = "text/javascript" src = "js/view.switch.js"></script>
+	<script type = "text/javascript">
+	</script>
+</body>
+</html>
