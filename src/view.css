@@ -1,5 +1,9 @@
 *[data-view-container]{
 	overflow: hidden;
+	visibility: hidden;
+}
+*[data-view-container][data-view-state=ready]{
+	visibility: visible;
 }
 body[data-view-container]{
 	margin: 0 auto;

@@ -22,6 +22,7 @@
 		 * width height ratio. Value: 'width / height'
 		 */
 		attr$view_whr: "data-view-whr",
+		attr$view_state: "data-view-state",
 
 		attr$active_view_id: "data-active-view-id",
 		attr$active_view_namespace: "data-active-view-namespace"

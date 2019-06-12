@@ -587,7 +587,7 @@
 		var currentActiveViewId = null == currentActiveView? null: currentActiveView.getId();
 		var currentActiveViewNamespace = null == currentActiveView? null: currentActiveView.getNamespace();
 
-		globalLogger.log("{} Current: {}", util.env.isHistoryPushPopSupported? "State poped!": "Hash changed!", currentActiveView && currentActiveView.getId());
+		globalLogger.log("{} Current: {}", util.env.isHistoryPushPopSupported? "State popped!": "Hash changed!", currentActiveView && currentActiveView.getId());
 		globalLogger.log("↑ {}", util.env.isHistoryPushPopSupported? JSON.stringify(e.state): location.hash);
 
 		/* 视图切换 */
@@ -676,7 +676,7 @@
 		window.addEventListener(util.env.isHistoryPushPopSupported? "popstate": "hashchange", stateChangeListener);
 
 		/* 识别视图容器。如果没有元素声明为视图容器，则认定body为视图容器 */
-		;(function(){
+		(function(){
 			var objs = document.querySelectorAll("[" + viewAttribute.attr$view_container + "]");
 			if(0 === objs.length){
 				document.body.setAttribute(viewAttribute.attr$view_container, "");
@@ -684,6 +684,7 @@
 				for(var i = 1; i < objs.length; i++)
 					objs[i].removeAttribute(viewAttribute.attr$view_container);
 		})();
+		View.getViewContainerDomElement().setAttribute(viewAttribute.attr$view_state, "initing");
 
 		/* 扫描文档，遍历定义视图 */
 		var viewObjs = viewInternalVariable.getViewDomElements();
@@ -768,8 +769,7 @@
 		 * 指令：data-view-rel-disabled 配置导向开关
 		 * 		取值：true 触摸时不导向至通过data-view-rel指定的视图
 		 */
-		;(function(){
-			touch.addTapListener(document.documentElement, function(e){
+		touch.addTapListener(document.documentElement, function(e){
 				var eventTarget = e.changedTouches? e.changedTouches[0].target: e.target;
 
 				/* 视图导向定义检测 */
@@ -872,14 +872,13 @@
 
 				/* 呈现ID指定的视图 */
 				View[relType + "To"](targetViewId, namespace, {options: options});
-			}, {useCapture: true});
-		})();
+		}, {useCapture: true});
 
 		/* 使能属性：data-view-whr */
-		;(function(){
+		(function(){
 			var whr = document.documentElement.getAttribute(viewAttribute.attr$view_whr);
 			if(null == whr || (whr = whr.trim().toLowerCase()) === ""){
-				layout.init();
+				layout.init().doLayout(false);
 				return;
 			}
 
@@ -892,14 +891,12 @@
 				globalLogger.info("Using specified expected width height ratio: {}", whr);
 
 			layout.setExpectedWidthHeightRatio(Number(tmp[1])/Number(tmp[2])).init();
-			var doLayout = function(){
-				/* 移除可能会影响布局的虚拟键盘 */
-				var inputObjs = document.querySelectorAll("input, select, textarea, *[contentEditable]");
-				for(var i = 0; i < inputObjs.length; i++)
-					inputObjs[i].blur();
-				layout.doLayout();
-			};
-			doLayout();
+
+			/* 移除可能会影响布局的虚拟键盘 */
+			var inputObjs = document.querySelectorAll("input, select, textarea, *[contentEditable]");
+			for(var i = 0; i < inputObjs.length; i++)
+				inputObjs[i].blur();
+			layout.doLayout(false);
 		})();
 
 		globalLogger.info("Marking View as initialized and ready");
@@ -911,7 +908,7 @@
 		markViewReady();
 
 		/* 呈现指定视图 */
-		;(function(){
+		(function(){
 			/* 如果要呈现的视图，是View.ready方法执行后通过API跳转过来的，则不再重复处理 */
 			if(null != View.currentState){
 				globalLogger.debug("Skip showing specified view.");
@@ -1023,6 +1020,8 @@
 			for(var i = 0; i < callbacks.length; i++)
 				util.try2Call(callbacks[i]);
 			callbacks = [];
+
+			View.getViewContainerDomElement().setAttribute(viewAttribute.attr$view_state, "ready");
 		};
 
 		/**
