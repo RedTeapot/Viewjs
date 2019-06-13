@@ -268,7 +268,7 @@
 		 * @param {Boolean} isDirectlyAccessible 视图是否通过地址栏手动直接访问
 		 */
 		this.setAsDirectlyAccessible = function(isDirectlyAccessible){
-			if(arguments.lengt < 1)
+			if(arguments.length < 1)
 				isDirectlyAccessible = true;
 
 			this.getDomElement().setAttribute(viewAttribute.attr$view_directly_accessible, String(isDirectlyAccessible));
