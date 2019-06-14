@@ -199,6 +199,31 @@
 	};
 
 	/**
+	 * 设置特定视图是否可以直接访问
+	 * @param {String} viewId 视图ID
+	 * @param {String} viewNamespace 视图命名空间
+	 * @param {Boolean} accessible 视图是否可以直接访问
+	 * @returns {View}
+	 */
+	View.setViewIsDirectlyAccessible = function(viewId, viewNamespace, accessible){
+		if(arguments.length < 2)
+			throw new Error("Illegal argument length. Call with arguments: 'viewId[, viewNamespace], accessible'");
+		if(arguments.length < 3){
+			accessible = arguments[1];
+			viewNamespace = viewInternalVariable.defaultNamespace;
+		}
+
+		var viewObj = viewInternalVariable.getViewDomElementOfId(viewId, viewNamespace);
+		if(null == viewObj){
+			globalLogger.error("No view of id: {}, namespace: {} found to set is directly accessible or not", viewId, viewNamespace);
+			return View;
+		}
+
+		viewObj.setAttribute(viewAttribute.attr$view_directly_accessible, String(!!accessible).toLowerCase());
+		return View;
+	};
+
+	/**
 	 * 获取当前的活动视图。如果没有视图处于活动状态，则返回null
 	 */
 	View.getActiveView = function(){

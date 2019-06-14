@@ -265,7 +265,7 @@
 
 		/**
 		 * 设置当前视图是否通过地址栏手动直接访问
-		 * @param {Boolean} isDirectlyAccessible 视图是否通过地址栏手动直接访问
+		 * @param {Boolean} [isDirectlyAccessible=true] 视图是否通过地址栏手动直接访问
 		 */
 		this.setAsDirectlyAccessible = function(isDirectlyAccessible){
 			if(arguments.length < 1)
