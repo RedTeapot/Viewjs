@@ -104,12 +104,23 @@
 	 * @return {HTMLElement[]}
 	 */
 	var getViewDomElements = function(){
-		var objs = document.querySelectorAll("*[" + viewAttribute.attr$view + "=true]");
+		var rootObj = getViewContainerDomElement();
 
-		var arr = [];
-		for(var i = 0; i < objs.length; i++)
+		var arr = [], i;
+		var objs = document.querySelectorAll("*[" + viewAttribute.attr$view + "=true]");
+		for(i = 0; i < objs.length; i++)
 			if(isValidViewDomElement(objs[i]))
 				arr.push(objs[i]);
+
+		/* data-view='true' 并非为必须属性。声明了合法的 data-view-id 属性时将自动识别为视图，自动添加data-view='true' */
+		objs = rootObj.querySelectorAll("[" + viewAttribute.attr$viewId + "]");
+		for(i = 0; i < objs.length; i++){
+			var viewId = getPotentialViewId(objs[i]);
+			if(!util.isEmptyString(viewId, true) && arr.indexOf(objs[i]) === -1){
+				objs[i].setAttribute(viewAttribute.attr$view, "true");
+				arr.push(objs[i]);
+			}
+		}
 
 		return arr;
 	};
