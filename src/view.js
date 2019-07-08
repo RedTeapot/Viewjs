@@ -700,7 +700,7 @@
 		/* 事件监听 */
 		window.addEventListener(util.env.isHistoryPushPopSupported? "popstate": "hashchange", stateChangeListener);
 
-		/* 识别视图容器。如果没有元素声明为视图容器，则认定body为视图容器 */
+		/* 识别视图容器。如果没有元素声明为视图容器，则认定body为视图attr$viewId容器 */
 		(function(){
 			var objs = document.querySelectorAll("[" + viewAttribute.attr$view_container + "]");
 			if(0 === objs.length){
