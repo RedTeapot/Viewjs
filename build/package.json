@@ -2,12 +2,12 @@
   "devDependencies": {
     "del": "^3.0.0",
     "gulp": "^3.9.1",
-    "gulp-append-prepend": "^1.0.4",
-    "gulp-clean-css": "^4.0.0",
+    "gulp-append-prepend": "^1.0.8",
+    "gulp-clean-css": "^4.2.0",
     "gulp-concat": "^2.6.1",
     "gulp-if": "^2.0.2",
     "gulp-rename": "^1.4.0",
-    "gulp-uglify": "^3.0.1",
+    "gulp-uglify": "^3.0.2",
     "gulp-zip": "^3.2.0",
     "merge2": "^1.2.3"
   }
