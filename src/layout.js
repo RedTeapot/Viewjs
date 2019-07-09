@@ -85,7 +85,7 @@
 		 * 判断当前布局方向是否是横屏方向
 		 */
 		var isLayoutLandscape = function(){
-			return !isPortrait();
+			return !isLayoutPortrait();
 		};
 
 		/**
