@@ -1,0 +1,58 @@
+<!DOCTYPE>
+<html>
+<head>
+	<meta name="format-detection" content="telephone = no">
+	<meta name="msapplication-tap-highlight" content="no">
+	<meta name="viewport" content="user-scalable = no, initial-scale = 1, maximum-scale = 1, minimum-scale = 1, width = device-width">
+
+	<link rel="stylesheet" href="css/view.css">
+	<link rel="stylesheet" href="css/index.css">
+
+	<title>view-layout</title>
+</head>
+<body>
+	<section data-view-id="page1" data-view="true">
+		<header>视图布局</header>
+		<div class = "body">
+			<h1></h1>
+		</div>
+	</section>
+
+	<script type = "text/javascript" src = "js/view.min.js"></script>
+	<script type = "text/javascript">
+	View.beforeInit(function(){
+		/**
+		 * 布局的初始化动作需要在视图初始化之前完成
+		 */
+		View.layout.init({
+			autoReLayoutWhenResize: true,/* 浏览窗口尺寸发生变化时是否自动重新布局 */
+
+			layoutAsMobilePortrait: function(width, height){
+				console.log("Browser width: " + width + "px, height: " + height + "px");
+				console.log("Layout as mobile portrait");
+			},
+			layoutAsMobileLandscape: function(width, height){
+				console.log("Browser width: " + width + "px, height: " + height + "px");
+				console.log("Layout as mobile landscape");
+			},
+			layoutAsTabletPortrait: function(width, height){
+				console.log("Browser width: " + width + "px, height: " + height + "px");
+				console.log("Layout as tablet portrait");
+			},
+			layoutAsTabletLandscape: function(width, height){
+				console.log("Browser width: " + width + "px, height: " + height + "px");
+				console.log("Layout as tablet landscape");
+			},
+			layoutAsPcPortrait: function(width, height){
+				console.log("Browser width: " + width + "px, height: " + height + "px");
+				console.log("Layout as pc portrait");
+			},
+			layoutAsPcLandscape: function(width, height){
+				console.log("Browser width: " + width + "px, height: " + height + "px");
+				console.log("Layout as pc landscape");
+			}
+		});
+	});
+	</script>
+</body>
+</html>
