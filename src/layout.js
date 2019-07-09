@@ -1,5 +1,6 @@
 ;(function(ctx, name){
-	var util = ctx[name].util,
+	var globalLogger = ctx[name].Logger.globalLogger,
+		util = ctx[name].util,
 		resolution = ctx[name].resolution;
 
 	var attr$view_container = "data-view-container";
@@ -14,6 +15,9 @@
 		
 		/** 布局发生变化时要执行的方法 */
 		var layoutChangeListeners = [];
+
+		/* 是否已经完成初始化 */
+		var isInitialized = false;
 
 		/** 空方法 */
 		var emptyFunc = function doNothing(){};
@@ -300,6 +304,12 @@
 		 * @param {Function} [ops.layoutAsPcLandscape] PC桌面以横屏方式使用应用时的布局方式
 		 */
 		var init = function(ops){
+			if(isInitialized){
+				globalLogger.warn("Layout was initialized already.");
+				return obj;
+			}
+
+			isInitialized = true;
 			ops = util.setDftValue(ops, {
 				autoReLayoutWhenResize: true,
 
