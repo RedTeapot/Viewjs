@@ -18,38 +18,38 @@
 	<section data-view-id="page1" data-view="true" data-view-default="true">
 		<header>
 			<span class="nav-back" data-view-rel=":back"></span>
-			Page 1
+			视图1
 		</header>
-		<h1>This is page 1 in namespace 'default'.</h1>
+		<h1>所有视图默认可以直接访问。该视图没有单独设置，因而可以直接访问</h1>
 		<div
 			data-view-rel="page2"
 			data-view-rel-type = "nav"
 			data-view-rel-namespace = "my-namespace"
-			class="btn">Navigate to page 2.</div>
+			class="btn">进入视图2</div>
 	</section>
 	<section data-view-id="page2" data-view-namespace = "my-namespace" data-view="true">
 		<header>
 			<span class="nav-back" data-view-rel=":back"></span>
-			Page 2
+			视图2
 		</header>
-		<h1>This is page 2 in namespace 'my-namespace'.</h1>
+		<h1>所有视图默认可以直接访问。该视图没有单独设置，因而可以直接访</h1>
 		<div
 			data-view-rel="page3"
 			data-view-rel-type = "nav"
 			data-view-rel-namespace = "my-namespace"
-			class="btn">Navigate to page 3.</div>
+			class="btn">进入视图3</div>
 	</section>
-	<section data-view-id="page3" data-view-namespace = "my-namespace" data-view="true" data-view-directly-accessible="true">
+	<section data-view-id="page3" data-view-namespace = "my-namespace" data-view="true" data-view-directly-accessible="false">
 		<header>
 			<span class="nav-back" data-view-rel=":back"></span>
-			Page 3
+			视图3
 		</header>
-		<h1>This is page 3 in namespace 'my-namespace'.</h1>
+		<h1>所该视图设置为不可直接访问</h1>
 		<div
 			data-view-rel="page1"
 			data-view-rel-type = "nav"
 			data-view-rel-namespace = "default"
-			class="btn">Navigate to page 1.</div>
+			class="btn">进入视图1</div>
 	</section>
 
 	

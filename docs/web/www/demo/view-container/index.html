@@ -12,43 +12,90 @@
 	<link rel="stylesheet" href="css/view.css">
 	<link rel="stylesheet" href="css/index.css">
 
-	<title>view-directly-accessible</title>
+	<title>view-container</title>
 </head>
 <body>
 	<div data-view-container>
 		<section data-view-id="page1" data-view="true" data-view-default="true">
 			<header>
 				<span class="nav-back" data-view-rel=":back"></span>
-				Page 1
+				视图1
 			</header>
-			<h1>This is page 1 in namespace 'default'.</h1>
+			<h1>视图1 的命名空间默认为：'default'.</h1>
 			<div
 				data-view-rel="page2"
 				data-view-rel-type = "nav"
 				data-view-rel-namespace = "my-namespace"
-				class="btn">Navigate to page 2.</div>
+				class="btn">进入视图2</div>
 		</section>
 		<section data-view-id="page2" data-view-namespace = "my-namespace" data-view="true">
 			<header>
 				<span class="nav-back" data-view-rel=":back"></span>
-				Page 2
+				视图2
 			</header>
-			<h1>This is page 2 in namespace 'my-namespace'.</h1>
+			<h1>视图2 的命名空间声明为：'my-namespace'.</h1>
 			<div
 				data-view-rel="page1"
 				data-view-rel-type = "nav"
-				class="btn">Navigate to page 1.</div>
+				data-view-rel-namespace = "default"
+				class="btn">进入视图1</div>
 		</section>
 	</div>
 	<footer>
-		<span>首页</span>
-		<span>分类</span>
-		<span>购物车</span>
-		<span>我的</span>
+		<span data-id = "page1"
+			data-view-rel="page1"
+			data-view-rel-type = "nav"
+		>视图1</span>
+		<span data-id = "page2"
+			data-view-rel="page2"
+			data-view-rel-type = "nav"
+			data-view-rel-namespace = "my-namespace"
+		>视图2</span>
 	</footer>
 
 	
 	<script type = "text/javascript" src = "js/view.min.js"></script>
 	<script type = "text/javascript" src = "js/view.switch.js"></script>
+	<script type = "text/javascript">
+	
+	/**
+	 * 执行布局
+	 * @param {Number} width 浏览窗口的宽度
+	 * @param {Number} height 浏览窗口的高度
+	 */
+	var layout = function(width, height){
+		var footerHeight = document.querySelector("footer").offsetHeight;
+		var containerObj = View.getViewContainerDomElement();
+		containerObj.style.width = width + "px";/* 宽度撑满 */
+		containerObj.style.height = (height - footerHeight) + "px";/* 高度上预留footer空间 */
+	};
+	
+	View.beforeInit(function(){
+		/**
+		 * 布局的初始化动作需要在视图初始化之前完成
+		 */
+		View.layout.init({
+			autoReLayoutWhenResize: true,/* 浏览窗口尺寸发生变化时是否自动重新布局 */
+
+			layoutAsMobilePortrait: layout,
+			layoutAsMobileLandscape: layout,
+			layoutAsTabletPortrait: layout,
+			layoutAsTabletLandscape: layout,
+			layoutAsPcPortrait: layout,
+			layoutAsPcLandscape: layout
+		});
+	});
+	
+	/* 视图切换时自动选中对应的底部导航入口 */
+	View.on("change", function(e){
+		var targetViewId = e.data.targetView.id;
+		
+		var activeObj = View.find(document.body, "footer .active");
+		activeObj && activeObj.classList.remove("active");
+		
+		var obj = View.find(document.body, "footer span[data-id=" + targetViewId + "]");
+		obj.classList.add("active");
+	});
+	</script>
 </body>
 </html>

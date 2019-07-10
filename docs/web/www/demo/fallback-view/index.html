@@ -8,47 +8,45 @@
 	<meta name = "cache-control" content = "no-cache, no-store, must-revalidate"/>
 	<meta name = "viewport" content = "user-scalable = no, initial-scale = 1, maximum-scale = 1, minimum-scale = 1, width = device-width" />
 
-	<link rel = "stylesheet" href="js/plugin/viewjs-1.5.0-B201709061010/view.1.5.0-B201709061010.min.css" />
-	<link rel = "stylesheet" href="css/animation.css" />
+	<link rel = "stylesheet" href="css/view.css" />
 	<link rel = "stylesheet" href="css/index.css" />
 
-	<title>view-switch-animation</title>
+	<title>fallback-view</title>
 </head>
 <body>
 	<section id = "home-page" data-view = "true" data-view-default = "true" >
 		<header>
 			<span class = "nav-back" data-view-rel = ":back"></span>
-			HomePage
+			首页
 		</header>
-		<h1>This is home page.</h1>
-		<div data-view-rel = "profile" class = "btn">Navigate to profile.</div>
-		<div data-view-rel = "page2" class = "btn" style = "margin-top: 0.2rem;">Navigate to page 2.</div>
+		<h1>这是首页，是默认视图</h1>
+		<div data-view-rel = "profile" class = "btn">进入个人中心</div>
+		<div data-view-rel = "page2" class = "btn" style = "margin-top: 0.2rem;">进入视图2</div>
 	</section>
 	<section id = "page2" data-view = "true">
 		<header>
 			<span class = "nav-back" data-view-rel = ":back"></span>
-			Page2
+			视图2
 		</header>
-		<h1>This is page 2.</h1>
+		<h1>这是视图2，不允许直接访问，且没有设置回退视图。刷新后将回到默认视图</h1>
 	</section>
 	<section id = "profile-sub" data-view = "true" data-view-directly-accessible = "false" data-view-fallback = "profile">
 		<header>
 			<span class = "nav-back" data-view-rel = ":back"></span>
-			ProfileSubPage
+			个人中心子页面
 		</header>
-		<h1>This is a sub page for profile.</h1>
-		<div data-view-rel = "page3" class = "btn">Navigate to page 3.</div>
+		<h1>这是个人中心下的一个子页面，不能直接访问。刷新后将回退到个人中心</h1>
 	</section>
 	<section id = "profile" data-view = "true" data-view-directly-accessible = "true">
 		<header>
 			<span class = "nav-back" data-view-rel = ":back"></span>
-			Profile
+			个人中心
 		</header>
-		<h1>This is profile page.</h1>
-		<div data-view-rel = "profile-sub" class = "btn">Navigate to sub page.</div>
+		<h1>这是个人中心，可以直接访问</h1>
+		<div data-view-rel = "profile-sub" class = "btn">进入子页面</div>
 	</section>
 
-	<script type = "text/javascript" src="js/plugin/viewjs-1.5.0-B201709061010/view.1.5.0-B201709061010.min.js"></script>
+	<script type = "text/javascript" src="js/view.min.js"></script>
 	<script type = "text/javascript" src="js/view.switch.js"></script>
 </body>
 </html>

@@ -18,26 +18,26 @@
 	<section data-view-id="page1" data-view="true" data-view-default="true">
 		<header>
 			<span class="nav-back" data-view-rel=":back"></span>
-			Page 1
+			视图1
 		</header>
-		<h1>This is page 1 in namespace 'default'.</h1>
+		<h1>视图1 的命名空间默认为：'default'.</h1>
 		<div
 			data-view-rel="page2"
 			data-view-rel-type = "nav"
 			data-view-rel-namespace = "my-namespace"
-			class="btn">Navigate to page 2.</div>
+			class="btn">进入视图2</div>
 	</section>
 	<section data-view-id="page2" data-view-namespace = "my-namespace" data-view="true">
 		<header>
 			<span class="nav-back" data-view-rel=":back"></span>
-			Page 2
+			视图2
 		</header>
-		<h1>This is page 2 in namespace 'my-namespace'.</h1>
+		<h1>视图2 的命名空间声明为：'my-namespace'.</h1>
 		<div
 			data-view-rel="page1"
 			data-view-rel-type = "nav"
 			data-view-rel-namespace = "default"
-			class="btn">Navigate to page 1.</div>
+			class="btn">进入视图1</div>
 	</section>
 
 	

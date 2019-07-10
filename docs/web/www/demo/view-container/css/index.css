@@ -40,6 +40,7 @@ header .nav-back{
 
 h1{
 	text-align: center;
+	padding: 0.2rem;
 }
 
 .btn{
@@ -49,4 +50,23 @@ h1{
 	color: white;
 	background: #29b482;
 	margin: 0 0.12rem;
+}
+
+footer{
+	height: 44px;
+	line-height: 44px;
+}
+footer:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+footer span{
+	float: left;
+	display: block;
+	width: 50%;
+	text-align: center;
+}
+footer span.active{
+	font-weight: bold;
 }
