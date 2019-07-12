@@ -95,6 +95,7 @@
 		else
 			location.hash = concatViewOptions(viewId, viewNamespace, options);
 
+		stack.splice(pos + 1, stack.length);
 		stack.push(state);
 		pos++;
 		outputStack();
