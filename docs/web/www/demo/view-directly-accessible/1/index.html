@@ -19,8 +19,9 @@
 		<header>
 			<span class="nav-back" data-view-rel=":back"></span>
 			视图1
+			<a class = "nav-homepage" data-view-rel = "@../../../index.html"></a>
 		</header>
-		<h1>该视图是默认视图，可以直接访问</h1>
+		<h1>该视图是默认视图，可以直接访问（刷新后仍然显示该视图）</h1>
 		<div
 			data-view-rel="page2"
 			data-view-rel-type = "nav"
@@ -31,6 +32,7 @@
 		<header>
 			<span class="nav-back" data-view-rel=":back"></span>
 			视图2
+			<a class = "nav-homepage" data-view-rel = "@../../../index.html"></a>
 		</header>
 		<h1>视图不能直接访问，刷新后回到默认视图</h1>
 		<div
@@ -43,6 +45,7 @@
 		<header>
 			<span class="nav-back" data-view-rel=":back"></span>
 			视图3
+			<a class = "nav-homepage" data-view-rel = "@../../../index.html"></a>
 		</header>
 		<h1>视图可以直接访问</h1>
 		<div
