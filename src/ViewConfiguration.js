@@ -75,10 +75,12 @@
 		 */
 		this.apply = function(){
 			if(typeof application == "function"){
+				var v = NOT_SUPPLIED === value? undefined: value;
+
 				try{
-					application.call(this, value);
+					application.call(this, v);
 				}catch(e){
-					globalLogger.error("Fail to apply configuration: {} = {} for view of id: '{}' namespace: '{}'\n{}", _name, String(value), viewId, viewNamespace, e);
+					globalLogger.error("Fail to apply configuration: {} = {} for view of id: '{}' namespace: '{}'\n{}", _name, String(v), viewId, viewNamespace, e);
 					
 					if(e instanceof Error)
 						console.error(e, e.stack);
