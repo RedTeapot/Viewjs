@@ -5,18 +5,23 @@
 	<meta name = "format-detection" content = "telephone = no" />
 	<meta name = "msapplication-tap-highlight" content = "no" />
 	<meta name = "viewport" content = "user-scalable = no, initial-scale = 1, maximum-scale = 1, minimum-scale = 1, width = device-width" />
-	
+
+	<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+	<script src = "https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
 	<!-- build:css css/index.html.allinone.css -->
 	<link rel = "stylesheet" href="js/lib/view/view.css"/>
 	<link rel = "stylesheet" href="css/index.css"/>
 	<!-- endbuild -->
+
+	<title>View.js</title>
 </head>
 <body>
 	<section id = "main" data-view = "true" data-view-default = "true">
 		<div class = "whoami"><img src = "img/logo.png"/><br/><span class = "github" data-view-rel = "@https://github.com/RedTeapot/Viewjs">GitHub</span></div>
 		<div class = "version"></div>
 		<div class = "docs">
-			<span data-view-rel = "@doc.html">使用说明</span><span data-view-rel = "@attr.html">DOM属性参考手册</span><span data-view-rel = "@evt.html">事件参考手册</span><span data-view-rel = "@api.html">API</span><span data-view-rel = "demos">Demo</span><span data-view-rel = "https://blog.csdn.net/baozhang007">CSDN</span><span data-view-rel = "http://viewjs.666forum.com/">论坛</span>
+			<span data-view-rel = "@doc.html">使用说明</span><span data-view-rel = "@attr.html">DOM属性参考手册</span><span data-view-rel = "@evt.html">事件参考手册</span><span data-view-rel = "@api.html">API</span><span data-view-rel = "demos">Demo</span><span data-view-rel = "https://blog.csdn.net/baozhang007">CSDN</span><span data-view-rel = "gittalk" _data-view-rel = "http://viewjs.666forum.com/">留言</span>
 		</div>
 		<div class = "download">下载 View.js</div>
 		<div class = "author" data-view-rel = "@mailto:wmjhappy_ok@126.com">作者：Billy，wmjhappy_ok@126.com，河南郑州</div>
@@ -49,6 +54,14 @@
 			<div class="demo" data-view-rel="@demo/initialize-view/2/index.html">初始化视图2</div>
 			<div class="demo" data-view-rel="@demo/view-group/1/index.html">视图群组</div>
 		</div>
+	</section>
+
+	<section id = "gittalk" data-view = "true">
+		<header>
+			<a class = "nav-back" data-view-rel = ":back"></a>
+			<span>GitTalk</span>
+		</header>
+		<div class = "body"></div>
 	</section>
 
 	<!-- build:js index.html.allinone.js -->

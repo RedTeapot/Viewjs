@@ -830,7 +830,7 @@ html, body {
   width: 100%;
   height: 100%;
   font-size: 0.14rem;
-  padding-top: 1rem;
+  padding: 0.5rem 0 0.1rem;
   overflow: auto;
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch; }
@@ -908,5 +908,8 @@ html, body {
   background-color: #fff; }
   #demos .demo:first-child {
     margin-top: 0; }
+
+#gittalk .body {
+  padding: 0 0.12rem; }
 
 /*# sourceMappingURL=index.css.map */
