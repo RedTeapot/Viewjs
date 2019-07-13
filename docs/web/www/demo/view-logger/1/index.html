@@ -13,23 +13,52 @@
 </head>
 <body>
 	<section data-view-id="page1" data-view="true">
-		<header>视图日志</header>
+		<header>
+			<span class="nav-back" data-view-rel=":back"></span>
+			视图日志
+		</header>
 		<div class = "body">
 			<h1>请打开开发者工具查看效果</h1>
+			<div class = "btn debug">Debug</div>
+			<div class = "btn log">Log</div>
+			<div class = "btn info">Info</div>
+			<div class = "btn warn">Warn</div>
+			<div class = "btn error">Error</div>
+			<div class = "btn newInstance">创建新实例</div>
 		</div>
 	</section>
 
 	<script type = "text/javascript" src = "js/plugin/view.min.js"></script>
 	<script type = "text/javascript">
 		var view = View.ofId("page1");
-		view.logger.debug("debug {}", 1);
-		view.logger.log("log {}", "2");
-		view.logger.info("info {}", true);
-		view.logger.warn("warn {}", [1, "2", true]);
-		view.logger.error("error {}", function(){});
+		var debugObj = view.find(".btn.debug"),
+			logObj = view.find(".btn.log"),
+			infoObj = view.find(".btn.info"),
+			warnObj = view.find(".btn.warn"),
+			errorObj = view.find(".btn.error"),
+			newInstanceObj = view.find(".btn.newInstance");
 
-		var logger = View.Logger.ofName("MyLogger");
-		logger.info("Hello, world!");
+		debugObj.addEventListener("click", function(){
+			view.logger.debug("#### {}, {}, {}, {}, {}, \\{}", 1, "2", true, function(){}, {a: 1, b: "2"});
+		});
+		logObj.addEventListener("click", function(){
+			view.logger.log("#### {}, {}, {}, {}, {}, \\{}", 1, "2", true, function(){}, {a: 1, b: "2"});
+		});
+		infoObj.addEventListener("click", function(){
+			view.logger.info("#### {}, {}, {}, {}, {}, \\{}", 1, "2", true, function(){}, {a: 1, b: "2"});
+		});
+		warnObj.addEventListener("click", function(){
+			view.logger.warn("#### {}, {}, {}, {}, {}, \\{}", 1, "2", true, function(){}, {a: 1, b: "2"});
+		});
+		errorObj.addEventListener("click", function(){
+			view.logger.error("#### {}, {}, {}, {}, {}, \\{}", 1, "2", true, function(){}, {a: 1, b: "2"});
+		});
+		newInstanceObj.addEventListener("click", function(){
+			var logger = View.Logger.ofName("MyLogger");
+			logger.info("Hello, world!");
+		});
+
+
 	</script>
 </body>
 </html>
