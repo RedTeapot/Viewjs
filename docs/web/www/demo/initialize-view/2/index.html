@@ -1,0 +1,166 @@
+<!DOCTYPE>
+<html>
+<head>
+	<meta name="format-detection" content="telephone = no">
+	<meta name="msapplication-tap-highlight" content="no">
+	<meta charset = "utf-8"/>
+	<meta name="viewport" content="user-scalable = no, initial-scale = 1, maximum-scale = 1, minimum-scale = 1, width = device-width">
+
+	<link rel="stylesheet" href="css/view.css">
+	<link rel="stylesheet" href="css/index.css">
+
+	<style type = "text/css">
+		@keyframes before {
+			0% {
+				width: 0.5em;
+				box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+			}
+			35% {
+				width: 2.5em;
+				box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
+			}
+			70% {
+				width: 0.5em;
+				box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
+			}
+			100% {
+				box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+			}
+		}
+		@keyframes after {
+			0% {
+				height: 0.5em;
+				box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+			}
+			35% {
+				height: 2.5em;
+				box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
+			}
+			70% {
+				height: 0.5em;
+				box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
+			}
+			100% {
+				box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+			}
+		}
+		.loader {
+			position: absolute;
+			top: calc(50% - 1.25em);
+			left: calc(50% - 1.25em);
+			width: 2.5em;
+			height: 2.5em;
+			transform: rotate(165deg);
+		}
+		.loader:before, .loader:after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			display: block;
+			width: 0.5em;
+			height: 0.5em;
+			border-radius: 0.25em;
+			transform: translate(-50%, -50%);
+		}
+		.loader:before {
+			animation: before 2s infinite;
+		}
+		.loader:after {
+			animation: after 2s infinite;
+		}
+
+		.init-loading{
+			position: fixed;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 99999;
+			background: #eee;
+		}
+		.init-loading.hide {
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity 0.5s;
+		}
+	</style>
+
+	<title>initialize-view</title>
+</head>
+<body>
+	<div class="init-loading"><div class = "loader"></div></div>
+
+	<section data-view-id="page1" data-view="true">
+		<header>
+			<span class="nav-back" data-view-rel=":back"></span>
+			视图
+			<a class = "nav-homepage" data-view-rel = "@../../../index.html"></a>
+		</header>
+		<div class = "body">
+			<h1>视图就绪</h1>
+		</div>
+	</section>
+
+	<script type = "text/javascript" src = "js/plugin/view.min.js"></script>
+	<script type = "text/javascript">
+		var initLoadingObj = document.querySelector(".init-loading");
+
+		/**
+		 * 加载并应用配置
+		 * @param {Function} callback 操作完成后要执行的回调方法
+		 */
+		var loadAndApplyConfig = function(callback){
+			/* 使用定时器模拟操作过程及网络耗时 */
+			setTimeout(function(){
+				callback();
+			}, 1000);
+		};
+
+		/**
+		 * 执行token登录
+		 * @param {Function} callback 操作完成后要执行的回调方法
+		 */
+		var loginByToken = function(callback){
+			/* 使用定时器模拟操作过程及网络耗时 */
+			setTimeout(function(){
+				callback();
+			}, 1000);
+		};
+
+		/**
+		 * 加载用户数据
+		 * @param {Function} callback 操作完成后要执行的回调方法
+		 */
+		var loadUserData = function(callback){
+			/* 使用定时器模拟操作过程及网络耗时 */
+			setTimeout(function(){
+				callback();
+			}, 1000);
+		};
+
+		/**
+		 * 通过设置初始化器，应用可以根据需要灵活决定View的初始化时机，例如：
+		 * 1. 读取并应用陪之后
+		 * 2. token登录之后
+		 */
+		View.setInitializer(
+			function(init){
+				loadAndApplyConfig(function(){
+					loginByToken(function(){
+						loadUserData(function(){
+							initLoadingObj.classList.add("hide");
+							setTimeout(function(){
+								initLoadingObj.style.display = "none";
+							}, 600);
+
+							init();
+						});
+					});
+				});
+			},
+			"rightnow"/* 初始化器的自动执行时机。domready：DOM就绪后执行；rightnow：立即执行。默认为：domready */
+		);
+	</script>
+</body>
+</html>
