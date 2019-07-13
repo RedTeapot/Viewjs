@@ -1,0 +1,76 @@
+<!DOCTYPE>
+<html>
+<head>
+	<meta name="format-detection" content="telephone = no">
+	<meta name="msapplication-tap-highlight" content="no">
+	<meta charset = "utf-8"/>
+	<meta name="viewport" content="user-scalable = no, initial-scale = 1, maximum-scale = 1, minimum-scale = 1, width = device-width">
+
+	<link rel="stylesheet" href="css/view.css">
+	<link rel="stylesheet" href="css/index.css">
+
+	<title>view-config</title>
+</head>
+<body>
+	<section data-view-id="page1" data-view="true">
+		<header>
+			<span class="nav-back" data-view-rel=":back"></span>
+			视图配置
+			<a class = "nav-homepage" data-view-rel = "@../../../index.html"></a>
+		</header>
+		<div class = "body">
+			<div class = "tip tip1">一些文本</div>
+			<div class = "btn btn1">调大字体</div>
+			<div class = "btn btn2">获取字号</div>
+			<div class = "btn btn3">调整主题</div>
+		</div>
+	</section>
+
+	<script type = "text/javascript" src = "js/plugin/view.min.js"></script>
+	<script type = "text/javascript">
+		var view = View.ofId("page1");
+
+		//---------------- 定义配置 -------------//
+
+		/**
+		 * 创建名为：tip-font-size 的配置项，并设定配置项的应用方法：将tip字体变大
+		 * @param {*} v 应用配置时传入的数据
+		 */
+		view.config.get("tip-font-size").setApplication(function(v){
+			var tipObj = view.find(".tip.tip1");
+			tipObj.style.fontSize = v + "px";
+		}).setValue(12).apply();
+
+		/**
+		 * 创建名为：is-tip-dark 的配置项，并在设定取值后将其反映到dom上，以实现“通过css控制页面表现”的效果
+		 */
+		view.config.get("is-tip-dark").setValue(true).reflectToDom();
+
+		//---------------- 使用配置 -------------//
+
+		var btn1Obj = view.find(".btn.btn1"),
+			btn2Obj = view.find(".btn.btn2"),
+			btn3Obj = view.find(".btn.btn3");
+
+		btn1Obj.addEventListener("click", function(){
+			var configInstance = view.config.get("tip-font-size");
+			configInstance.setValue(
+				configInstance.getValue() + 2,
+				true/* true：无论是否已经有值均覆盖既有取值。false：如果已经有值则什么也不做。如果不传则默认为false */
+			).apply();
+		});
+
+		btn2Obj.addEventListener("click", function(){
+			alert(view.config.get("tip-font-size").getValue());
+		});
+
+		btn3Obj.addEventListener("click", function(){
+			var configInstance = view.config.get("is-tip-dark");
+			configInstance.setValue(
+				!configInstance.getValue(),
+				true/* true：无论是否已经有值均覆盖既有取值。false：如果已经有值则什么也不做。如果不传则默认为false */
+			).reflectToDom();
+		});
+	</script>
+</body>
+</html>
