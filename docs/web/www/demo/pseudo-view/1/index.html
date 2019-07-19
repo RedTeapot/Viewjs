@@ -1,0 +1,52 @@
+<!DOCTYPE>
+<html>
+<head>
+	<meta name="format-detection" content="telephone = no">
+	<meta name="msapplication-tap-highlight" content="no">
+	<meta charset = "utf-8"/>
+	<meta name="viewport" content="user-scalable = no, initial-scale = 1, maximum-scale = 1, minimum-scale = 1, width = device-width">
+
+	<link rel="stylesheet" href="css/view.css">
+	<link rel="stylesheet" href="css/index.css">
+
+	<title>pseudo-view</title>
+</head>
+<body>
+	<section data-view-id="page1" data-view="true">
+		<header>
+			<span class="nav-back" data-view-rel=":back"></span>
+			视图1
+			<a class = "nav-homepage" data-view-rel = "@../../../index.html"></a>
+		</header>
+		<div class = "body">
+			<div class = "code forward"></div>
+			<div class = "btn forward" data-view-rel = ":forward">前进</div>
+			<div class = "btn" data-view-rel = "page2">进入视图2</div>
+		</div>
+	</section>
+	<section data-view-id="page2" data-view="true">
+		<header>
+			<span class="nav-back" data-view-rel=":back"></span>
+			视图2
+			<a class = "nav-homepage" data-view-rel = "@../../../index.html"></a>
+		</header>
+		<div class = "body">
+			<div class = "code back"></div>
+			<div class = "btn back" data-view-rel = ":back">后退</div>
+
+			<div class = "code default-view"></div>
+			<div class = "btn default-view" data-view-rel = ":default-view">首页</div>
+		</div>
+	</section>
+
+	<script type = "text/javascript" src = "js/plugin/view.min.js"></script>
+	<script type = "text/javascript">
+	["back", "forward", "default-view"].forEach(function(k){
+		var btnObj = View.find(".btn." + k),
+			codeObj = View.find(".code." + k);
+
+		codeObj.innerText = btnObj.outerHTML;
+	});
+	</script>
+</body>
+</html>

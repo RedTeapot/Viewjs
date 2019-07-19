@@ -1,0 +1,91 @@
+html, body{
+	position: relative;
+	font-family: "Microsoft Yahei", sans-serif, serif;
+	font-size: 100px;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden;
+}
+body{
+	font-size: 0.12rem;
+	color: #333333;
+	overflow: hidden;
+	padding: 0 0.1rem;
+	box-sizing: border-box;
+}
+
+header{
+	position: relative;
+	height: 0.44rem;
+	line-height: 0.44rem;
+	color: white;
+	text-align: center;
+	font-size: 0.15rem;
+	background-color: #29b482;
+}
+header .nav-back{
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: inline-block;
+	width: 0.54rem;
+	height: 100%;
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MzAzRTVGNEUyMzFFMTFFN0IyNTJBNEVDNEYyQjhBODEiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MzAzRTVGNEQyMzFFMTFFN0IyNTJBNEVDNEYyQjhBODEiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MUJFN0YyQzhGODlGMTFFNjlBRTVEMzFDODhBOTJGN0YiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MUJFN0YyQzlGODlGMTFFNjlBRTVEMzFDODhBOTJGN0YiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4SKNsmAAABNElEQVR42uzYvwtBURQH8MegLErKIFktRv+IUQYZlL+AgSwmI5uS+COUZCC7WCyKRSmbkjI959Z7+WbSfffolHvqW2+5p8/7de99L+S6riO5wo7wskALtEABwB5lT6lojVbzIGOG7rtmOj04cX3A7ShpScAu4BZBenHgmoBbBe1nGjcC3MhETy7c1lRfU7gB4NaUmCQgvhBz08900AZtwC05ZoQggyeAG3PNpzqDIh+4LedqpDOoB7gj81KptVmYUp7ecZJSY91qaJ5ZjnKFK1mQdIv9JLxb7FdVGlAlTjkDsiQN6F/JCyDr0oAqGcodkA1pQJUs5QDIojSgSvQDWZMGdLydzAmQZWlAH4nzZEca0PE+km6AbP1qqfu2zpQ8ZUN5UFI6TUL2/6AFWqAF/jnwJcAAdTKdLpPp6B8AAAAASUVORK5CYII=);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 0.2rem auto;
+}
+header .nav-homepage{
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: inline-block;
+	width: 0.54rem;
+	height: 100%;
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAADD0lEQVRoQ+2Yu4oVQRCG/0rEK4ogGAgbGBgoqKjgZS/qguID+B4mvoKx72EuKLq63q+4ggYGBoKBIIiLF8Sk5B+ql3ZO90zP2W7PHJlOzmFm6Pm/qr+ra1ow5UOmXD+KAqjqRgZIRH6VClQxAFXdAOCGCT8vIr9LQBQB8MSfNtF3ARSByA4QEO8CXwSiBMASgDOm+oP9ztjvkogs5rRSNgBV3QTgOgBnm48A5gAogAcA9nh2upBrYWcBsGpzG8BJE0nxsyJSZUBVmQEf4hGAxRwQ6wYIiP8E4LgT7+xiEE8A7LZrWSDWBRARz8i/D/lcVfdaJrJBjA2gqlsA3PRsw8hHxXuZIMRjALtyZGIsABN/B8AxE/EZwIlY5OvZUNV9AO7XIM6JyI+uFaozQET8nIi86/LyAMRzlt+uEJ0Acon37MRMcDHvtGudIZIBAuK/0P9dIx+w0wEAy+NCJAGo6jYArPPO8xS/ICJvutgm9qyqjg3RCmDi7wE4ZAKyivfsRAhudts9O3Gz+9YUpEaAgPhVK5VZIh+w02EArG4OYgXAfBNEFCAg/qeJf5XDNg12IgQzsdmeaYQIAqjqDouEsw3neikiR0uK9+z0AsAR711RiBEAE88I7K+JXRYR12kW5VBVfjss1F4ShPgLICD+O4CtNtGkAGhd307c7L46uDWAiHh+fDydMMCs9VwO4q2txQqiAgiIJzVJn6kqP0g4JpIBERFVPRWDcAAsW9youHAono3VQ4ObOIDpIMQtADyqYSVkgFd9C3G3vQbgiohw46pGHzLgaTkL4DKAiyLC9dl+sNUngFDpS2klemGhWN0eAErsaP5GxirU9I4hA16FYJvBTjJlsASyXQiOiWRAVf8rgNcA1voVCzM73IP2v/cZGBFYy9AAMNKNNiyopI2sLcJt9/3392ERDxZyX2T/bCNrs0jb/cFCCYuYH9WXGrZZnmBcjdX5WgY4D+eLDc5TnYjktFBKi+CeaVvEyXMNAJb65IjZgyv+0Qev2cGBf1CWNGdT01dZLGmWHj809QB/AG1yKE+RqM3LAAAAAElFTkSuQmCC);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 0.2rem auto;
+}
+
+.body{
+	padding:  0 1em;
+	line-height: 2em;
+}
+
+h1{
+	text-align: center;
+	padding: 0.2rem;
+}
+
+.code{
+	padding: 0.2rem;
+	font-size: 0.1rem;
+	margin: 0.1rem;
+	line-height: 2em;
+	border-radius: 0.05rem;
+	font-family: "Courier New", Couriew, sans-serif;
+	white-space: pre;
+	overflow: auto;
+	color: white;
+	background: rgba(47, 47, 47, 0.8);
+}
+
+.btn{
+	height: 0.4rem;
+	line-height: 0.4rem;
+	text-align: center;
+	color: white;
+	background: #29b482;
+	margin: 0.12rem 0.12rem 0;
+}
+
+footer{
+	display: none;
+	padding: 0.1rem 0;
+}
+footer.visible{
+	display: block;
+}
