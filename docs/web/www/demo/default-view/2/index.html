@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html data-view-directly-accessible = "false">
+<head>
+	<meta charset = "utf-8" />
+	<meta name = "format-detection" content = "telephone = no" />
+	<meta name = "msapplication-tap-highlight" content = "no" />
+	<meta name = "progma" content = "no-cache"/>
+	<meta name = "cache-control" content = "no-cache, no-store, must-revalidate"/>
+	<meta name = "viewport" content = "user-scalable = no, initial-scale = 1, maximum-scale = 1, minimum-scale = 1, width = device-width" />
+
+	<link rel = "stylesheet" href="css/view.css" />
+	<link rel = "stylesheet" href="css/index.css" />
+
+	<title>default-view</title>
+</head>
+<body>
+	<section id = "page1" data-view = "true">
+		<header>
+			<span class = "nav-back" data-view-rel = ":back"></span>
+			视图1
+			<a class = "nav-homepage" data-view-rel = "@../../../index.html"></a>
+		</header>
+		<h1>本视图虽然是DOM顺序上的第一个，但视图2被明确设定为默认视图，因此页面刷新后将呈现视图2</h1>
+		<div data-view-rel = "page2" class = "btn">进入视图2</div>
+	</section>
+	<section id = "page2" data-view = "true" data-view-default = "true">
+		<header>
+			<span class = "nav-back" data-view-rel = ":back"></span>
+			视图2
+			<a class = "nav-homepage" data-view-rel = "@../../../index.html"></a>
+		</header>
+		<h1>本视图是默认视图</h1>
+		<div data-view-rel = "page1" class = "btn">进入视图1</div>
+	</section>
+
+	<script type = "text/javascript" src="js/plugin/view.min.js"></script>
+	<script type = "text/javascript" src="js/view.switch.js"></script>
+</body>
+</html>
