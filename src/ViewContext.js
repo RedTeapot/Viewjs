@@ -48,8 +48,27 @@
 		 * 清空所有属性
 		 */
 		util.defineReadOnlyProperty(this, "clear", function(){
-			obj = {};
+			for(var p in obj)
+				delete obj[p];
 			return this;
+		});
+
+		/**
+		 * 列举所有属性名
+		 */
+		util.defineReadOnlyProperty(this, "listKeys", function(){
+			return Object.keys(obj);
+		});
+
+		/**
+		 * 获取属性个数
+		 */
+		util.defineReadOnlyProperty(this, "size", function(){
+			var c = 0;
+			for(var p in obj)
+				c++;
+
+			return c;
 		});
 	};
 
