@@ -18,6 +18,7 @@
 		layout = ctx[name].layout;
 
 	var View = ctx[name].ViewConstructor,
+		ViewContext = ctx[name].ViewContext,
 		ViewState = ctx[name].ViewState,
 		OperationState = ctx[name].OperationState,
 		ViewLayout = ctx[name].ViewLayout,
@@ -41,6 +42,9 @@
 
 	/** 暴露布局组件，供第三方使用 */
 	View.layout = layout;
+
+	/** 视图共享数据的存储上下文 */
+	View.context = new ViewContext();
 
 	/**
 	 * 检查浏览器的history是否支持支持push/pop特性
