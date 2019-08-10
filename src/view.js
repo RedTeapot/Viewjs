@@ -419,13 +419,29 @@
 			targetViewId = defaultView.getId();
 		}
 		/* 群组视图（"~[groupName]"） */
-		if(/^~/.test(targetViewId)){
-			var groupName = targetViewId.substring(1);
+		if(/^\s*~/.test(targetViewId)){
+			var groupName = targetViewId.replace(/^\s*~+/, "").trim();
 			var firstViewId = viewInternalVariable.findFirstViewIdOfGroupName(groupName);
 			if(null == firstViewId)
 				return View;
 
 			targetViewId = firstViewId;
+		}
+		/* 是否是外部链接 */
+		if(/^(http|https|ftp):\/\//gim.test(targetViewId)){
+			window.location.assign(targetViewId);
+			return View;
+		}
+		/* 是否是外部链接 */
+		if(/^\s*@+/.test(targetViewId)){
+			var path = targetViewId.replace(/^\s*@+/, "").trim();
+			if("" === path){
+				globalLogger.warn("Empty target: '{}'", targetViewId);
+				return;
+			}
+
+			window.location.assign(path);
+			return View;
 		}
 
 		/* 检查目标视图是否存在 */
@@ -475,13 +491,29 @@
 			targetViewId = defaultView.getId();
 		}
 		/* 群组视图（"~[groupName]"） */
-		if(/^~/.test(targetViewId)){
-			var groupName = targetViewId.substring(1);
+		if(/^\s*~/.test(targetViewId)){
+			var groupName = targetViewId.replace(/^\s*~+/, "").trim();
 			var firstViewId = viewInternalVariable.findFirstViewIdOfGroupName(groupName);
 			if(null == firstViewId)
 				return View;
 
 			targetViewId = firstViewId;
+		}
+		/* 是否是外部链接 */
+		if(/^(http|https|ftp):\/\//gim.test(targetViewId)){
+			window.location.replace(targetViewId);
+			return View;
+		}
+		/* 是否是外部链接 */
+		if(/^\s*@+/.test(targetViewId)){
+			var path = targetViewId.replace(/^\s*@+/, "").trim();
+			if("" === path){
+				globalLogger.warn("Empty target: '{}'", targetViewId);
+				return;
+			}
+
+			window.location.replace(path);
+			return View;
 		}
 
 		/* 检查目标视图是否存在 */
