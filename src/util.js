@@ -227,66 +227,31 @@
 
 	/** 设备环境信息组件 */
 	var env = (function() {
-		var ua = navigator.userAgent,
-
-			isQB = /(?:MQQBrowser|QQ)/.test(ua),
-			isUC = /(?:UCWEB|UCBrowser)/.test(ua),
-			isSafari = /(?:Safari)/.test(ua),
-			isOpera= /(?:Opera Mini)/.test(ua),
-
-			isIOS = /(?:Mac OS)/.test(ua),
-			isAndroid = /(?:Android)/.test(ua),
-			isWindowsPhone = /(?:Windows Phone)/.test(ua),
-
-			isIPad = isIOS && /(?:iPad)/.test(ua),
-			isIPhone = isIOS && /(?:iPhone)/.test(ua),
-
-			isTablet = /(?:Tablet|PlayBook)/.test(ua) || isIPad,
-			isMobile = (/(?:Mobile)/.test(ua) && !isIPad) || isWindowsPhone,
-			isPc = !isMobile && !isTablet;
-
+		var ua = navigator.userAgent;
 		var obj = {};
-
-		var resetProperty = function(){
-			obj.isQB = isQB;
-			obj.isUC = isUC;
-			obj.isSafari = isSafari;
-			obj.isOpera = isOpera;
-
-			obj.isIOS = isIOS;
-			obj.isAndroid = isAndroid;
-			obj.isWindowsPhone = isWindowsPhone;
-
-			obj.isIPad = isIPad;
-			obj.isIPhone = isIPhone;
-
-			obj.isTablet = isTablet;
-			obj.isMobile = isMobile;
-			obj.isPc = isPc;
-
-			obj.isHistoryPushPopSupported = ("pushState" in history) && (typeof history.pushState === "function");
-		};
 
 		var refresh = function(){
 			ua = navigator.userAgent;
 
-			isQB = /(?:MQQBrowser|QQ)/.test(ua);
-			isUC = /(?:UCWEB|UCBrowser)/.test(ua);
-			isSafari = /(?:Safari)/.test(ua);
-			isOpera= /(?:Opera Mini)/.test(ua);
+			obj.isUC = /(?:UCWEB|UCBrowser)/.test(ua);
+			obj.isSafari = /(?:Safari)/.test(ua);
+			obj.isOpera = /(?:Opera Mini)/.test(ua);
+			obj.isTencent = /(?:MQQBrowser|QQ|MicroMessenger)/.test(ua);
+			obj.isTencentMiniProgram = obj.isTencent && (/(?:miniprogram)/i.test(ua) || window["__wxjs_environment"] === 'miniprogram');
 
-			isIOS = /(?:Mac OS)/.test(ua);
-			isAndroid = /(?:Android)/.test(ua);
-			isWindowsPhone = /(?:Windows Phone)/.test(ua);
+			obj.isIOS = /(?:Mac OS)/.test(ua);
+			obj.isAndroid = /(?:Android)/.test(ua);
+			obj.isWindowsPhone = /(?:Windows Phone)/.test(ua);
 
-			isIPad = isIOS && /(?:iPad)/.test(ua);
-			isIPhone = isIOS && /(?:iPhone)/.test(ua);
+			obj.isIPad = obj.isIOS && /(?:iPad)/.test(ua);
+			obj.isIPhone = obj.isIOS && /(?:iPhone)/.test(ua);
 
-			isTablet = /(?:Tablet|PlayBook)/.test(ua) || isIPad;
-			isMobile = (/(?:Mobile)/.test(ua) && !isIPad) || isWindowsPhone;
-			isPc = !isMobile && !isTablet;
+			obj.isTablet = /(?:Tablet|PlayBook)/.test(ua) || obj.isIPad;
+			obj.isMobile = (/(?:Mobile)/.test(ua) && !obj.isIPad) || obj.isWindowsPhone;
+			obj.isPc = !obj.isMobile && !obj.isTablet;
 
-			resetProperty();
+			obj.isHistoryPushPopSupported = ("pushState" in history) && (typeof history.pushState === "function");
+
 			return obj;
 		};
 
