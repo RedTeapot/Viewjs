@@ -1,0 +1,118 @@
+html, body{
+	position: relative;
+	font-family: "Microsoft Yahei", sans-serif, serif;
+	font-size: 100px;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden;
+}
+
+@mixin clearFloatByAfter{
+	&:before{
+		content: "";
+		display: block;
+		clear: both;
+	}
+}
+
+[data-view-id=index]{
+	position: relative;
+
+	.content {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translateY(-50%);
+		margin-left: -19.2rem;
+		width: 38.4rem;
+		font-size: 0.88rem;
+		box-sizing: border-box;
+		@include clearFloatByAfter;
+	}
+
+	.text{
+		display: block;
+		padding: 2rem 0;
+		text-align: center;
+	}
+
+	.layout-info{
+		display: block;
+		padding: 2rem 0;
+		text-align: center;
+		color: #666666;
+		line-height: 1.5em;
+	}
+
+	.left{
+		position: relative;
+		z-index: 1;
+		float: left;
+		width: 22.4rem;
+	}
+
+	.right{
+		float: left;
+		width: 100%;
+		margin-left: -22.4rem;
+		padding-left: calc(22.4rem + 0.24rem);
+		box-sizing: border-box;
+	}
+
+	.top{
+		height: 12.6rem;
+		overflow: auto;
+		-webkit-overflow-scrolling: touch;
+		background-color: rgba(214, 218, 217, 0.4);
+	}
+
+	.left .top{
+		position: relative;
+		//background: url(../asset/img/view-index/city.png) no-repeat center / 100% auto;
+	}
+
+	.right .top{
+		background-color: #D9E6EC;
+	}
+
+	.bottom{
+		height: 3.1rem;
+		line-height: 3.1rem;
+		margin-top: 0.24rem;
+		margin-right: -0.24rem;
+		overflow: hidden;
+		text-align: center;
+		color: white;
+		@include clearFloatByAfter;
+
+		.f1, .f2{
+			float: left;
+			width: 50%;
+			padding-right: 0.24rem;
+			box-sizing: border-box;
+		}
+
+		.f1 > div{
+			background-color: #4f8d3a;
+		}
+
+		.f2 > div{
+			background-color: #28866a;
+		}
+
+		&.f3{
+			background-color: #1B77A3;
+		}
+	}
+
+	header{
+		height: 4.32rem;
+		line-height: 4.32rem;
+		font-size: 0.88rem;
+		text-align: center;
+		margin-bottom: 0.24rem;
+		background-color: rgba(214, 218, 217, 0.4);
+	}
+}
