@@ -3,36 +3,115 @@
   <component name="ChangeListManager">
     <list default="true" id="14ed39e3-f4fc-42c4-b75d-b3c5bc2c830e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/fallback-view/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/fallback-view/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/fallback-view/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/fallback-view/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-container/1/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-container/1/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-container/1/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-container/1/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-container/2/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-container/2/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-container/2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-container/2/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-context/1/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-context/1/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-context/1/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-context/1/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-directly-accessible/1/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-directly-accessible/1/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-directly-accessible/1/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-directly-accessible/1/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-directly-accessible/2/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-directly-accessible/2/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-directly-accessible/2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-directly-accessible/2/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-layout/1/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-layout/1/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-layout/1/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-layout/1/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-layout/2/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-layout/2/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-layout/2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-layout/2/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-layout/3/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-layout/3/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-layout/3/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-layout/3/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-logger/1/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-logger/1/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-logger/1/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-logger/1/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-namespace/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-namespace/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-namespace/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-namespace/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/1/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/1/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/1/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/1/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/2/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/2/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/2/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-title/1/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-title/1/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-title/1/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-title/1/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-title/2/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-title/2/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-title/2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-title/2/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/concat.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/gulpfile.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/install-gulp.bat" beforeDir="false" afterPath="$PROJECT_DIR$/build/install-gulp.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/min.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/releaseToDoc.bat" beforeDir="false" afterPath="$PROJECT_DIR$/build/releaseToDoc.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/stage.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/stageAndreleaseToDoc.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/default-view/1/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/default-view/1/js/plugin/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/default-view/2/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/default-view/2/js/plugin/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/default-view/3/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/default-view/3/js/plugin/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/fallback-view/1/js/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/fallback-view/1/js/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/initialize-view/1/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/initialize-view/1/js/plugin/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/initialize-view/2/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/initialize-view/2/js/plugin/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/pseudo-view/1/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/pseudo-view/1/js/plugin/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-config/1/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-config/1/js/plugin/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-container/1/js/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-container/1/js/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-container/2/js/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-container/2/js/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-context/1/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-context/1/js/plugin/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-directly-accessible/1/js/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-directly-accessible/1/js/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-directly-accessible/2/js/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-directly-accessible/2/js/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-event/1/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-event/1/js/plugin/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-group/1/js/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-group/1/js/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-layout/1/js/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-layout/1/js/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-layout/2/js/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-layout/2/js/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-layout/3/js/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-layout/3/js/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-layout/4/js/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-layout/4/js/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-logger/1/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-logger/1/js/plugin/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-namespace/1/js/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-namespace/1/js/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-parameter/1/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-parameter/1/js/plugin/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-parameter/2/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-parameter/2/js/plugin/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-parameter/3/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-parameter/3/js/plugin/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/1/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/1/js/plugin/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/2/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/2/js/plugin/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-title/1/js/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-title/1/js/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-title/2/js/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-title/2/js/view.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/dist/viewjs-1.6.1-B201904172041.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/js/lib/view/view.1.6.0-B201812071500.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/js/lib/view/view.1.6.0-B201812071500.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/js/page/define.version.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/js/page/define.version.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.4.1-B201703141541/view.1.4.1-B201703141541.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.1-B201703141541/view.1.4.1-B201703141541.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.4.1-B201703141851/view.1.4.1-B201703141851.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.1-B201703141851/view.1.4.1-B201703141851.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.4.1-B201703271911/view.1.4.1-B201703271911.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.1-B201703271911/view.1.4.1-B201703271911.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.4.1-B201704011750/view.1.4.1-B201704011750.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.1-B201704011750/view.1.4.1-B201704011750.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.4.1-B201704011800/view.1.4.1-B201704011800.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.1-B201704011800/view.1.4.1-B201704011800.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.4.1-B201705061120/view.1.4.1-B201705061120.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.1-B201705061120/view.1.4.1-B201705061120.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.4.1-B201705111516/view.1.4.1-B201705111516.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.1-B201705111516/view.1.4.1-B201705111516.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.4.1-B201705121020/view.1.4.1-B201705121020.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.1-B201705121020/view.1.4.1-B201705121020.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.4.1-B201705180936/view.1.4.1-B201705180936.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.1-B201705180936/view.1.4.1-B201705180936.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.4.2-B201705241625/view.1.4.2-B201705241625.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.2-B201705241625/view.1.4.2-B201705241625.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.4.2-B201705251731/view.1.4.2-B201705251731.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.2-B201705251731/view.1.4.2-B201705251731.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.4.2-B201706081130/view.1.4.2-B201706081130.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.2-B201706081130/view.1.4.2-B201706081130.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.4.2-B201706121659/view.1.4.2-B201706121659.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.2-B201706121659/view.1.4.2-B201706121659.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.4.2-B201706161059/view.1.4.2-B201706161059.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.2-B201706161059/view.1.4.2-B201706161059.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.4.2-B201706161146/view.1.4.2-B201706161146.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.2-B201706161146/view.1.4.2-B201706161146.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.4.2-B201706161155/view.1.4.2-B201706161155.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.2-B201706161155/view.1.4.2-B201706161155.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.4.2-B201706231352/view.1.4.2-B201706231352.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.2-B201706231352/view.1.4.2-B201706231352.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.4.3-B201707030912/view.1.4.3-B201707030912.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.3-B201707030912/view.1.4.3-B201707030912.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.4.3-B201707051617/view.1.4.3-B201707051617.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.3-B201707051617/view.1.4.3-B201707051617.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.4.3-B201707111349/view.1.4.3-B201707111349.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.3-B201707111349/view.1.4.3-B201707111349.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.4.3-B201707121438/view.1.4.3-B201707121438.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.3-B201707121438/view.1.4.3-B201707121438.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.4.3-B201707121556/view.1.4.3-B201707121556.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.3-B201707121556/view.1.4.3-B201707121556.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.4.3-B201707191134/view.1.4.3-B201707191134.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.3-B201707191134/view.1.4.3-B201707191134.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.4.3-B201708031423/view.1.4.3-B201708031423.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.3-B201708031423/view.1.4.3-B201708031423.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.4.3-B201708041802/view.1.4.3-B201708041802.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.3-B201708041802/view.1.4.3-B201708041802.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.4.3-B201708210951/view.1.4.3-B201708210951.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.3-B201708210951/view.1.4.3-B201708210951.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.5.0-B201708230938/view.1.5.0-B201708230938.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.0-B201708230938/view.1.5.0-B201708230938.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.5.0-B201708241443/view.1.5.0-B201708241443.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.0-B201708241443/view.1.5.0-B201708241443.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.5.0-B201708250933/view.1.5.0-B201708250933.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.0-B201708250933/view.1.5.0-B201708250933.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.5.0-B201708251200/view.1.5.0-B201708251200.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.0-B201708251200/view.1.5.0-B201708251200.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.5.0-B201708301029/view.1.5.0-B201708301029.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.0-B201708301029/view.1.5.0-B201708301029.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.5.0-B201709051136/view.1.5.0-B201709051136.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.0-B201709051136/view.1.5.0-B201709051136.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.5.0-B201709061010/view.1.5.0-B201709061010.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.0-B201709061010/view.1.5.0-B201709061010.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.5.1-B201709281619/view.1.5.1-B201709281619.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.1-B201709281619/view.1.5.1-B201709281619.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.5.1-B201710171133/view.1.5.1-B201710171133.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.1-B201710171133/view.1.5.1-B201710171133.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.5.1-B201710291638/view.1.5.1-B201710291638.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.1-B201710291638/view.1.5.1-B201710291638.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.5.1-B201711281136/view.1.5.1-B201711281136.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.1-B201711281136/view.1.5.1-B201711281136.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.5.1-B201712071410/view.1.5.1-B201712071410.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.1-B201712071410/view.1.5.1-B201712071410.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.5.1-B201712141454/view.1.5.1-B201712141454.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.1-B201712141454/view.1.5.1-B201712141454.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.5.1-B201712181050/view.1.5.1-B201712181050.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.1-B201712181050/view.1.5.1-B201712181050.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.5.1-B201712211701/view.1.5.1-B201712211701.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.1-B201712211701/view.1.5.1-B201712211701.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.5.1-B201712221032/view.1.5.1-B201712221032.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.1-B201712221032/view.1.5.1-B201712221032.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.5.1-B201801041047/view.1.5.1-B201801041047.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.1-B201801041047/view.1.5.1-B201801041047.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.5.1-B201801251344/view.1.5.1-B201801251344.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.1-B201801251344/view.1.5.1-B201801251344.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.5.2-B201802081353/view.1.5.2-B201802081353.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.2-B201802081353/view.1.5.2-B201802081353.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.5.2-B201805292016/view.1.5.2-B201805292016.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.2-B201805292016/view.1.5.2-B201805292016.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.5.3-B201807240943/view.1.5.3-B201807240943.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.3-B201807240943/view.1.5.3-B201807240943.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.6.0-B201901071423/view.1.6.0-B201901071423.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.6.0-B201901071423/view.1.6.0-B201901071423.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/1.6.1-B201904172041/view.1.6.1-B201904172041.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.6.1-B201904172041/view.1.6.1-B201904172041.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ChainedHandle.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/ChainedHandle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Logger.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/Logger.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OperationState.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/OperationState.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ViewConfiguration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/ViewConfiguration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ViewConfigurationSet.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/ViewConfigurationSet.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ViewConstructor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/ViewConstructor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ViewContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/ViewContext.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ViewLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/ViewLayout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ViewState.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/ViewState.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrance.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/entrance.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/eventDrive.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/eventDrive.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/layout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resolution.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/resolution.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/touch.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/touch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/view.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/view.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/viewAttribute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/viewAttribute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/viewInternalVariable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/viewInternalVariable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/viewParameter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/viewParameter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/viewRepresentation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/viewRepresentation.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -46,19 +125,54 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-group/1/index.html">
+        <entry file="file://$PROJECT_DIR$/build/scripts/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="54" column="39" lean-forward="true" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
+            <state relative-caret-position="462">
+              <caret line="21" column="37" lean-forward="true" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build/scripts/lib.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="389">
+              <caret line="244" column="13" lean-forward="true" selection-start-line="244" selection-start-column="13" selection-end-line="244" selection-end-column="13" />
+              <folding>
+                <element signature="e#2135#2248#0" />
+                <element signature="e#2325#2995#0" />
+                <element signature="e#3074#3120#0" />
+                <element signature="e#3211#3216#0" />
+                <element signature="e#3485#3622#0" />
+                <element signature="e#3380#3714#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build/releaseToDoc.bat">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="62" lean-forward="true" selection-end-column="79" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build/min.bat">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="39" selection-end-column="70" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-group/1/css/index.css">
+        <entry file="file://$PROJECT_DIR$/build/src.bat">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
+            <state>
+              <caret column="39" selection-start-column="39" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -67,16 +181,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>widthHegi</find>
-      <find>setIsDi</find>
-      <find>setIsDirectlyAccessible</find>
-      <find>navTo</find>
-      <find>history.go</find>
-      <find>Type</find>
-      <find>showView</find>
-      <find>Marking View as initialized and ready</find>
-      <find>popstate</find>
-      <find>util.env.isHistoryPushPopSupported</find>
       <find>markViewReady</find>
       <find>markViewToBeInited</find>
       <find>attr$view_state</find>
@@ -97,6 +201,16 @@
       <find>containerDom</find>
       <find>debugger</find>
       <find>&lt;a class = &quot;nav-homepage&quot;&gt;&lt;/a&gt;</find>
+      <find>Hot</find>
+      <find>fulfill</find>
+      <find>showView</find>
+      <find>isQB</find>
+      <find>clearFloatByAfter</find>
+      <find>!DOCTYPE&gt;</find>
+      <find>&lt;!DOCTYPE&gt;</find>
+      <find>0.88</find>
+      <find>pops</find>
+      <find>fillParam</find>
     </findStrings>
     <replaceStrings>
       <replace>viewAttribute.$0</replace>
@@ -104,10 +218,11 @@
       <replace>getViewDomElements</replace>
       <replace>&lt;a class = &quot;nav-homepage&quot; data-view-rel = &quot;&quot;&gt;&lt;/a&gt;</replace>
       <replace>&lt;a class = &quot;nav-homepage&quot; data-view-rel = &quot;@../../../index.html&quot;&gt;&lt;/a&gt;</replace>
+      <replace>&lt;!DOCTYPE HTML&gt;</replace>
     </replaceStrings>
     <dirStrings>
-      <dir>G:\代码仓库\js\view\src</dir>
       <dir>C:\Users\WMJ\Desktop\View.js\git\Viewjs\src</dir>
+      <dir>G:\代码仓库\js\view\src</dir>
       <dir>G:\代码仓库\js\view\docs\web\www\demo</dir>
     </dirStrings>
   </component>
@@ -117,36 +232,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/ViewConstructor.js" />
-        <option value="$PROJECT_DIR$/src/ViewConfigurationSet.js" />
-        <option value="$PROJECT_DIR$/src/ViewContext.js" />
-        <option value="$PROJECT_DIR$/src/viewInternalVariable.js" />
-        <option value="$PROJECT_DIR$/src/viewAttribute.js" />
-        <option value="$PROJECT_DIR$/src/view.css" />
-        <option value="$PROJECT_DIR$/src/view.js" />
-        <option value="$PROJECT_DIR$/src/layout.js" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-layout/1/js/view.min.js" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-layout/2/js/view.min.js" />
-        <option value="$PROJECT_DIR$/src/ViewState.js" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-container/2/js/view.js" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-directly-accessible/2/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-container/1/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-container/2/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-context/1/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-directly-accessible/1/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-layout/1/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-layout/2/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-layout/3/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-logger/1/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-namespace/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/1/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/2/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-title/1/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-title/2/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/fallback-view/css/index.css" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-container/1/css/index.css" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-container/2/css/index.css" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-context/1/css/index.css" />
         <option value="$PROJECT_DIR$/docs/web/www/demo/view-directly-accessible/1/css/index.css" />
         <option value="$PROJECT_DIR$/docs/web/www/demo/view-directly-accessible/2/css/index.css" />
         <option value="$PROJECT_DIR$/docs/web/www/demo/view-layout/1/css/index.css" />
@@ -165,9 +250,39 @@
         <option value="$PROJECT_DIR$/docs/web/www/demo/view-config/1/index.html" />
         <option value="$PROJECT_DIR$/docs/web/www/demo/initialize-view/1/css/index.css" />
         <option value="$PROJECT_DIR$/docs/web/www/demo/initialize-view/1/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/index.html" />
         <option value="$PROJECT_DIR$/docs/web/www/demo/view-group/1/index.html" />
         <option value="$PROJECT_DIR$/docs/web/www/demo/view-group/1/css/index.css" />
+        <option value="$PROJECT_DIR$/docs/web/www/js/page/index/init.js" />
+        <option value="$PROJECT_DIR$/docs/web/www/demo/default-view/1/index.html" />
+        <option value="$PROJECT_DIR$/docs/web/www/demo/default-view/2/index.html" />
+        <option value="$PROJECT_DIR$/docs/web/www/demo/default-view/3/index.html" />
+        <option value="$PROJECT_DIR$/docs/web/www/demo/view-namespace/1/index.html" />
+        <option value="$PROJECT_DIR$/docs/web/www/demo/view-container/1/index.html" />
+        <option value="$PROJECT_DIR$/docs/web/www/demo/pseudo-view/1/index.html" />
+        <option value="$PROJECT_DIR$/docs/web/www/demo/pseudo-view/1/css/index.css" />
+        <option value="$PROJECT_DIR$/src/view.js" />
+        <option value="$PROJECT_DIR$/src/ViewContext.js" />
+        <option value="$PROJECT_DIR$/docs/web/www/css/index.scss" />
+        <option value="$PROJECT_DIR$/src/viewInternalVariable.js" />
+        <option value="$PROJECT_DIR$/src/util.js" />
+        <option value="$PROJECT_DIR$/docs/web/www/demo/view-layout/4/css/view.css" />
+        <option value="$PROJECT_DIR$/docs/web/www/demo/view-layout/4/css/index.css" />
+        <option value="$PROJECT_DIR$/docs/web/www/demo/view-layout/3/index.html" />
+        <option value="$PROJECT_DIR$/docs/web/www/demo/view-layout/2/index.html" />
+        <option value="$PROJECT_DIR$/docs/web/www/demo/view-layout/1/index.html" />
+        <option value="$PROJECT_DIR$/docs/web/www/demo/view-layout/4/css/index.scss" />
+        <option value="$PROJECT_DIR$/docs/web/www/demo/view-layout/4/index.html" />
+        <option value="$PROJECT_DIR$/docs/web/www/index.html" />
+        <option value="$PROJECT_DIR$/build/gulpfile.new.js" />
+        <option value="$PROJECT_DIR$/build/node_modules/_merge2@1.2.2@merge2/index.mjs" />
+        <option value="$PROJECT_DIR$/build/script.js" />
+        <option value="$PROJECT_DIR$/build/main.js" />
+        <option value="$PROJECT_DIR$/build/scripts/script.js" />
+        <option value="$PROJECT_DIR$/build/scripts/main.js" />
+        <option value="$PROJECT_DIR$/build/install-gulp.bat" />
+        <option value="$PROJECT_DIR$/build/releaseToDoc.bat" />
+        <option value="$PROJECT_DIR$/build/min.bat" />
+        <option value="$PROJECT_DIR$/build/src.bat" />
       </list>
     </option>
   </component>
@@ -182,6 +297,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -192,80 +308,7 @@
             <path>
               <item name="view" type="b2602c69:ProjectViewProjectNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="view" type="b2602c69:ProjectViewProjectNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="view" type="b2602c69:ProjectViewProjectNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="www" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="view" type="b2602c69:ProjectViewProjectNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="www" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="view" type="b2602c69:ProjectViewProjectNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="www" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-              <item name="view-group" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="view" type="b2602c69:ProjectViewProjectNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="www" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-              <item name="view-group" type="462c0819:PsiDirectoryNode" />
-              <item name="1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="view" type="b2602c69:ProjectViewProjectNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="www" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-              <item name="view-group" type="462c0819:PsiDirectoryNode" />
-              <item name="1" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="view" type="b2602c69:ProjectViewProjectNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="www" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-              <item name="view-group" type="462c0819:PsiDirectoryNode" />
-              <item name="1" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="view" type="b2602c69:ProjectViewProjectNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="www" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-              <item name="view-group" type="462c0819:PsiDirectoryNode" />
-              <item name="1" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="view" type="b2602c69:ProjectViewProjectNode" />
@@ -276,32 +319,31 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/docs/web/www/demo/view-group/1/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/build" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="MTConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\代码仓库\js\view\build" />
+      <recent name="G:\代码仓库\js\view\docs\web\www\demo\view-layout" />
+      <recent name="G:\代码仓库\js\view\docs\web\www\demo\pseudo-view\1" />
+      <recent name="G:\代码仓库\js\view\docs\web\www\demo\pseudo-view" />
+      <recent name="G:\代码仓库\js\view\docs\web\www\demo\view-container\1\js" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\代码仓库\js\view\build\scripts" />
+      <recent name="G:\代码仓库\js\view\src\css" />
+      <recent name="G:\代码仓库\js\view\src\js" />
       <recent name="G:\代码仓库\js\view\docs\web\www\demo\view-namespace\1" />
       <recent name="G:\代码仓库\js\view\docs\web\www\demo\fallback-view\1" />
-      <recent name="G:\代码仓库\js\view\docs\web\www\demo\view-container\1" />
-      <recent name="G:\代码仓库\js\view\build" />
-      <recent name="G:\代码仓库\js\view\src" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="G:\代码仓库\js\view\docs\web\www\demo\view-group\1\img" />
-      <recent name="G:\代码仓库\js\view\docs\web\www\demo\view-group\1" />
-      <recent name="G:\代码仓库\js\view\docs\web\www\demo\initialize-view" />
-      <recent name="G:\代码仓库\js\view\docs\web\www\demo\view-config\1" />
-      <recent name="G:\代码仓库\js\view\docs\web\www\demo\view-title" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -372,12 +414,27 @@
       <workItem from="1562677714029" duration="5136000" />
       <workItem from="1562898642043" duration="1033000" />
       <workItem from="1562930534066" duration="5004000" />
-      <workItem from="1562986541602" duration="13528000" />
+      <workItem from="1562986541602" duration="18634000" />
+      <workItem from="1563535261800" duration="3951000" />
+      <workItem from="1563755782053" duration="115000" />
+      <workItem from="1564573489273" duration="654000" />
+      <workItem from="1564642499182" duration="555000" />
+      <workItem from="1564643333962" duration="1313000" />
+      <workItem from="1564730126727" duration="693000" />
+      <workItem from="1565157852429" duration="951000" />
+      <workItem from="1565166406080" duration="27000" />
+      <workItem from="1565351583142" duration="3161000" />
+      <workItem from="1565423860899" duration="606000" />
+      <workItem from="1566873769940" duration="12000" />
+      <workItem from="1566895559974" duration="1985000" />
+      <workItem from="1566990569033" duration="5246000" />
+      <workItem from="1567075189727" duration="1210000" />
+      <workItem from="1567220755968" duration="8425000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93266000" />
+    <option name="totallyTimeSpent" value="127276000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -392,10 +449,9 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28586498" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info content_ui="combo" id="Hierarchy" order="3" weight="0.24973656" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21413502" />
+      <window_info id="Favorites" order="1" side_tool="true" />
+      <window_info content_ui="combo" id="Hierarchy" order="2" weight="0.24973656" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -404,9 +460,10 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.329718" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.27620086" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32861805" />
+      <window_info anchor="bottom" id="Structure" order="10" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32861805" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
     </layout>
@@ -415,342 +472,13 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ViewLayout.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="109" column="75" selection-start-line="109" selection-start-column="36" selection-end-line="109" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/resolution.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="184" column="57" selection-start-line="184" selection-start-column="28" selection-end-line="184" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/gulpfile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="58" column="19" lean-forward="true" selection-start-line="58" selection-start-column="19" selection-end-line="58" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-layout/2/js/view.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="628">
-          <caret line="5" column="46309" selection-start-line="5" selection-start-column="46309" selection-end-line="5" selection-end-column="46309" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-layout/1/js/view.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="628">
-          <caret line="5" column="46309" selection-start-line="5" selection-start-column="46309" selection-end-line="5" selection-end-column="46309" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/layout.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6666">
-          <caret line="313" column="35" selection-start-line="313" selection-start-column="35" selection-end-line="313" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/viewInternalVariable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7964">
-          <caret line="1" column="52" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ViewState.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="97" column="28" selection-start-line="97" selection-start-column="28" selection-end-line="97" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/todo.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-container/2/js/view.js" />
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-title/1/css/view.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-directly-accessible/2/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="40" column="10" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-container/1/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="35" column="46" selection-start-line="35" selection-start-column="46" selection-end-line="35" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-container/2/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="48" column="46" selection-start-line="48" selection-start-column="46" selection-end-line="48" selection-end-column="46" />
-          <folding>
-            <element signature="n#footer#0;n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-context/1/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="18" column="42" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-directly-accessible/1/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="47" column="42" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-layout/1/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="19" column="42" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-layout/2/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="18" column="42" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-layout/3/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="18" column="42" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-logger/1/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="18" column="42" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-namespace/1/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="34" column="42" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/1/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="43" column="42" selection-start-line="43" selection-start-column="42" selection-end-line="43" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/2/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="682">
-          <caret line="43" column="42" selection-start-line="43" selection-start-column="42" selection-end-line="43" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-title/1/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="48" column="42" selection-start-line="48" selection-start-column="42" selection-end-line="48" selection-end-column="42" />
-          <folding>
-            <element signature="n#style#0;n#div#2;n#section#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-title/2/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="33" column="42" lean-forward="true" selection-start-line="33" selection-start-column="42" selection-end-line="33" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/fallback-view/1/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="38" column="1" lean-forward="true" selection-start-line="38" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-container/1/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="815">
-          <caret line="50" column="1" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-container/2/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="771">
-          <caret line="53" column="1" selection-start-line="53" selection-start-column="1" selection-end-line="53" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-context/1/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="815">
-          <caret line="50" column="1" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-directly-accessible/1/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="815">
-          <caret line="50" column="1" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-directly-accessible/2/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="815">
-          <caret line="50" column="1" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-layout/1/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="815">
-          <caret line="50" column="1" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-layout/2/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="815">
-          <caret line="50" column="1" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-layout/3/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="770">
-          <caret line="50" column="1" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-logger/1/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="50" column="1" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-namespace/1/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="815">
-          <caret line="50" column="1" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/1/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="815">
-          <caret line="50" column="1" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/2/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="815">
-          <caret line="50" column="1" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-title/1/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="815">
-          <caret line="50" column="1" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/fallback-view/1/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="6" lean-forward="true" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-title/2/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="573">
-          <caret line="66" selection-start-line="66" selection-end-line="75" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-config/1/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="793">
-          <caret line="84" column="33" selection-start-line="84" selection-start-column="33" selection-end-line="84" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ViewConfiguration.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="82" column="66" lean-forward="true" selection-start-line="82" selection-start-column="66" selection-end-line="82" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-config/1/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/initialize-view/2/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="749">
-          <caret line="73" column="23" selection-start-line="73" selection-start-column="23" selection-end-line="73" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1501">
-          <caret line="1074" column="45" selection-start-line="1074" selection-start-column="45" selection-end-line="1074" selection-end-column="45" />
-          <folding>
-            <element signature="e#1435#1592#0" />
-            <element signature="e#1758#1918#0" />
-            <element signature="e#2093#2659#0" />
-            <element signature="e#2817#3200#0" />
-            <element signature="e#3392#3692#0" />
-            <element signature="e#3863#4693#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/initialize-view/2/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="110" column="36" selection-start-line="110" selection-start-column="36" selection-end-line="110" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-group/1/js/view.min.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/index.html">
+    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-group/1/css/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="929">
-          <caret line="49" column="80" selection-start-line="49" selection-start-column="80" selection-end-line="49" selection-end-column="80" />
+        <state relative-caret-position="375">
+          <caret line="69" column="22" lean-forward="true" selection-start-line="69" selection-start-column="22" selection-end-line="69" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -761,10 +489,312 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-group/1/css/index.css">
+    <entry file="file://$PROJECT_DIR$/docs/todo.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        <state>
+          <caret selection-end-line="2" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/default-view/2/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/default-view/1/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/default-view/3/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="573">
+          <caret line="31" column="64" selection-start-line="31" selection-start-column="64" selection-end-line="31" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-namespace/1/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="489">
+          <caret line="36" column="79" selection-start-line="36" selection-start-column="79" selection-end-line="36" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-container/1/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="39" column="18" lean-forward="true" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/pseudo-view/1/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="749">
+          <caret line="47" column="45" selection-start-line="47" selection-start-column="45" selection-end-line="47" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/pseudo-view/1/css/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="78" column="18" selection-start-line="78" selection-start-column="18" selection-end-line="78" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/web/www/js/page/index/init.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/ViewContext.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="56" column="18" lean-forward="true" selection-start-line="56" selection-start-column="18" selection-end-line="56" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/ViewConstructor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="23" column="46" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/web/www/css/index.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="81" column="4" selection-start-line="81" selection-start-column="4" selection-end-line="81" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/web/www/css/index.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/viewAttribute.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="27" column="27" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/viewInternalVariable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7832">
+          <caret line="355" selection-start-line="355" selection-end-line="355" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-layout/4/css/view.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-layout/1/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-layout/2/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="14" selection-start-column="14" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-layout/3/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="9" selection-start-column="9" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16192">
+          <caret line="736" column="91" selection-start-line="736" selection-start-column="81" selection-end-line="736" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/web/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1342">
+          <caret line="59" column="66" selection-start-line="59" selection-start-column="66" selection-end-line="59" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-layout/4/css/index.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="968">
+          <caret line="44" column="22" selection-start-line="44" selection-start-column="22" selection-end-line="44" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-layout/4/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="42" column="4" lean-forward="true" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/release/releaseNote.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="46" column="67" lean-forward="true" selection-start-line="46" selection-start-column="67" selection-end-line="46" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/resolution.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/memo/readme.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="16" column="17" lean-forward="true" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asset/logo/icon.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asset/logo/logo.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asset/logo/logo.psd">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/ViewState.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="17" column="17" lean-forward="true" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/touch.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2265" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-395">
+          <caret line="252" column="114" lean-forward="true" selection-start-line="252" selection-start-column="114" selection-end-line="252" selection-end-column="114" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/css/view.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="17" column="1" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/ViewConfiguration.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-833">
+          <caret line="23" column="18" lean-forward="true" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/node_modules/_wzh.node-utils@0.0.10@wzh.node-utils/string.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="214" column="22" selection-start-line="214" selection-start-column="22" selection-end-line="214" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/node_modules/_wzh.node-utils@0.0.10@wzh.node-utils/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" column="25" lean-forward="true" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/stage.bat">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/stageAndreleaseToDoc.bat">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/node_modules/_merge2@1.2.2@merge2/index.mjs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-230">
+          <caret line="68" column="27" lean-forward="true" selection-start-line="68" selection-start-column="27" selection-end-line="68" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/gulpfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1034">
+          <caret line="1" column="27" lean-forward="true" selection-start-line="1" selection-start-column="27" selection-end-line="2" selection-end-column="31" />
+          <folding>
+            <element signature="e#1310#2069#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/scripts/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="21" column="37" lean-forward="true" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/install-gulp.bat">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/scripts/lib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="244" column="13" lean-forward="true" selection-start-line="244" selection-start-column="13" selection-end-line="244" selection-end-column="13" />
+          <folding>
+            <element signature="e#2135#2248#0" />
+            <element signature="e#2325#2995#0" />
+            <element signature="e#3074#3120#0" />
+            <element signature="e#3211#3216#0" />
+            <element signature="e#3485#3622#0" />
+            <element signature="e#3380#3714#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/releaseToDoc.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="62" lean-forward="true" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/min.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="39" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/src.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="39" selection-start-column="39" selection-end-column="39" />
         </state>
       </provider>
     </entry>

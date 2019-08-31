@@ -5,10 +5,12 @@
     "gulp-append-prepend": "^1.0.8",
     "gulp-clean-css": "^4.2.0",
     "gulp-concat": "^2.6.1",
+    "gulp-cssmin": "^0.2.0",
     "gulp-if": "^2.0.2",
     "gulp-rename": "^1.4.0",
     "gulp-uglify": "^3.0.2",
     "gulp-zip": "^3.2.0",
-    "merge2": "^1.2.3"
+    "merge2": "^1.2.3",
+    "wzh.node-utils": "^0.0.10"
   }
 }

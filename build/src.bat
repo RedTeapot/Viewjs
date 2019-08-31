@@ -1,0 +1,1 @@
+@call node scripts/main.js --action src --version %1 --updateNumber %2

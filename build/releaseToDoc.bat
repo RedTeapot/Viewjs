@@ -1,2 +1,1 @@
-@call gulp cleanup --target ../docs/web/www/dist/**/*
-@call gulp releaseToDoc
+@call node scripts/main.js --action releaseToDoc --version %1 --updateNumber %2

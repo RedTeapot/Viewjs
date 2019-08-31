@@ -1,1 +1,1 @@
-@call gulp min
+@call node scripts/main.js --action min --version %1 --updateNumber %2
