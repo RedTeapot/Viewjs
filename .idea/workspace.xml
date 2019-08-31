@@ -3,115 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="14ed39e3-f4fc-42c4-b75d-b3c5bc2c830e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/concat.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/gulpfile.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/install-gulp.bat" beforeDir="false" afterPath="$PROJECT_DIR$/build/install-gulp.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/min.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/releaseToDoc.bat" beforeDir="false" afterPath="$PROJECT_DIR$/build/releaseToDoc.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/stage.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/stageAndreleaseToDoc.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/default-view/1/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/default-view/1/js/plugin/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/default-view/2/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/default-view/2/js/plugin/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/default-view/3/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/default-view/3/js/plugin/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/fallback-view/1/js/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/fallback-view/1/js/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/initialize-view/1/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/initialize-view/1/js/plugin/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/initialize-view/2/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/initialize-view/2/js/plugin/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/pseudo-view/1/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/pseudo-view/1/js/plugin/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-config/1/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-config/1/js/plugin/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-container/1/js/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-container/1/js/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-container/2/js/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-container/2/js/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-context/1/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-context/1/js/plugin/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-directly-accessible/1/js/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-directly-accessible/1/js/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-directly-accessible/2/js/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-directly-accessible/2/js/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-event/1/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-event/1/js/plugin/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-group/1/js/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-group/1/js/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-layout/1/js/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-layout/1/js/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-layout/2/js/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-layout/2/js/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-layout/3/js/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-layout/3/js/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-layout/4/js/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-layout/4/js/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-logger/1/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-logger/1/js/plugin/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-namespace/1/js/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-namespace/1/js/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-parameter/1/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-parameter/1/js/plugin/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-parameter/2/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-parameter/2/js/plugin/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-parameter/3/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-parameter/3/js/plugin/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/1/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/1/js/plugin/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/2/js/plugin/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/2/js/plugin/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-title/1/js/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-title/1/js/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/demo/view-title/2/js/view.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/demo/view-title/2/js/view.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/dist/viewjs-1.6.1-B201904172041.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/js/lib/view/view.1.6.0-B201812071500.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/js/lib/view/view.1.6.0-B201812071500.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/scripts/lib.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/scripts/lib.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/scripts/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/scripts/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/web/www/dist/viewjs-1.6.1.update4.zip" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/web/www/js/page/define.version.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/js/page/define.version.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.4.1-B201703141541/view.1.4.1-B201703141541.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.1-B201703141541/view.1.4.1-B201703141541.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.4.1-B201703141851/view.1.4.1-B201703141851.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.1-B201703141851/view.1.4.1-B201703141851.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.4.1-B201703271911/view.1.4.1-B201703271911.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.1-B201703271911/view.1.4.1-B201703271911.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.4.1-B201704011750/view.1.4.1-B201704011750.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.1-B201704011750/view.1.4.1-B201704011750.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.4.1-B201704011800/view.1.4.1-B201704011800.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.1-B201704011800/view.1.4.1-B201704011800.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.4.1-B201705061120/view.1.4.1-B201705061120.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.1-B201705061120/view.1.4.1-B201705061120.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.4.1-B201705111516/view.1.4.1-B201705111516.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.1-B201705111516/view.1.4.1-B201705111516.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.4.1-B201705121020/view.1.4.1-B201705121020.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.1-B201705121020/view.1.4.1-B201705121020.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.4.1-B201705180936/view.1.4.1-B201705180936.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.1-B201705180936/view.1.4.1-B201705180936.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.4.2-B201705241625/view.1.4.2-B201705241625.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.2-B201705241625/view.1.4.2-B201705241625.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.4.2-B201705251731/view.1.4.2-B201705251731.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.2-B201705251731/view.1.4.2-B201705251731.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.4.2-B201706081130/view.1.4.2-B201706081130.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.2-B201706081130/view.1.4.2-B201706081130.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.4.2-B201706121659/view.1.4.2-B201706121659.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.2-B201706121659/view.1.4.2-B201706121659.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.4.2-B201706161059/view.1.4.2-B201706161059.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.2-B201706161059/view.1.4.2-B201706161059.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.4.2-B201706161146/view.1.4.2-B201706161146.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.2-B201706161146/view.1.4.2-B201706161146.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.4.2-B201706161155/view.1.4.2-B201706161155.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.2-B201706161155/view.1.4.2-B201706161155.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.4.2-B201706231352/view.1.4.2-B201706231352.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.2-B201706231352/view.1.4.2-B201706231352.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.4.3-B201707030912/view.1.4.3-B201707030912.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.3-B201707030912/view.1.4.3-B201707030912.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.4.3-B201707051617/view.1.4.3-B201707051617.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.3-B201707051617/view.1.4.3-B201707051617.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.4.3-B201707111349/view.1.4.3-B201707111349.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.3-B201707111349/view.1.4.3-B201707111349.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.4.3-B201707121438/view.1.4.3-B201707121438.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.3-B201707121438/view.1.4.3-B201707121438.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.4.3-B201707121556/view.1.4.3-B201707121556.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.3-B201707121556/view.1.4.3-B201707121556.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.4.3-B201707191134/view.1.4.3-B201707191134.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.3-B201707191134/view.1.4.3-B201707191134.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.4.3-B201708031423/view.1.4.3-B201708031423.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.3-B201708031423/view.1.4.3-B201708031423.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.4.3-B201708041802/view.1.4.3-B201708041802.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.3-B201708041802/view.1.4.3-B201708041802.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.4.3-B201708210951/view.1.4.3-B201708210951.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.4.3-B201708210951/view.1.4.3-B201708210951.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.5.0-B201708230938/view.1.5.0-B201708230938.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.0-B201708230938/view.1.5.0-B201708230938.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.5.0-B201708241443/view.1.5.0-B201708241443.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.0-B201708241443/view.1.5.0-B201708241443.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.5.0-B201708250933/view.1.5.0-B201708250933.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.0-B201708250933/view.1.5.0-B201708250933.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.5.0-B201708251200/view.1.5.0-B201708251200.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.0-B201708251200/view.1.5.0-B201708251200.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.5.0-B201708301029/view.1.5.0-B201708301029.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.0-B201708301029/view.1.5.0-B201708301029.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.5.0-B201709051136/view.1.5.0-B201709051136.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.0-B201709051136/view.1.5.0-B201709051136.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.5.0-B201709061010/view.1.5.0-B201709061010.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.0-B201709061010/view.1.5.0-B201709061010.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.5.1-B201709281619/view.1.5.1-B201709281619.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.1-B201709281619/view.1.5.1-B201709281619.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.5.1-B201710171133/view.1.5.1-B201710171133.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.1-B201710171133/view.1.5.1-B201710171133.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.5.1-B201710291638/view.1.5.1-B201710291638.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.1-B201710291638/view.1.5.1-B201710291638.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.5.1-B201711281136/view.1.5.1-B201711281136.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.1-B201711281136/view.1.5.1-B201711281136.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.5.1-B201712071410/view.1.5.1-B201712071410.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.1-B201712071410/view.1.5.1-B201712071410.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.5.1-B201712141454/view.1.5.1-B201712141454.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.1-B201712141454/view.1.5.1-B201712141454.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.5.1-B201712181050/view.1.5.1-B201712181050.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.1-B201712181050/view.1.5.1-B201712181050.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.5.1-B201712211701/view.1.5.1-B201712211701.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.1-B201712211701/view.1.5.1-B201712211701.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.5.1-B201712221032/view.1.5.1-B201712221032.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.1-B201712221032/view.1.5.1-B201712221032.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.5.1-B201801041047/view.1.5.1-B201801041047.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.1-B201801041047/view.1.5.1-B201801041047.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.5.1-B201801251344/view.1.5.1-B201801251344.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.1-B201801251344/view.1.5.1-B201801251344.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.5.2-B201802081353/view.1.5.2-B201802081353.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.2-B201802081353/view.1.5.2-B201802081353.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.5.2-B201805292016/view.1.5.2-B201805292016.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.2-B201805292016/view.1.5.2-B201805292016.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.5.3-B201807240943/view.1.5.3-B201807240943.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.5.3-B201807240943/view.1.5.3-B201807240943.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.6.0-B201901071423/view.1.6.0-B201901071423.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.6.0-B201901071423/view.1.6.0-B201901071423.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/1.6.1-B201904172041/view.1.6.1-B201904172041.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/release/1.6.1-B201904172041/view.1.6.1-B201904172041.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ChainedHandle.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/ChainedHandle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logger.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/Logger.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OperationState.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/OperationState.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ViewConfiguration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/ViewConfiguration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ViewConfigurationSet.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/ViewConfigurationSet.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ViewConstructor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/ViewConstructor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ViewContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/ViewContext.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ViewLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/ViewLayout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ViewState.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/ViewState.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entrance.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/entrance.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/eventDrive.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/eventDrive.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/layout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resolution.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/resolution.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/touch.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/touch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/util.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/view.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/view.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewAttribute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/viewAttribute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewInternalVariable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/viewInternalVariable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewParameter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/viewParameter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewRepresentation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/viewRepresentation.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -125,27 +20,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build/scripts/main.js">
+        <entry file="file://$PROJECT_DIR$/build/min.bat">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="21" column="37" lean-forward="true" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build/scripts/lib.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="244" column="13" lean-forward="true" selection-start-line="244" selection-start-column="13" selection-end-line="244" selection-end-column="13" />
-              <folding>
-                <element signature="e#2135#2248#0" />
-                <element signature="e#2325#2995#0" />
-                <element signature="e#3074#3120#0" />
-                <element signature="e#3211#3216#0" />
-                <element signature="e#3485#3622#0" />
-                <element signature="e#3380#3714#0" />
-              </folding>
+            <state>
+              <caret column="67" lean-forward="true" selection-start-column="53" selection-end-column="67" />
             </state>
           </provider>
         </entry>
@@ -154,25 +32,37 @@
         <entry file="file://$PROJECT_DIR$/build/releaseToDoc.bat">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="62" lean-forward="true" selection-end-column="79" />
+              <caret column="61" selection-start-column="59" selection-end-column="61" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build/min.bat">
+        <entry file="file://$PROJECT_DIR$/build/src.bat">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="39" selection-end-column="70" />
+              <caret column="50" lean-forward="true" selection-start-column="50" selection-end-column="52" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/build/src.bat">
+        <entry file="file://$PROJECT_DIR$/build/scripts/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="39" selection-start-column="39" selection-end-column="39" />
+            <state relative-caret-position="342">
+              <caret line="37" column="39" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build/scripts/lib.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="276">
+              <caret line="247" column="13" lean-forward="true" selection-start-line="247" selection-start-column="13" selection-end-line="247" selection-end-column="13" />
+              <folding>
+                <element signature="e#3074#3120#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -278,11 +168,11 @@
         <option value="$PROJECT_DIR$/build/script.js" />
         <option value="$PROJECT_DIR$/build/main.js" />
         <option value="$PROJECT_DIR$/build/scripts/script.js" />
-        <option value="$PROJECT_DIR$/build/scripts/main.js" />
         <option value="$PROJECT_DIR$/build/install-gulp.bat" />
         <option value="$PROJECT_DIR$/build/releaseToDoc.bat" />
-        <option value="$PROJECT_DIR$/build/min.bat" />
         <option value="$PROJECT_DIR$/build/src.bat" />
+        <option value="$PROJECT_DIR$/build/min.bat" />
+        <option value="$PROJECT_DIR$/build/scripts/main.js" />
       </list>
     </option>
   </component>
@@ -309,6 +199,12 @@
               <item name="view" type="b2602c69:ProjectViewProjectNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
               <item name="build" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="view" type="b2602c69:ProjectViewProjectNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="view" type="b2602c69:ProjectViewProjectNode" />
@@ -429,12 +325,12 @@
       <workItem from="1566895559974" duration="1985000" />
       <workItem from="1566990569033" duration="5246000" />
       <workItem from="1567075189727" duration="1210000" />
-      <workItem from="1567220755968" duration="8425000" />
+      <workItem from="1567220755968" duration="9500000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="127276000" />
+    <option name="totallyTimeSpent" value="128351000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -472,9 +368,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-group/1/js/view.min.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-group/1/css/index.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -656,13 +549,6 @@
     <entry file="file://$PROJECT_DIR$/src/js/resolution.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/memo/readme.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="16" column="17" lean-forward="true" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/asset/logo/icon.svg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -752,49 +638,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build/scripts/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="21" column="37" lean-forward="true" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build/install-gulp.bat">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/memo/readme.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-196">
+          <caret line="16" column="17" lean-forward="true" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="124" column="4" selection-start-line="124" selection-start-column="4" selection-end-line="124" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/build/scripts/lib.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="244" column="13" lean-forward="true" selection-start-line="244" selection-start-column="13" selection-end-line="244" selection-end-column="13" />
+        <state relative-caret-position="276">
+          <caret line="247" column="13" lean-forward="true" selection-start-line="247" selection-start-column="13" selection-end-line="247" selection-end-column="13" />
           <folding>
-            <element signature="e#2135#2248#0" />
-            <element signature="e#2325#2995#0" />
             <element signature="e#3074#3120#0" />
-            <element signature="e#3211#3216#0" />
-            <element signature="e#3485#3622#0" />
-            <element signature="e#3380#3714#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/releaseToDoc.bat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="62" lean-forward="true" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/min.bat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="39" selection-end-column="70" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build/src.bat">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="39" selection-start-column="39" selection-end-column="39" />
+          <caret column="50" lean-forward="true" selection-start-column="50" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/min.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="67" lean-forward="true" selection-start-column="53" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/releaseToDoc.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="61" selection-start-column="59" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/scripts/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="37" column="39" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="39" />
         </state>
       </provider>
     </entry>

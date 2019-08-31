@@ -1,13 +1,13 @@
 var fs = require("fs"),
 	gulp = require("gulp"),
-	concat = require('_gulp-concat@2.6.1@gulp-concat'),
+	concat = require('gulp-concat'),
 	gap = require("gulp-append-prepend"),
 	uglify = require("gulp-uglify"),
-	cssmin = require("_gulp-cssmin@0.2.0@gulp-cssmin"),
+	cssmin = require("gulp-cssmin"),
 	zip = require("gulp-zip"),
 	del = require("del"),
-	merge2 = require("_merge2@1.2.2@merge2"),
-	utils = require('_wzh.node-utils@0.0.10@wzh.node-utils');
+	merge2 = require("merge2"),
+	utils = require('wzh.node-utils');
 
 /**
  * 版本号

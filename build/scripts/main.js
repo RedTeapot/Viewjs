@@ -1,4 +1,5 @@
-var utils = require("_wzh.node-utils@0.0.10@wzh.node-utils"),
+var fs = require("fs"),
+	utils = require("wzh.node-utils"),
 	lib = require("./lib");
 
 var action = utils.cli.getParameter("action"),
@@ -9,8 +10,32 @@ var validActionList = ["min", "src", "releaseToDoc"];
 if(null == action || validActionList.indexOf(action) === -1)
 	throw new Error("Unknown action: " + action);
 
+if('--updateNumber' === version){
+	version = null;
+	updateNumber = null;
+}
+
+var buf = Buffer.from(new Array(1024)), len;
+while(utils.string.isEmptyString(version)){
+	process.stdout.write("[必填] 请输入版本号（如 1.0.0）：");
+	len = fs.readSync(process.stdin.fd, buf, 0, buf.length, 0);
+	version = buf.toString("utf8", 0, len).trim();
+}
+if(utils.string.isEmptyString(updateNumber) || isNaN(updateNumber = Number(updateNumber))){
+	process.stdout.write("[选填] 请输入更新序号：");
+	len = fs.readSync(process.stdin.fd, buf, 0, buf.length, 0);
+	updateNumber = buf.toString("utf8", 0, len).trim();
+}
+
 /* 设置版本号 */
-lib.setVersion(version, Number(updateNumber));
+if(!utils.string.isEmptyString(updateNumber)){
+	lib.setVersion(version);
+}else{
+	updateNumber = Number(updateNumber);
+	lib.setVersion(version, updateNumber);
+}
+
+console.log(version, updateNumber || "");
 
 /* 执行动作 */
 switch(action){
