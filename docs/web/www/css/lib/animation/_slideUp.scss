@@ -1,4 +1,0 @@
-@include keyframes(slideUp){
-	from{@include transform(translate3d(0, 0, 0) translateY(100%));}
-	to{@include transform(translate3d(0, 0, 0) translateY(0));}
-}
