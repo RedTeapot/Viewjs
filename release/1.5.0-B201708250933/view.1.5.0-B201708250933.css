@@ -1,6 +1,0 @@
-*[data-view=true]{
-	display: none;
-}
-*[data-view=true].active{
-	display: block;
-}
