@@ -43,7 +43,7 @@
 				return configs[k];
 			});
 			if(0 === items.length)
-				return;
+				return this;
 			
 			setTimeout(function(){
 				for(var i = 0; i < items.length; i++){
