@@ -98,8 +98,15 @@
 		this.reflectToDom = function(){
 			if(null == viewId || "" === viewId.trim())
 				return this;
+
 			if(!View.ifExists(viewId, viewNamespace)){
 				globalLogger.warn("No view of id '{}' namespace: '{}' found to reflect view config: {}={}.", viewId, viewNamespace, this.getName(), this.getValue());
+				return this;
+			}
+
+			if(typeof this.getValue() === "function" || Array.isArray(this.getValue)){
+				globalLogger.warn("Invalid value to reflect to dom:");
+				console.warn(this.getValue());
 				return this;
 			}
 

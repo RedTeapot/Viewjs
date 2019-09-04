@@ -296,7 +296,7 @@
 		/**
 		 * 获取视图标题
 		 */
-		this.getTitle = function(title){
+		this.getTitle = function(){
 			return this.getDomElement().getAttribute(viewAttribute.attr$view_title);
 		};
 
