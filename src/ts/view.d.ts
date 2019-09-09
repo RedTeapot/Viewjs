@@ -207,7 +207,9 @@ declare class View{
 	static setActiveViewOption(name: string, value: any):View;
 
 	static passBy(id: string, namespace?: string): View;
+	static navTo(id: string, ctrl?: ViewSwitchCtrl): View;
 	static navTo(id: string, namespace?: string, ctrl?: ViewSwitchCtrl): View;
+	static changeTo(id: string, ctrl?: ViewSwitchCtrl): View;
 	static changeTo(id: string, namespace?: string, ctrl?: ViewSwitchCtrl): View;
 	static back(ctrl?: ViewBackForwardCtrl): View;
 	static forward(ctrl?: ViewBackForwardCtrl): View;
@@ -215,7 +217,7 @@ declare class View{
 	static setDocumentTitle(title?: string): View;
 
 	static ifCanGoBack(): boolean;
-	static setNoViewToNavBackAction(action?: Function): View;
+	static setNoViewToNavBackAction(action: Function): View;
 
 	static onceHistoryBack(callback: Function): View;
 	static reDoLayout(): View;
