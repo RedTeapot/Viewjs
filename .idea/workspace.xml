@@ -3,10 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="14ed39e3-f4fc-42c4-b75d-b3c5bc2c830e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/releaseToDoc.bat" beforeDir="false" afterPath="$PROJECT_DIR$/build/minAndZip.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/scripts/lib.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/scripts/lib.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/scripts/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/scripts/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/dist/viewjs-1.6.1.update4.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/web/www/js/page/define.version.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/web/www/js/page/define.version.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/view.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/view.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,49 +20,28 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build/min.bat">
+        <entry file="file://$PROJECT_DIR$/build/minAndZip.bat">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="67" lean-forward="true" selection-start-column="53" selection-end-column="67" />
+              <caret column="22" lean-forward="true" selection-start-column="22" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build/releaseToDoc.bat">
+        <entry file="file://$PROJECT_DIR$/build/scripts/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="61" selection-start-column="59" selection-end-column="61" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build/src.bat">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="50" lean-forward="true" selection-start-column="50" selection-end-column="52" />
+            <state relative-caret-position="-307">
+              <caret line="8" column="47" selection-start-line="8" selection-start-column="47" selection-end-line="8" selection-end-column="47" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/build/scripts/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="37" column="39" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build/scripts/lib.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="247" column="13" lean-forward="true" selection-start-line="247" selection-start-column="13" selection-end-line="247" selection-end-column="13" />
-              <folding>
-                <element signature="e#3074#3120#0" />
-              </folding>
+            <state relative-caret-position="599">
+              <caret line="297" column="22" selection-start-line="297" selection-start-column="22" selection-end-line="297" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -71,17 +50,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>markViewReady</find>
-      <find>markViewToBeInited</find>
-      <find>attr$view_state</find>
-      <find>autoReLayoutWhenResize</find>
-      <find>resolution</find>
-      <find>addChange</find>
-      <find>Layout changes,</find>
-      <find>isLayoutLandscape</find>
-      <find>//globalLogger.debug(&quot;Layout changes. Layout: {} *</find>
-      <find>addLayoutChangeListener</find>
-      <find>execResolutionChangeCallbacks</find>
       <find>autoReLayoutWhenResize = !!ops.autoReLayoutWhenResize;</find>
       <find>layout.ii</find>
       <find>doLayout</find>
@@ -93,7 +61,6 @@
       <find>&lt;a class = &quot;nav-homepage&quot;&gt;&lt;/a&gt;</find>
       <find>Hot</find>
       <find>fulfill</find>
-      <find>showView</find>
       <find>isQB</find>
       <find>clearFloatByAfter</find>
       <find>!DOCTYPE&gt;</find>
@@ -101,6 +68,18 @@
       <find>0.88</find>
       <find>pops</find>
       <find>fillParam</find>
+      <find>.util</find>
+      <find>viewRepresentation</find>
+      <find>listAllViews</find>
+      <find>SWITCHTYPE_HISTORYBACK</find>
+      <find>SWITCHTYPE_VIEWNAV</find>
+      <find>showView</find>
+      <find>SWITCHTYPE_VIEWCHANGE</find>
+      <find>reflectTo</find>
+      <find>&quot;@@@</find>
+      <find>seekParameter</find>
+      <find>seekPara</find>
+      <find>getMinifiedDTsStream</find>
     </findStrings>
     <replaceStrings>
       <replace>viewAttribute.$0</replace>
@@ -114,6 +93,7 @@
       <dir>C:\Users\WMJ\Desktop\View.js\git\Viewjs\src</dir>
       <dir>G:\代码仓库\js\view\src</dir>
       <dir>G:\代码仓库\js\view\docs\web\www\demo</dir>
+      <dir>G:\代码仓库\js\view\src\js</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -122,13 +102,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-directly-accessible/1/css/index.css" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-directly-accessible/2/css/index.css" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-layout/1/css/index.css" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-layout/2/css/index.css" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-layout/3/css/index.css" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-logger/1/css/index.css" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-namespace/css/index.css" />
         <option value="$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/1/css/index.css" />
         <option value="$PROJECT_DIR$/docs/web/www/demo/view-switch-animation/2/css/index.css" />
         <option value="$PROJECT_DIR$/docs/web/www/demo/view-title/1/css/index.css" />
@@ -172,7 +145,14 @@
         <option value="$PROJECT_DIR$/build/releaseToDoc.bat" />
         <option value="$PROJECT_DIR$/build/src.bat" />
         <option value="$PROJECT_DIR$/build/min.bat" />
+        <option value="$PROJECT_DIR$/readme.md" />
+        <option value="$PROJECT_DIR$/src/js/ViewConfigurationSet.js" />
+        <option value="$PROJECT_DIR$/src/js/ViewConstructor.js" />
+        <option value="$PROJECT_DIR$/src/js/ViewConfiguration.js" />
+        <option value="$PROJECT_DIR$/src/js/view.js" />
+        <option value="$PROJECT_DIR$/build/minAndZip.bat" />
         <option value="$PROJECT_DIR$/build/scripts/main.js" />
+        <option value="$PROJECT_DIR$/build/scripts/lib.js" />
       </list>
     </option>
   </component>
@@ -211,6 +191,12 @@
               <item name="view" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="view" type="b2602c69:ProjectViewProjectNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -225,6 +211,7 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="MTConfigurable" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2018.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -325,12 +312,19 @@
       <workItem from="1566895559974" duration="1985000" />
       <workItem from="1566990569033" duration="5246000" />
       <workItem from="1567075189727" duration="1210000" />
-      <workItem from="1567220755968" duration="9750000" />
+      <workItem from="1567220755968" duration="10525000" />
+      <workItem from="1567388462944" duration="53000" />
+      <workItem from="1567396826808" duration="11685000" />
+      <workItem from="1567585076570" duration="860000" />
+      <workItem from="1567758161048" duration="2046000" />
+      <workItem from="1567990184314" duration="7000" />
+      <workItem from="1567996890801" duration="81000" />
+      <workItem from="1568019251013" duration="1819000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="128601000" />
+    <option name="totallyTimeSpent" value="145927000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -342,12 +336,13 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21413502" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21097046" />
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info content_ui="combo" id="Hierarchy" order="2" weight="0.24973656" />
+      <window_info anchor="bottom" id="TypeScript" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -356,7 +351,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.329718" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.27620086" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.27401745" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Structure" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32861805" />
@@ -368,213 +363,21 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-group/1/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="69" column="22" lean-forward="true" selection-start-line="69" selection-start-column="22" selection-end-line="69" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-group/1/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="54" column="39" lean-forward="true" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/todo.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="2" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/default-view/2/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/default-view/1/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/default-view/3/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="573">
-          <caret line="31" column="64" selection-start-line="31" selection-start-column="64" selection-end-line="31" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-namespace/1/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="489">
-          <caret line="36" column="79" selection-start-line="36" selection-start-column="79" selection-end-line="36" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-container/1/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="39" column="18" lean-forward="true" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/pseudo-view/1/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="749">
-          <caret line="47" column="45" selection-start-line="47" selection-start-column="45" selection-end-line="47" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/pseudo-view/1/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="78" column="18" selection-start-line="78" selection-start-column="18" selection-end-line="78" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/js/page/index/init.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/ViewContext.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="56" column="18" lean-forward="true" selection-start-line="56" selection-start-column="18" selection-end-line="56" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/ViewConstructor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="23" column="46" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/css/index.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="81" column="4" selection-start-line="81" selection-start-column="4" selection-end-line="81" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/css/index.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/viewAttribute.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="27" column="27" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/viewInternalVariable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7832">
-          <caret line="355" selection-start-line="355" selection-end-line="355" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-layout/4/css/view.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-layout/1/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-layout/2/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="14" selection-start-column="14" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-layout/3/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="9" selection-start-column="9" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/view.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16192">
-          <caret line="736" column="91" selection-start-line="736" selection-start-column="81" selection-end-line="736" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1342">
-          <caret line="59" column="66" selection-start-line="59" selection-start-column="66" selection-end-line="59" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-layout/4/css/index.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="968">
-          <caret line="44" column="22" selection-start-line="44" selection-start-column="22" selection-end-line="44" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-layout/4/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="42" column="4" lean-forward="true" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/release/releaseNote.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="46" column="67" lean-forward="true" selection-start-line="46" selection-start-column="67" selection-end-line="46" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-layout/2/index.html" />
+    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-layout/3/index.html" />
+    <entry file="file://$PROJECT_DIR$/docs/web/www/index.html" />
+    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-layout/4/css/index.scss" />
+    <entry file="file://$PROJECT_DIR$/docs/web/www/demo/view-layout/4/index.html" />
+    <entry file="file://$PROJECT_DIR$/release/releaseNote.txt" />
     <entry file="file://$PROJECT_DIR$/src/js/resolution.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/asset/logo/icon.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asset/logo/logo.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asset/logo/logo.psd">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/ViewState.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" column="17" lean-forward="true" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/asset/logo/icon.svg" />
+    <entry file="file://$PROJECT_DIR$/asset/logo/logo.png" />
+    <entry file="file://$PROJECT_DIR$/asset/logo/logo.psd" />
     <entry file="file://$PROJECT_DIR$/src/js/touch.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2265" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/util.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-395">
-          <caret line="252" column="114" lean-forward="true" selection-start-line="252" selection-start-column="114" selection-end-line="252" selection-end-column="114" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
@@ -584,13 +387,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="17" column="1" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/ViewConfiguration.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-833">
-          <caret line="23" column="18" lean-forward="true" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -608,12 +404,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build/stage.bat">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/stageAndreleaseToDoc.bat">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/build/stage.bat" />
+    <entry file="file://$PROJECT_DIR$/build/stageAndreleaseToDoc.bat" />
     <entry file="file://$PROJECT_DIR$/build/node_modules/_merge2@1.2.2@merge2/index.mjs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-230">
@@ -628,26 +420,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build/gulpfile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1034">
-          <caret line="1" column="27" lean-forward="true" selection-start-line="1" selection-start-column="27" selection-end-line="2" selection-end-column="31" />
-          <folding>
-            <element signature="e#1310#2069#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/install-gulp.bat">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/memo/readme.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-196">
-          <caret line="16" column="17" lean-forward="true" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/build/gulpfile.js" />
+    <entry file="file://$PROJECT_DIR$/memo/readme.txt" />
     <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -655,41 +429,183 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build/scripts/lib.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="247" column="13" lean-forward="true" selection-start-line="247" selection-start-column="13" selection-end-line="247" selection-end-column="13" />
-          <folding>
-            <element signature="e#3074#3120#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build/src.bat">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="50" lean-forward="true" selection-start-column="50" selection-end-column="52" />
+          <caret column="50" selection-start-column="50" selection-end-column="52" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build/min.bat">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="67" lean-forward="true" selection-start-column="53" selection-end-column="67" />
+          <caret column="67" selection-start-column="53" selection-end-column="67" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build/releaseToDoc.bat">
+    <entry file="file://$PROJECT_DIR$/readme.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/Logger.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="187" column="35" selection-start-line="187" selection-start-column="15" selection-end-line="187" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/ViewContext.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="56" column="18" lean-forward="true" selection-start-line="56" selection-start-column="18" selection-end-line="56" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/ViewLayout.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/ViewConfigurationSet.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="28" column="27" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/ChainedHandle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="206" column="38" selection-start-line="206" selection-start-column="38" selection-end-line="206" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/entrance.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/eventDrive.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="70" column="30" lean-forward="true" selection-start-line="70" selection-start-column="30" selection-end-line="70" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/layout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="682">
+          <caret line="320" column="56" lean-forward="true" selection-start-line="315" selection-start-column="16" selection-end-line="320" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-395">
+          <caret line="252" column="114" lean-forward="true" selection-start-line="252" selection-start-column="114" selection-end-line="252" selection-end-column="114" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/ViewState.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-682">
+          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/viewRepresentation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="946">
+          <caret line="43" column="33" lean-forward="true" selection-start-line="43" selection-start-column="33" selection-end-line="43" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/viewInternalVariable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="371" column="7" lean-forward="true" selection-start-line="371" selection-start-column="7" selection-end-line="371" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/ViewConfiguration.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2618">
+          <caret line="119" lean-forward="true" selection-start-line="119" selection-end-line="119" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/viewParameter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="25" column="10" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/ViewConstructor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="219" selection-start-line="219" selection-end-line="219" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-171">
+          <caret line="543" column="43" selection-start-line="543" selection-start-column="43" selection-end-line="543" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/install-gulp.bat">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view-1.0.0.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="17" column="16" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view-1.0.0.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view-1.0.0.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view-1.0.1.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-814">
+          <caret line="11" column="38" lean-forward="true" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view-1.0.1.min.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view-1.0.1.min.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/minAndZip.bat">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="61" selection-start-column="59" selection-end-column="61" />
+          <caret column="22" lean-forward="true" selection-start-column="22" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build/scripts/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="37" column="39" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="39" />
+        <state relative-caret-position="-307">
+          <caret line="8" column="47" selection-start-line="8" selection-start-column="47" selection-end-line="8" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/scripts/lib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="599">
+          <caret line="297" column="22" selection-start-line="297" selection-start-column="22" selection-end-line="297" selection-end-column="22" />
         </state>
       </provider>
     </entry>

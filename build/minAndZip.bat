@@ -1,0 +1,1 @@
+@call node scripts/main.js --action minAndZip --version %1 --updateNumber %2

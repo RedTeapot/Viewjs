@@ -31,23 +31,32 @@ var updateNumber = 0;
  * @type {string}
  */
 var fileSrcName_js = "view-${version}.js";
-
-	/**
-	 * view的css源码文件的文件名
-	 * @type {string}
-	 */
-var fileSrcName_css = "view-${version}.css";
-
-	/**
-	 * view的js压缩文件的文件名
-	 * @type {string}
-	 */
+/**
+ * view的js压缩文件的文件名
+ * @type {string}
+ */
 var fileMinName_js = "view-${version}.min.js";
 
-	/**
-	 * view的css压缩文件的文件名
-	 * @type {string}
-	 */
+/**
+ * view的.d.ts声明文件的文件名
+ * @type {string}
+ */
+var fileSrcName_d_ts = "view-${version}.d.ts";
+/**
+ * view的.d.ts声明文件压缩文件的文件名
+ * @type {string}
+ */
+var fileMinName_d_ts = "view-${version}.d.ts";
+
+/**
+ * view的css源码文件的文件名
+ * @type {string}
+ */
+var fileSrcName_css = "view-${version}.css";
+/**
+ * view的css压缩文件的文件名
+ * @type {string}
+ */
 var fileMinName_css = "view-${version}.min.css";
 
 /**
@@ -83,7 +92,6 @@ var getVersion = function(){
 var getSrcJsFileName = function(){
 	return utils.string.fillParamValue(fileSrcName_js, {version: getVersion()});
 };
-
 /**
  * 获取js压缩文件的文件名
  * @returns {*}
@@ -93,13 +101,27 @@ var getMinifiedJsFileName = function(){
 };
 
 /**
+ * 获取ts声明文件的文件名
+ * @returns {*}
+ */
+var getSrcDTsFileName = function(){
+	return utils.string.fillParamValue(fileSrcName_d_ts, {version: getVersion()});
+};
+/**
+ * 获取ts声明文件的压缩文件的文件名
+ * @returns {*}
+ */
+var getMinifiedDTsFileName = function(){
+	return utils.string.fillParamValue(fileMinName_d_ts, {version: getVersion()});
+};
+
+/**
  * 获取css源文件的文件名
  * @returns {*}
  */
 var getSrcCssFileName = function(){
 	return utils.string.fillParamValue(fileSrcName_css, {version: getVersion()});
 };
-
 /**
  * 获取css压缩文件的文件名
  * @returns {*}
@@ -150,6 +172,14 @@ var getSrcJsStream = function(){
 };
 
 /**
+ * 获取待处理的ts声明文件源文件列表
+ * @returns {Stream}
+ */
+var getSrcDTsStream = function(){
+	return gulp.src(["../src/ts/view.d.ts"]);
+};
+
+/**
  * 获取待处理的css源文件列表
  * @returns {Stream}
  */
@@ -166,6 +196,18 @@ var getMinifiedJsStream = function(){
 		getSrcJsStream(),
 		concat(getMinifiedJsFileName()),
 		uglify(),
+		gap.prependText(getPluginInfo())
+	);
+};
+
+/**
+ * 获取待处理的ts声明文件压缩文件流
+ * @returns {Stream}
+ */
+var getMinifiedDTsStream = function(){
+	return utils.stream.xpipe(
+		getSrcDTsStream(),
+		concat(getMinifiedDTsFileName()),
 		gap.prependText(getPluginInfo())
 	);
 };
@@ -207,6 +249,13 @@ var execCmd_generateSourceFile = function(outputDirPath){
 		gap.prependText(getPluginInfo()),
 		gulp.dest(outputDirPath)
 	);
+
+	utils.stream.xpipe(
+		getSrcDTsStream(),
+		concat(getSrcDTsFileName()),
+		gap.prependText(getPluginInfo()),
+		gulp.dest(outputDirPath)
+	);
 };
 
 /**
@@ -226,26 +275,29 @@ var execCmd_generateMinifiedFile = function(outputDirPath){
 		getMinifiedCssStream(),
 		gulp.dest(outputDirPath)
 	);
-};
-
-var execCmd_releaseToDoc = function(){
-	var version = getVersion();
-	var docRoot = '../docs/web/www/';
-	var dist = docRoot + "/dist/",
-		zipFileName = "viewjs-" + version + ".zip";
-
-	del.sync(dist + "/**/*", {force: true});
 
 	utils.stream.xpipe(
-		merge2(getMinifiedJsStream(), getMinifiedCssStream()),
-		zip(zipFileName),
-		gulp.dest(dist)
+		getMinifiedDTsStream(),
+		gulp.dest(outputDirPath)
 	);
+};
 
-	/* 创建版本文件 */
-	var ws = fs.createWriteStream(docRoot + "js/page/define.version.js");
-	ws.write(';(function(){\n	window.viewJsNewestVersion = "' + version + '";\n	window.viewJsNewestZipFile = "dist/' + zipFileName + '";\n})();');
-	ws.end();
+var execCmd_minAndZip = function(){
+	var version = getVersion();
+	var dist = "../dist-" + version + "/",
+		zipFileName = "viewjs-" + version + ".zip";
+
+	var clear = function(){
+		del.sync(dist + "/**/*", {force: true});
+	};
+
+	clear();
+	var stream = utils.stream.xpipe(
+		merge2(getMinifiedJsStream(), getMinifiedCssStream(), getMinifiedDTsStream()),
+		zip(zipFileName),
+		gulp.dest("../")
+	);
+	stream.on("end", clear);
 };
 
 module.exports = {
@@ -253,5 +305,5 @@ module.exports = {
 
 	execCmd_generateSourceFile: execCmd_generateSourceFile,
 	execCmd_generateMinifiedFile: execCmd_generateMinifiedFile,
-	execCmd_releaseToDoc: execCmd_releaseToDoc
+	execCmd_minAndZip: execCmd_minAndZip
 };

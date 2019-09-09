@@ -6,7 +6,7 @@ var action = utils.cli.getParameter("action"),
 	version = utils.cli.getParameter("version"),
 	updateNumber = utils.cli.getParameter("updateNumber");
 
-var validActionList = ["min", "src", "releaseToDoc"];
+var validActionList = ["min", "src", "minAndZip"];
 if(null == action || validActionList.indexOf(action) === -1)
 	throw new Error("Unknown action: " + action);
 
@@ -47,8 +47,8 @@ case "src":
 	lib.execCmd_generateSourceFile();
 	break;
 
-case "releaseToDoc":
-	lib.execCmd_releaseToDoc();
+case "minAndZip":
+	lib.execCmd_minAndZip();
 	break;
 
 default:

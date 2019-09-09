@@ -558,6 +558,8 @@
 		if(null != ops && "params" in ops)
 			viewParameter.setViewParameters(viewRepresentation.PSVIEW_BACK, "", ops.params);
 
+		globalLogger.debug("@@@ naving back. {}, {}", View.ifCanGoBack(), history.length);
+
 		if(View.ifCanGoBack() || typeof noViewToNavBackAction !== "function")
 			history.go(-1);
 		else
@@ -880,6 +882,7 @@
 
 				/* 回退操作(":back") */
 				if(util.ifStringEqualsIgnoreCase(viewRepresentation.PSVIEW_BACK, targetViewId)){
+					globalLogger.debug("@@@ try to nav back, history length: " + history.length);
 					View.back();
 					return;
 				}
