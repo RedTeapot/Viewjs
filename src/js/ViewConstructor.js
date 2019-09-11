@@ -303,16 +303,21 @@
 		/**
 		 * 设置回退视图
 		 * @param {String} fallbackViewId 回退视图ID，或伪视图：":default-view"，或视图群组
+		 * @param {String} [fallbackViewNamespace=defaultNamespace] 回退视图隶属的命名空间
 		 */
-		this.setFallbackViewId = function(fallbackViewId){
+		this.setFallbackViewId = function(fallbackViewId, fallbackViewNamespace){
 			if(util.isEmptyString(fallbackViewId, true))
 				return this;
+
+			if(arguments.length < 2 || util.isEmptyString(fallbackViewNamespace, true))
+				fallbackViewNamespace = viewInternalVariable.defaultNamespace;
+			viewInternalVariable.buildNamespace(fallbackViewNamespace);
 
 			/* 默认视图（":default-view"） */
 			if(util.ifStringEqualsIgnoreCase(viewRepresentation.PSVIEW_DEFAULT, fallbackViewId)){
 				var defaultView = View.getDefaultView();
 				if(null == defaultView){
-					globalLogger.error("No default view found.");
+					globalLogger.error("No default view found to set as fallback view.");
 					return this;
 				}else
 					fallbackViewId = defaultView.getId();
@@ -320,21 +325,23 @@
 				var groupName = fallbackViewId.substring(1);
 				var firstViewId = viewInternalVariable.findFirstViewIdOfGroupName(groupName);
 				if(null == firstViewId){
-					globalLogger.warn("No view of group: {} found.", groupName);
+					globalLogger.warn("No view of group: {} found to set as fallback view.", groupName);
 					return this;
 				}
 
 				fallbackViewId = firstViewId;
 			}
 
-			if(!View.ifExists(fallbackViewId)){
-				globalLogger.warn("No view of id: {} found.", fallbackViewId);
+			if(!View.ifExists(fallbackViewId, fallbackViewNamespace)){
+				globalLogger.warn("No view of id: {} in namespace: {} found to set as fallback view.", fallbackViewId, fallbackViewNamespace);
 				return this;
 			}
-			if(this.getId() === fallbackViewId)
+
+			if(this.id === fallbackViewId && this.namespace === fallbackViewNamespace)
 				return this;
 
 			this.getDomElement().setAttribute(viewAttribute.attr$view_fallback, fallbackViewId);
+			this.getDomElement().setAttribute(viewAttribute.attr$view_fallback_namespace, fallbackViewNamespace);
 			return this;
 		};
 
@@ -377,7 +384,7 @@
 						return View.getDefaultView();
 					}
 
-					/** 如果视图可以直接访问，则返回自身 */
+					/* 如果视图可以直接访问，则返回自身 */
 					if(view.isDirectlyAccessible())
 						return view;
 

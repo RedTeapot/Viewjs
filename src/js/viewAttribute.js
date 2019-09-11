@@ -8,6 +8,7 @@
 		attr$view_directly_accessible: "data-view-directly-accessible",
 		attr$view_group: "data-view-group",
 		attr$view_fallback: "data-view-fallback",
+		attr$view_fallback_namespace: "data-view-fallback-namespace",
 
 		attr$view_rel: "data-view-rel",
 		attr$view_rel_namespace: "data-view-rel-namespace",
