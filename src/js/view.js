@@ -946,6 +946,10 @@
 				return;
 			}
 
+			if("unlimited" === whr){
+				return;
+			}
+
 			var r = /(\d+(?:\.\d*)?)\s*\/\s*(\d+(?:\.\d*)?)/i;
 			var tmp = whr.match(r);
 			if(null == tmp){
