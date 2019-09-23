@@ -135,7 +135,7 @@ var getMinifiedCssFileName = function(){
  * @returns {string}
  */
 var getPluginInfo = function(){
-	return '/**\n * View.js v' + getVersion() + '\n * author: Billy, wmjhappy_ok@126.com\n * license: MIT\n */';
+	return '/**\n * View.js v' + getVersion() + '\n * author: Billy, wmjhappy_ok@126.com\n * license: MIT\n * \n * -- ' + utils.date.formatDate(new Date(), 'yyyy-MM-dd HH:mm') + '\n */';
 };
 
 /**
