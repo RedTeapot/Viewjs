@@ -69,13 +69,13 @@ interface ViewClass{
 	getDomElement<E extends Element = Element>(): E;
 	getGroupName(): null|string;
 
-	find<K extends keyof HTMLElementTagNameMap>(selectors: K): HTMLElementTagNameMap[K] | null;
-	find<K extends keyof SVGElementTagNameMap>(selectors: K): SVGElementTagNameMap[K] | null;
-	find<E extends Element = Element>(selectors: string): E | null;
+	find<K extends keyof HTMLElementTagNameMap>(selectors: K, rootObj?: Element): HTMLElementTagNameMap[K] | null;
+	find<K extends keyof SVGElementTagNameMap>(selectors: K, rootObj?: Element): SVGElementTagNameMap[K] | null;
+	find<E extends Element = Element>(selectors: string, rootObj?: Element): E | null;
 
-	findAll<K extends keyof HTMLElementTagNameMap>(selectors: K): NodeListOf<HTMLElementTagNameMap[K]>;
-	findAll<K extends keyof SVGElementTagNameMap>(selectors: K): NodeListOf<SVGElementTagNameMap[K]>;
-	findAll<E extends Element = Element>(selectors: string): NodeListOf<E>;
+	findAll<K extends keyof HTMLElementTagNameMap>(selectors: K, rootObj?: Element): NodeListOf<HTMLElementTagNameMap[K]>;
+	findAll<K extends keyof SVGElementTagNameMap>(selectors: K, rootObj?: Element): NodeListOf<SVGElementTagNameMap[K]>;
+	findAll<E extends Element = Element>(selectors: string, rootObj?: Element): NodeListOf<E>;
 
 	setLayoutAction(layoutAction: Function, ifLayoutWhenLayoutChanges?: boolean): ViewClass;
 	getLayoutAction(): Function;
