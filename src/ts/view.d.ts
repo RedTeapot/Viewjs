@@ -69,13 +69,13 @@ interface ViewClass{
 	getDomElement<E extends Element = Element>(): E;
 	getGroupName(): null|string;
 
-	find<K extends keyof HTMLElementTagNameMap>(selectors: K, rootObj?: Element): HTMLElementTagNameMap[K] | null;
-	find<K extends keyof SVGElementTagNameMap>(selectors: K, rootObj?: Element): SVGElementTagNameMap[K] | null;
-	find<E extends Element = Element>(selectors: string, rootObj?: Element): E | null;
+	find<K extends keyof HTMLElementTagNameMap>(selectors: K): HTMLElementTagNameMap[K] | null;
+	find<K extends keyof SVGElementTagNameMap>(selectors: K): SVGElementTagNameMap[K] | null;
+	find<E extends Element = Element>(selectors: string): E | null;
 
-	findAll<K extends keyof HTMLElementTagNameMap>(selectors: K, rootObj?: Element): NodeListOf<HTMLElementTagNameMap[K]>;
-	findAll<K extends keyof SVGElementTagNameMap>(selectors: K, rootObj?: Element): NodeListOf<SVGElementTagNameMap[K]>;
-	findAll<E extends Element = Element>(selectors: string, rootObj?: Element): NodeListOf<E>;
+	findAll<K extends keyof HTMLElementTagNameMap>(selectors: K): NodeListOf<HTMLElementTagNameMap[K]>;
+	findAll<K extends keyof SVGElementTagNameMap>(selectors: K): NodeListOf<SVGElementTagNameMap[K]>;
+	findAll<E extends Element = Element>(selectors: string): NodeListOf<E>;
 
 	setLayoutAction(layoutAction: Function, ifLayoutWhenLayoutChanges?: boolean): ViewClass;
 	getLayoutAction(): Function;
@@ -180,9 +180,9 @@ declare class View{
 	static getViewContainerDomElement<E extends Element = Element>(): E;
 
 	static find<E extends Element = Element>(selector: string): E;
-	static find<E extends Element = Element>(rootObj: E, selector: string): E;
+	static find<E extends Element = Element>(rootObj: Element, selector: string): E;
 	static findAll<E extends Element = Element>(selector: string): NodeListOf<E>;
-	static findAll<E extends Element = Element>(rootObj: E, selector: string): NodeListOf<E>;
+	static findAll<E extends Element = Element>(rootObj: Element, selector: string): NodeListOf<E>;
 
 	static ofId(id: string, namespace?: string): ViewClass;
 	static ifExists(id: string, namespace?: string): boolean;
