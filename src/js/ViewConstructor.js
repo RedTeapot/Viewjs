@@ -1,6 +1,7 @@
 ;(function(ctx, name){
 	var util = ctx[name].util,
 		eventDrive = ctx[name].eventDrive,
+		ViewState = ctx[name].ViewState,
 		Logger = ctx[name].Logger;
 
 	var ViewConfigurationSet = ctx[name].ViewConfigurationSet,
@@ -54,6 +55,9 @@
 		/** 视图配置集合 */
 		var configSet = new ViewConfigurationSet(id, namespace);
 
+		/** 当前视图变为活动视图的次数 */
+		var activeTimes = 0;
+
 		/**
 		 * 启用事件驱动机制
 		 * 事件 beforeenter：视图进入前触发
@@ -73,6 +77,7 @@
 			fire(name, value, async);
 		};
 
+		var self = this;
 
 		util.defineReadOnlyProperty(this, "id", id);
 		util.defineReadOnlyProperty(this, "namespace", namespace);
@@ -241,6 +246,17 @@
 		 */
 		this.isActive = function(){
 			return this.getDomElement().classList.contains("active");
+		};
+
+		/**
+		 * 获取当前视图变为活动视图的次数
+		 */
+		this.getActiveTimes = function(){
+			return viewInternalVariable.viewVisitStack.reduce(function(times, view){
+				if(view === self)
+					times++;
+				return times;
+			}, 0);
 		};
 
 		/**

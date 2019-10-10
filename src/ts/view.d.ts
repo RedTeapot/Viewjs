@@ -86,6 +86,7 @@ interface ViewClass{
 
 	isReady(): boolean;
 	isActive(): boolean;
+	getActiveTimes(): Number;
 	isDefault(): boolean;
 
 	isDirectlyAccessible(): boolean;

@@ -17,6 +17,12 @@
 	var viewInstancesMap = {};
 
 	/**
+	 * 视图访问顺序
+	 * @type {View[]}
+	 */
+	var viewVisitStack = [];
+
+	/**
 	 * 准备就绪的视图ID列表
 	 *
 	 * “准备就绪”的定义：
@@ -168,7 +174,7 @@
 	};
 
 	/**
-	 * 获取当前的激活视图。如果没有视图处于激活状态，则返回默认视图
+	 * 获取当前的活动视图。如果没有视图处于活动状态，则返回默认视图
 	 */
 	var getActiveOrDefaultView = function(){
 		var v = View.getActiveView();
@@ -329,9 +335,11 @@
 			srcView && srcView.getDomElement().classList.remove("active");
 			srcView && srcView.fire("leave", {targetView: targetView, type: type});
 
-			fireEvent("beforeenter", false);
+			/* 标记访问路径 */
+			viewVisitStack.push(targetView);
 
 			/* 进入新视图 */
+			fireEvent("beforeenter", false);
 			targetView.getDomElement().classList.add("active");
 			ViewLayout.ofId(targetViewId, targetViewNamespace).doLayout();
 			View.fire("change", viewChangeParams, false);
@@ -403,6 +411,7 @@
 
 		viewInstancesMap: viewInstancesMap,
 		readyViews: readyViews,
+		viewVisitStack: viewVisitStack,
 		get viewSwitchAnimation(){return viewSwitchAnimation;},
 		set viewSwitchAnimation(animation){viewSwitchAnimation = animation;},
 
