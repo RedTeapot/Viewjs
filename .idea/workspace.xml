@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="14ed39e3-f4fc-42c4-b75d-b3c5bc2c830e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/view.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/view.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/resolution.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/resolution.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -15,30 +15,23 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/js/ViewConstructor.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4944">
-              <caret line="158" column="12" selection-start-line="158" selection-start-column="12" selection-end-line="158" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/ts/view.d.ts">
+        <entry file="file://$PROJECT_DIR$/src/js/resolution.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="78" lean-forward="true" selection-start-line="78" selection-end-line="78" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/js/view.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="83" column="16" selection-start-line="83" selection-start-column="16" selection-end-line="83" selection-end-column="16" />
+            <state relative-caret-position="617">
+              <caret line="207" lean-forward="true" selection-start-line="207" selection-end-line="207" />
+              <folding>
+                <element signature="e#382#605#0" />
+                <element signature="e#682#782#0" />
+                <element signature="e#855#954#0" />
+                <element signature="e#1042#2070#0" />
+                <element signature="e#1204#1273#0" />
+                <element signature="e#1337#1399#0" />
+                <element signature="e#1780#2065#0" />
+                <element signature="e#2264#2978#0" />
+                <element signature="e#4415#4515#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -47,15 +40,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&lt;!DOCTYPE&gt;</find>
-      <find>0.88</find>
-      <find>pops</find>
-      <find>fillParam</find>
-      <find>.util</find>
-      <find>viewRepresentation</find>
-      <find>listAllViews</find>
-      <find>SWITCHTYPE_HISTORYBACK</find>
-      <find>SWITCHTYPE_VIEWNAV</find>
       <find>showView</find>
       <find>SWITCHTYPE_VIEWCHANGE</find>
       <find>reflectTo</find>
@@ -71,12 +55,21 @@
       <find>ifExists</find>
       <find>viewInstancesMap</find>
       <find>setAsD</find>
-      <find>beforeenter</find>
-      <find>switchView</find>
       <find>whr</find>
       <find>find</find>
       <find>findAll</find>
       <find>rootObj</find>
+      <find>View.on(</find>
+      <find>pushViewS</find>
+      <find>@@@</find>
+      <find>stack</find>
+      <find>isActive</find>
+      <find>beforeenter</find>
+      <find>view.on(</find>
+      <find>switchView</find>
+      <find>viewVisitStack</find>
+      <find>layout</find>
+      <find>detectIfKeyboardDisappears</find>
     </findStrings>
     <replaceStrings>
       <replace>viewAttribute.$0</replace>
@@ -99,9 +92,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-title/1/css/index.css" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-title/2/css/index.css" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/fallback-view/index.html" />
         <option value="$PROJECT_DIR$/docs/web/www/demo/fallback-view/1/index.html" />
         <option value="$PROJECT_DIR$/docs/web/www/demo/view-config/1/css/index.css" />
         <option value="$PROJECT_DIR$/src/ViewConfiguration.js" />
@@ -147,9 +137,12 @@
         <option value="$PROJECT_DIR$/build/scripts/lib.js" />
         <option value="$PROJECT_DIR$/src/js/ViewConfiguration.js" />
         <option value="$PROJECT_DIR$/src/js/viewAttribute.js" />
+        <option value="$PROJECT_DIR$/src/ts/view.d.ts" />
+        <option value="$PROJECT_DIR$/src/js/viewInternalVariable.js" />
+        <option value="$PROJECT_DIR$/src/js/ViewState.js" />
         <option value="$PROJECT_DIR$/src/js/ViewConstructor.js" />
         <option value="$PROJECT_DIR$/src/js/view.js" />
-        <option value="$PROJECT_DIR$/src/ts/view.d.ts" />
+        <option value="$PROJECT_DIR$/src/js/resolution.js" />
       </list>
     </option>
   </component>
@@ -164,6 +157,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -203,7 +197,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -329,12 +322,17 @@
       <workItem from="1569227684597" duration="1673000" />
       <workItem from="1569463864045" duration="622000" />
       <workItem from="1569738055215" duration="109000" />
-      <workItem from="1569738725893" duration="92000" />
+      <workItem from="1569738725893" duration="515000" />
+      <workItem from="1569806567422" duration="18000" />
+      <workItem from="1569806608024" duration="8000" />
+      <workItem from="1570613136296" duration="37000" />
+      <workItem from="1570675959653" duration="3234000" />
+      <workItem from="1571047092100" duration="1461000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="151843000" />
+    <option name="totallyTimeSpent" value="157024000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -373,9 +371,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/js/resolution.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/asset/logo/icon.svg" />
     <entry file="file://$PROJECT_DIR$/asset/logo/logo.png" />
     <entry file="file://$PROJECT_DIR$/asset/logo/logo.psd" />
@@ -472,13 +467,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/ChainedHandle.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="206" column="38" selection-start-line="206" selection-start-column="38" selection-end-line="206" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/entrance.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -496,24 +484,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/ViewState.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-682">
-          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/viewRepresentation.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="946">
           <caret line="43" column="33" lean-forward="true" selection-start-line="43" selection-start-column="33" selection-end-line="43" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/viewParameter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="25" column="10" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -543,13 +517,6 @@
     <entry file="file://$PROJECT_DIR$/viewjs-1.0.0/view-1.0.0.d.ts" />
     <entry file="file://$PROJECT_DIR$/viewjs-1.0.0/view-1.0.0.min.js" />
     <entry file="file://$PROJECT_DIR$/viewjs-1.0.0/view-1.0.0.min.css" />
-    <entry file="file://$PROJECT_DIR$/build/scripts/lib.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="289" column="27" selection-start-line="289" selection-start-column="27" selection-end-line="289" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/ViewConfiguration.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="423">
@@ -571,45 +538,103 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/viewInternalVariable.js">
+    <entry file="file://$PROJECT_DIR$/src/js/ChainedHandle.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="311" column="17" selection-start-line="311" selection-start-column="17" selection-end-line="311" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/layout.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6468">
-          <caret line="10" column="36" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="36" />
+        <state relative-caret-position="485">
+          <caret line="191" column="6" lean-forward="true" selection-start-line="191" selection-start-column="6" selection-end-line="191" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/ViewContext.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
+        <state relative-caret-position="423">
           <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/ViewConstructor.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4944">
-          <caret line="158" column="12" selection-start-line="158" selection-start-column="12" selection-end-line="158" selection-end-column="12" />
+        <state relative-caret-position="418">
+          <caret line="245" column="11" selection-start-line="245" selection-start-column="11" selection-end-line="245" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/viewInternalVariable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="22" column="22" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/ViewState.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1474">
+          <caret line="147" column="6" selection-start-line="147" selection-start-column="6" selection-end-line="147" selection-end-column="6" />
+          <folding>
+            <element signature="e#330#817#0" />
+            <element signature="e#1864#2037#0" />
+            <element signature="e#2365#3146#0" />
+            <element signature="e#3480#4553#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/scripts/lib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3630">
+          <caret line="165" column="32" selection-start-line="165" selection-start-column="19" selection-end-line="165" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/viewParameter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="25" column="10" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/view.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="83" column="16" selection-start-line="83" selection-start-column="16" selection-end-line="83" selection-end-column="16" />
+        <state relative-caret-position="481">
+          <caret line="966" column="24" selection-start-line="966" selection-start-column="24" selection-end-line="966" selection-end-column="24" />
+          <folding>
+            <element signature="e#22024#22923#0" />
+            <element signature="e#23021#23791#0" />
+            <element signature="e#24510#27481#0" />
+            <element signature="e#28698#31476#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ts/view.d.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="78" lean-forward="true" selection-start-line="78" selection-end-line="78" />
+        <state relative-caret-position="286">
+          <caret line="138" column="4" selection-start-line="138" selection-start-column="4" selection-end-line="138" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/layout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1451">
+          <caret line="273" column="16" selection-start-line="273" selection-start-column="16" selection-end-line="273" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/resolution.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="617">
+          <caret line="207" lean-forward="true" selection-start-line="207" selection-end-line="207" />
+          <folding>
+            <element signature="e#382#605#0" />
+            <element signature="e#682#782#0" />
+            <element signature="e#855#954#0" />
+            <element signature="e#1042#2070#0" />
+            <element signature="e#1204#1273#0" />
+            <element signature="e#1337#1399#0" />
+            <element signature="e#1780#2065#0" />
+            <element signature="e#2264#2978#0" />
+            <element signature="e#4415#4515#0" />
+          </folding>
         </state>
       </provider>
     </entry>

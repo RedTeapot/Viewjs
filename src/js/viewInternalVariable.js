@@ -341,6 +341,7 @@
 			/* 进入新视图 */
 			fireEvent("beforeenter", false);
 			targetView.getDomElement().classList.add("active");
+			util.blurInputs();
 			ViewLayout.ofId(targetViewId, targetViewNamespace).doLayout();
 			View.fire("change", viewChangeParams, false);
 			if(!targetView.isReady()){

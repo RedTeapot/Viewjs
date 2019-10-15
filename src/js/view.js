@@ -961,9 +961,7 @@
 			layout.setExpectedWidthHeightRatio(Number(tmp[1])/Number(tmp[2])).init();
 
 			/* 移除可能会影响布局的虚拟键盘 */
-			var inputObjs = document.querySelectorAll("input, select, textarea, *[contentEditable]");
-			for(var i = 0; i < inputObjs.length; i++)
-				inputObjs[i].blur();
+			util.blurInputs();
 			layout.doLayout(false);
 		})();
 

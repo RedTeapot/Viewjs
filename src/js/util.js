@@ -261,7 +261,6 @@
 		return obj;
 	})();
 
-
 	/**
 	 * 从给定的字符串中解析参数
 	 * @param {String} str 形如：a=1&b=2的字符串
@@ -284,6 +283,15 @@
 		return options;
 	};
 
+	/**
+	 * 移除焦点
+	 */
+	var blurInputs = function(){
+		var inputObjs = document.querySelectorAll("input, select, textarea, *[contentEditable]");
+		for(var i = 0; i < inputObjs.length; i++)
+			inputObjs[i].blur();
+	};
+
 	ctx[name].util = {
 		setDftValue: setDftValue,
 		defineReadOnlyProperty: defineReadOnlyProperty,
@@ -298,6 +306,7 @@
 		getUniqueString: getUniqueString,
 		getComputedStyle: getComputedStyle,
 		parseParams: parseParams,
+		blurInputs: blurInputs,
 
 		env: env
 	};
