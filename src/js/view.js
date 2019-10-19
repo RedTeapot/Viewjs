@@ -189,7 +189,29 @@
 	 * 判断视图默认是否可以直接访问
 	 */
 	View.isDirectlyAccessible = function(){
-		var rootFlag = document.documentElement.getAttribute(viewAttribute.attr$view_directly_accessible);
+		var attr = viewAttribute.attr$view_directly_accessible;
+		var rootFlag1 = View.getViewContainerDomElement().getAttribute(attr),
+			rootFlag2 = document.documentElement.getAttribute(attr);
+		
+		/* 历史兼容：如果视图容器上没有，则从 html 节点上搜寻 */
+		var rootFlag;
+		if(null === rootFlag1){
+			if(null === rootFlag2){
+				return false;
+			}else{
+				rootFlag = rootFlag2;
+				globalLogger.warn("Declaring view attribute: '{}' in <html> element is deprecated, you should declare in the view container's dom element", attr);
+			}
+		}else{
+			if(null === rootFlag2){
+				rootFlag = rootFlag1;
+			}else{
+				rootFlag = rootFlag1;
+				
+				globalLogger.warn("Found view attribute: '{}' in the view container's dom element, ingoring the one declared in <html> element", attr);
+			}
+		}
+		
 		return util.ifStringEqualsIgnoreCase("true", rootFlag);
 	};
 
@@ -940,7 +962,16 @@
 
 		/* 使能属性：data-view-whr */
 		(function(){
-			var whr = document.documentElement.getAttribute(viewAttribute.attr$view_whr);
+			var whr = View.getViewContainerDomElement().getAttribute(viewAttribute.attr$view_whr);
+			
+			/* 历史兼容：如果视图容器上没有，则从 html 节点上搜寻 */
+			if(null == whr || (whr = whr.trim().toLowerCase()) === ""){
+				whr = document.documentElement.getAttribute(viewAttribute.attr$view_whr);
+				if(null != whr && (whr = whr.trim().toLowerCase()) !== ""){
+					globalLogger.warn("Declaring view attribute: '{}' in <html> element is deprecated, you should declare in the view container's dom element", viewAttribute.attr$view_whr);
+				}
+			}
+			
 			if(null == whr || (whr = whr.trim().toLowerCase()) === ""){
 				layout.init().doLayout(false);
 				return;
