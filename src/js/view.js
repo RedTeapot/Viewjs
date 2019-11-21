@@ -940,6 +940,9 @@
 
 		/* 使能属性：data-view-whr */
 		(function(){
+			/* 移除可能会影响布局的虚拟键盘 */
+			util.blurInputs();
+
 			var whr = document.documentElement.getAttribute(viewAttribute.attr$view_whr);
 			if(null == whr || (whr = whr.trim().toLowerCase()) === ""){
 				layout.init().doLayout(false);
@@ -960,8 +963,6 @@
 
 			layout.setExpectedWidthHeightRatio(Number(tmp[1])/Number(tmp[2])).init();
 
-			/* 移除可能会影响布局的虚拟键盘 */
-			util.blurInputs();
 			layout.doLayout(false);
 		})();
 
