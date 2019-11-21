@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="14ed39e3-f4fc-42c4-b75d-b3c5bc2c830e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/view.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/view.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -25,7 +25,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/resolution.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="419">
@@ -34,15 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/view.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="827">
-              <caret line="965" column="13" selection-start-line="965" selection-start-column="13" selection-end-line="965" selection-end-column="35" />
-              <folding>
-                <element signature="e#8048#8624#0" />
-                <element signature="e#23021#23791#0" />
-              </folding>
+            <state relative-caret-position="437">
+              <caret line="980" selection-start-line="980" selection-end-line="980" />
             </state>
           </provider>
         </entry>
@@ -330,12 +326,12 @@
       <workItem from="1573819921574" duration="3232000" />
       <workItem from="1574151286597" duration="1809000" />
       <workItem from="1574231708696" duration="3147000" />
-      <workItem from="1574317914010" duration="2437000" />
+      <workItem from="1574317914010" duration="2496000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="184330000" />
+    <option name="totallyTimeSpent" value="184389000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -350,7 +346,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20938818" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13976793" />
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info content_ui="combo" id="Hierarchy" order="2" weight="0.24973656" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -622,17 +618,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/view.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="827">
-          <caret line="965" column="13" selection-start-line="965" selection-start-column="13" selection-end-line="965" selection-end-column="35" />
-          <folding>
-            <element signature="e#8048#8624#0" />
-            <element signature="e#23021#23791#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/layout.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6996">
@@ -644,6 +629,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="419">
           <caret line="87" column="16" selection-start-line="87" selection-start-column="16" selection-end-line="87" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="980" selection-start-line="980" selection-end-line="980" />
         </state>
       </provider>
     </entry>
