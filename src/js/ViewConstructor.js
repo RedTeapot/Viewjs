@@ -373,7 +373,7 @@
 			var chain = [{id: this.id, namespace: this.namespace}];
 
 			do{
-				var viewObj = domElement;
+				var viewObj = view.getDomElement();
 				var fallbackViewId = viewObj.getAttribute(viewAttribute.attr$view_fallback);
 				if(null == fallbackViewId || "" === (fallbackViewId = fallbackViewId.trim()))
 					return View.getDefaultView();
