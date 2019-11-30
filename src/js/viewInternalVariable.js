@@ -12,7 +12,7 @@
 	 * key：视图命名空间
 	 * value：视图实例数组
 	 *
-	 * @type {Object<String, View>}
+	 * @type {Object<String, View[]>}
 	 */
 	var viewInstancesMap = {};
 
@@ -23,13 +23,13 @@
 	var viewVisitStack = [];
 
 	/**
-	 * 准备就绪的视图ID列表
+	 * 准备就绪的视图列表
 	 *
 	 * “准备就绪”的定义：
 	 * 1. 页面DOM加载完毕
 	 * 2. 视图已经呈现过
 	 *
-	 * 视图的“准备就绪”事件只会触发一次，即未就showView绪状态下进入视图时，触发视图进入事件：“enter”之前触发
+	 * 视图的“准备就绪”事件只会触发一次，即未就绪状态下进入视图时，触发视图进入事件：“enter”之前触发
 	 */
 	var readyViews = [];
 
@@ -87,7 +87,7 @@
 
 	/**
 	 * 判断给定的DOM元素是否为合法的视图DOM元素
-	 * @param {HTMLElement} domElement
+	 * @param {Element} domElement
 	 * @returns {Boolean}
 	 */
 	var isValidViewDomElement = function(domElement){
@@ -118,11 +118,14 @@
 			if(isValidViewDomElement(objs[i]))
 				arr.push(objs[i]);
 
-		/* data-view='true' 并非为必须属性。声明了合法的 data-view-id 属性时将自动识别为视图，自动添加data-view='true' */
+		/* 声明了合法的 data-view-id 属性时将自动识别为视图，自动添加 data-view='true' */
 		objs = rootObj.querySelectorAll("[" + viewAttribute.attr$viewId + "]");
 		for(i = 0; i < objs.length; i++){
 			var viewId = getPotentialViewId(objs[i]);
-			if(!util.isEmptyString(viewId, true) && arr.indexOf(objs[i]) === -1){
+			if(util.isEmptyString(viewId, true))
+				continue;
+
+			if(arr.indexOf(objs[i]) === -1){
 				objs[i].setAttribute(viewAttribute.attr$view, "true");
 				arr.push(objs[i]);
 			}
@@ -162,29 +165,6 @@
 	};
 
 	/**
-	 * 获取当前正在呈现的，或即将呈现的视图ID。
-	 * 如果视图切换过程中有动画，则通过navTo或changeTo方法执行视图切换动作后，地址栏中呈现的视图ID不一定是当前的活动视图的ID。
-	 * 视图切换时，地址栏中的视图ID会被即时替换，替换为目标视图ID。
-	 */
-	var getRenderingViewId = function(){
-		if(null == View.currentState)
-			return null;
-
-		return View.currentState.viewId;
-	};
-
-	/**
-	 * 获取当前的活动视图。如果没有视图处于活动状态，则返回默认视图
-	 */
-	var getActiveOrDefaultView = function(){
-		var v = View.getActiveView();
-		if(null == v)
-			v = View.getDefaultView();
-
-		return v;
-	};
-
-	/**
 	 * 根据提供的视图ID计算最终映射到的可以呈现出来的视图
 	 * @param {String} viewId 视图ID
 	 * @param {String} [namespace=defaultNamespace] 视图隶属的命名空间
@@ -199,11 +179,11 @@
 
 		/** 判断指定的视图是否存在 */
 		if(util.isEmptyString(viewId, true) || !View.ifExists(viewId, namespace)){
-			targetView = getActiveOrDefaultView();
+			targetView = View.getActiveView() || View.getDefaultView();
 		}else{
 			targetView = View.ofId(viewId, namespace);
 			if(!targetView.isDirectlyAccessible())/** 判断指定的视图是否支持直接访问 */
-			targetView = targetView.getFallbackView();
+				targetView = targetView.getFallbackView();
 		}
 
 		return targetView;
@@ -230,29 +210,28 @@
 	};
 
 	/**
-	 * 查找隶属于给定名称的群组的第一个视图的视图ID
+	 * 查找隶属于给定名称的群组的第一个视图
 	 * @param {String} groupName 视图群组名称
+	 * @returns {View}
 	 */
-	var findFirstViewIdOfGroupName = function(groupName){
+	var findFirstViewOfGroupName = function(groupName){
 		if(util.isEmptyString(groupName, true)){
 			globalLogger.error("Empty view group name!");
 			return null;
 		}
+
 		groupName = String(groupName).trim().toLowerCase();
 
 		var groupViews = listAllViews(groupName);
 		if(null == groupViews || 0 === groupViews.length){
-			globalLogger.error("No view of group: {} found.", groupName);
+			globalLogger.error("No view belongs to group: {} found", groupName);
 			return null;
 		}
 
-		var groupViewIds = groupViews.map(function(v){
-			return v.getId();
-		});
-		var targetViewId = groupViewIds[0];
-		globalLogger.info("Found {} views of group: {}: {}, using the first one: {}.", groupViewIds.length, groupName, groupViewIds, targetViewId);
+		var firstView = groupViews[0];
+		globalLogger.info("Found {} views that belongs to group: {}: {}, using the first one: {}@{}", groupViews.length, groupName, firstView.id, firstView.namespace);
 
-		return targetViewId;
+		return firstView;
 	};
 
 	var normalizeSwitchType = function(type){
@@ -294,11 +273,10 @@
 			isForward = util.ifStringEqualsIgnoreCase(type, View.SWITCHTYPE_HISTORYFORWARD);
 
 		var viewChangeParams = {currentView: srcView, targetView: targetView, type: type, params: params};
-
 		var render = function(){
 			/* 视图参数重置 */
-			var targetViewId = targetView.getId();
-			var targetViewNamespace = targetView.getNamespace();
+			var targetViewId = targetView.id;
+			var targetViewNamespace = targetView.namespace;
 			viewParameter.clearViewParameters(targetViewId, targetViewNamespace);
 
 			if(isBack){
@@ -312,7 +290,6 @@
 					/* 用过之后立即销毁，防止污染其它前进操作 */
 					viewParameter.setViewParameters(targetViewId, targetViewNamespace, viewParameter.getParameters(viewRepresentation.PSVIEW_FORWARD, ""));
 					viewParameter.clearViewParameters(viewRepresentation.PSVIEW_FORWARD, "");
-
 				}
 			}else
 				viewParameter.setViewParameters(targetViewId, targetViewNamespace, params);
@@ -345,7 +322,7 @@
 			ViewLayout.ofId(targetViewId, targetViewNamespace).doLayout();
 			View.fire("change", viewChangeParams, false);
 			if(!targetView.isReady()){
-				readyViews.push(targetViewId);
+				readyViews.push(targetView);
 				fireEvent("ready", false);
 			}
 			fireEvent("enter", false);
@@ -353,8 +330,8 @@
 
 			/* 在视图容器上标记活动视图 */
 			var viewContainerObj = getViewContainerDomElement();
-			viewContainerObj.setAttribute(viewAttribute.attr$active_view_id, targetView.id);
-			viewContainerObj.setAttribute(viewAttribute.attr$active_view_namespace, targetView.namespace);
+			viewContainerObj.setAttribute(viewAttribute.attr$active_view_id, targetViewId);
+			viewContainerObj.setAttribute(viewAttribute.attr$active_view_namespace, targetViewNamespace);
 
 			/* 触发后置切换监听器 */
 			View.fire("afterchange", viewChangeParams);
@@ -420,11 +397,10 @@
 		getViewContainerDomElement: getViewContainerDomElement,
 		getViewDomElements: getViewDomElements,
 		getViewDomElementOfId: getViewDomElementOfId,
-		getRenderingViewId: getRenderingViewId,
 		buildNamespace: buildNamespace,
 		getFinalView: getFinalView,
 		listAllViews: listAllViews,
-		findFirstViewIdOfGroupName: findFirstViewIdOfGroupName,
+		findFirstViewOfGroupName: findFirstViewOfGroupName,
 		switchView: switchView,
 		showView: showView
 	};

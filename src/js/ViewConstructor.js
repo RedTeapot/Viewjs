@@ -139,7 +139,7 @@
 		 * @returns {String} 小写的群组名称
 		 */
 		this.getGroupName = function(){
-			var name = this.getDomElement().getAttribute(viewAttribute.attr$view_group);
+			var name = domElement.getAttribute(viewAttribute.attr$view_group);
 			if(null == name)
 				return name;
 
@@ -153,7 +153,7 @@
 		 * @return {HTMLElement} 找到的元素
 		 */
 		this.find = function(selector){
-			return this.getDomElement().querySelector(selector);
+			return domElement.querySelector(selector);
 		};
 
 		/**
@@ -162,7 +162,7 @@
 		 * @return {NodeList} 找到的元素列表
 		 */
 		this.findAll = function(selector){
-			return this.getDomElement().querySelectorAll(selector);
+			return domElement.querySelectorAll(selector);
 		};
 
 		/**
@@ -193,7 +193,7 @@
 			if(null === name || undefined === name)
 				return false;
 
-			var params = viewParameter.getParameters(this.getId(), this.getNamespace());
+			var params = viewParameter.getParameters(this.id, this.namespace);
 			return null == params? false: (name in params);
 		};
 
@@ -202,7 +202,7 @@
 		 * @param {String} [name] 参数名。区分大小写。如果没有指定参数名，则返回整个参数。
 		 */
 		this.getParameter = function(name){
-			var params = viewParameter.getParameters(this.getId(), this.getNamespace());
+			var params = viewParameter.getParameters(this.id, this.namespace);
 			if(arguments.length < 1)
 				return params;
 
@@ -238,14 +238,14 @@
 		 * 判断当前视图是否已经就绪
 		 */
 		this.isReady = function(){
-			return viewInternalVariable.readyViews.indexOf(this.getId()) !== -1;
+			return viewInternalVariable.readyViews.indexOf(this) !== -1;
 		};
 
 		/**
 		 * 判断当前视图是否为活动视图
 		 */
 		this.isActive = function(){
-			return this.getDomElement().classList.contains("active");
+			return domElement.classList.contains("active");
 		};
 
 		/**
@@ -263,14 +263,14 @@
 		 * 判断当前视图是否为默认视图
 		 */
 		this.isDefault = function(){
-			return /true/i.test(this.getDomElement().getAttribute(viewAttribute.attr$view_default));
+			return /true/i.test(domElement.getAttribute(viewAttribute.attr$view_default));
 		};
 
 		/**
 		 * 判断当前视图是否可以通过地址栏手动直接访问
 		 */
 		this.isDirectlyAccessible = function(){
-			var attr = this.getDomElement().getAttribute(viewAttribute.attr$view_directly_accessible);
+			var attr = domElement.getAttribute(viewAttribute.attr$view_directly_accessible);
 			attr = null == attr? null: attr.toLowerCase();
 
 			if(View.isDirectlyAccessible())/** 如果设定默认可以直接访问 */
@@ -287,7 +287,7 @@
 			if(arguments.length < 1)
 				isDirectlyAccessible = true;
 
-			this.getDomElement().setAttribute(viewAttribute.attr$view_directly_accessible, String(isDirectlyAccessible));
+			domElement.setAttribute(viewAttribute.attr$view_directly_accessible, String(isDirectlyAccessible));
 			return this;
 		};
 
@@ -297,12 +297,12 @@
 		 */
 		this.setTitle = function(title){
 			if(null == title){
-				this.getDomElement().removeAttribute(viewAttribute.attr$view_title);
+				domElement.removeAttribute(viewAttribute.attr$view_title);
 				return this;
 			}
 
 			title = String(title);
-			this.getDomElement().setAttribute(viewAttribute.attr$view_title, title);
+			domElement.setAttribute(viewAttribute.attr$view_title, title);
 			if(this.isActive())
 				document.title = title;
 
@@ -313,7 +313,7 @@
 		 * 获取视图标题
 		 */
 		this.getTitle = function(){
-			return this.getDomElement().getAttribute(viewAttribute.attr$view_title);
+			return domElement.getAttribute(viewAttribute.attr$view_title);
 		};
 
 		/**
@@ -333,31 +333,34 @@
 			if(util.ifStringEqualsIgnoreCase(viewRepresentation.PSVIEW_DEFAULT, fallbackViewId)){
 				var defaultView = View.getDefaultView();
 				if(null == defaultView){
-					globalLogger.error("No default view found to set as fallback view.");
+					globalLogger.error("No default view found to set as fallback view");
 					return this;
-				}else
-					fallbackViewId = defaultView.getId();
+				}else{
+					fallbackViewId = defaultView.id;
+					fallbackViewNamespace = defaultView.namespace;
+				}
 			}else if(/^~/.test(fallbackViewId)){/* 群组视图（"~[groupName]"） */
 				var groupName = fallbackViewId.substring(1);
-				var firstViewId = viewInternalVariable.findFirstViewIdOfGroupName(groupName);
-				if(null == firstViewId){
-					globalLogger.warn("No view of group: {} found to set as fallback view.", groupName);
+				var firstView = viewInternalVariable.findFirstViewOfGroupName(groupName);
+				if(null == firstView){
+					globalLogger.warn("No view of group: {} found to set as fallback view", groupName);
 					return this;
 				}
 
-				fallbackViewId = firstViewId;
+				fallbackViewId = firstView.id;
+				fallbackViewNamespace = firstView.namespace;
 			}
 
 			if(!View.ifExists(fallbackViewId, fallbackViewNamespace)){
-				globalLogger.warn("No view of id: {} in namespace: {} found to set as fallback view.", fallbackViewId, fallbackViewNamespace);
+				globalLogger.warn("No view of id: {} in namespace: {} found to set as fallback view", fallbackViewId, fallbackViewNamespace);
 				return this;
 			}
 
 			if(this.id === fallbackViewId && this.namespace === fallbackViewNamespace)
 				return this;
 
-			this.getDomElement().setAttribute(viewAttribute.attr$view_fallback, fallbackViewId);
-			this.getDomElement().setAttribute(viewAttribute.attr$view_fallback_namespace, fallbackViewNamespace);
+			domElement.setAttribute(viewAttribute.attr$view_fallback, fallbackViewId);
+			domElement.setAttribute(viewAttribute.attr$view_fallback_namespace, fallbackViewNamespace);
 			return this;
 		};
 
@@ -367,36 +370,44 @@
 		 */
 		this.getFallbackView = function(){
 			var view = this;
-			var idChain = [this.getId()];
+			var chain = [{id: this.id, namespace: this.namespace}];
 
 			do{
-				/** 取出配置的视图 */
-				var fallbackViewId = view.getDomElement().getAttribute(viewAttribute.attr$view_fallback);
+				var viewObj = domElement;
+				var fallbackViewId = viewObj.getAttribute(viewAttribute.attr$view_fallback);
+				if(null == fallbackViewId || "" === (fallbackViewId = fallbackViewId.trim()))
+					return View.getDefaultView();
 
 				/* 默认视图（":default-view"） */
-				if(util.ifStringEqualsIgnoreCase(viewRepresentation.PSVIEW_DEFAULT, fallbackViewId)){
+				if(util.ifStringEqualsIgnoreCase(viewRepresentation.PSVIEW_DEFAULT, fallbackViewId))
 					return View.getDefaultView();
-				}
+				
+				var fallbackViewNamespace = viewObj.getAttribute(viewAttribute.attr$view_fallback_namespace) || viewInternalVariable.defaultNamespace;
 
 				/* 群组视图（"~[groupName]"） */
 				if(/^~/.test(fallbackViewId)){
 					var groupName = fallbackViewId.substring(1);
-					var firstViewId = viewInternalVariable.findFirstViewIdOfGroupName(groupName);
-					if(null == firstViewId)
+					var firstView = viewInternalVariable.findFirstViewOfGroupName(groupName);
+					if(null == firstView){
+						globalLogger.warn("No view belongs to group: {} found to render as fallback view for view: {} in namespace: {}", this.id, this.namespace);
 						return View.getDefaultView();
+					}
 
-					fallbackViewId = firstViewId;
+					fallbackViewId = firstView.id;
+					fallbackViewNamespace = firstView.namespace;
 				}
 
 				/** 判断是否配置且配置的视图是否存在 */
-				if(null == fallbackViewId || !View.ifExists(fallbackViewId)){
-					globalLogger.warn("View: " + view.getId() + " is not permited to access directly, and no fallback configuration found, thus returning the default view");
+				if(!View.ifExists(fallbackViewId, fallbackViewNamespace)){
+					globalLogger.debug("Configured fallback view of id: {}, namespace: {} doest not exist for view: {} in namespace: {}", fallbackViewId, fallbackViewNamespace, this.getId(), this.getNamespace());
 					return View.getDefaultView();
 				}else{
-					view = View.ofId(fallbackViewId);
+					view = View.ofId(fallbackViewId, fallbackViewNamespace);
 
-					if(idChain.indexOf(view.getId()) !== -1){/** 循环引用 */
-					globalLogger.error("Cyclical reference of view on fallback configuration on view: {}. Chain: {}, view id: {}", this.getId(), idChain, view.getId());
+					if(chain.some(function(v){
+						return v.id === fallbackViewId && v.namespace === fallbackViewNamespace;
+					})){/** 循环引用 */
+						globalLogger.error("Cyclical reference on fallback view configuration. Chain: {}", chain);
 						return View.getDefaultView();
 					}
 
@@ -404,12 +415,13 @@
 					if(view.isDirectlyAccessible())
 						return view;
 
-					idChain.push(fallbackViewId);
+					chain.push({
+						id: fallbackViewId,
+						namespace: fallbackViewNamespace
+					});
 				}
 			}while(true);
 		};
-
-		Object.freeze && Object.freeze(this);
 	};
 
 	/**

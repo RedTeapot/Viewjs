@@ -2,193 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="14ed39e3-f4fc-42c4-b75d-b3c5bc2c830e" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/todo.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/ChainedHandle.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/ChainedHandle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/ViewConfiguration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/ViewConfiguration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/ViewConstructor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/ViewConstructor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/ViewLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/ViewLayout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/entrance.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/entrance.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/layout.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/view.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/view.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/viewInternalVariable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/viewInternalVariable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/viewParameter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/viewParameter.js" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/.tmp/" />
-    <ignored path="$PROJECT_DIR$/temp/" />
-    <ignored path="$PROJECT_DIR$/tmp/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/js/layout.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6996">
-              <caret line="318" column="63" lean-forward="true" selection-start-line="318" selection-start-column="63" selection-end-line="318" selection-end-column="63" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/js/resolution.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="87" column="16" selection-start-line="87" selection-start-column="16" selection-end-line="87" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/js/view.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="980" selection-start-line="980" selection-end-line="980" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>detectIfKeyboardDisappears</find>
-      <find>try2ExecChangeCallbacks</find>
-      <find>startDetectIfKeyboardDisappears</find>
-      <find>detectIfOrientationChangeCompletes</find>
-      <find>delayTimer</find>
-      <find>delay</find>
-      <find>timer</find>
-      <find>window.in</find>
-      <find>querySelector(&quot;in</find>
-      <find>sw</find>
-      <find>redoLayou</find>
-      <find>reDoLayout</find>
-      <find>console</find>
-      <find>doLayout</find>
-      <find>execCallbacksIfResolutionChanges</find>
-      <find>resolution</find>
-      <find>layout</find>
-      <find>blurInputs</find>
-      <find>prevent</find>
-      <find>blur</find>
-      <find>switchView</find>
-      <find>changeTo</find>
-      <find>getParameter</find>
-      <find>expectedWidthHeightRatio</find>
-      <find>setExpectedWidthHeightRatio</find>
-      <find>navTo</find>
-      <find>showView</find>
-      <find>View.getActiveViewOptions</find>
-      <find>View.layout</find>
-      <find>layout.</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>viewAttribute.$0</replace>
-      <replace>$1viewAttribute.$2</replace>
-      <replace>getViewDomElements</replace>
-      <replace>&lt;a class = &quot;nav-homepage&quot; data-view-rel = &quot;&quot;&gt;&lt;/a&gt;</replace>
-      <replace>&lt;a class = &quot;nav-homepage&quot; data-view-rel = &quot;@../../../index.html&quot;&gt;&lt;/a&gt;</replace>
-      <replace>&lt;!DOCTYPE HTML&gt;</replace>
-    </replaceStrings>
-    <dirStrings>
-      <dir>C:\Users\WMJ\Desktop\View.js\git\Viewjs\src</dir>
-      <dir>G:\代码仓库\js\view\src</dir>
-      <dir>G:\代码仓库\js\view\docs\web\www\demo</dir>
-      <dir>G:\代码仓库\js\view\src\js</dir>
-    </dirStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/docs/web/www/demo/initialize-view/1/css/index.css" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/initialize-view/1/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-group/1/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-group/1/css/index.css" />
-        <option value="$PROJECT_DIR$/docs/web/www/js/page/index/init.js" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/default-view/1/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/default-view/2/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/default-view/3/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-namespace/1/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-container/1/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/pseudo-view/1/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/pseudo-view/1/css/index.css" />
-        <option value="$PROJECT_DIR$/src/view.js" />
-        <option value="$PROJECT_DIR$/src/ViewContext.js" />
-        <option value="$PROJECT_DIR$/docs/web/www/css/index.scss" />
-        <option value="$PROJECT_DIR$/src/viewInternalVariable.js" />
-        <option value="$PROJECT_DIR$/src/util.js" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-layout/4/css/view.css" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-layout/4/css/index.css" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-layout/3/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-layout/2/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-layout/1/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-layout/4/css/index.scss" />
-        <option value="$PROJECT_DIR$/docs/web/www/demo/view-layout/4/index.html" />
-        <option value="$PROJECT_DIR$/docs/web/www/index.html" />
-        <option value="$PROJECT_DIR$/build/gulpfile.new.js" />
-        <option value="$PROJECT_DIR$/build/node_modules/_merge2@1.2.2@merge2/index.mjs" />
-        <option value="$PROJECT_DIR$/build/script.js" />
-        <option value="$PROJECT_DIR$/build/main.js" />
-        <option value="$PROJECT_DIR$/build/scripts/script.js" />
-        <option value="$PROJECT_DIR$/build/install-gulp.bat" />
-        <option value="$PROJECT_DIR$/build/releaseToDoc.bat" />
-        <option value="$PROJECT_DIR$/build/src.bat" />
-        <option value="$PROJECT_DIR$/build/min.bat" />
-        <option value="$PROJECT_DIR$/readme.md" />
-        <option value="$PROJECT_DIR$/src/js/ViewConfigurationSet.js" />
-        <option value="$PROJECT_DIR$/build/minAndZip.bat" />
-        <option value="$PROJECT_DIR$/build/scripts/main.js" />
-        <option value="$PROJECT_DIR$/build/scripts/lib.js" />
-        <option value="$PROJECT_DIR$/src/js/ViewConfiguration.js" />
-        <option value="$PROJECT_DIR$/src/js/viewAttribute.js" />
-        <option value="$PROJECT_DIR$/src/ts/view.d.ts" />
-        <option value="$PROJECT_DIR$/src/js/ViewState.js" />
-        <option value="$PROJECT_DIR$/src/js/ViewConstructor.js" />
-        <option value="$USER_HOME$/Desktop/test/viewjs/view-1.6.2.min.js" />
-        <option value="$USER_HOME$/Desktop/test/viewjs/index.html.allinone.js" />
-        <option value="$PROJECT_DIR$/src/js/util.js" />
-        <option value="$PROJECT_DIR$/src/js/viewInternalVariable.js" />
-        <option value="$PROJECT_DIR$/src/js/resolution2.js" />
-        <option value="$PROJECT_DIR$/src/js/resolution.js" />
-        <option value="$PROJECT_DIR$/src/js/view.js" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="5" />
-    <option name="width" value="1922" />
-    <option name="height" value="1047" />
-  </component>
+  <component name="ProjectId" id="1UKGmKoRXKTIozjb1AYBtSPpc8Q" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="view" type="b2602c69:ProjectViewProjectNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="view" type="b2602c69:ProjectViewProjectNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="view" type="b2602c69:ProjectViewProjectNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
-  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -327,11 +162,10 @@
       <workItem from="1574151286597" duration="1809000" />
       <workItem from="1574231708696" duration="3147000" />
       <workItem from="1574317914010" duration="2496000" />
+      <workItem from="1575099575418" duration="8000" />
+      <workItem from="1575123645096" duration="5085000" />
     </task>
     <servers />
-  </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="184389000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -342,303 +176,21 @@
       <is-autoscroll-to-source value="true" />
     </todo-panel>
   </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13976793" />
-      <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info content_ui="combo" id="Hierarchy" order="2" weight="0.24973656" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.329718" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.27401745" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Structure" order="10" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32861805" />
-      <window_info anchor="bottom" id="TypeScript" order="12" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-    </layout>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/js/touch.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2265" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/css/view.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" column="1" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/node_modules/_wzh.node-utils@0.0.10@wzh.node-utils/string.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="214" column="22" selection-start-line="214" selection-start-column="22" selection-end-line="214" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/node_modules/_wzh.node-utils@0.0.10@wzh.node-utils/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="25" lean-forward="true" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/stage.bat" />
-    <entry file="file://$PROJECT_DIR$/build/stageAndreleaseToDoc.bat" />
-    <entry file="file://$PROJECT_DIR$/build/node_modules/_merge2@1.2.2@merge2/index.mjs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-230">
-          <caret line="68" column="27" lean-forward="true" selection-start-line="68" selection-start-column="27" selection-end-line="68" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/gulpfile.js" />
-    <entry file="file://$PROJECT_DIR$/memo/readme.txt" />
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="124" column="4" selection-start-line="124" selection-start-column="4" selection-end-line="124" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/src.bat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="50" selection-start-column="50" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/min.bat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="67" selection-start-column="53" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/readme.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/Logger.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="187" column="35" selection-start-line="187" selection-start-column="15" selection-end-line="187" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/ViewConfigurationSet.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="28" column="27" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/entrance.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/viewRepresentation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="946">
-          <caret line="43" column="33" lean-forward="true" selection-start-line="43" selection-start-column="33" selection-end-line="43" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/install-gulp.bat">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/view-1.0.0.css" />
-    <entry file="file://$PROJECT_DIR$/view-1.0.0.js" />
-    <entry file="file://$PROJECT_DIR$/view-1.0.0.d.ts" />
-    <entry file="file://$PROJECT_DIR$/view-1.0.1.d.ts" />
-    <entry file="file://$PROJECT_DIR$/view-1.0.1.min.js" />
-    <entry file="file://$PROJECT_DIR$/view-1.0.1.min.css" />
-    <entry file="file://$PROJECT_DIR$/build/minAndZip.bat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="22" selection-start-column="22" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/scripts/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-307">
-          <caret line="8" column="47" selection-start-line="8" selection-start-column="47" selection-end-line="8" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/viewjs-1.0.0/view-1.0.0.d.ts" />
-    <entry file="file://$PROJECT_DIR$/viewjs-1.0.0/view-1.0.0.min.js" />
-    <entry file="file://$PROJECT_DIR$/viewjs-1.0.0/view-1.0.0.min.css" />
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="13200" column="22" lean-forward="true" selection-start-line="13200" selection-start-column="22" selection-end-line="13200" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/ViewContext.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/ViewState.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1474">
-          <caret line="147" column="6" selection-start-line="147" selection-start-column="6" selection-end-line="147" selection-end-column="6" />
-          <folding>
-            <element signature="e#330#817#0" />
-            <element signature="e#1864#2037#0" />
-            <element signature="e#2365#3146#0" />
-            <element signature="e#3480#4553#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/scripts/lib.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3630">
-          <caret line="165" column="32" selection-start-line="165" selection-start-column="19" selection-end-line="165" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/test/viewjs/view-1.6.2.min.js" />
-    <entry file="file://$USER_HOME$/Desktop/test/viewjs/index.html.allinone.js" />
-    <entry file="file://$PROJECT_DIR$/src/ts/view.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="143" column="22" selection-start-line="143" selection-start-column="22" selection-end-line="143" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/resolution1.js" />
-    <entry file="file://$PROJECT_DIR$/src/js/viewAttribute.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="36" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/util.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="288" column="8" selection-start-line="288" selection-start-column="8" selection-end-line="288" selection-end-column="8" />
-          <folding>
-            <element signature="e#294#552#0" />
-            <element signature="e#725#835#0" />
-            <element signature="e#1013#1377#0" />
-            <element signature="e#1549#2534#0" />
-            <element signature="e#2693#2880#0" />
-            <element signature="e#2958#3002#0" />
-            <element signature="e#3248#3666#0" />
-            <element signature="e#3869#3961#0" />
-            <element signature="e#4047#4372#0" />
-            <element signature="e#4445#4512#0" />
-            <element signature="e#4571#4771#0" />
-            <element signature="e#4894#5010#0" />
-            <element signature="e#5053#6101#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/ChainedHandle.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3102">
-          <caret line="141" column="15" selection-start-line="141" selection-start-column="15" selection-end-line="141" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/ViewConfiguration.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="682">
-          <caret line="31" column="22" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/viewParameter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1430">
-          <caret line="65" column="36" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/ViewConstructor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3072">
-          <caret line="207" lean-forward="true" selection-start-line="207" selection-end-line="207" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/ViewLayout.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2288">
-          <caret line="104" column="27" lean-forward="true" selection-start-line="104" selection-start-column="27" selection-end-line="104" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/eventDrive.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="70" column="30" lean-forward="true" selection-start-line="70" selection-start-column="30" selection-end-line="70" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/viewInternalVariable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="380" column="7" lean-forward="true" selection-start-line="380" selection-start-column="7" selection-end-line="380" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/layout.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6996">
-          <caret line="318" column="63" lean-forward="true" selection-start-line="318" selection-start-column="63" selection-end-line="318" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/resolution.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="87" column="16" selection-start-line="87" selection-start-column="16" selection-end-line="87" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/view.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="980" selection-start-line="980" selection-end-line="980" />
-        </state>
-      </provider>
-    </entry>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="masterDetails">
     <states>

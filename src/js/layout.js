@@ -305,7 +305,7 @@
 		 */
 		var init = function(ops){
 			if(isInitialized){
-				globalLogger.warn("Layout was initialized already.");
+				globalLogger.warn("Layout was initialized already");
 				return obj;
 			}
 

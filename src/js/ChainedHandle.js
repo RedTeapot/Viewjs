@@ -43,7 +43,7 @@
 		 */
 		this.setSequence = function(_sequence){
 			if(isExecuting){
-				globalLogger.error("Sequence is prohibited to change while executing.");
+				globalLogger.error("Sequence is prohibited to change while executing");
 				return this;
 			}
 
@@ -112,7 +112,7 @@
 		 */
 		this.setHandle = function(handleName, handle){
 			if(isExecuting){
-				globalLogger.error("Handle is prohibited to change while executing.");
+				globalLogger.error("Handle is prohibited to change while executing");
 				return this;
 			}
 

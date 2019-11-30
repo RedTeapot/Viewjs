@@ -62,7 +62,7 @@
 		 */
 		this.setApplication = function(_application){
 			if(typeof _application != "function"){
-				globalLogger.warn("Configuration application should be of type: 'Function'.");
+				globalLogger.warn("Application action should be of type: 'Function'");
 				return this;
 			}
 			
@@ -100,7 +100,7 @@
 				return this;
 
 			if(!View.ifExists(viewId, viewNamespace)){
-				globalLogger.warn("No view of id '{}' namespace: '{}' found to reflect view config: {}={}.", viewId, viewNamespace, this.getName(), this.getValue());
+				globalLogger.warn("No view of id '{}' in namespace: '{}' found to reflect config: {}={}", viewId, viewNamespace, this.getName(), this.getValue());
 				return this;
 			}
 

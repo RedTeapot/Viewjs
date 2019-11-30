@@ -165,7 +165,7 @@
 		viewInternalVariable.buildNamespace(namespace);
 
 		if(util.isEmptyString(viewId, true)){
-			globalLogger.warn("No view id supplied to set as default.");
+			globalLogger.warn("No view id supplied to set as default");
 			return View;
 		}
 
@@ -177,7 +177,7 @@
 		/* 设置新的默认视图 */
 		var viewObj = viewInternalVariable.getViewDomElementOfId(viewId, namespace);
 		if(null == viewObj){
-			globalLogger.error("No view dom element of id: '{}' namespace: '{}' found to set as default.", viewId, namespace);
+			globalLogger.error("No dom element for view of id: '{}' namespace: '{}' found to set as default", viewId, namespace);
 			return View;
 		}
 		viewObj.setAttribute(viewAttribute.attr$view_default, "true");
@@ -280,7 +280,7 @@
 	 */
 	View.setSwitchAnimation = function(animationFunction){
 		if(!(animationFunction instanceof Function))
-			throw new Error("Invalid argument, type of 'Function' is required.");
+			throw new Error("Invalid argument, type of 'Function' is required");
 
 		viewInternalVariable.viewSwitchAnimation = animationFunction;
 
@@ -328,13 +328,13 @@
 	 */
 	View.setActiveViewOption = function(name, value){
 		if(util.isEmptyString(name, true)){
-			globalLogger.error("Option name should not be empty.");
+			globalLogger.error("Option name should not be empty");
 			return View;
 		}
 
 		var activeView = View.getActiveView();
 		if(null == activeView){
-			globalLogger.error("No active view to set option {} = {}.", name, value);
+			globalLogger.error("No view is active to set option {} = {}", name, value);
 			return View;
 		}
 
@@ -352,41 +352,43 @@
 	/**
 	 * 以“压入历史堆栈”的方式略过视图，使得在不展现视图的前提下达到返回时可以返回到该视图上的目的
 	 * @param {String} targetViewId 目标视图ID
-	 * @param {String} [namespace=defaultNamespace] 视图隶属的命名空间
+	 * @param {String} [targetViewNamespace=defaultNamespace] 目标视图隶属的命名空间
 	 */
-	View.passBy = function(targetViewId, namespace){
-		if(arguments.length < 2 || typeof namespace !== "string" || util.isEmptyString(namespace, true)){
-			namespace = viewInternalVariable.defaultNamespace;
+	View.passBy = function(targetViewId, targetViewNamespace){
+		if(arguments.length < 2 || typeof targetViewNamespace !== "string" || util.isEmptyString(targetViewNamespace, true)){
+			targetViewNamespace = viewInternalVariable.defaultNamespace;
 		}
-		viewInternalVariable.buildNamespace(namespace);
+		viewInternalVariable.buildNamespace(targetViewNamespace);
 
 		/* 默认视图（":default-view"） */
 		if(util.ifStringEqualsIgnoreCase(viewRepresentation.PSVIEW_DEFAULT, targetViewId)){
 			var defaultView = View.getDefaultView();
 			if(null == defaultView){
-				globalLogger.error("No default view found.");
+				globalLogger.error("No default view found");
 				return View;
 			}
 
-			targetViewId = defaultView.getId();
+			targetViewId = defaultView.id;
+			targetViewNamespace = defaultView.namespace;
 		}
 		/* 群组视图（"~[groupName]"） */
 		if(/^~/.test(targetViewId)){
 			var groupName = targetViewId.substring(1);
-			var firstViewId = viewInternalVariable.findFirstViewIdOfGroupName(groupName);
-			if(null == firstViewId)
+			var firstView = viewInternalVariable.findFirstViewOfGroupName(groupName);
+			if(null == firstView)
 				return View;
 
-			targetViewId = firstViewId;
+			targetViewId = firstView.id;
+			targetViewNamespace = firstView.namespace;
 		}
 
 		/* 检查目标视图是否存在 */
-		if(!View.ifExists(targetViewId, namespace)){
-			console.error(new Error("Target view: '" + targetViewId + "' within namespace: '" + namespace + "' does not exist!"));
+		if(!View.ifExists(targetViewId, targetViewNamespace)){
+			console.error(new Error("Target view: '" + targetViewId + "' within namespace: '" + targetViewNamespace + "' does not exist!"));
 			return View;
 		}
 
-		ViewState.pushViewState(targetViewId, namespace);
+		ViewState.pushViewState(targetViewId, targetViewNamespace);
 		return View;
 	};
 
@@ -402,22 +404,21 @@
 	/**
 	 * 以“压入历史堆栈”的方式切换视图
 	 * @param {String} targetViewId 目标视图ID
-	 * @param {String} [namespace=defaultNamespace] 视图隶属的命名空间
+	 * @param {String} [targetViewNamespace=defaultNamespace] 目标视图隶属的命名空间
 	 * @param {Object} ops 切换配置。详见viewInternalVariable.showView
 	 * @param {Object} ops.options 视图选项
 	 */
-	View.navTo = function(targetViewId, namespace, ops){
-		if(arguments.length < 2 || typeof namespace !== "string" || util.isEmptyString(namespace, true)){
-			ops = namespace;
-			namespace = viewInternalVariable.defaultNamespace;
+	View.navTo = function(targetViewId, targetViewNamespace, ops){
+		if(arguments.length < 2 || typeof targetViewNamespace !== "string" || util.isEmptyString(targetViewNamespace, true)){
+			ops = targetViewNamespace;
+			targetViewNamespace = viewInternalVariable.defaultNamespace;
 		}
-		viewInternalVariable.buildNamespace(namespace);
+		viewInternalVariable.buildNamespace(targetViewNamespace);
 
 		targetViewId = targetViewId.trim();
 		ops = util.setDftValue(ops, {});
 
-		var renderingViewId = viewInternalVariable.getRenderingViewId(),
-			currentView = View.getActiveView();/* 当前活动视图 */
+		var currentView = View.getActiveView();/* 当前活动视图 */
 
 		/** 伪视图支持 */
 		/* 回退操作(":back") */
@@ -434,20 +435,22 @@
 		if(util.ifStringEqualsIgnoreCase(viewRepresentation.PSVIEW_DEFAULT, targetViewId)){
 			var defaultView = View.getDefaultView();
 			if(null == defaultView){
-				globalLogger.error("No default view found.");
+				globalLogger.error("No default view found");
 				return View;
 			}
 
-			targetViewId = defaultView.getId();
+			targetViewId = defaultView.id;
+			targetViewNamespace = defaultView.namespace;
 		}
 		/* 群组视图（"~[groupName]"） */
 		if(/^\s*~/.test(targetViewId)){
 			var groupName = targetViewId.replace(/^\s*~+/, "").trim();
-			var firstViewId = viewInternalVariable.findFirstViewIdOfGroupName(groupName);
-			if(null == firstViewId)
+			var firstView = viewInternalVariable.findFirstViewOfGroupName(groupName);
+			if(null == firstView)
 				return View;
 
-			targetViewId = firstViewId;
+			targetViewId = firstView.id;
+			targetViewNamespace = firstView.namespace;
 		}
 		/* 是否是外部链接 */
 		if(/^(http|https|ftp):\/\//gim.test(targetViewId)){
@@ -467,18 +470,18 @@
 		}
 
 		/* 检查目标视图是否存在 */
-		if(!View.ifExists(targetViewId, namespace)){
-			globalLogger.log("Trying to navigate to view: '{}' within namespace: '{}' with params: {}, options: {}", targetViewId, namespace, ops.params, ops.options);
+		if(!View.ifExists(targetViewId, targetViewNamespace)){
+			globalLogger.log("Trying to navigate to view: '{}' within namespace: '{}' with params: {}, options: {}", targetViewId, targetViewNamespace, ops.params, ops.options);
 
-			var e = new Error("Target view: '" + targetViewId + "' within namespace: '" + namespace + "' does not exist! Firing event 'viewnotexist'...");
+			var e = new Error("Target view: '" + targetViewId + "' within namespace: '" + targetViewNamespace + "' does not exist! Firing event 'viewnotexist'...");
 			console.error(e);
-			View.fire("viewnotexist", {targetViewId: targetViewId, targetViewNamespace: namespace});
+			View.fire("viewnotexist", {targetViewId: targetViewId, targetViewNamespace: targetViewNamespace});
 			return View;
 		}
 
 		ops.type = View.SWITCHTYPE_VIEWNAV;
-		ViewState.pushViewState(targetViewId, namespace, null, null == ops? null: ops.options);
-		viewInternalVariable.showView(targetViewId, namespace, ops);
+		ViewState.pushViewState(targetViewId, targetViewNamespace, null, null == ops? null: ops.options);
+		viewInternalVariable.showView(targetViewId, targetViewNamespace, ops);
 
 		return View;
 	};
@@ -486,40 +489,41 @@
 	/**
 	 * 以“替换当前堆栈”的方式切换视图
 	 * @param targetViewId 目标视图ID
-	 * @param {String} [namespace=defaultNamespace] 视图隶属的命名空间
+	 * @param {String} [targetViewNamespace=defaultNamespace] 视图隶属的命名空间
 	 * @param {Object} ops 切换配置。详见switchView
 	 * @param {Object} ops.options 视图选项
 	 */
-	View.changeTo = function(targetViewId, namespace, ops){
-		if(arguments.length < 2 || typeof namespace !== "string" || util.isEmptyString(namespace, true)){
-			ops = namespace;
-			namespace = viewInternalVariable.defaultNamespace;
+	View.changeTo = function(targetViewId, targetViewNamespace, ops){
+		if(arguments.length < 2 || typeof targetViewNamespace !== "string" || util.isEmptyString(targetViewNamespace, true)){
+			ops = targetViewNamespace;
+			targetViewNamespace = viewInternalVariable.defaultNamespace;
 		}
-		viewInternalVariable.buildNamespace(namespace);
+		viewInternalVariable.buildNamespace(targetViewNamespace);
 
 		ops = util.setDftValue(ops, {});
 
-		var renderingViewId = viewInternalVariable.getRenderingViewId(),
-			currentView = View.getActiveView();/* 当前活动视图 */
+		var currentView = View.getActiveView();/* 当前活动视图 */
 
 		/* 默认视图（":default-view"） */
 		if(util.ifStringEqualsIgnoreCase(viewRepresentation.PSVIEW_DEFAULT, targetViewId)){
 			var defaultView = View.getDefaultView();
 			if(null == defaultView){
-				globalLogger.error("No default view found.");
+				globalLogger.error("No default view found");
 				return;
 			}
 
-			targetViewId = defaultView.getId();
+			targetViewId = defaultView.id;
+			targetViewNamespace = defaultView.namespace;
 		}
 		/* 群组视图（"~[groupName]"） */
 		if(/^\s*~/.test(targetViewId)){
 			var groupName = targetViewId.replace(/^\s*~+/, "").trim();
-			var firstViewId = viewInternalVariable.findFirstViewIdOfGroupName(groupName);
-			if(null == firstViewId)
+			var firstView = viewInternalVariable.findFirstViewOfGroupName(groupName);
+			if(null == firstView)
 				return View;
 
-			targetViewId = firstViewId;
+			targetViewId = firstView.id;
+			targetViewNamespace = firstView.namespace;
 		}
 		/* 是否是外部链接 */
 		if(/^(http|https|ftp):\/\//gim.test(targetViewId)){
@@ -539,18 +543,18 @@
 		}
 
 		/* 检查目标视图是否存在 */
-		if(!View.ifExists(targetViewId, namespace)){
-			globalLogger.log("Trying to navigate to view: '{}' within namespace: '{}' with params: {}, options: {}", targetViewId, namespace, ops.params, ops.options);
+		if(!View.ifExists(targetViewId, targetViewNamespace)){
+			globalLogger.log("Trying to navigate to view: '{}' within namespace: '{}' with params: {}, options: {}", targetViewId, targetViewNamespace, ops.params, ops.options);
 
-			var e = new Error("Target view: '" + targetViewId + "' within namespace: '" + namespace + "' does not exist! Firing event 'viewnotexist'...");
+			var e = new Error("Target view: '" + targetViewId + "' within namespace: '" + targetViewNamespace + "' does not exist! Firing event 'viewnotexist'...");
 			console.error(e);
-			View.fire("viewnotexist", {targetViewId: targetViewId, targetViewNamespace: namespace});
+			View.fire("viewnotexist", {targetViewId: targetViewId, targetViewNamespace: targetViewNamespace});
 			return View;
 		}
 
 		ops.type = View.SWITCHTYPE_VIEWCHANGE;
-		ViewState.replaceViewState(targetViewId, namespace, null, null == ops? null: ops.options);
-		viewInternalVariable.showView(targetViewId, namespace, ops);
+		ViewState.replaceViewState(targetViewId, targetViewNamespace, null, null == ops? null: ops.options);
+		viewInternalVariable.showView(targetViewId, targetViewNamespace, ops);
 
 		return View;
 	};
@@ -563,7 +567,7 @@
 	 */
 	View.setNoViewToNavBackAction = function(action){
 		if(typeof action !== "function")
-			throw new Error("Invalid argument! Type of 'Function' is needed.");
+			throw new Error("Invalid argument! Type of 'Function' is required");
 
 		noViewToNavBackAction = action;
 		return View;
@@ -629,7 +633,7 @@
 	 */
 	View.onceHistoryBack = function(callback){
 		if(typeof callback !== "function")
-			throw new Error("Invalid argument! Type of 'Function' is needed.");
+			throw new Error("Invalid argument! Type of 'Function' is required");
 
 		OperationState.pushState(util.randomString(), callback);
 		return View;
@@ -725,7 +729,7 @@
 				targetView = View.ofId(newViewId, newViewNamespace);
 				options = popedNewState.options;
 			}else{
-				globalLogger.warn("Popped view: '" + newViewId + "' within namespace: '" + newViewNamespace + "' does not exist, keeping current.");
+				globalLogger.warn("Popped view: '" + newViewId + "' within namespace: '" + newViewNamespace + "' does not exist, keeping current");
 				targetView = currentActiveView;
 
 				/* 如果最终视图和地址栏中的视图不是一个视图，则不能再将选项传递给最终视图 */
@@ -786,7 +790,7 @@
 			/* 定义视图 */
 			var view = View.ofId(viewId, namespace);
 			if(initedViews.indexOf(view) !== -1){
-				globalLogger.warn("Multiple view of id: '{}' within namespace: '{}' exists.", view.id, view.namespace);
+				globalLogger.warn("Multiple view of id: '{}' within namespace: '{}' exists", view.id, view.namespace);
 				return;
 			}
 			initedViews.push(view);
@@ -828,7 +832,7 @@
 				dftViewObj = viewObjs[0];
 				dftViewObj.setAttribute(viewAttribute.attr$view_default, "true");
 			}else
-				globalLogger.warn("No view exists to determine the default view.");
+				globalLogger.warn("No view exists to serve as default view");
 
 			return dftViewObj;
 		};
@@ -870,6 +874,10 @@
 				}
 				if(null != tmp)
 					targetViewId = tmp.getAttribute(viewAttribute.attr$view_rel);
+
+				var targetViewNamespace = tmp.getAttribute(viewAttribute.attr$view_rel_namespace);
+				if(util.isEmptyString(targetViewNamespace, true))
+					targetViewNamespace = viewInternalVariable.defaultNamespace;
 
 				if(null == targetViewId || "" === targetViewId.trim())
 					return;
@@ -918,7 +926,10 @@
 				/* 默认视图（":default-view"） */
 				if(util.ifStringEqualsIgnoreCase(viewRepresentation.PSVIEW_DEFAULT, targetViewId)){
 					var defaultView = View.getDefaultView();
-					targetViewId = null == defaultView? null: defaultView.getId();
+					if(null != defaultView){
+						targetViewId = defaultView.id;
+						targetViewNamespace = defaultView.namespace;
+					}
 				}
 
 				/* 群组视图（"~[groupName]"） */
@@ -930,24 +941,22 @@
 						return;
 
 					var groupName = m[1].trim(), _options = util.parseParams(m[2]);
-					var firstViewId = viewInternalVariable.findFirstViewIdOfGroupName(groupName);
-					if(null == firstViewId)
+					var firstView = viewInternalVariable.findFirstViewOfGroupName(groupName);
+					if(null == firstView)
 						return;
 
-					targetViewId = firstViewId;
+					targetViewId = firstView.id;
+					targetViewNamespace = firstView.namespace;
 					options = _options;
 				}else{
 					var rst = viewRepresentation.parseViewInfoFromHash("#" + targetViewId);
 
 					targetViewId = rst.viewId;
+					targetViewNamespace = rst.viewNamespace || viewInternalVariable.defaultNamespace;
 					options = rst.options;
 				}
 
 				/* 允许同一视图连续跳转 */
-
-				var namespace = tmp.getAttribute(viewAttribute.attr$view_rel_namespace);
-				if(util.isEmptyString(namespace, true))
-					namespace = viewInternalVariable.defaultNamespace;
 
 				var relType = tmp.getAttribute(viewAttribute.attr$view_rel_type);
 				relType = util.isEmptyString(relType, true)? "nav": relType;
@@ -957,7 +966,7 @@
 				}
 
 				/* 呈现ID指定的视图 */
-				View[relType + "To"](targetViewId, namespace, {options: options});
+				View[relType + "To"](targetViewId, targetViewNamespace, {options: options});
 		}, {useCapture: true});
 
 		/* 使能属性：data-view-whr */
@@ -984,7 +993,7 @@
 			var r = /(\d+(?:\.\d*)?)\s*\/\s*(\d+(?:\.\d*)?)/i;
 			var tmp = whr.match(r);
 			if(null == tmp){
-				globalLogger.warn("Invalid view expected width height ratio: {}. Value such as '320/568'(iPhone 5) is valid. Using '{}' instead.", whr, viewInternalVariable.defaultWidthHeightRatio);
+				globalLogger.warn("Invalid view expected width height ratio: {}. Value such as '320/568'(iPhone 5) is valid. Using '{}' instead", whr, viewInternalVariable.defaultWidthHeightRatio);
 				tmp = viewInternalVariable.defaultWidthHeightRatio.exec(r);
 			}else
 				globalLogger.info("Using specified expected width height ratio: {}", whr);
@@ -1005,7 +1014,7 @@
 		(function(){
 			/* 如果要呈现的视图，是View.ready方法执行后通过API跳转过来的，则不再重复处理 */
 			if(null != View.currentState){
-				globalLogger.debug("Skip showing specified view.");
+				globalLogger.debug("Skip showing specified view");
 				return;
 			}
 
@@ -1031,7 +1040,7 @@
 					targetViewId = defaultViewId;
 					targetViewNamespace = defaultViewNamespace;
 				}else{
-					globalLogger.warn("No default view(id: '{}', namespace: '{}') found.", defaultViewId, defaultViewNamespace);
+					globalLogger.warn("No default view of id: '{}' within namespace: '{}' found", defaultViewId, defaultViewNamespace);
 
 					targetViewId = null;
 					targetViewNamespace = null;

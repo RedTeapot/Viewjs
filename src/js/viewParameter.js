@@ -2,8 +2,6 @@
 	var globalLogger = ctx[name].Logger.globalLogger,
 		viewRepresentation = ctx[name].viewRepresentation;
 
-	var NOT_SUPPLIED = {};
-
 	/**
 	 * 视图参数集合。
 	 *
@@ -39,12 +37,12 @@
 	 */
 	var setViewParameters = function(viewId, viewNamespace, params){
 		if(!View.ifExists(viewId, viewNamespace) && !viewRepresentation.isPseudoView(viewId))
-			throw new Error("View of id: '" + viewId + "' within namespace: '" + viewNamespace + "' does not exist.");
+			throw new Error("View of id: '" + viewId + "' within namespace: '" + viewNamespace + "' does not exist");
 
 		if(undefined === params)
 			params = null;
 		if(typeof params !== "object")
-			throw new Error("Parameters specified should be an object or null.");
+			throw new Error("Parameters specified should be an object or null");
 
 		setParameters(viewId, viewNamespace, params);
 		return View;
