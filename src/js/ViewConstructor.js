@@ -135,15 +135,31 @@
 		};
 
 		/**
+		 * 获取视图的名称（不区分大小写）。
+		 * @returns {String} 小写的名称
+		 */
+		this.getName = function(){
+			var name = domElement.getAttribute(viewAttribute.attr$view_name);
+			if(null == name)
+				return name;
+
+			name = String(name).trim().toLowerCase();
+			return name;
+		};
+
+		/**
 		 * 获取视图的群组名称（不区分大小写）。
 		 * @returns {String} 小写的群组名称
 		 */
 		this.getGroupName = function(){
+			globalLogger.warn("This method is deprecated, please use 'this.getName()' instead");
+			globalLogger.warn("Attribute 'data-view-group' is deprecated, please use 'data-view-name' instead");
+
 			var name = domElement.getAttribute(viewAttribute.attr$view_group);
 			if(null == name)
 				return name;
 
-			name = String(name).toLowerCase();
+			name = String(name).trim().toLowerCase();
 			return name;
 		};
 
@@ -318,7 +334,7 @@
 
 		/**
 		 * 设置回退视图
-		 * @param {String} fallbackViewId 回退视图ID，或伪视图：":default-view"，或视图群组
+		 * @param {String} fallbackViewId 回退视图ID，或伪视图：":default-view"，或视图名称
 		 * @param {String} [fallbackViewNamespace=defaultNamespace] 回退视图隶属的命名空间
 		 */
 		this.setFallbackViewId = function(fallbackViewId, fallbackViewNamespace){
@@ -339,11 +355,11 @@
 					fallbackViewId = defaultView.id;
 					fallbackViewNamespace = defaultView.namespace;
 				}
-			}else if(/^~/.test(fallbackViewId)){/* 群组视图（"~[groupName]"） */
-				var groupName = fallbackViewId.substring(1);
-				var firstView = viewInternalVariable.findFirstViewOfGroupName(groupName);
+			}else if(/^~/.test(fallbackViewId)){/* 视图名称（"~[viewName]"） */
+				var viewName = fallbackViewId.substring(1);
+				var firstView = viewInternalVariable.findFirstViewOfName(viewName);
 				if(null == firstView){
-					globalLogger.warn("No view of group: {} found to set as fallback view", groupName);
+					globalLogger.warn("No view of name: {} found to set as fallback view", viewName);
 					return this;
 				}
 
@@ -384,12 +400,12 @@
 				
 				var fallbackViewNamespace = viewObj.getAttribute(viewAttribute.attr$view_fallback_namespace) || viewInternalVariable.defaultNamespace;
 
-				/* 群组视图（"~[groupName]"） */
+				/* 视图名称（"~[viewName]"） */
 				if(/^~/.test(fallbackViewId)){
-					var groupName = fallbackViewId.substring(1);
-					var firstView = viewInternalVariable.findFirstViewOfGroupName(groupName);
+					var viewName = fallbackViewId.substring(1);
+					var firstView = viewInternalVariable.findFirstViewOfName(viewName);
 					if(null == firstView){
-						globalLogger.warn("No view belongs to group: {} found to render as fallback view for view: {} in namespace: {}", this.id, this.namespace);
+						globalLogger.warn("No view of name: {} found to render as fallback view for view: {} in namespace: {}", this.id, this.namespace);
 						return View.getDefaultView();
 					}
 

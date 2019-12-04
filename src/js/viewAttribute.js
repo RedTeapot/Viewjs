@@ -3,6 +3,7 @@
 	ctx[name].viewAttribute = {
 		attr$view: "data-view",
 		attr$viewId: "data-view-id",
+		attr$view_name: "data-view-name",
 		attr$view_namespace: "data-view-namespace",
 		attr$view_default: "data-view-default",
 		attr$view_directly_accessible: "data-view-directly-accessible",

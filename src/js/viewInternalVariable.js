@@ -191,45 +191,45 @@
 
 	/**
 	 * 列举所有视图
-	 * @param {String} [groupName] 群组名称。不区分大小写。如果为空字符串，则返回所有视图
+	 * @param {String} [viewName] 视图名称。不区分大小写。如果为空字符串，则返回所有视图
 	 */
-	var listAllViews = function(groupName){
+	var listAllViews = function(viewName){
 		if(arguments.length > 1)
-			groupName = String(groupName).toLowerCase();
+			viewName = String(viewName).trim().toLowerCase();
 
 		var arr = [];
 		for(var namespace in viewInstancesMap)
 			arr = arr.concat(viewInstancesMap[namespace]);
 
-		if(arguments.length < 1 || util.isEmptyString(groupName, true))
+		if(arguments.length < 1 || util.isEmptyString(viewName, true))
 			return arr;
 
 		return arr.filter(function(v){
-			return groupName === v.getGroupName();
+			return viewName === v.getName();
 		});
 	};
 
 	/**
-	 * 查找隶属于给定名称的群组的第一个视图
-	 * @param {String} groupName 视图群组名称
+	 * 查找隶属于给定名称的第一个视图
+	 * @param {String} viewName 视图名称
 	 * @returns {View}
 	 */
-	var findFirstViewOfGroupName = function(groupName){
-		if(util.isEmptyString(groupName, true)){
-			globalLogger.error("Empty view group name!");
+	var findFirstViewOfName = function(viewName){
+		if(util.isEmptyString(viewName, true)){
+			globalLogger.error("Empty view name!");
 			return null;
 		}
 
-		groupName = String(groupName).trim().toLowerCase();
+		viewName = String(viewName).trim().toLowerCase();
 
-		var groupViews = listAllViews(groupName);
-		if(null == groupViews || 0 === groupViews.length){
-			globalLogger.error("No view belongs to group: {} found", groupName);
+		var viewList = listAllViews(viewName);
+		if(null == viewList || 0 === viewList.length){
+			globalLogger.error("No view of name: {} found", viewName);
 			return null;
 		}
 
-		var firstView = groupViews[0];
-		globalLogger.info("Found {} views that belongs to group: {}: {}, using the first one: {}@{}", groupViews.length, groupName, firstView.id, firstView.namespace);
+		var firstView = viewList[0];
+		globalLogger.info("Found {} views of name: {}: {}, using the first one: {}@{}", viewList.length, viewName, firstView.id, firstView.namespace);
 
 		return firstView;
 	};
@@ -400,7 +400,7 @@
 		buildNamespace: buildNamespace,
 		getFinalView: getFinalView,
 		listAllViews: listAllViews,
-		findFirstViewOfGroupName: findFirstViewOfGroupName,
+		findFirstViewOfName: findFirstViewOfName,
 		switchView: switchView,
 		showView: showView
 	};

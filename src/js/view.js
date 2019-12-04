@@ -135,23 +135,32 @@
 
 	/**
 	 * 列举所有视图
-	 * @param {String} [groupName] 群组名称。不区分大小写。如果为空字符串，则返回所有视图
+	 * @param {String} [viewName] 视图名称。不区分大小写。如果为空字符串，则返回所有视图
 	 */
 	View.listAll = viewInternalVariable.listAllViews;
 
 	/**
-	 * 列举所有的视图群组
+	 * 列举所有的视图名称列表
+	 * @returns {String[]}
 	 */
-	View.listAllGroups = function(){
-		var groupNames = viewInternalVariable.listAllViews().reduce(function(start, view){
-			var groupName = view.getGroupName();
-			if(util.isEmptyString(groupName, true) || start.indexOf(groupName) !== -1)
+	View.listAllViewNames = function(){
+		var names = viewInternalVariable.listAllViews().reduce(function(start, view){
+			var viewName = view.getName();
+			if(util.isEmptyString(viewName, true) || start.indexOf(viewName) !== -1)
 				return start;
 
-			start.push(groupName);
+			start.push(viewName.toLowerCase().trim());
 			return start;
 		}, []);
-		return groupNames;
+		return names;
+	};
+
+	/**
+	 * 列举所有的视图群组名称
+	 */
+	View.listAllGroups = function(){
+		globalLogger.warn("This method is deprecated, please use 'View.listAllViewNames()' instead");
+		return View.listAllViewNames();
 	};
 
 	/**
@@ -371,10 +380,10 @@
 			targetViewId = defaultView.id;
 			targetViewNamespace = defaultView.namespace;
 		}
-		/* 群组视图（"~[groupName]"） */
+		/* 视图名称（"~[viewName]"） */
 		if(/^~/.test(targetViewId)){
-			var groupName = targetViewId.substring(1);
-			var firstView = viewInternalVariable.findFirstViewOfGroupName(groupName);
+			var viewName = targetViewId.substring(1);
+			var firstView = viewInternalVariable.findFirstViewOfName(viewName);
 			if(null == firstView)
 				return View;
 
@@ -442,10 +451,10 @@
 			targetViewId = defaultView.id;
 			targetViewNamespace = defaultView.namespace;
 		}
-		/* 群组视图（"~[groupName]"） */
+		/* 视图名称（"~[viewName]"） */
 		if(/^\s*~/.test(targetViewId)){
-			var groupName = targetViewId.replace(/^\s*~+/, "").trim();
-			var firstView = viewInternalVariable.findFirstViewOfGroupName(groupName);
+			var viewName = targetViewId.replace(/^\s*~+/, "").trim();
+			var firstView = viewInternalVariable.findFirstViewOfName(viewName);
 			if(null == firstView)
 				return View;
 
@@ -515,10 +524,10 @@
 			targetViewId = defaultView.id;
 			targetViewNamespace = defaultView.namespace;
 		}
-		/* 群组视图（"~[groupName]"） */
+		/* 视图名称（"~[viewName]"） */
 		if(/^\s*~/.test(targetViewId)){
-			var groupName = targetViewId.replace(/^\s*~+/, "").trim();
-			var firstView = viewInternalVariable.findFirstViewOfGroupName(groupName);
+			var viewName = targetViewId.replace(/^\s*~+/, "").trim();
+			var firstView = viewInternalVariable.findFirstViewOfName(viewName);
 			if(null == firstView)
 				return View;
 
@@ -848,7 +857,7 @@
 		 * 		取值：:back 回退至上一个视图
 		 * 		取值：:forward 前进至下一个视图
 		 * 		取值：:default-view 导向至默认视图
-		 * 		取值：~groupName 导向至目标群组的第一个视图
+		 * 		取值：~viewName 导向至声明为该名称的第一个视图
 		 * 	    取值：@[url] 导向至外部页面
 		 *
 		 * 指令：data-view-rel-type 配置视图更新方式
@@ -932,7 +941,7 @@
 					}
 				}
 
-				/* 群组视图（"~[groupName]"） */
+				/* 视图名称（"~[viewName]"） */
 				var options = null;
 				if(/^~/.test(targetViewId)){
 					var r = /^~([^!]+)(?:!+(.*))?/;
@@ -940,8 +949,8 @@
 					if(null == m)
 						return;
 
-					var groupName = m[1].trim(), _options = util.parseParams(m[2]);
-					var firstView = viewInternalVariable.findFirstViewOfGroupName(groupName);
+					var viewName = m[1].trim(), _options = util.parseParams(m[2]);
+					var firstView = viewInternalVariable.findFirstViewOfName(viewName);
 					if(null == firstView)
 						return;
 
