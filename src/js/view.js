@@ -871,7 +871,7 @@
 				var eventTarget = e.changedTouches? e.changedTouches[0].target: e.target;
 
 				/* 视图导向定义检测 */
-				var targetViewId;
+				var targetViewId, targetViewNamespace = viewInternalVariable.defaultNamespace;
 				var tmp = eventTarget;
 				while(null == tmp.getAttribute(viewAttribute.attr$view_rel)){
 					tmp = tmp.parentNode;
@@ -881,10 +881,11 @@
 					if(null == tmp)
 						break;
 				}
-				if(null != tmp)
+				if(null != tmp){
 					targetViewId = tmp.getAttribute(viewAttribute.attr$view_rel);
+					targetViewNamespace = tmp.getAttribute(viewAttribute.attr$view_rel_namespace);
+				}
 
-				var targetViewNamespace = tmp.getAttribute(viewAttribute.attr$view_rel_namespace);
 				if(util.isEmptyString(targetViewNamespace, true))
 					targetViewNamespace = viewInternalVariable.defaultNamespace;
 
