@@ -261,7 +261,7 @@
 		 * 判断当前视图是否为活动视图
 		 */
 		this.isActive = function(){
-			return domElement.classList.contains("active");
+			return util.hasClass(domElement, "active");
 		};
 
 		/**

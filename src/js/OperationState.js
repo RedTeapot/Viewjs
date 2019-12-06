@@ -36,7 +36,7 @@
 			if(null == obj || typeof obj != "object")
 				return false;
 
-			return obj.hasOwnProperty("serialNumber") && obj.hasOwnProperty("sn") && String(obj.flag).startsWith(prefix);
+			return obj.hasOwnProperty("serialNumber") && obj.hasOwnProperty("sn") && util.startsWith(obj.flag, prefix);
 		};
 
 		/* 最近一次操作的状态 */

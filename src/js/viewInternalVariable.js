@@ -52,12 +52,14 @@
 	var defaultWidthHeightRatio = "320/568";
 
 	/**
-	 * 标记位：是否正在进行由应用本身触发的切换。
-	 * 应用切换可以由 应用本身 触发，也可以由 浏览器 触发，
+	 * 标记位：由应用程序触发的，期望执行的视图切换类型。
+	 * 如果切换动作由 应用 触发，则赋值为对应的切换类型；
+	 * 如果切换动作由 路蓝旗 触发，则赋值为null。
 	 * 借助该标记位，应用可以区分 “前进或后退” 的触发器（应用 或 浏览器）
-	 * @type {boolean}
+	 *
+	 * @type {String|null}
 	 */
-	var isSwitchingByApp = false;
+	var intendedSwitchType = null;
 
 
 	var buildNamespace = function(namespace){
@@ -352,7 +354,7 @@
 			};
 
 			/* 离开源视图 */
-			srcView && srcView.getDomElement().classList.remove("active");
+			srcView && util.removeClass(srcView.getDomElement(), "active");
 			srcView && srcView.fire("leave", {targetView: targetView, type: type});
 
 			/* 标记访问路径 */
@@ -360,7 +362,7 @@
 
 			/* 进入新视图 */
 			fireViewInstanceEvent("beforeenter", false);
-			targetView.getDomElement().classList.add("active");
+			util.addClass(targetView.getDomElement(), "active");
 			util.blurInputs();
 			ViewLayout.ofId(targetViewId, targetViewNamespace).doLayout();
 			View.fire("change", viewChangeEventData, false);
@@ -377,7 +379,7 @@
 			viewContainerObj.setAttribute(viewAttribute.attr$active_view_namespace, targetViewNamespace);
 
 			/* 更新标记为：“是否正在执行由应用触发的切换” */
-			isSwitchingByApp = false;
+			intendedSwitchType = null;
 
 			/* 触发后置切换监听器 */
 			View.fire("afterchange", viewChangeEventData);
@@ -438,8 +440,8 @@
 	ctx[name].viewInternalVariable = {
 		defaultNamespace: defaultNamespace,
 		defaultWidthHeightRatio: defaultWidthHeightRatio,
-		get isSwitchingByApp(){return isSwitchingByApp;},
-		set isSwitchingByApp(v){isSwitchingByApp = !!v;},
+		get intendedSwitchType(){return intendedSwitchType;},
+		set intendedSwitchType(v){intendedSwitchType = v;},
 
 		viewInstancesMap: viewInstancesMap,
 		readyViews: readyViews,

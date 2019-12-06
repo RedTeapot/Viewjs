@@ -491,6 +491,7 @@
 		ops.type = View.SWITCHTYPE_VIEWNAV;
 		ops.trigger = View.SWITCHTRIGGER_APP;
 		ViewState.pushViewState(targetViewId, targetViewNamespace, null, null == ops? null: ops.options);
+		viewInternalVariable.intendedSwitchType = View.SWITCHTYPE_VIEWNAV;
 		viewInternalVariable.showView(targetViewId, targetViewNamespace, ops);
 
 		return View;
@@ -565,6 +566,7 @@
 		ops.type = View.SWITCHTYPE_VIEWCHANGE;
 		ops.trigger = View.SWITCHTRIGGER_APP;
 		ViewState.replaceViewState(targetViewId, targetViewNamespace, null, null == ops? null: ops.options);
+		viewInternalVariable.intendedSwitchType = View.SWITCHTYPE_VIEWCHANGE;
 		viewInternalVariable.showView(targetViewId, targetViewNamespace, ops);
 
 		return View;
@@ -590,8 +592,7 @@
 	 * @param {Object | null} ops.params 视图切换参数
 	 */
 	View.back = function(ops){
-		/* 标识视图切换的触发器为：应用本身 */
-		viewInternalVariable.isSwitchingByApp = true;
+		viewInternalVariable.intendedSwitchType = View.SWITCHTYPE_HISTORYBACK;
 
 		/* 清除旧数据，并仅在指定了参数时才设置参数，防止污染其它回退操作 */
 		viewParameter.clearViewParameters(viewRepresentation.PSVIEW_BACK, "");
@@ -614,8 +615,7 @@
 	 * @param {Object | null} ops.params 视图切换参数
 	 */
 	View.forward = function(ops){
-		/* 标识视图切换的触发器为：应用本身 */
-		viewInternalVariable.isSwitchingByApp = true;
+		viewInternalVariable.intendedSwitchType = View.SWITCHTYPE_HISTORYFORWARD;
 
 		/* 清除旧数据，并仅在指定了参数时才设置参数，防止污染其它前进操作 */
 		viewParameter.clearViewParameters(viewRepresentation.PSVIEW_FORWARD, "");
@@ -700,7 +700,7 @@
 		var newViewId,
 			newViewNamespace,
 			type = View.SWITCHTYPE_VIEWNAV, options, targetView = null;
-		if(null == e.state){/* 手动输入目标视图ID */
+		if(null == e.state){/* IE9 */
 			type = View.SWITCHTYPE_VIEWNAV;
 
 			var targetViewId, targetViewNamespace;
@@ -714,14 +714,16 @@
 				newViewId = viewInfo.viewId;
 				newViewNamespace = viewInfo.viewNamespace;
 
-				targetView = viewInternalVariable.getFinalView(newViewId, newViewNamespace);
-				if(null != targetView){
-					targetViewId = targetView.getId();
-					targetViewNamespace = targetView.getNamespace();
-				}
+				targetViewId = newViewId;
+				targetViewNamespace = newViewNamespace;
+				// targetView = viewInternalVariable.getFinalView(newViewId, newViewNamespace);
+				// if(null != targetView){
+				// 	targetViewId = targetView.getId();
+				// 	targetViewNamespace = targetView.getNamespace();
+				// }
 			}
 
-			if(null != targetViewId){
+			if(null != targetViewId && View.ifExists(targetViewId, targetViewNamespace), targetView = View.ofId(targetViewId, targetViewNamespace)){
 				var isTargetViewAsSpecified = targetViewId == newViewId && targetViewNamespace == newViewNamespace,
 					isTargetViewRemainsCurrent = targetViewId == currentActiveViewId && targetViewNamespace == currentActiveViewNamespace;
 
@@ -764,7 +766,7 @@
 			/* 视图切换 */
 			viewInternalVariable.showView(targetViewId, targetViewNamespace, {
 				type: type,
-				trigger: viewInternalVariable.isSwitchingByApp? View.SWITCHTRIGGER_APP: View.SWITCHTRIGGER_NAVIGATOR,
+				trigger: null != viewInternalVariable.intendedSwitchType? View.SWITCHTRIGGER_APP: View.SWITCHTRIGGER_NAVIGATOR,
 				options: options
 			});
 		}else{
@@ -817,10 +819,11 @@
 			initedViews.push(view);
 
 			/* 去除可能存在的激活状态 */
-			viewObj.classList.remove("active");
+			util.removeClass(viewObj, "active");
 
 			/* 添加样式类 */
-			viewObj.classList.add("view");
+			util.addClass(viewObj, "view");
+
 
 			/* 视图标题自动设置 */
 			view.on("enter", function(){
@@ -861,7 +864,7 @@
 		/* 确定默认视图，并添加激活标识 */
 		dftViewObj = determineDefaultView();
 		if(null != dftViewObj)
-			dftViewObj.classList.add("active");
+			util.addClass(dftViewObj, "active");
 
 		/**
 		 * 指令：data-view-rel配置视图导向
