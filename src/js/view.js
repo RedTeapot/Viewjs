@@ -489,6 +489,7 @@
 		}
 
 		ops.type = View.SWITCHTYPE_VIEWNAV;
+		ops.trigger = View.SWITCHTRIGGER_APP;
 		ViewState.pushViewState(targetViewId, targetViewNamespace, null, null == ops? null: ops.options);
 		viewInternalVariable.showView(targetViewId, targetViewNamespace, ops);
 
@@ -562,6 +563,7 @@
 		}
 
 		ops.type = View.SWITCHTYPE_VIEWCHANGE;
+		ops.trigger = View.SWITCHTRIGGER_APP;
 		ViewState.replaceViewState(targetViewId, targetViewNamespace, null, null == ops? null: ops.options);
 		viewInternalVariable.showView(targetViewId, targetViewNamespace, ops);
 
@@ -588,8 +590,11 @@
 	 * @param {Object | null} ops.params 视图切换参数
 	 */
 	View.back = function(ops){
+		/* 标识视图切换的触发器为：应用本身 */
+		viewInternalVariable.isSwitchingByApp = true;
+
 		/* 清除旧数据，并仅在指定了参数时才设置参数，防止污染其它回退操作 */
-		viewParameter.clearViewParameters(viewRepresentation.PSVIEW_BACK);
+		viewParameter.clearViewParameters(viewRepresentation.PSVIEW_BACK, "");
 		if(null != ops && "params" in ops)
 			viewParameter.setViewParameters(viewRepresentation.PSVIEW_BACK, "", ops.params);
 
@@ -609,8 +614,11 @@
 	 * @param {Object | null} ops.params 视图切换参数
 	 */
 	View.forward = function(ops){
+		/* 标识视图切换的触发器为：应用本身 */
+		viewInternalVariable.isSwitchingByApp = true;
+
 		/* 清除旧数据，并仅在指定了参数时才设置参数，防止污染其它前进操作 */
-		viewParameter.clearViewParameters(viewRepresentation.PSVIEW_FORWARD);
+		viewParameter.clearViewParameters(viewRepresentation.PSVIEW_FORWARD, "");
 		if(null != ops && "params" in ops)
 			viewParameter.setViewParameters(viewRepresentation.PSVIEW_FORWARD, "", ops.params);
 
@@ -730,13 +738,13 @@
 				viewInternalVariable.showView(targetView.getId(), targetView.getNamespace(), {type: type, options: options});
 			}
 		}else if(ViewState.isConstructorOf(e.state)){
-			var popedNewState = e.state;
-			newViewId = popedNewState.viewId;
-			newViewNamespace = popedNewState.viewNamespace;
+			var poppedNewState = e.state;
+			newViewId = poppedNewState.viewId;
+			newViewNamespace = poppedNewState.viewNamespace;
 
 			if(View.ifExists(newViewId, newViewNamespace)){
 				targetView = View.ofId(newViewId, newViewNamespace);
-				options = popedNewState.options;
+				options = poppedNewState.options;
 			}else{
 				globalLogger.warn("Popped view: '" + newViewId + "' within namespace: '" + newViewNamespace + "' does not exist, keeping current");
 				targetView = currentActiveView;
@@ -748,13 +756,17 @@
 			var targetViewNamespace = targetView.getNamespace();
 
 			if(View.currentState != null)
-				type = popedNewState.sn < View.currentState.sn? View.SWITCHTYPE_HISTORYBACK: View.SWITCHTYPE_HISTORYFORWARD;
+				type = poppedNewState.sn < View.currentState.sn? View.SWITCHTYPE_HISTORYBACK: View.SWITCHTYPE_HISTORYFORWARD;
 
 			/* history堆栈更新 */
-			ViewState.replaceViewState(targetViewId, targetViewNamespace, popedNewState.sn, options);
+			ViewState.replaceViewState(targetViewId, targetViewNamespace, poppedNewState.sn, options);
 
 			/* 视图切换 */
-			viewInternalVariable.showView(targetViewId, targetViewNamespace, {type: type, options: options});
+			viewInternalVariable.showView(targetViewId, targetViewNamespace, {
+				type: type,
+				trigger: viewInternalVariable.isSwitchingByApp? View.SWITCHTRIGGER_APP: View.SWITCHTRIGGER_NAVIGATOR,
+				options: options
+			});
 		}else{
 			globalLogger.info("Skip state: {}", e.state);
 		}

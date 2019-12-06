@@ -51,6 +51,14 @@
 	 */
 	var defaultWidthHeightRatio = "320/568";
 
+	/**
+	 * 标记位：是否正在进行由应用本身触发的切换。
+	 * 应用切换可以由 应用本身 触发，也可以由 浏览器 触发，
+	 * 借助该标记位，应用可以区分 “前进或后退” 的触发器（应用 或 浏览器）
+	 * @type {boolean}
+	 */
+	var isSwitchingByApp = false;
+
 
 	var buildNamespace = function(namespace){
 		if(!(namespace in viewInstancesMap))
@@ -248,32 +256,59 @@
 		return type;
 	};
 
+	var normalizeSwitchTrigger = function(trigger){
+		if(util.isEmptyString(trigger, true))
+			trigger = View.SWITCHTRIGGER_APP;
+		var isApp = util.ifStringEqualsIgnoreCase(trigger, View.SWITCHTRIGGER_APP),
+			isNavigator = util.ifStringEqualsIgnoreCase(trigger, View.SWITCHTRIGGER_NAVIGATOR);
+		if(!isApp && !isNavigator)
+			trigger = View.SWITCHTRIGGER_APP;
+
+		return trigger;
+	};
+
 	/**
 	 * 切换视图
 	 * @param {View} ops.srcView 源视图
 	 * @param {View} ops.targetView 目标视图
-	 * @param {String} ops.type 切换操作类型（View.SWITCHTYPE_HISTORYFORWARD || View.SWITCHTYPE_HISTORYBACK || View.SWITCHTYPE_VIEWNAV || View.SWITCHTYPE_VIEWCHANGE）
+	 * @param {String} ops.type 切换操作类型
+	 * @param {String} ops.trigger 切换操作触发器
 	 * @param {Boolean} ops.withAnimation 是否执行动画
-	 * @param {*} ops.params 视图参数。仅当切换操作类型为：View.SWITCHTYPE_VIEWNAV || View.SWITCHTYPE_VIEWCHANGE时才会被使用
+	 * @param {Object|null} ops.params 视图参数
+	 * @param {Object|null} ops.options 视图选项
 	 */
 	var switchView = function(ops){
 		ops = util.setDftValue(ops, {
 			srcView: null,
 			targetView: null,
+
 			type: View.SWITCHTYPE_VIEWNAV,
+			trigger: View.SWITCHTRIGGER_APP,
+
 			withAnimation: true,
-			params: null
+			params: null,
+			options: null
 		});
 
 		var srcView = ops.srcView,
 			targetView = ops.targetView,
 			type = normalizeSwitchType(ops.type),
-			params = ops.params;
+			trigger = normalizeSwitchTrigger(ops.trigger),
+			params = ops.params,
+			options = ops.options;
 
 		var isBack = util.ifStringEqualsIgnoreCase(type, View.SWITCHTYPE_HISTORYBACK),
 			isForward = util.ifStringEqualsIgnoreCase(type, View.SWITCHTYPE_HISTORYFORWARD);
 
-		var viewChangeParams = {currentView: srcView, targetView: targetView, type: type, params: params};
+		var viewChangeEventData = {
+			currentView: srcView,
+			targetView: targetView,
+			type: type,
+			trigger: trigger,
+			params: params,
+			options: options
+		};
+
 		var render = function(){
 			/* 视图参数重置 */
 			var targetViewId = targetView.id;
@@ -295,12 +330,19 @@
 			}else
 				viewParameter.setViewParameters(targetViewId, targetViewNamespace, params);
 
-			var eventData = {sourceView: srcView, type: type, params: params};
-			var fireEvent = function(evt, async){
+			var viewInstanceEventData = {
+				sourceView: srcView,
+				type: type,
+				trigger: trigger,
+				params: params,
+				options: options
+			};
+
+			var fireViewInstanceEvent = function(evt, async){
 				try{
-					targetView.fire(evt, eventData, async);
+					targetView.fire(evt, viewInstanceEventData, async);
 				}catch(e){
-					globalLogger.error("Error occurred while firing event: {} with data: {}", evt, eventData);
+					globalLogger.error("Error occurred while firing event: {} with data: {}", evt, viewInstanceEventData);
 
 					if(e instanceof Error)
 						console.error(e, e.stack);
@@ -317,35 +359,44 @@
 			viewVisitStack.push(targetView);
 
 			/* 进入新视图 */
-			fireEvent("beforeenter", false);
+			fireViewInstanceEvent("beforeenter", false);
 			targetView.getDomElement().classList.add("active");
 			util.blurInputs();
 			ViewLayout.ofId(targetViewId, targetViewNamespace).doLayout();
-			View.fire("change", viewChangeParams, false);
+			View.fire("change", viewChangeEventData, false);
 			if(!targetView.isReady()){
 				readyViews.push(targetView);
-				fireEvent("ready", false);
+				fireViewInstanceEvent("ready", false);
 			}
-			fireEvent("enter", false);
-			fireEvent("afterenter", false);
+			fireViewInstanceEvent("enter", false);
+			fireViewInstanceEvent("afterenter", false);
 
 			/* 在视图容器上标记活动视图 */
 			var viewContainerObj = getViewContainerDomElement();
 			viewContainerObj.setAttribute(viewAttribute.attr$active_view_id, targetViewId);
 			viewContainerObj.setAttribute(viewAttribute.attr$active_view_namespace, targetViewNamespace);
 
+			/* 更新标记为：“是否正在执行由应用触发的切换” */
+			isSwitchingByApp = false;
+
 			/* 触发后置切换监听器 */
-			View.fire("afterchange", viewChangeParams);
+			View.fire("afterchange", viewChangeEventData);
 		};
 
 		/* 触发前置切换监听器 */
-		View.fire("beforechange", viewChangeParams, false);
+		View.fire("beforechange", viewChangeEventData, false);
 
 		if(!ops.withAnimation)
 			render();
 		else{
 			if(viewSwitchAnimation)
-				viewSwitchAnimation.call(null, srcView? srcView.getDomElement(): null, targetView.getDomElement(), type, render);
+				viewSwitchAnimation.call(null, {
+					srcElement: srcView? srcView.getDomElement(): null,
+					targetElement: targetView.getDomElement(),
+					type: type,
+					trigger: trigger,
+					render: render
+				});
 			else
 				render();
 		}
@@ -387,6 +438,8 @@
 	ctx[name].viewInternalVariable = {
 		defaultNamespace: defaultNamespace,
 		defaultWidthHeightRatio: defaultWidthHeightRatio,
+		get isSwitchingByApp(){return isSwitchingByApp;},
+		set isSwitchingByApp(v){isSwitchingByApp = !!v;},
 
 		viewInstancesMap: viewInstancesMap,
 		readyViews: readyViews,

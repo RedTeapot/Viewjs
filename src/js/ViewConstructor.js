@@ -456,5 +456,9 @@
 	/** 视图切换操作类型：由视图切换：View.changeTo操作触发 */
 	util.defineReadOnlyProperty(View, "SWITCHTYPE_VIEWCHANGE", "view.change");
 
+	/** 视图切换触发器：应用程序 */
+	util.defineReadOnlyProperty(View, "SWITCHTRIGGER_APP", "app");
+	/** 视图切换触发器：浏览器 */
+	util.defineReadOnlyProperty(View, "SWITCHTRIGGER_NAVIGATOR", "navigator");
 	ctx[name].ViewConstructor = View;
 })(window, "View");

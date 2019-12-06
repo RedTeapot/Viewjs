@@ -162,6 +162,14 @@ interface ViewBackForwardCtrl{
 	params?: object|null;
 }
 
+interface ViewSwitchAnimationMeta{
+	srcElement: Element | null,
+	targetElement: Element | null,
+	type: string,
+	trigger: string,
+	render: Function
+}
+
 declare class View{
 	static currentState: ViewStateClass|null;
 
@@ -173,6 +181,9 @@ declare class View{
 	static readonly SWITCHTYPE_HISTORYBACK: string;
 	static readonly SWITCHTYPE_VIEWNAV: string;
 	static readonly SWITCHTYPE_VIEWCHANGE: string;
+
+	static readonly SWITCHTRIGGER_APP: string;
+	static readonly SWITCHTRIGGER_NAVIGATOR: string;
 
 	static on(type: string, handle: Function): void;
 	static off(type: string, handle: Function): void;
@@ -201,7 +212,7 @@ declare class View{
 	static getActiveView(): ViewClass|null;
 	static getDefaultView(): ViewClass|null;
 
-	static setSwitchAnimation(animation: Function): View;
+	static setSwitchAnimation(animation: (meta: ViewSwitchAnimationMeta) => void): View;
 	static getSwitchAnimation(): Function|null;
 
 	static getActiveViewOptions(): object|null;
