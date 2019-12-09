@@ -140,10 +140,18 @@
 		 */
 		this.getName = function(){
 			var name = domElement.getAttribute(viewAttribute.attr$view_name);
-			if(null == name)
+			if(null != name){
+				name = name.trim().toLowerCase();
 				return name;
+			}
 
-			name = String(name).trim().toLowerCase();
+			/* 向后兼容 data-view-group 属性 */
+			name = domElement.getAttribute(viewAttribute.attr$view_group);
+			if(null == name)
+				return null;
+
+			globalLogger.warn("Attribute 'data-view-group' is deprecated, please use 'data-view-name' instead");
+			name = name.trim().toLowerCase();
 			return name;
 		};
 
@@ -153,13 +161,13 @@
 		 */
 		this.getGroupName = function(){
 			globalLogger.warn("This method is deprecated, please use 'this.getName()' instead");
-			globalLogger.warn("Attribute 'data-view-group' is deprecated, please use 'data-view-name' instead");
 
 			var name = domElement.getAttribute(viewAttribute.attr$view_group);
 			if(null == name)
 				return name;
 
-			name = String(name).trim().toLowerCase();
+			globalLogger.warn("Attribute 'data-view-group' is deprecated, please use 'data-view-name' instead");
+			name = name.trim().toLowerCase();
 			return name;
 		};
 

@@ -68,6 +68,10 @@ interface ViewClass{
 
 	getDomElement<E extends Element = Element>(): E;
 	getName(): null|string;
+
+	/**
+	 * @deprecated
+	 */
 	getGroupName(): null|string;
 
 	find<K extends keyof HTMLElementTagNameMap>(selectors: K): HTMLElementTagNameMap[K] | null;
@@ -203,6 +207,10 @@ declare class View{
 
 	static listAll(viewName?: string): ViewClass[];
 	static listAllViewNames(): string[];
+
+	/**
+	 * @deprecated
+	 */
 	static listAllGroups(): string[];
 
 	static isDirectlyAccessible(): boolean;

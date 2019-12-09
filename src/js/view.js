@@ -976,8 +976,8 @@
 				}else{
 					var rst = viewRepresentation.parseViewInfoFromHash("#" + targetViewId);
 
+					targetViewNamespace = targetViewId.indexOf(targetViewId + "@" + targetViewNamespace) !== 0? targetViewNamespace: rst.viewNamespace;
 					targetViewId = rst.viewId;
-					targetViewNamespace = rst.viewNamespace || viewInternalVariable.defaultNamespace;
 					options = rst.options;
 				}
 

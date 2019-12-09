@@ -215,8 +215,7 @@
 			return arr;
 
 		return arr.filter(function(v){
-			return viewName === v.getName()
-				|| viewName === v.getGroupName();/* 向后兼容 */
+			return viewName === v.getName();
 		});
 	};
 
