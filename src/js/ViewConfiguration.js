@@ -37,13 +37,14 @@
 		/**
 		 * 设置配置项取值
 		 * @param {*} _value 要设定的配置项取值
-		 * @param {Boolean} [overrideExistingValue=false] 如果已经设置过配置项取值，是否使用新取值覆盖既有取值。如果配置项取值尚未设置过，则无论是否覆盖，均执行赋值动作
+		 * @param {Boolean} [ifOverride=false] 如果已经设置过配置项取值，是否使用新取值覆盖既有取值。如果配置项取值尚未设置过，则无论是否覆盖，均执行赋值动作
+		 * @returns {ViewConfiguration}
 		 */
-		this.setValue = function(_value, overrideExistingValue){
+		this.setValue = function(_value, ifOverride){
 			if(arguments.length < 2)
-				overrideExistingValue = false;
+				ifOverride = false;
 
-			if(overrideExistingValue || NOT_SUPPLIED === value)
+			if(ifOverride || NOT_SUPPLIED === value)
 				value = _value;
 
 			return this;
@@ -59,6 +60,7 @@
 		/**
 		 * 设置配置的应用方法
 		 * @param {Function} _application 应用方法
+		 * @returns {ViewConfiguration}
 		 */
 		this.setApplication = function(_application){
 			if(typeof _application != "function"){
@@ -72,6 +74,7 @@
 
 		/**
 		 * 应用配置。其中this指向的上下文为当前的配置项
+		 * @returns {ViewConfiguration}
 		 */
 		this.apply = function(){
 			if(typeof application == "function"){
@@ -94,6 +97,7 @@
 
 		/**
 		 * 将配置以"data-viewconfig_[name]=[value]"的方式附加至视图的DOM元素上
+		 * @returns {ViewConfiguration}
 		 */
 		this.reflectToDom = function(){
 			if(null == viewId || "" === viewId.trim())

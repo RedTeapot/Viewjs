@@ -13,7 +13,7 @@ interface ViewLoggerClass{
 interface ViewConfigClass{
 	getName(): string;
 	getValue(dftValue?: any): any;
-	setValue(value: any, overrideExistingValue?: boolean): ViewConfigClass;
+	setValue(value: any, ifOverride?: boolean): ViewConfigClass;
 	getApplication(): Function;
 	setApplication(application: Function): ViewConfigClass;
 	apply(): ViewConfigClass;
@@ -116,7 +116,7 @@ interface ChainedHandleClass{
 	exec(): Promise<void>;
 }
 
-interface LayoutInitOptions{
+interface ViewLayoutInitOptions{
 	autoReLayoutWhenResize: boolean;
 
 	layoutAsMobilePortrait: Function,
@@ -140,10 +140,11 @@ interface layout{
 	getExpectedWidthHeightRatio(): number;
 	setExpectedWidthHeightRatio(ratio: number): number;
 
-	init(initOptions?: LayoutInitOptions): layout;
+	init(initOptions?: ViewLayoutInitOptions): layout;
 	doLayout(async?: boolean): layout;
 
-	removeLayoutChangeListener(listener: Function): layout;
+	addLayoutChangeListener(listener: (layoutWidth?: number, layoutHeight?: number, browserWidth?: number, browserHeight?: number) => void): layout;
+	removeLayoutChangeListener(listener: (layoutWidth?: number, layoutHeight?: number, browserWidth?: number, browserHeight?: number) => void): layout;
 }
 
 declare namespace ChainedHandle{
