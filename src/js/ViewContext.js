@@ -77,7 +77,7 @@
 			return c;
 		};
 
-		Object.freeze(this);
+		/* 不能调用 Object.freeze() 方法，因为部分用户通过属性附加的方式在上下文中添加了数据 */
 	};
 
 
