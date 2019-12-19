@@ -575,7 +575,7 @@
 	var noViewToNavBackAction = null;
 
 	/**
-	 * 设置在“没有视图可以继续向前返回”的情况下要执行的动作
+	 * 设置在“没有视图可以继续向前返回”的情况下，尝试返回时要执行的动作
 	 * @param {Function} action 要执行的动作
 	 */
 	View.setNoViewToNavBackAction = function(action){
@@ -649,6 +649,8 @@
 	 * @param {Function} callback 回调方法
 	 */
 	View.onceHistoryBack = function(callback){
+		globalLogger.warn("This method is deprecated, and it will be removed someday in the future");
+
 		if(typeof callback !== "function")
 			throw new Error("Invalid argument! Type of 'Function' is required");
 
@@ -690,54 +692,95 @@
 	 */
 	var stateChangeListener =  function(e){
 		var currentActiveView = View.getActiveView();
-		var currentActiveViewId = null == currentActiveView? null: currentActiveView.getId();
-		var currentActiveViewNamespace = null == currentActiveView? null: currentActiveView.getNamespace();
+		var currentActiveViewId = null,
+			currentActiveViewNamespace = null;
+		if(null != currentActiveView){
+			currentActiveViewId = currentActiveView.getId();
+			currentActiveViewNamespace = currentActiveView.getNamespace();
+		}
 
 		globalLogger.log("{} Current: {}", util.env.isHistoryPushPopSupported? "State popped!": "Hash changed!", currentActiveView && currentActiveView.getId());
 		globalLogger.log("↑ {}", util.env.isHistoryPushPopSupported? JSON.stringify(e.state): location.hash);
 
-		/* 视图切换 */
-		var newViewId,
-			newViewNamespace,
-			type = View.SWITCHTYPE_VIEWNAV, options, targetView = null;
-		if(null == e.state){/* IE9 */
-			type = View.SWITCHTYPE_VIEWNAV;
 
-			var targetViewId, targetViewNamespace;
+		var
+			/**
+			 * 捕获到的，要尝试呈现的视图的ID
+			 */
+			newViewId = null,
+			/**
+			 * 捕获到的，要尝试呈现的视图的命名空间
+			 */
+			newViewNamespace = null,
+
+
+			/**
+			 * 最终要展现的视图的ID
+			 */
+			targetViewId = null,
+			/**
+			 * 最终要展现的视图的命名空间
+			 */
+			targetViewNamespace = null,
+			/**
+			 * 最重要展现的视图实例
+			 */
+			targetView = null,
+
+			/**
+			 * 视图跳转方式
+			 */
+			switchType = View.SWITCHTYPE_VIEWNAV,
+
+			/**
+			 * 视图跳转时携带的视图选项集合
+			 */
+			switchOptions = null;
+
+
+		/* 视图切换 */
+		if(null == e.state){/* IE9 */
+			switchType = View.SWITCHTYPE_VIEWNAV;
+
 			var viewInfo = viewRepresentation.parseViewInfoFromHash(location.hash);
 			if(null == viewInfo){
-				targetView = currentActiveView;
-
 				targetViewId = currentActiveViewId;
 				targetViewNamespace = currentActiveViewNamespace;
+				targetView = currentActiveView;
 			}else{
 				newViewId = viewInfo.viewId;
 				newViewNamespace = viewInfo.viewNamespace;
 
 				targetViewId = newViewId;
 				targetViewNamespace = newViewNamespace;
-				// targetView = viewInternalVariable.getFinalView(newViewId, newViewNamespace);
-				// if(null != targetView){
-				// 	targetViewId = targetView.getId();
-				// 	targetViewNamespace = targetView.getNamespace();
-				// }
+				if(View.ifExists(targetViewId, targetViewNamespace))
+					targetView = View.ofId(targetViewId, targetViewNamespace);
+
+				/**
+				 * 这里不能校验视图是否可以直接访问，因为在 history 不支持 pushState 的浏览器上，
+				 * 如果校验视图是否可以直接访问，则不可直接访问的视图将无法访问到
+				 */
 			}
 
-			if(null != targetViewId && View.ifExists(targetViewId, targetViewNamespace), targetView = View.ofId(targetViewId, targetViewNamespace)){
-				var isTargetViewAsSpecified = targetViewId == newViewId && targetViewNamespace == newViewNamespace,
-					isTargetViewRemainsCurrent = targetViewId == currentActiveViewId && targetViewNamespace == currentActiveViewNamespace;
+			if(null != targetViewId && null != targetView){
+				var isTargetViewAsSpecified = targetViewId === newViewId && targetViewNamespace === newViewNamespace,
+					isTargetViewRemainsCurrent = targetViewId === currentActiveViewId && targetViewNamespace === currentActiveViewNamespace;
 
 				/**
 				 * 如果目标视图仍然是当前视图，则不能更改地址栏中的选项内容
 				 * 如果最终视图和地址栏中的视图不是一个视图，则不能再将选项传递给最终视图
 				 */
-				options = isTargetViewRemainsCurrent? (View.currentState? View.currentState.options: null): (isTargetViewAsSpecified? viewInfo.options: null);
+				switchOptions = isTargetViewRemainsCurrent? (View.currentState? View.currentState.options: null): (isTargetViewAsSpecified? viewInfo.options: null);
 
-				/* history堆栈更新 */
-				ViewState.replaceViewState(targetViewId, targetViewNamespace, null, options);
+				/* history 堆栈更新 */
+				ViewState.replaceViewState(targetViewId, targetViewNamespace, null, switchOptions);
 
 				/* 视图切换 */
-				viewInternalVariable.showView(targetView.getId(), targetView.getNamespace(), {type: type, options: options});
+				viewInternalVariable.showView(targetViewId, targetViewNamespace, {
+					type: switchType,
+					trigger: View.SWITCHTRIGGER_APP,/* 此时无法确定切换方式，固定为 View.SWITCHTRIGGER_APP */
+					options: switchOptions
+				});
 			}
 		}else if(ViewState.isConstructorOf(e.state)){
 			var poppedNewState = e.state;
@@ -746,28 +789,28 @@
 
 			if(View.ifExists(newViewId, newViewNamespace)){
 				targetView = View.ofId(newViewId, newViewNamespace);
-				options = poppedNewState.options;
+				switchOptions = poppedNewState.options;
 			}else{
 				globalLogger.warn("Popped view: '" + newViewId + "' within namespace: '" + newViewNamespace + "' does not exist, keeping current");
 				targetView = currentActiveView;
 
 				/* 如果最终视图和地址栏中的视图不是一个视图，则不能再将选项传递给最终视图 */
-				options = null;
+				switchOptions = null;
 			}
-			var targetViewId = targetView.getId();
-			var targetViewNamespace = targetView.getNamespace();
+			targetViewId = targetView.getId();
+			targetViewNamespace = targetView.getNamespace();
 
 			if(View.currentState != null)
-				type = poppedNewState.sn < View.currentState.sn? View.SWITCHTYPE_HISTORYBACK: View.SWITCHTYPE_HISTORYFORWARD;
+				switchType = poppedNewState.sn < View.currentState.sn? View.SWITCHTYPE_HISTORYBACK: View.SWITCHTYPE_HISTORYFORWARD;
 
-			/* history堆栈更新 */
-			ViewState.replaceViewState(targetViewId, targetViewNamespace, poppedNewState.sn, options);
+			/* history 堆栈更新 */
+			ViewState.replaceViewState(targetViewId, targetViewNamespace, poppedNewState.sn, switchOptions);
 
 			/* 视图切换 */
 			viewInternalVariable.showView(targetViewId, targetViewNamespace, {
-				type: type,
+				type: switchType,
 				trigger: null != viewInternalVariable.intendedSwitchType? View.SWITCHTRIGGER_APP: View.SWITCHTRIGGER_NAVIGATOR,
-				options: options
+				options: switchOptions
 			});
 		}else{
 			globalLogger.info("Skip state: {}", e.state);

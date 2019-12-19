@@ -2,12 +2,23 @@
 	var util = ctx[name].util,
 		globalLogger = ctx[name].Logger.globalLogger;
 
-	var prefix = "ViewState_";
-	var flag = util.randomString(prefix);
-
 	var defaultNamespace = "default";
+	var viewStatePrefix = "ViewState_",
+		operationStatePrefix = "OperationState_";
+	var viewStateFlag = util.randomString(viewStatePrefix),
+		operationStateFlag = util.randomString(operationStatePrefix);
 
-	var stack = [], pos = -1;
+	var
+		/**
+		 * 视图状态堆栈
+		 */
+		viewStateStack = [],
+
+		/**
+		 * 当前活动视图在视图状态堆栈中的位置
+		 * @type {number}
+		 */
+		activeViewStateIndex = -1;
 
 	/**
 	 * 使用给定的视图编号和视图选项构造地址栏字符串
@@ -48,14 +59,20 @@
 		util.defineReadOnlyProperty(this, "viewNamespace", viewNamespace);
 		util.defineReadOnlyProperty(this, "sn", timeBasedUniqueString);
 		util.defineReadOnlyProperty(this, "options", options);
-		util.defineReadOnlyProperty(this, "flag", flag);
+		util.defineReadOnlyProperty(this, "flag", viewStateFlag);
 
 		this.toString = function(){
 			return JSON.stringify(this);
 		};
 
 		this.clone = function(){
-			return JSON.parse(this.toString());
+			return {
+				viewId: viewId,
+				viewNamespace: viewNamespace,
+				sn: timeBasedUniqueString,
+				options: options,
+				flag: viewStateFlag
+			};
 		};
 	};
 
@@ -67,7 +84,7 @@
 		if(null == obj || typeof obj !== "object")
 			return false;
 
-		return obj.hasOwnProperty("viewId") && obj.hasOwnProperty("sn") && util.startsWith(obj.flag, prefix);
+		return obj.hasOwnProperty("viewId") && obj.hasOwnProperty("sn") && util.startsWith(obj.flag, viewStatePrefix);
 	};
 
 	/**
@@ -95,9 +112,8 @@
 		else
 			location.hash = concatViewOptions(viewId, viewNamespace, options);
 
-		stack.splice(pos + 1, stack.length);
-		stack.push(state);
-		pos++;
+		viewStateStack.splice(activeViewStateIndex + 1, viewStateStack.length);/* 裁减掉后续分支 */
+		viewStateStack.push(state), activeViewStateIndex++;
 		outputStack();
 
 		View.currentState = state;
@@ -128,18 +144,18 @@
 		else
 			location.hash = concatViewOptions(viewId, viewNamespace, options);
 
-		if(0 === stack.length){
-			stack.push(state);
-			pos++;
+		if(0 === viewStateStack.length){
+			viewStateStack.push(state);
+			activeViewStateIndex++;
 		}else{
-			var previous = stack[pos - 1],
-				next = stack[pos + 1];
+			var previous = viewStateStack[activeViewStateIndex - 1],
+				next = viewStateStack[activeViewStateIndex + 1];
 			if(null != previous && previous.sn === timeBasedUniqueString){/* 通过浏览器执行回退操作 */
-				pos--;
+				activeViewStateIndex--;
 			}else if(null != next && next.sn === timeBasedUniqueString){/* 通过浏览器执行前进操作 */
-				pos++;
+				activeViewStateIndex++;
 			}else{
-				stack[pos] = state;
+				viewStateStack[activeViewStateIndex] = state;
 			}
 			outputStack();
 		}
@@ -152,7 +168,7 @@
 	 * @returns {Number}
 	 */
 	ViewState.getStackSize = function(){
-		return stack.length;
+		return viewStateStack.length;
 	};
 
 	/**
@@ -160,11 +176,11 @@
 	 * @returns {Boolean}
 	 */
 	ViewState.ifCanGoBack = function(){
-		return pos > 0;
+		return activeViewStateIndex > 0;
 	};
 
 	var outputStack = function(){
-		globalLogger.debug("View state stack: {}, {}", stack.map(function(v){return v.sn}), pos);
+		globalLogger.debug("View state stack: {}, {}", viewStateStack.map(function(v){return v.sn}), activeViewStateIndex);
 	};
 
 	ctx[name].ViewState = ViewState;

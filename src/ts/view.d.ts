@@ -242,7 +242,11 @@ declare class View{
 	static ifCanGoBack(): boolean;
 	static setNoViewToNavBackAction(action: Function): View;
 
+	/**
+	 * @deprecated
+	 */
 	static onceHistoryBack(callback: Function): View;
+
 	static reDoLayout(): View;
 
 	static getChainedHandleByName(name: string): ChainedHandleClass;
