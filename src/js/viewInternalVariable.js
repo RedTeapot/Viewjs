@@ -358,7 +358,13 @@
 
 			/* 离开源视图 */
 			srcView && util.removeClass(srcView.getDomElement(), "active");
-			srcView && srcView.fire("leave", {targetView: targetView, type: type});
+			srcView && srcView.fire("leave", {
+				targetView: targetView,
+				type: type,
+				trigger: trigger,
+				params: params,
+				options: options
+			});
 
 			/* 标记访问路径 */
 			viewVisitStack.push(targetView);
