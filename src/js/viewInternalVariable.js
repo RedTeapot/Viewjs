@@ -302,7 +302,11 @@
 			isForward = util.ifStringEqualsIgnoreCase(type, View.SWITCHTYPE_HISTORYFORWARD);
 
 		var viewChangeEventData = {
-			currentView: srcView,
+			get currentView(){
+				globalLogger.warn("Field 'currentView' is deprecated, please use 'sourceView' instead");
+				return srcView;
+			},
+			sourceView: srcView,
 			targetView: targetView,
 			type: type,
 			trigger: trigger,
