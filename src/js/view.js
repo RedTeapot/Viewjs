@@ -72,6 +72,9 @@
 			rootObj = View.getViewContainerDomElement();
 		}
 
+		if(null == rootObj)
+			return null;
+
 		return rootObj.querySelector(selector);
 	};
 
@@ -86,6 +89,9 @@
 			selector = arguments[0];
 			rootObj = View.getViewContainerDomElement();
 		}
+
+		if(null == rootObj)
+			return null;
 
 		return rootObj.querySelectorAll(selector);
 	};
