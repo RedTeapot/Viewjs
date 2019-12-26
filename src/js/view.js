@@ -1025,7 +1025,9 @@
 			}else{
 				var rst = viewRepresentation.parseViewInfoFromHash("#" + targetViewId);
 
-				targetViewNamespace = targetViewId.indexOf(rst.viewId + "@" + targetViewNamespace) === 0? targetViewNamespace: rst.viewNamespace;
+				if(!util.isEmptyString(rst.specifiedViewNamespace, true))
+					targetViewNamespace = rst.specifiedViewNamespace;
+
 				targetViewId = rst.viewId;
 				options = rst.options;
 			}

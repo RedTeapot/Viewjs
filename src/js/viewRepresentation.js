@@ -8,6 +8,8 @@
 
 	var defaultNamespace = "default";
 
+	var viewUrlRepresentation = /^#([\w$\-]+)(?:@([^!]+))?(?:!+(.*))?/;
+
 	/**
 	 * 判断指定编号对应的视图是否是伪视图
 	 * @param {String} viewId 视图编号
@@ -19,14 +21,13 @@
 	/**
 	 * 从地址栏hash中解析视图信息
 	 * @param {String} hash 地址栏Hash
-	 * @return {Object} {viewId: [视图编号], options: [选项集合]}
+	 * @return {Object} {viewId: [视图编号], viewNamespace: [视图所属命名空间], specifiedViewNamespace: [字符串中指定的命名空间], options: [选项集合]}
 	 */
 	var parseViewInfoFromHash = function(hash){
 		if("" === hash)
 			return null;
 
-		var r = /^#([\w$\-]+)(?:@([^!]+))?(?:!+(.*))?/;
-		var m = hash.match(r);
+		var m = hash.match(viewUrlRepresentation);
 		if(null == m)
 			return null;
 
@@ -37,7 +38,12 @@
 		if(util.isEmptyString(viewNamespace, true))
 			viewNamespace = defaultNamespace;
 
-		return {viewId: viewId, viewNamespace: viewNamespace, options: options};
+		return {
+			viewId: viewId,
+			viewNamespace: viewNamespace,
+			specifiedViewNamespace: m[2],
+			options: options
+		};
 	};
 
 	ctx[name].viewRepresentation = {
