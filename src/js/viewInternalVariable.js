@@ -320,20 +320,36 @@
 			var targetViewNamespace = targetView.namespace;
 			viewParameter.clearViewParameters(targetViewId, targetViewNamespace);
 
+			var keyForParamsAutoSavedToContext = viewParameter.keyForParamsAutoSavedToContext;
+
 			if(isBack){
 				if(viewParameter.hasParameters(viewRepresentation.PSVIEW_BACK, "")){
+					var _params = viewParameter.getParameters(viewRepresentation.PSVIEW_BACK, "");
+
 					/* 用过之后立即销毁，防止污染其它回退操作 */
-					viewParameter.setViewParameters(targetViewId, targetViewNamespace, viewParameter.getParameters(viewRepresentation.PSVIEW_BACK, ""));
+					viewParameter.setViewParameters(targetViewId, targetViewNamespace, _params);
 					viewParameter.clearViewParameters(viewRepresentation.PSVIEW_BACK, "");
+
+					if(null != _params && typeof _params === "object" && targetView.getIfAutoSaveParamsToContext())
+						targetView.context.set(keyForParamsAutoSavedToContext, _params);
 				}
 			}else if(isForward){
 				if(viewParameter.hasParameters(viewRepresentation.PSVIEW_FORWARD, "")){
+					var _params = viewParameter.getParameters(viewRepresentation.PSVIEW_FORWARD, "");
+
 					/* 用过之后立即销毁，防止污染其它前进操作 */
 					viewParameter.setViewParameters(targetViewId, targetViewNamespace, viewParameter.getParameters(viewRepresentation.PSVIEW_FORWARD, ""));
 					viewParameter.clearViewParameters(viewRepresentation.PSVIEW_FORWARD, "");
+
+					if(null != _params && typeof _params === "object" && targetView.getIfAutoSaveParamsToContext())
+						targetView.context.set(keyForParamsAutoSavedToContext, _params);
 				}
-			}else
+			}else{
 				viewParameter.setViewParameters(targetViewId, targetViewNamespace, params);
+
+				if(null != params && typeof params === "object" && targetView.getIfAutoSaveParamsToContext())
+					targetView.context.set(keyForParamsAutoSavedToContext, params);
+			}
 
 			var viewInstanceEventData = {
 				sourceView: srcView,

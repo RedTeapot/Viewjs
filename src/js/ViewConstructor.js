@@ -58,6 +58,9 @@
 		/** 当前视图变为活动视图的次数 */
 		var activeTimes = 0;
 
+		/** 是否自动保存参数至上下文 */
+		var ifAutoSaveParamsToContext = true;
+
 		/**
 		 * 启用事件驱动机制
 		 * 事件 beforeenter：视图进入前触发
@@ -228,7 +231,7 @@
 		this.getParameter = function(name){
 			var params = viewParameter.getParameters(this.id, this.namespace);
 			if(arguments.length < 1)
-				return params;
+				return params || null;
 
 			return null == params? null: params[name];
 		};
@@ -238,10 +241,12 @@
 		 * 1. 视图参数
 		 * 2. 视图选项
 		 * 3. 地址栏参数
+		 * 4. 视图上下文
 		 *
 		 * 注：区分大小写
 		 *
 		 * @param {String} name 参数名
+		 * @returns {*}
 		 */
 		this.seekParameter = function(name){
 			if(this.hasParameter(name))
@@ -252,10 +257,44 @@
 
 			var r = new RegExp("\\b" + name + "\\b=([^&\\?]*)");
 			var paramValue = location.search.match(r);
-			if(null == paramValue)
+			if(null != paramValue)
+				return decodeURIComponent(paramValue[1]);
+
+			var keyForParamsAutoSavedToContext = viewParameter.keyForParamsAutoSavedToContext,
+				_params = null;
+			if(
+				context.has(keyForParamsAutoSavedToContext)
+				&& null != (_params = context.get(keyForParamsAutoSavedToContext))
+				&& typeof _params === "object"
+			){
+				if(name in _params)
+					return _params[name];
+
 				return null;
-			paramValue = decodeURIComponent(paramValue[1]);
-			return paramValue;
+			}
+
+			return null;
+		};
+
+		/**
+		 * 设置是否自动保存视图参数至视图上下文
+		 * @param {Boolean} [autoSave=true] 是否自动保存视图参数至视图上下文
+		 * @returns {ViewConstructor}
+		 */
+		this.setIfAutoSaveParamsToContext = function(autoSave){
+			if(arguments.length < 1)
+				autoSave = true;
+
+			ifAutoSaveParamsToContext = !!autoSave;
+			return this;
+		};
+
+		/**
+		 * 判断该视图是否自动保存视图参数至视图上下文
+		 * @returns {Boolean}
+		 */
+		this.getIfAutoSaveParamsToContext = function(){
+			return ifAutoSaveParamsToContext;
 		};
 
 		/**

@@ -1,6 +1,12 @@
 ;(function(ctx, name){
-	var globalLogger = ctx[name].Logger.globalLogger,
+	var util = ctx[name].util,
+		globalLogger = ctx[name].Logger.globalLogger,
 		viewRepresentation = ctx[name].viewRepresentation;
+
+	/**
+	 * 自动保存至上下文中的视图参数的key的前缀
+	 */
+	var keyForParamsAutoSavedToContext = util.randomString("_autosavedparams_");
 
 	/**
 	 * 视图参数集合。
@@ -60,6 +66,8 @@
 	};
 
 	ctx[name].viewParameter = {
+		keyForParamsAutoSavedToContext: keyForParamsAutoSavedToContext,
+
 		hasParameters: hasParameters,
 		getParameters: getParameters,
 		setParameters: setParameters,

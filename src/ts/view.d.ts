@@ -87,7 +87,10 @@ interface ViewClass{
 
 	hasParameter(name: string): boolean;
 	getParameter(name: string): any;
-	seekParameter(name: string): string|any|null;
+	seekParameter(name: string): any | null;
+
+	setIfAutoSaveParamsToContext(autoSave?: boolean): ViewClass;
+	getIfAutoSaveParamsToContext(): boolean;
 
 	isReady(): boolean;
 	isActive(): boolean;
