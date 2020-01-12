@@ -419,7 +419,7 @@
 	/**
 	 * 以“压入历史堆栈”的方式切换视图
 	 * @param {String} targetViewId 目标视图ID
-	 * @param {String} [targetViewNamespace=defaultNamespace] 目标视图隶属的命名空间
+	 * @param {String|Object} [targetViewNamespace=defaultNamespace] 目标视图隶属的命名空间
 	 * @param {Object} ops 切换配置。详见viewInternalVariable.showView
 	 * @param {Object} ops.options 视图选项
 	 */
@@ -505,8 +505,8 @@
 
 	/**
 	 * 以“替换当前堆栈”的方式切换视图
-	 * @param targetViewId 目标视图ID
-	 * @param {String} [targetViewNamespace=defaultNamespace] 视图隶属的命名空间
+	 * @param {String} targetViewId 目标视图ID
+	 * @param {String|Object} [targetViewNamespace=defaultNamespace] 视图隶属的命名空间
 	 * @param {Object} ops 切换配置。详见switchView
 	 * @param {Object} ops.options 视图选项
 	 */
