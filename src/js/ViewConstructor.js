@@ -1,17 +1,17 @@
-;(function(ctx, name){
-	var util = ctx[name].util,
-		eventDrive = ctx[name].eventDrive,
-		ViewState = ctx[name].ViewState,
-		Logger = ctx[name].Logger;
+View(function(toolbox){
+	var util = toolbox.get("util"),
+		eventDrive = toolbox.get("eventDrive"),
+		ViewState = toolbox.get("ViewState"),
+		Logger = toolbox.get("Logger");
 
-	var ViewConfigurationSet = ctx[name].ViewConfigurationSet,
-		ViewContext = ctx[name].ViewContext,
-		ViewLayout = ctx[name].ViewLayout,
+	var ViewConfigurationSet = toolbox.get("ViewConfigurationSet"),
+		ViewContext = toolbox.get("ViewContext"),
+		ViewLayout = toolbox.get("ViewLayout"),
 
-		viewRepresentation = ctx[name].viewRepresentation,
-		viewParameter = ctx[name].viewParameter,
-		viewAttribute = ctx[name].viewAttribute,
-		viewInternalVariable = ctx[name].viewInternalVariable;
+		viewRepresentation = toolbox.get("viewRepresentation"),
+		viewParameter = toolbox.get("viewParameter"),
+		viewAttribute = toolbox.get("viewAttribute"),
+		viewInternalVariable = toolbox.get("viewInternalVariable");
 
 	var globalLogger = Logger.globalLogger;
 
@@ -507,5 +507,7 @@
 	util.defineReadOnlyProperty(View, "SWITCHTRIGGER_APP", "app");
 	/** 视图切换触发器：浏览器 */
 	util.defineReadOnlyProperty(View, "SWITCHTRIGGER_NAVIGATOR", "navigator");
-	ctx[name].ViewConstructor = View;
-})(window, "View");
+
+
+	toolbox.set("ViewConstructor", View);
+})

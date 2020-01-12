@@ -11,23 +11,23 @@
  * View其它事件：
  * 1) viewnotexist：要访问的视图不存在
  */
-;(function(ctx, name){
-	var util = ctx[name].util,
-		Logger = ctx[name].Logger,
-		touch = ctx[name].touch,
-		layout = ctx[name].layout;
+View(function(toolbox){
+	var util = toolbox.get("util"),
+		Logger = toolbox.get("Logger"),
+		touch = toolbox.get("touch"),
+		layout = toolbox.get("layout");
 
-	var View = ctx[name].ViewConstructor,
-		ViewContext = ctx[name].ViewContext,
-		ViewState = ctx[name].ViewState,
-		OperationState = ctx[name].OperationState,
-		ViewLayout = ctx[name].ViewLayout,
-		ChainedHandle = ctx[name].ChainedHandle,
+	var View = toolbox.get("ViewConstructor"),
+		ViewContext = toolbox.get("ViewContext"),
+		ViewState = toolbox.get("ViewState"),
+		OperationState = toolbox.get("OperationState"),
+		ViewLayout = toolbox.get("ViewLayout"),
+		ChainedHandle = toolbox.get("ChainedHandle"),
 
-		viewRepresentation = ctx[name].viewRepresentation,
-		viewParameter = ctx[name].viewParameter,
-		viewAttribute = ctx[name].viewAttribute,
-		viewInternalVariable = ctx[name].viewInternalVariable;
+		viewRepresentation = toolbox.get("viewRepresentation"),
+		viewParameter = toolbox.get("viewParameter"),
+		viewAttribute = toolbox.get("viewAttribute"),
+		viewInternalVariable = toolbox.get("viewInternalVariable");
 
 	var globalLogger = Logger.globalLogger;
 
@@ -1258,5 +1258,6 @@
 		}
 	});
 
-	ctx[name] = View;
-})(window, "View");
+
+	toolbox.expose(View);
+})

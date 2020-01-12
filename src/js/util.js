@@ -1,5 +1,5 @@
-;(function(ctx, name){
-	var globalLogger = ctx[name].Logger.globalLogger;
+View(function(toolbox){
+	var globalLogger = toolbox.get("Logger").globalLogger;
 
 	/**
 	 * 设定参数默认值
@@ -384,7 +384,7 @@
 		return target.substring(0, len) === str;
 	};
 
-	ctx[name].util = {
+	toolbox.set("util", {
 		setDftValue: setDftValue,
 		defineReadOnlyProperty: defineReadOnlyProperty,
 		try2Apply: try2Apply,
@@ -408,5 +408,5 @@
 		startsWith: startsWith,
 
 		env: env
-	};
-})(window, "View");
+	});
+})

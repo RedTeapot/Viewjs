@@ -1,6 +1,6 @@
-;(function(ctx, name){
-	var globalLogger = ctx[name].Logger.globalLogger,
-		util = ctx[name].util;
+View(function(toolbox){
+	var globalLogger = toolbox.get("Logger").globalLogger,
+		util = toolbox.get("util");
 
 	var PSVIEW_BACK = ":back",/* 伪视图：后退 */
 		PSVIEW_FORWARD = ":forward",/* 伪视图：前进 */
@@ -46,12 +46,13 @@
 		};
 	};
 
-	ctx[name].viewRepresentation = {
+
+	toolbox.set("viewRepresentation", {
 		PSVIEW_BACK: PSVIEW_BACK,
 		PSVIEW_FORWARD: PSVIEW_FORWARD,
 		PSVIEW_DEFAULT: PSVIEW_DEFAULT,
 
 		isPseudoView: isPseudoView,
 		parseViewInfoFromHash: parseViewInfoFromHash
-	};
-})(window, "View");
+	});
+})

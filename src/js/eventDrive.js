@@ -1,4 +1,4 @@
-;(function(ctx, name){
+View(function(toolbox){
 	/**
 	 * @constructor
 	 *
@@ -19,7 +19,7 @@
 	 * @param {Object} obj 要添加事件驱动机制的对象
 	 * @param {Object} ctx 监听器触发时的this上下文
 	 */
-	var eventDrive = function(obj, ctx){
+	toolbox.set("eventDrive", function(obj, ctx){
 		/* 所有事件处理器。key为事件类型字符串（全小写），value为对应添加的事件处理器数组 */
 		var eventHandlers = {};
 
@@ -99,8 +99,5 @@
 					t();
 			});
 		};
-	};
-
-
-	ctx[name].eventDrive = eventDrive;
-})(window, "View");
+	});
+})

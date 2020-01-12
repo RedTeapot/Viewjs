@@ -1,5 +1,5 @@
-;(function(ctx, name){
-	var util = ctx[name].util;
+View(function(toolbox){
+	var util = toolbox.get("util");
 
 	/**
 	 * 视图上下文
@@ -80,6 +80,5 @@
 		/* 不能调用 Object.freeze() 方法，因为部分用户通过属性附加的方式在上下文中添加了数据 */
 	};
 
-
-	ctx[name].ViewContext = ViewContext;
-})(window, "View");
+	toolbox.set("ViewContext", ViewContext);
+})

@@ -1,7 +1,7 @@
-;(function(ctx, name){
-	var util = ctx[name].util,
-		globalLogger = ctx[name].Logger.globalLogger,
-		viewRepresentation = ctx[name].viewRepresentation;
+View(function(toolbox){
+	var util = toolbox.get("util"),
+		globalLogger = toolbox.get("Logger").globalLogger,
+		viewRepresentation = toolbox.get("viewRepresentation");
 
 	/**
 	 * 自动保存至上下文中的视图参数的key的前缀
@@ -65,7 +65,8 @@
 		return View;
 	};
 
-	ctx[name].viewParameter = {
+
+	toolbox.set("viewParameter", {
 		keyForParamsAutoSavedToContext: keyForParamsAutoSavedToContext,
 
 		hasParameters: hasParameters,
@@ -75,5 +76,5 @@
 
 		setViewParameters: setViewParameters,
 		clearViewParameters: clearViewParameters
-	};
-})(window, "View");
+	});
+})

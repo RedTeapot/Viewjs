@@ -144,9 +144,11 @@ var getPluginInfo = function(){
  */
 var getSrcJsStream = function(){
 	return gulp.src(([
-		"../src/js/entrance.js",
+		"../src/js/_begin.js",
+
+		"../src/js/ViewLogger.js",
+
 		"../src/js/eventDrive.js",
-		"../src/js/Logger.js",
 		"../src/js/util.js",
 		"../src/js/resolution.js",
 		"../src/js/layout.js",
@@ -155,11 +157,10 @@ var getSrcJsStream = function(){
 		"../src/js/ViewContext.js",
 		"../src/js/ViewConfiguration.js",
 		"../src/js/ViewConfigurationSet.js",
-		"../src/js/ViewWantedData.js",
 		"../src/js/ViewState.js",
 		"../src/js/ViewLayout.js",
-		"../src/js/OperationState.js",
-		"../src/js/ChainedHandle.js",
+		"../src/js/ViewOperationState.js",
+		"../src/js/ViewChainedHandle.js",
 
 		"../src/js/viewAttribute.js",
 		"../src/js/viewRepresentation.js",
@@ -167,7 +168,9 @@ var getSrcJsStream = function(){
 		"../src/js/viewInternalVariable.js",
 
 		"../src/js/ViewConstructor.js",
-		"../src/js/view.js"
+		"../src/js/view.js",
+
+		"../src/js/_end.js"
 	]));
 };
 
@@ -194,7 +197,7 @@ var getSrcCssStream = function(){
 var getMinifiedJsStream = function(){
 	return utils.stream.xpipe(
 		getSrcJsStream(),
-		concat(getMinifiedJsFileName()),
+		concat(getMinifiedJsFileName(), {newLine: ","}),
 		uglify(),
 		gap.prependText(getPluginInfo())
 	);
@@ -238,7 +241,7 @@ var execCmd_generateSourceFile = function(outputDirPath){
 
 	utils.stream.xpipe(
 		getSrcJsStream(),
-		concat(getSrcJsFileName()),
+		concat(getSrcJsFileName(), {newLine: ","}),
 		gap.prependText(getPluginInfo()),
 		gulp.dest(outputDirPath)
 	);

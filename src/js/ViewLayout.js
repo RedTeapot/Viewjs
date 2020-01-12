@@ -1,7 +1,7 @@
-;(function(ctx, name){
-	var util = ctx[name].util,
-		layout = ctx[name].layout,
-		globalLogger = ctx[name].Logger.globalLogger;
+View(function(toolbox){
+	var util = toolbox.get("util"),
+		layout = toolbox.get("layout"),
+		globalLogger = toolbox.get("Logger").globalLogger;
 
 	var docEle = document.documentElement;
 	var doNothing = function doNothing(){};
@@ -25,7 +25,7 @@
 			layoutCushionTime = 50;/** 布局连续发生改变时，缓冲布局动作执行的时长。单位：毫秒 */
 
 		/**
-		 * 设置布局方法
+		 * 设置布局方法da
 		 * @param {Function} _layoutAction 布局方法
 		 * @returns {ViewLayout}
 		 */
@@ -140,5 +140,6 @@
 		return inst;
 	};
 
-	ctx[name].ViewLayout = ViewLayout;
-})(window, "View");
+
+	toolbox.set("ViewLayout", ViewLayout);
+})

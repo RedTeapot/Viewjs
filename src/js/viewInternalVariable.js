@@ -1,11 +1,11 @@
-;(function(ctx, name){
-	var globalLogger = ctx[name].Logger.globalLogger,
-		util = ctx[name].util,
+View(function(toolbox){
+	var globalLogger = toolbox.get("Logger").globalLogger,
+		util = toolbox.get("util"),
 
-		ViewLayout = ctx[name].ViewLayout,
-		viewParameter = ctx[name].viewParameter,
-		viewRepresentation = ctx[name].viewRepresentation,
-		viewAttribute = ctx[name].viewAttribute;
+		ViewLayout = toolbox.get("ViewLayout"),
+		viewParameter = toolbox.get("viewParameter"),
+		viewRepresentation = toolbox.get("viewRepresentation"),
+		viewAttribute = toolbox.get("viewAttribute");
 
 	/**
 	 * 视图实例集合
@@ -462,7 +462,8 @@
 		return View;
 	};
 
-	ctx[name].viewInternalVariable = {
+
+	toolbox.set("viewInternalVariable", {
 		defaultNamespace: defaultNamespace,
 		defaultWidthHeightRatio: defaultWidthHeightRatio,
 		get intendedSwitchType(){return intendedSwitchType;},
@@ -484,5 +485,5 @@
 		findFirstViewOfName: findFirstViewOfName,
 		switchView: switchView,
 		showView: showView
-	};
-})(window, "View");
+	});
+})

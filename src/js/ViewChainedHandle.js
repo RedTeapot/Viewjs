@@ -1,6 +1,6 @@
-;(function(ctx, name){
-	var util = ctx[name].util,
-		Logger = ctx[name].Logger;
+View(function(toolbox){
+	var util = toolbox.get("util"),
+		Logger = toolbox.get("Logger");
 
 	var globalLogger = Logger.globalLogger;
 
@@ -204,5 +204,6 @@
 		return instance;
 	};
 
-	ctx[name].ChainedHandle = ChainedHandle;
-})(window, "View");
+
+	toolbox.set("ChainedHandle", ChainedHandle);
+})

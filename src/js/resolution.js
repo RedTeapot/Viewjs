@@ -1,6 +1,6 @@
-;(function(ctx, name){
-	var util = ctx[name].util,
-		Logger = ctx[name].Logger;
+View(function(toolbox){
+	var util = toolbox.get("util"),
+		Logger = toolbox.get("Logger");
 
 	var globalLogger = Logger.globalLogger;
 
@@ -96,7 +96,6 @@
 	var obj = {
 		addChangeListener: addChangeListener
 	};
-	Object.freeze && Object.freeze(obj);
 
-	ctx[name].resolution = obj;
-})(window, "View");
+	toolbox.set("resolution", obj);
+})

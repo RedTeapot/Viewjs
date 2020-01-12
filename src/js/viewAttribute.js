@@ -1,6 +1,5 @@
-;(function(ctx, name){
-	/** DOM属性集合 */
-	ctx[name].viewAttribute = {
+View(function(toolbox){
+	toolbox.set("viewAttribute", {
 		attr$view: "data-view",
 		attr$viewId: "data-view-id",
 		attr$view_name: "data-view-name",
@@ -28,5 +27,5 @@
 
 		attr$active_view_id: "data-active-view-id",
 		attr$active_view_namespace: "data-active-view-namespace"
-	};
-})(window, "View");
+	});
+})

@@ -1,5 +1,6 @@
-;(function(ctx, name){
-	var globalLogger = ctx[name].Logger.globalLogger;
+View(function(toolbox){
+	var globalLogger = toolbox.get("Logger").globalLogger;
+
 	var NOT_SUPPLIED = {};
 
 	/**
@@ -22,7 +23,7 @@
 
 		/**
 		 * 获取配置项取值
-		 * @param {*} dftValue 配置值没有指定时的默认值
+		 * @param {*} [dftValue] 配置值没有指定时的默认值
 		 */
 		this.getValue = function(dftValue){
 			if(NOT_SUPPLIED === value){
@@ -122,6 +123,5 @@
 		Object.freeze(this);
 	};
 
-
-	ctx[name].ViewConfiguration = ViewConfiguration;
-})(window, "View");
+	toolbox.set("ViewConfiguration", ViewConfiguration);
+})

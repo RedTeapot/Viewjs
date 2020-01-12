@@ -1,12 +1,10 @@
-;(function(ctx, name){
-	var util = ctx[name].util,
-		globalLogger = ctx[name].Logger.globalLogger;
+View(function(toolbox){
+	var util = toolbox.get("util"),
+		globalLogger = toolbox.get("Logger").globalLogger;
 
 	var defaultNamespace = "default";
-	var viewStatePrefix = "ViewState_",
-		operationStatePrefix = "OperationState_";
-	var viewStateFlag = util.randomString(viewStatePrefix),
-		operationStateFlag = util.randomString(operationStatePrefix);
+	var viewStatePrefix = "ViewState_";
+	var viewStateFlag = util.randomString(viewStatePrefix);
 
 	var
 		/**
@@ -183,5 +181,6 @@
 		globalLogger.debug("View state stack: {}, {}", viewStateStack.map(function(v){return v.sn}), activeViewStateIndex);
 	};
 
-	ctx[name].ViewState = ViewState;
-})(window, "View");
+
+	toolbox.set("ViewState", ViewState);
+})

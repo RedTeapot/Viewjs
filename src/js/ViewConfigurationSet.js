@@ -1,6 +1,6 @@
-;(function(ctx, name){
-	var util = ctx[name].util;
-	var ViewConfiguration = ctx[name].ViewConfiguration;
+View(function(toolbox){
+	var util = toolbox.get("util");
+	var ViewConfiguration = toolbox.get("ViewConfiguration");
 
 	/**
 	 * 视图配置集合
@@ -64,5 +64,5 @@
 	};
 
 
-	ctx[name].ViewConfigurationSet = ViewConfigurationSet;
-})(window, "View");
+	toolbox.set("ViewConfigurationSet", ViewConfigurationSet);
+})
