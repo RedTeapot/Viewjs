@@ -279,7 +279,7 @@ View(function(toolbox){
 		/**
 		 * 设置是否自动保存视图参数至视图上下文
 		 * @param {Boolean} [autoSave=true] 是否自动保存视图参数至视图上下文
-		 * @returns {ViewConstructor}
+		 * @returns {View}
 		 */
 		this.setIfAutoSaveParamsToContext = function(autoSave){
 			if(arguments.length < 1)
@@ -486,28 +486,6 @@ View(function(toolbox){
 			}while(true);
 		};
 	};
-
-	/**
-	 * 启用事件驱动机制
-	 * 事件 beforechange：视图切换前触发
-	 * 事件 afterchange：视图切换后触发
-	 */
-	eventDrive(View);
-
-	/** 视图切换操作类型：由浏览器前进操作触发 */
-	util.defineReadOnlyProperty(View, "SWITCHTYPE_HISTORYFORWARD", "history.forward");
-	/** 视图切换操作类型：由浏览器后退操作触发 */
-	util.defineReadOnlyProperty(View, "SWITCHTYPE_HISTORYBACK", "history.back");
-	/** 视图切换操作类型：由视图切换：View.navTo操作触发 */
-	util.defineReadOnlyProperty(View, "SWITCHTYPE_VIEWNAV", "view.nav");
-	/** 视图切换操作类型：由视图切换：View.changeTo操作触发 */
-	util.defineReadOnlyProperty(View, "SWITCHTYPE_VIEWCHANGE", "view.change");
-
-	/** 视图切换触发器：应用程序 */
-	util.defineReadOnlyProperty(View, "SWITCHTRIGGER_APP", "app");
-	/** 视图切换触发器：浏览器 */
-	util.defineReadOnlyProperty(View, "SWITCHTRIGGER_NAVIGATOR", "navigator");
-
 
 	toolbox.set("ViewConstructor", View);
 })

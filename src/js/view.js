@@ -13,6 +13,7 @@
  */
 View(function(toolbox){
 	var util = toolbox.get("util"),
+		eventDrive = toolbox.get("eventDrive"),
 		Logger = toolbox.get("Logger"),
 		touch = toolbox.get("touch"),
 		layout = toolbox.get("layout");
@@ -30,6 +31,114 @@ View(function(toolbox){
 		viewInternalVariable = toolbox.get("viewInternalVariable");
 
 	var globalLogger = Logger.globalLogger;
+
+	var
+		/**
+		 * 在“没有视图可以继续向前返回”的情况下，尝试返回时要执行的动作
+		 * @type {Function|null}
+		 */
+		noViewToNavBackAction = null,
+
+		/**
+		 * 捕获到的文档标题，用于在视图离开时恢复显示文档的初始标题
+		 * @type {String}
+		 */
+		documentTitle = document.title;
+
+	var
+		/**
+		 * 视图是否已经被初始化
+		 * @type {boolean}
+		 */
+		isViewInitialized = false,
+
+		/**
+		 * 初始化之前要执行的回调方法列表
+		 * @type {Function[]}
+		 */
+		beforeViewInitListeners = [],
+
+		/**
+		 * 标记视图准备初始化
+		 * @type {Function}
+		 */
+		markViewToBeInitialized = function(){
+			for(var i = 0; i < beforeViewInitListeners.length; i++)
+				util.try2Call(beforeViewInitListeners[i]);
+			beforeViewInitListeners = [];
+		},
+
+		/**
+		 * 标记视图已完成初始化
+		 * @type {Function}
+		 */
+		markViewInitialized = function(){
+			isViewInitialized = true;
+		};
+
+	var
+		/**
+		 * 视图是否已经就绪
+		 * @type {boolean}
+		 */
+		isViewReady = false,
+
+		/**
+		 * 就绪后要执行的回调方法列表
+		 * @type {Function[]}
+		 */
+		viewReadyListeners = [],
+
+		/**
+		 * 标记视图就绪
+		 * @type {Function}
+		 */
+		markViewReady = function(){
+			isViewReady = true;
+
+			for(var i = 0; i < viewReadyListeners.length; i++)
+				util.try2Call(viewReadyListeners[i]);
+			viewReadyListeners = [];
+
+			View.getViewContainerDomElement().setAttribute(viewAttribute.attr$view_state, "ready");
+		},
+
+		/**
+		 * 视图初始化器
+		 * @type {Function|null}
+		 */
+		viewInitializer,
+
+		/**
+		 * 视图初始化器不为空时，其自动执行时机。domready：DOM就绪后执行；rightnow：view.js被加载后立即执行。默认为：domready
+		 * @type {String}
+		 */
+		viewInitializerExecTime;
+
+
+
+
+	/**
+	 * 启用事件驱动机制
+	 * 事件 beforechange：视图切换前触发
+	 * 事件 afterchange：视图切换后触发
+	 */
+	eventDrive(View);
+
+	/** 视图切换操作类型：由浏览器前进操作触发 */
+	View.SWITCHTYPE_HISTORYFORWARD = "history.forward";
+	/** 视图切换操作类型：由浏览器后退操作触发 */
+	View.SWITCHTYPE_HISTORYBACK = "history.back";
+	/** 视图切换操作类型：由视图切换：View.navTo操作触发 */
+	View.SWITCHTYPE_VIEWNAV = "view.nav";
+	/** 视图切换操作类型：由视图切换：View.changeTo操作触发 */
+	View.SWITCHTYPE_VIEWCHANGE = "view.change";
+
+	/** 视图切换触发器：应用程序 */
+	View.SWITCHTRIGGER_APP = "app";
+	/** 视图切换触发器：浏览器 */
+	View.SWITCHTRIGGER_NAVIGATOR = "navigator";
+
 
 	/**
 	 * 最近一次浏览状态
@@ -578,8 +687,6 @@ View(function(toolbox){
 		return View;
 	};
 
-	var noViewToNavBackAction = null;
-
 	/**
 	 * 设置在“没有视图可以继续向前返回”的情况下，尝试返回时要执行的动作
 	 * @param {Function} action 要执行的动作
@@ -633,9 +740,6 @@ View(function(toolbox){
 		return View;
 	};
 
-	/** 文档标题 */
-	var documentTitle = document.title;
-
 	/**
 	 * 设置文档标题。开发者可以设定视图级别的标题，但如果特定视图没有自定义标题，将使用文档标题来呈现
 	 * @param {String} title 文档标题
@@ -681,17 +785,77 @@ View(function(toolbox){
 	 */
 	View.ifCanGoBack = ViewState.ifCanGoBack;
 
-	var isViewInited = false,/* 视图是否已经被初始化 */
-		isViewReady = false;/* 视图是否已经就绪 */
-	var markViewToBeInited,/* 标记视图准备初始化 */
-		markViewInited,/* 标记视图已完成初始化 */
-		markViewReady,/* 标记视图就绪 */
+	/**
+	 * 添加“视图将要初始化”监听器
+	 * @type {Function} listener 监听器
+	 */
+	View.beforeInit = function(listener){
+		if(typeof listener !== "function"){
+			globalLogger.warn("Type of 'Function' is required");
+			return View;
+		}
 
-		viewInitializer,/* 视图初始化器 */
-		viewInitializerExecTime;/* 视图初始化器不为空时，其自动执行时机。domready：DOM就绪后执行；rightnow：view.js被加载后立即执行。默认为：domready */
+		/* 如果已经初始化，则不再执行，立即返回 */
+		if(isViewInitialized){
+			globalLogger.warn("View.js is initialized already");
+			return View;
+		}
 
+		if(beforeViewInitListeners.indexOf(listener) === -1)
+			beforeViewInitListeners.push(listener);
 
+		return View;
+	};
 
+	/**
+	 * 添加“视图就绪”监听器
+	 * @param {Function} listener 回调方法
+	 */
+	View.ready = function(listener){
+		if(typeof listener !== "function"){
+			globalLogger.warn("Type of 'Function' is required");
+			return View;
+		}
+
+		/* 如果已经就绪，则立即执行 */
+		if(isViewReady){
+			util.try2Call(listener);
+			return View;
+		}
+
+		if(viewReadyListeners.indexOf(listener) === -1)
+			viewReadyListeners.push(listener);
+
+		return View;
+	};
+
+	/**
+	 * 设置视图初始化器
+	 * @param {Function} initializer 初始化器
+	 * @param {Function} initializer#init 执行初始化
+	 * @param {String} [execTime=domready] 初始化器的自动执行时机。domready：DOM就绪后执行；rightnow：立即执行。默认为：domready
+	 */
+	View.setInitializer = function(initializer, execTime){
+		if(typeof initializer !== "function")
+			return;
+
+		var dftExecTime = "domready";
+		if(arguments.length < 2)
+			execTime = dftExecTime;
+		var supportedExecTimes = "domready, rightnow".split(/\s*,\s*/);
+		if(supportedExecTimes.indexOf(execTime) === -1){
+			globalLogger.warn("Unknown initializer exec time: {}. Supported: {}", execTime, supportedExecTimes);
+			execTime = dftExecTime;
+		}
+
+		viewInitializer = initializer;
+		viewInitializerExecTime = execTime;
+
+		if(!isViewInitialized && "rightnow" === execTime){
+			globalLogger.info("Calling specified view initializer right now");
+			initializer(init);
+		}
+	};
 
 	/**
 	 * 响应地址栏的hash进行渲染操作
@@ -822,10 +986,8 @@ View(function(toolbox){
 			globalLogger.info("Skip state: {}", e.state);
 		}
 	};
-
-
 	var init = function(){
-		markViewToBeInited();
+		markViewToBeInitialized();
 
 		/* 暂存浏览器标题 */
 		documentTitle = document.title;
@@ -1081,7 +1243,7 @@ View(function(toolbox){
 		globalLogger.info("Marking View as initialized and ready");
 
 		/* 标记视图已完成初始化 */
-		markViewInited();
+		markViewInitialized();
 
 		/* 标记视图就绪 */
 		markViewReady();
@@ -1153,99 +1315,6 @@ View(function(toolbox){
 				params: null
 			});
 		})();
-	};
-
-	/**
-	 * 添加“视图将要初始化”监听器
-	 */
-	View.beforeInit = (function(){
-		/* 挂起的回调方法列表 */
-		var callbacks = [];
-
-		markViewToBeInited = function(){
-			for(var i = 0; i < callbacks.length; i++)
-				util.try2Call(callbacks[i]);
-			callbacks = [];
-		};
-
-		markViewInited = function(){
-			isViewInited = true;
-		};
-
-		/**
-		 * 初始化前执行的方法
-		 * @param {Function} callback 回调方法
-		 */
-		return function(callback){
-			/* 如果已经初始化，则不再执行，立即返回 */
-			if(isViewInited)
-				return View;
-
-			if(callbacks.indexOf(callback) === -1)
-				callbacks.push(callback);
-			return View;
-		};
-	})();
-
-	/**
-	 * 添加“视图就绪”监听器
-	 */
-	View.ready = (function(){
-		/* 挂起的回调方法列表 */
-		var callbacks = [];
-		markViewReady = function(){
-			isViewReady = true;
-
-			for(var i = 0; i < callbacks.length; i++)
-				util.try2Call(callbacks[i]);
-			callbacks = [];
-
-			View.getViewContainerDomElement().setAttribute(viewAttribute.attr$view_state, "ready");
-		};
-
-		/**
-		 * 就绪后执行的方法
-		 * @param {Function} callback 回调方法
-		 */
-		return function(callback){
-			/* 如果已经就绪，则立即执行 */
-			if(isViewReady){
-				util.try2Call(callback);
-				return View;
-			}
-
-			if(callbacks.indexOf(callback) === -1)
-				callbacks.push(callback);
-			return View;
-		};
-	})();
-
-	/**
-	 * 设置视图初始化器
-	 * @param {Function} initializer 初始化器
-	 * @param {Function} initializer#init 执行初始化
-	 * @param {String} [execTime=domready] 初始化器的自动执行时机。domready：DOM就绪后执行；rightnow：立即执行。默认为：domready
-	 */
-	View.setInitializer = function(initializer, execTime){
-		if(typeof initializer !== "function")
-			return;
-
-		var dftExecTime = "domready";
-		if(arguments.length < 2)
-			execTime = dftExecTime;
-		var supportedExecTimes = "domready, rightnow".split(/\s*,\s*/);
-		if(supportedExecTimes.indexOf(execTime) === -1){
-			globalLogger.warn("Unknown initializer exec time: {}. Supported: {}", execTime, supportedExecTimes);
-			execTime = dftExecTime;
-		}
-
-		viewInitializer = initializer;
-		viewInitializerExecTime = execTime;
-
-		if(!isViewInited && "rightnow" === execTime){
-			globalLogger.info("Calling specified view initializer right now");
-			initializer(init);
-		}
 	};
 
 	document.addEventListener("DOMContentLoaded", function(){

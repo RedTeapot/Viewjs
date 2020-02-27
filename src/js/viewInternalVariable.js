@@ -54,7 +54,7 @@ View(function(toolbox){
 	/**
 	 * 标记位：由应用程序触发的，期望执行的视图切换类型。
 	 * 如果切换动作由 应用 触发，则赋值为对应的切换类型；
-	 * 如果切换动作由 路蓝旗 触发，则赋值为null。
+	 * 如果切换动作由 浏览器 触发，则赋值为null。
 	 * 借助该标记位，应用可以区分 “前进或后退” 的触发器（应用 或 浏览器）
 	 *
 	 * @type {String|null}
@@ -239,7 +239,7 @@ View(function(toolbox){
 		}
 
 		var firstView = viewList[0];
-		globalLogger.info("Found {} views of name: {}: {}, using the first one: {}@{}", viewList.length, viewName, firstView.id, firstView.namespace);
+		globalLogger.info("Found {} views of name: {}, using the first one: {}@{}", viewList.length, viewName, firstView.id, firstView.namespace);
 
 		return firstView;
 	};
@@ -360,16 +360,7 @@ View(function(toolbox){
 			};
 
 			var fireViewInstanceEvent = function(evt, async){
-				try{
-					targetView.fire(evt, viewInstanceEventData, async);
-				}catch(e){
-					globalLogger.error("Error occurred while firing event: {} with data: {}", evt, viewInstanceEventData);
-
-					if(e instanceof Error)
-						console.error(e, e.stack);
-					else
-						console.error(e);
-				}
+				targetView.fire(evt, viewInstanceEventData, async);
 			};
 
 			/* 离开源视图 */
@@ -403,7 +394,7 @@ View(function(toolbox){
 			viewContainerObj.setAttribute(viewAttribute.attr$active_view_id, targetViewId);
 			viewContainerObj.setAttribute(viewAttribute.attr$active_view_namespace, targetViewNamespace);
 
-			/* 更新标记为：“是否正在执行由应用触发的切换” */
+			/* 更新标记为：“正在执行由应用触发的切换” */
 			intendedSwitchType = null;
 
 			/* 触发后置切换监听器 */
@@ -431,29 +422,28 @@ View(function(toolbox){
 
 	/**
 	 * 呈现指定的视图（不操作history）
-	 * @param {String} targetViewId 目标视图ID
-	 * @param {String} [namespace=defaultNamespace] 视图隶属的命名空间
+	 * @param {String} viewId 目标视图ID
+	 * @param {String} [viewNamespace=defaultNamespace] 视图隶属的命名空间
 	 * @param {Object} ops 切换配置。详见switchView
 	 */
-	var showView = function(targetViewId, namespace, ops){
-		if(arguments.length < 2 || typeof namespace !== "string" || util.isEmptyString(namespace, true))
-			namespace = defaultNamespace;
-		buildNamespace(namespace);
+	var showView = function(viewId, viewNamespace, ops){
+		if(arguments.length < 2 || typeof viewNamespace !== "string" || util.isEmptyString(viewNamespace, true))
+			viewNamespace = defaultNamespace;
+		buildNamespace(viewNamespace);
+		ops = ops || {};
 
-		ops = util.setDftValue(ops, {}, true);
-
-		/** 检查目标视图是否存在 */
-		if(!View.ifExists(targetViewId, namespace)){
-			globalLogger.log("Trying to navigate to view: '{}' within namespace: '{}' with params: {}, options: {}", targetViewId, namespace, ops.params, ops.options);
-			throw new Error("Target view: '" + targetViewId + "' within namespace: '" + namespace + "' does not exist!");
+		/* 检查目标视图是否存在 */
+		if(!View.ifExists(viewId, viewNamespace)){
+			globalLogger.log("Trying to navigate to view: '{}' within namespace: '{}' with params: {}, options: {}", viewId, viewNamespace, ops.params, ops.options);
+			throw new Error("Target view: '" + viewId + "' within namespace: '" + viewNamespace + "' does not exist!");
 		}
 
 		/* 当前活动视图 */
 		var currentView = View.getActiveView();
-		globalLogger.log("{}@{} → {}@{} {}", currentView? currentView.getId(): null, currentView? currentView.getNamespace(): null, targetViewId, namespace, JSON.stringify(ops));
+		globalLogger.log("{}@{} → {}@{} {}", currentView? currentView.getId(): null, currentView? currentView.getNamespace(): null, viewId, viewNamespace, JSON.stringify(ops));
 
 		/* 目标视图 */
-		var targetView = View.ofId(targetViewId, namespace);
+		var targetView = View.ofId(viewId, viewNamespace);
 
 		ops.srcView = currentView;
 		ops.targetView = targetView;
