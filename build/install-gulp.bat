@@ -1,9 +1,9 @@
-@cnpm install --save-dev gulp
-@cnpm install --save-dev gulp-uglify
-@cnpm install --save-dev gulp-concat
-@cnpm install --save-dev gulp-cssmin
-@cnpm install --save-dev gulp-zip@3.2.0
-@cnpm install --save-dev gulp-append-prepend
-@cnpm install --save-dev wzh.node-utils
-@cnpm install --save-dev del
-@cnpm install --save-dev merge2
+@call cnpm install --save-dev gulp
+@call cnpm install --save-dev gulp-uglify
+@call cnpm install --save-dev gulp-concat
+@call cnpm install --save-dev gulp-cssmin
+@call cnpm install --save-dev gulp-zip@3.2.0
+@call cnpm install --save-dev gulp-append-prepend
+@call cnpm install --save-dev wzh.node-utils
+@call cnpm install --save-dev del
+@call cnpm install --save-dev merge2
