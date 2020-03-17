@@ -473,12 +473,16 @@ View(function(toolbox){
 		return View;
 	};
 
+
 	/**
-	 * 以“压入历史堆栈”的方式略过视图，使得在不展现视图的前提下达到返回时可以返回到该视图上的目的
+	 * 略过视图，使得在不展现视图的前提下达到返回时可以返回到该视图上的目的
 	 * @param {String} targetViewId 目标视图ID
 	 * @param {String} [targetViewNamespace=defaultNamespace] 目标视图隶属的命名空间
+	 * @param {String} [method=nav] 略过方式。nav：压入堆栈；change：替换栈顶
 	 */
-	View.passBy = function(targetViewId, targetViewNamespace){
+	var navByOrChangeBy = function(targetViewId, targetViewNamespace, method){
+		if(arguments.length < 3)
+			method = "nav";
 		if(arguments.length < 2 || typeof targetViewNamespace !== "string" || util.isEmptyString(targetViewNamespace, true)){
 			targetViewNamespace = viewInternalVariable.defaultNamespace;
 		}
@@ -512,8 +516,40 @@ View(function(toolbox){
 			return View;
 		}
 
-		ViewState.pushViewState(targetViewId, targetViewNamespace);
+		var m = "nav" === method? "pushViewState": "replaceViewState";
+		ViewState[m](targetViewId, targetViewNamespace);
 		return View;
+	};
+
+
+	/**
+	 * 以“压入历史堆栈”的方式略过视图，使得在不展现视图的前提下达到返回时可以返回到该视图上的目的
+	 * @param {String} targetViewId 目标视图ID
+	 * @param {String} [targetViewNamespace=defaultNamespace] 目标视图隶属的命名空间
+	 */
+	View.navBy = function(targetViewId, targetViewNamespace, pushRatherThanReplace){
+		return navByOrChangeBy(targetViewId, targetViewNamespace, "nav");
+	};
+
+
+	/**
+	 * 以“压入历史堆栈”方式略过视图，使得在不展现视图的前提下达到返回时可以返回到该视图上的目的
+	 * @param {String} targetViewId 目标视图ID
+	 * @param {String} [targetViewNamespace=defaultNamespace] 目标视图隶属的命名空间
+	 */
+	View.passBy = function(targetViewId, targetViewNamespace, pushRatherThanReplace){
+		globalLogger.warn("This method is deprecated, and it will be removed someday in the future, please use 'View.navBy()' instead");
+		return navByOrChangeBy(targetViewId, targetViewNamespace, "nav");
+	};
+
+
+	/**
+	 * 以“替换历史栈顶”的方式略过视图，使得在不展现视图的前提下达到返回时可以返回到该视图上的目的
+	 * @param {String} targetViewId 目标视图ID
+	 * @param {String} [targetViewNamespace=defaultNamespace] 目标视图隶属的命名空间
+	 */
+	View.changeBy = function(targetViewId, targetViewNamespace, pushRatherThanReplace){
+		return navByOrChangeBy(targetViewId, targetViewNamespace, "change");
 	};
 
 	/**
@@ -1299,7 +1335,7 @@ View(function(toolbox){
 
 			targetViewId = targetView.getId();
 			targetViewNamespace = targetView.getNamespace();
-			var ifViewRemainsTheSame = targetViewId == specifiedViewId && targetViewNamespace == specifiedViewNamespace;
+			var ifViewRemainsTheSame = targetViewId === specifiedViewId && targetViewNamespace === specifiedViewNamespace;
 			/* 如果最终视图和地址栏中的视图不是一个视图，则不能再将选项传递给最终视图 */
 			if(!ifViewRemainsTheSame)
 				options = null;
@@ -1309,7 +1345,7 @@ View(function(toolbox){
 			ViewState.replaceViewState(targetViewId, targetViewNamespace, null, options);
 			var currentActiveView = View.getActiveView();
 			viewInternalVariable.switchView({
-				srcView: currentActiveView == targetView? null: currentActiveView,
+				srcView: currentActiveView === targetView? null: currentActiveView,
 				targetView: targetView,
 				withAnimation: false,
 				params: null
@@ -1317,12 +1353,17 @@ View(function(toolbox){
 		})();
 	};
 
+	/**
+	 * 即使文档已经就绪，也不自动后自行初始化动作。否则，对于“通过ajax异步加载view.js”的场景，将无法执行自定义的初始化器。
+	 * 对于该场景，开发者可以借助View.setInitializer方法手动执行初始化操作。例如：
+	 * View.setInitializer(function(init){init();});
+	 */
 	document.addEventListener("DOMContentLoaded", function(){
 		if(null == viewInitializer){
-			globalLogger.info("Initializing View automatically on dom ready");
+			globalLogger.info("Initializing View.js automatically");
 			init();
 		}else if("domready" === viewInitializerExecTime){
-			globalLogger.info("Calling specified view initializer on dom ready");
+			globalLogger.info("Calling specified view initializer");
 			viewInitializer(init);
 		}
 	});
