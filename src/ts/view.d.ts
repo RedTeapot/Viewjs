@@ -170,9 +170,18 @@ interface ViewBackForwardCtrl{
 	params?: object|null;
 }
 
+interface ViewSwitchMeta{
+	sourceView: ViewClass|null,
+	targetView: ViewClass|null,
+	type: string,
+	trigger: string,
+	params: object|null,
+	options: object|null
+}
+
 interface ViewSwitchAnimationMeta{
-	srcElement: Element | null,
-	targetElement: Element | null,
+	srcElement: Element|null,
+	targetElement: Element|null,
 	type: string,
 	trigger: string,
 	render: Function
@@ -232,7 +241,16 @@ declare class View{
 	static getActiveViewOption(name: string): string|null;
 	static setActiveViewOption(name: string, value: any):View;
 
+	static addSwitchInterceptor(interceptor: (ViewSwitchMeta) => boolean): View;
+	static getSwitchInterceptors(): ((ViewSwitchMeta) => boolean)[];
+
+	/**
+	 * @deprecated
+	 */
 	static passBy(id: string, namespace?: string): View;
+	static navBy(id: string, namespace?: string): View;
+	static changeBy(id: string, namespace?: string): View;
+
 	static navTo(id: string, ctrl?: ViewSwitchCtrl): View;
 	static navTo(id: string, namespace?: string, ctrl?: ViewSwitchCtrl): View;
 	static changeTo(id: string, ctrl?: ViewSwitchCtrl): View;
@@ -252,6 +270,9 @@ declare class View{
 
 	static reDoLayout(): View;
 
+	/**
+	 * @deprecated
+	 */
 	static getChainedHandleByName(name: string): ChainedHandleClass;
 
 	static beforeInit(callback: Function): View;

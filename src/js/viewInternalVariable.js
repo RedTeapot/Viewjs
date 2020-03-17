@@ -277,6 +277,7 @@ View(function(toolbox){
 	 * @param {Boolean} ops.withAnimation 是否执行动画
 	 * @param {Object|null} ops.params 视图参数
 	 * @param {Object|null} ops.options 视图选项
+	 * @param {Function} ops.onbeforeswitch 切换前要执行的方法
 	 */
 	var switchView = function(ops){
 		ops = util.setDftValue(ops, {
@@ -288,7 +289,8 @@ View(function(toolbox){
 
 			withAnimation: true,
 			params: null,
-			options: null
+			options: null,
+			onbeforeswitch: null
 		});
 
 		var srcView = ops.srcView,
@@ -313,6 +315,31 @@ View(function(toolbox){
 			params: params,
 			options: options
 		};
+		Object.freeze && Object.freeze(viewChangeEventData);
+
+		/* 触发拦截器 */
+		var interceptors = View.getSwitchInterceptors();
+		for(var i = 0; i < interceptors.length; i++){
+			var interceptor = interceptors[i];
+			try{
+				if(!interceptor(viewChangeEventData)){
+					globalLogger.info("Supplied switch interceptor(name: {}) blocked the view switch", interceptor.name);
+					console.log(interceptor);
+					return;
+				}
+			}catch(e){
+				console.error("Error occurred while executing supplied interceptor", interceptor);
+				console.error(e);
+				return;
+			}
+		}
+
+
+		/* 准备切换 */
+		util.try2Call(ops.onbeforeswitch);
+
+		/* 触发前置切换监听器 */
+		View.fire("beforechange", viewChangeEventData, false);
 
 		var render = function(){
 			/* 视图参数重置 */
@@ -401,9 +428,6 @@ View(function(toolbox){
 			View.fire("afterchange", viewChangeEventData);
 		};
 
-		/* 触发前置切换监听器 */
-		View.fire("beforechange", viewChangeEventData, false);
-
 		if(!ops.withAnimation)
 			render();
 		else{
@@ -424,7 +448,13 @@ View(function(toolbox){
 	 * 呈现指定的视图（不操作history）
 	 * @param {String} viewId 目标视图ID
 	 * @param {String} [viewNamespace=defaultNamespace] 视图隶属的命名空间
-	 * @param {Object} ops 切换配置。详见switchView
+	 * @param {Object} ops 切换配置
+	 * @param {String} ops.type 切换操作类型
+	 * @param {String} ops.trigger 切换操作触发器
+	 * @param {Boolean} ops.withAnimation 是否执行动画
+	 * @param {Object|null} ops.params 视图参数
+	 * @param {Object|null} ops.options 视图选项
+	 * @param {Function} ops.onbeforeswitch 切换前要执行的方法
 	 */
 	var showView = function(viewId, viewNamespace, ops){
 		if(arguments.length < 2 || typeof viewNamespace !== "string" || util.isEmptyString(viewNamespace, true))

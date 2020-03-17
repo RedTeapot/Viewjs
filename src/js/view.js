@@ -32,12 +32,24 @@ View(function(toolbox){
 
 	var globalLogger = Logger.globalLogger;
 
+	/**
+	 * @callback ViewSwitchInterceptor 视图切换拦截器
+	 * @param {ViewSwitchMeta} 视图切换信息
+	 * @returns {Boolean} true - 继续执行后续拦截器或跳转动作；false - 终止后续拦截器或跳转动作的执行
+	 */
+
 	var
 		/**
 		 * 在“没有视图可以继续向前返回”的情况下，尝试返回时要执行的动作
 		 * @type {Function|null}
 		 */
 		noViewToNavBackAction = null,
+
+		/**
+		 * 尝试进行视图切换时要执行的拦截器列表
+		 * @type {ViewSwitchInterceptor[]}
+		 */
+		viewSwitchInterceptors = [],
 
 		/**
 		 * 捕获到的文档标题，用于在视图离开时恢复显示文档的初始标题
@@ -170,6 +182,29 @@ View(function(toolbox){
 	View.getViewContainerDomElement = viewInternalVariable.getViewContainerDomElement;
 
 	/**
+	 * 添加视图跳转拦截器
+	 * @param {ViewSwitchInterceptor} interceptor 拦截器
+	 * @return {View}
+	 */
+	View.addSwitchInterceptor = function(interceptor){
+		if(typeof interceptor !== "function")
+			throw new Error("Invalid argument, type of 'Function' is required");
+
+		if(viewSwitchInterceptors.indexOf(interceptor) === -1)
+			viewSwitchInterceptors.push(interceptor);
+
+		return View;
+	};
+
+	/**
+	 * 获取已添加的视图跳转拦截器
+	 * @return {ViewSwitchInterceptor[]}
+	 */
+	View.getSwitchInterceptors = function(){
+		return viewSwitchInterceptors.concat();
+	};
+
+	/**
 	 * 查找单个元素
 	 * @param {HTMLElement} [rootObj] 查找的根元素
 	 * @param {String} selector 选择器
@@ -209,6 +244,7 @@ View(function(toolbox){
 	 * 查找给定ID对应的视图实例，如果不存在则创建，否则返回已经存在的实例
 	 * @param {String} id 视图编号
 	 * @param {String} [namespace=defaultNamespace] 视图隶属的命名空间
+	 * @return {View}
 	 */
 	View.ofId = function(id, namespace){
 		if(arguments.length < 2 || util.isEmptyString(namespace, true))
@@ -233,6 +269,7 @@ View(function(toolbox){
 	 * 判断指定ID的视图是否存在
 	 * @param {String} id 视图ID
 	 * @param {String} [namespace=defaultNamespace] 视图隶属的命名空间
+	 * @return {Boolean}
 	 */
 	View.ifExists = function(id, namespace){
 		if(arguments.length < 2 || util.isEmptyString(namespace, true))
@@ -272,6 +309,7 @@ View(function(toolbox){
 
 	/**
 	 * 列举所有的视图群组名称
+	 * @return {String[]}
 	 */
 	View.listAllGroups = function(){
 		globalLogger.warn("This method is deprecated, please use 'View.listAllViewNames()' instead");
@@ -282,6 +320,7 @@ View(function(toolbox){
 	 * 设置指定ID的视图为默认视图
 	 * @param {String} viewId 视图ID
 	 * @param {String} [namespace=defaultNamespace] 视图隶属的命名空间
+	 * @return {View}
 	 */
 	View.setAsDefault = function(viewId, namespace){
 		if(arguments.length < 2 || util.isEmptyString(namespace, true))
@@ -311,6 +350,7 @@ View(function(toolbox){
 
 	/**
 	 * 判断视图默认是否可以直接访问
+	 * @returns {Boolean}
 	 */
 	View.isDirectlyAccessible = function(){
 		var attr = viewAttribute.attr$view_directly_accessible;
@@ -342,6 +382,7 @@ View(function(toolbox){
 	/**
 	 * 设置视图默认是否可以直接访问
 	 * @param {Boolean} accessible 是否可以直接访问
+	 * @return {View}
 	 */
 	View.setIsDirectlyAccessible = function(accessible){
 		document.documentElement.setAttribute(viewAttribute.attr$view_directly_accessible, String(!!accessible).toLowerCase());
@@ -375,6 +416,7 @@ View(function(toolbox){
 
 	/**
 	 * 获取当前的活动视图。如果没有视图处于活动状态，则返回null
+	 * @return {View|null}
 	 */
 	View.getActiveView = function(){
 		var viewInstances = viewInternalVariable.listAllViews();
@@ -387,6 +429,7 @@ View(function(toolbox){
 
 	/**
 	 * 获取默认视图。如果没有默认视图，则返回null
+	 * @return {View|null}
 	 */
 	View.getDefaultView = function(){
 		var viewInstances = viewInternalVariable.listAllViews();
@@ -400,7 +443,7 @@ View(function(toolbox){
 	/**
 	 * 设置视图切换动画
 	 * @param {Function} animationFunction 视图切换动画
-	 * @return {View} View
+	 * @return {View}
 	 */
 	View.setSwitchAnimation = function(animationFunction){
 		if(!(animationFunction instanceof Function))
@@ -421,6 +464,7 @@ View(function(toolbox){
 
 	/**
 	 * 获取当前的活动视图的视图选项集合
+	 * @returns {Object|null}
 	 */
 	View.getActiveViewOptions = function(){
 		var viewInfo = viewRepresentation.parseViewInfoFromHash(location.hash);
@@ -430,6 +474,7 @@ View(function(toolbox){
 	/**
 	 * 判断当前的活动视图的视图选项中是否含有特定名称的选项。如果视图选项为空，或对应名称的选项不存在，则返回false
 	 * @param {String} name 选项名称
+	 * @returns {Boolean}
 	 */
 	View.hasActiveViewOption = function(name){
 		var options = View.getActiveViewOptions();
@@ -439,6 +484,7 @@ View(function(toolbox){
 	/**
 	 * 获取当前的活动视图的视图选项中特定名称的选项。如果视图选项为空，或对应名称的选项不存在，则返回null
 	 * @param {String} name 选项名称
+	 * @returns {String|null}
 	 */
 	View.getActiveViewOption = function(name){
 		var options = View.getActiveViewOptions();
@@ -449,6 +495,7 @@ View(function(toolbox){
 	 * 为当前的活动视图的视图选项中设置特定名称的选项
 	 * @param {String} name 选项名称
 	 * @param {String} value 选项取值
+	 * @returns {View}
 	 */
 	View.setActiveViewOption = function(name, value){
 		if(util.isEmptyString(name, true)){
@@ -468,7 +515,7 @@ View(function(toolbox){
 		var options = View.getActiveViewOptions() || {};
 		options[name] = value;
 
-		ViewState.replaceViewState(activeView.getId(), activeView.getNamespace(), View.currentState? View.currentState.sn: null, options);
+		ViewState.replaceViewState(activeView.id, activeView.namespace, View.currentState? View.currentState.sn: null, options);
 
 		return View;
 	};
@@ -479,6 +526,7 @@ View(function(toolbox){
 	 * @param {String} targetViewId 目标视图ID
 	 * @param {String} [targetViewNamespace=defaultNamespace] 目标视图隶属的命名空间
 	 * @param {String} [method=nav] 略过方式。nav：压入堆栈；change：替换栈顶
+	 * @returns {View}
 	 */
 	var navByOrChangeBy = function(targetViewId, targetViewNamespace, method){
 		if(arguments.length < 3)
@@ -526,9 +574,11 @@ View(function(toolbox){
 	 * 以“压入历史堆栈”的方式略过视图，使得在不展现视图的前提下达到返回时可以返回到该视图上的目的
 	 * @param {String} targetViewId 目标视图ID
 	 * @param {String} [targetViewNamespace=defaultNamespace] 目标视图隶属的命名空间
+	 * @returns {View}
 	 */
 	View.navBy = function(targetViewId, targetViewNamespace, pushRatherThanReplace){
-		return navByOrChangeBy(targetViewId, targetViewNamespace, "nav");
+		navByOrChangeBy(targetViewId, targetViewNamespace, "nav");
+		return View;
 	};
 
 
@@ -536,10 +586,12 @@ View(function(toolbox){
 	 * 以“压入历史堆栈”方式略过视图，使得在不展现视图的前提下达到返回时可以返回到该视图上的目的
 	 * @param {String} targetViewId 目标视图ID
 	 * @param {String} [targetViewNamespace=defaultNamespace] 目标视图隶属的命名空间
+	 * @returns {View}
 	 */
 	View.passBy = function(targetViewId, targetViewNamespace, pushRatherThanReplace){
 		globalLogger.warn("This method is deprecated, and it will be removed someday in the future, please use 'View.navBy()' instead");
-		return navByOrChangeBy(targetViewId, targetViewNamespace, "nav");
+		navByOrChangeBy(targetViewId, targetViewNamespace, "nav");
+		return View;
 	};
 
 
@@ -547,9 +599,11 @@ View(function(toolbox){
 	 * 以“替换历史栈顶”的方式略过视图，使得在不展现视图的前提下达到返回时可以返回到该视图上的目的
 	 * @param {String} targetViewId 目标视图ID
 	 * @param {String} [targetViewNamespace=defaultNamespace] 目标视图隶属的命名空间
+	 * @returns {View}
 	 */
 	View.changeBy = function(targetViewId, targetViewNamespace, pushRatherThanReplace){
-		return navByOrChangeBy(targetViewId, targetViewNamespace, "change");
+		navByOrChangeBy(targetViewId, targetViewNamespace, "change");
+		return View;
 	};
 
 	/**
@@ -558,6 +612,7 @@ View(function(toolbox){
 	 * @returns {ChainedHandle}
 	 */
 	View.getChainedHandleByName = function(name){
+		globalLogger.warn("This method is deprecated, and it will be removed someday in the future");
 		return ChainedHandle.ofName(name);
 	};
 
@@ -567,6 +622,7 @@ View(function(toolbox){
 	 * @param {String|Object} [targetViewNamespace=defaultNamespace] 目标视图隶属的命名空间
 	 * @param {Object} ops 切换配置。详见viewInternalVariable.showView
 	 * @param {Object} ops.options 视图选项
+	 * @returns {View}
 	 */
 	View.navTo = function(targetViewId, targetViewNamespace, ops){
 		if(arguments.length < 2 || typeof targetViewNamespace !== "string" || util.isEmptyString(targetViewNamespace, true)){
@@ -641,7 +697,9 @@ View(function(toolbox){
 
 		ops.type = View.SWITCHTYPE_VIEWNAV;
 		ops.trigger = View.SWITCHTRIGGER_APP;
-		ViewState.pushViewState(targetViewId, targetViewNamespace, null, null == ops? null: ops.options);
+		ops.onbeforeswitch = function(){
+			ViewState.pushViewState(targetViewId, targetViewNamespace, null, null == ops? null: ops.options);
+		};
 		viewInternalVariable.intendedSwitchType = View.SWITCHTYPE_VIEWNAV;
 		viewInternalVariable.showView(targetViewId, targetViewNamespace, ops);
 
@@ -654,6 +712,7 @@ View(function(toolbox){
 	 * @param {String|Object} [targetViewNamespace=defaultNamespace] 视图隶属的命名空间
 	 * @param {Object} ops 切换配置。详见switchView
 	 * @param {Object} ops.options 视图选项
+	 * @returns {View}
 	 */
 	View.changeTo = function(targetViewId, targetViewNamespace, ops){
 		if(arguments.length < 2 || typeof targetViewNamespace !== "string" || util.isEmptyString(targetViewNamespace, true)){
@@ -716,7 +775,9 @@ View(function(toolbox){
 
 		ops.type = View.SWITCHTYPE_VIEWCHANGE;
 		ops.trigger = View.SWITCHTRIGGER_APP;
-		ViewState.replaceViewState(targetViewId, targetViewNamespace, null, null == ops? null: ops.options);
+		ops.onbeforeswitch = function(){
+			ViewState.replaceViewState(targetViewId, targetViewNamespace, null, null == ops? null: ops.options);
+		};
 		viewInternalVariable.intendedSwitchType = View.SWITCHTYPE_VIEWCHANGE;
 		viewInternalVariable.showView(targetViewId, targetViewNamespace, ops);
 
@@ -726,6 +787,7 @@ View(function(toolbox){
 	/**
 	 * 设置在“没有视图可以继续向前返回”的情况下，尝试返回时要执行的动作
 	 * @param {Function} action 要执行的动作
+	 * @returns {View}
 	 */
 	View.setNoViewToNavBackAction = function(action){
 		if(typeof action !== "function")
@@ -739,6 +801,7 @@ View(function(toolbox){
 	 * 回退到上一个视图
 	 * @param {Object} ops 切换配置
 	 * @param {Object | null} ops.params 视图切换参数
+	 * @returns {View}
 	 */
 	View.back = function(ops){
 		viewInternalVariable.intendedSwitchType = View.SWITCHTYPE_HISTORYBACK;
@@ -747,8 +810,6 @@ View(function(toolbox){
 		viewParameter.clearViewParameters(viewRepresentation.PSVIEW_BACK, "");
 		if(null != ops && "params" in ops)
 			viewParameter.setViewParameters(viewRepresentation.PSVIEW_BACK, "", ops.params);
-
-		//globalLogger.debug("@@@ naving back. {}, {}", View.ifCanGoBack(), history.length);
 
 		if(View.ifCanGoBack() || typeof noViewToNavBackAction !== "function")
 			history.go(-1);
@@ -762,6 +823,7 @@ View(function(toolbox){
 	 * 前进到下一个视图
 	 * @param {Object} ops 切换配置
 	 * @param {Object | null} ops.params 视图切换参数
+	 * @returns {View}
 	 */
 	View.forward = function(ops){
 		viewInternalVariable.intendedSwitchType = View.SWITCHTYPE_HISTORYFORWARD;
@@ -779,6 +841,7 @@ View(function(toolbox){
 	/**
 	 * 设置文档标题。开发者可以设定视图级别的标题，但如果特定视图没有自定义标题，将使用文档标题来呈现
 	 * @param {String} title 文档标题
+	 * @returns {View}
 	 */
 	View.setDocumentTitle = function(title){
 		if(util.isEmptyString(title, true)){
@@ -793,6 +856,7 @@ View(function(toolbox){
 	/**
 	 * 添加一次性的浏览器回退事件监听。该监听可以通过浏览器前进和回退重新执行
 	 * @param {Function} callback 回调方法
+	 * @returns {View}
 	 */
 	View.onceHistoryBack = function(callback){
 		globalLogger.warn("This method is deprecated, and it will be removed someday in the future");
@@ -806,7 +870,7 @@ View(function(toolbox){
 
 	/**
 	 * 根据当前视图容器的样式重新执行所有视图的布局
-	 * @returns View
+	 * @returns {View}
 	 */
 	View.reDoLayout = function(){
 		viewInternalVariable.listAllViews().forEach(function(v){
@@ -824,6 +888,7 @@ View(function(toolbox){
 	/**
 	 * 添加“视图将要初始化”监听器
 	 * @type {Function} listener 监听器
+	 * @returns {View}
 	 */
 	View.beforeInit = function(listener){
 		if(typeof listener !== "function"){
@@ -846,6 +911,7 @@ View(function(toolbox){
 	/**
 	 * 添加“视图就绪”监听器
 	 * @param {Function} listener 回调方法
+	 * @returns {View}
 	 */
 	View.ready = function(listener){
 		if(typeof listener !== "function"){
@@ -870,6 +936,7 @@ View(function(toolbox){
 	 * @param {Function} initializer 初始化器
 	 * @param {Function} initializer#init 执行初始化
 	 * @param {String} [execTime=domready] 初始化器的自动执行时机。domready：DOM就绪后执行；rightnow：立即执行。默认为：domready
+	 * @returns {View}
 	 */
 	View.setInitializer = function(initializer, execTime){
 		if(typeof initializer !== "function")
@@ -978,14 +1045,16 @@ View(function(toolbox){
 				 */
 				switchOptions = isTargetViewRemainsCurrent? (View.currentState? View.currentState.options: null): (isTargetViewAsSpecified? viewInfo.options: null);
 
-				/* history 堆栈更新 */
-				ViewState.replaceViewState(targetViewId, targetViewNamespace, null, switchOptions);
-
 				/* 视图切换 */
 				viewInternalVariable.showView(targetViewId, targetViewNamespace, {
 					type: switchType,
 					trigger: View.SWITCHTRIGGER_APP,/* 此时无法确定切换方式，固定为 View.SWITCHTRIGGER_APP */
-					options: switchOptions
+					options: switchOptions,
+
+					onbeforeswitch: function(){
+						/* history 堆栈更新 */
+						ViewState.replaceViewState(targetViewId, targetViewNamespace, null, switchOptions);
+					}
 				});
 			}
 		}else if(ViewState.isConstructorOf(e.state)){
@@ -1009,14 +1078,16 @@ View(function(toolbox){
 			if(View.currentState != null)
 				switchType = poppedNewState.sn < View.currentState.sn? View.SWITCHTYPE_HISTORYBACK: View.SWITCHTYPE_HISTORYFORWARD;
 
-			/* history 堆栈更新 */
-			ViewState.replaceViewState(targetViewId, targetViewNamespace, poppedNewState.sn, switchOptions);
-
 			/* 视图切换 */
 			viewInternalVariable.showView(targetViewId, targetViewNamespace, {
 				type: switchType,
 				trigger: null != viewInternalVariable.intendedSwitchType? View.SWITCHTRIGGER_APP: View.SWITCHTRIGGER_NAVIGATOR,
-				options: switchOptions
+				options: switchOptions,
+
+				onbeforeswitch: function(){
+					/* history 堆栈更新 */
+					ViewState.replaceViewState(targetViewId, targetViewNamespace, poppedNewState.sn, switchOptions);
+				}
 			});
 		}else{
 			globalLogger.info("Skip state: {}", e.state);
@@ -1342,13 +1413,16 @@ View(function(toolbox){
 
 			globalLogger.info("Showing view: '{}' within namespace: '{}'", targetViewId, targetViewNamespace);
 
-			ViewState.replaceViewState(targetViewId, targetViewNamespace, null, options);
 			var currentActiveView = View.getActiveView();
 			viewInternalVariable.switchView({
 				srcView: currentActiveView === targetView? null: currentActiveView,
 				targetView: targetView,
 				withAnimation: false,
-				params: null
+				params: null,
+
+				onbeforeswitch: function(){
+					ViewState.replaceViewState(targetViewId, targetViewNamespace, null, options);
+				}
 			});
 		})();
 	};
@@ -1363,7 +1437,7 @@ View(function(toolbox){
 			globalLogger.info("Initializing View.js automatically");
 			init();
 		}else if("domready" === viewInitializerExecTime){
-			globalLogger.info("Calling specified view initializer");
+			globalLogger.info("Calling specified View.js initializer");
 			viewInitializer(init);
 		}
 	});
