@@ -246,9 +246,10 @@ View(function(toolbox){
 		 * 注：区分大小写
 		 *
 		 * @param {String} name 参数名
+		 * @param {Boolean} [ifRetrieveFromContext=true] 是否从上下文中检索参数（仅当自动保存视图参数至视图上下文时有效）
 		 * @returns {*}
 		 */
-		this.seekParameter = function(name){
+		this.seekParameter = function(name, ifRetrieveFromContext){
 			if(this.hasParameter(name))
 				return this.getParameter(name);
 
@@ -259,6 +260,11 @@ View(function(toolbox){
 			var paramValue = location.search.match(r);
 			if(null != paramValue)
 				return decodeURIComponent(paramValue[1]);
+
+			if(arguments.length < 2)
+				ifRetrieveFromContext = true;
+			if(!ifRetrieveFromContext || !ifAutoSaveParamsToContext)
+				return null;
 
 			var keyForParamsAutoSavedToContext = viewParameter.keyForParamsAutoSavedToContext,
 				_params = null;
