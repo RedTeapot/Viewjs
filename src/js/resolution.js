@@ -26,20 +26,52 @@ View(function(toolbox){
 
 	/**
 	 * 添加方向切换时执行的事件句柄。该句柄只有在界面重绘完成时才会被执行
+	 * @param {String[]} [listeningChangeAspects] 监听的变化方面
+	 * @param {Function} callback 回调方法
 	 */
-	var addChangeListener = function(callback){
+	var addChangeListener = function(listeningChangeAspects, callback){
+		if(arguments.length === 1 && typeof arguments[0] === "function"){
+			callback = arguments[0];
+			listeningChangeAspects = null;
+		}
+
 		if(changeCallbacks.indexOf(callback) !== -1)
 			return;
 
+		if(Array.isArray(listeningChangeAspects))
+			listeningChangeAspects = listeningChangeAspects.map(function(aspect){
+				return String(aspect).trim().toLowerCase();
+			});
+
+		callback.listeningChangeAspects = listeningChangeAspects;
 		changeCallbacks.push(callback);
 	};
 
 	/**
 	 * 执行监听回调
+	 * @param {String[]} changeAspects 变化方面
 	 */
-	var execResolutionChangeCallbacks = function(e){
-		for(var i = 0; i < changeCallbacks.length; i++)
-			util.try2Call(changeCallbacks[i], null, e);
+	var execResolutionChangeCallbacks = function(changeAspects){
+		for(var i = 0; i < changeCallbacks.length; i++){
+			var cb = changeCallbacks[i];
+			var listeningChangeAspects = cb.listeningChangeAspects;
+
+			if(!Array.isArray(listeningChangeAspects)){
+				util.try2Call(cb, null, changeAspects);
+				continue;
+			}
+
+			var ifMatches = false;
+			for(var j = 0; j < listeningChangeAspects.length; j++){
+				if(changeAspects.indexOf(listeningChangeAspects[j]) !== -1){
+					ifMatches = true;
+					break;
+				}
+			}
+
+			if(ifMatches)
+				util.try2Call(cb, null, changeAspects);
+		}
 	};
 
 	/**
@@ -70,9 +102,11 @@ View(function(toolbox){
 		if(Math.abs(_currentWindowWidth - currentWindowWidth) > 0.5){
 			ifChanges = true;
 			changeDesc.push("width");
-		}else if(_currentWindowHeight - currentWindowHeight > 0.5){/* 宽度不变，高度变大（虚拟键盘的消失）。暂不处理虚拟键盘弹出，导致浏览窗口变小的现象（对于固定显示在底部的元素，处理后效果较差，效果等同于绝对定位） */
+			changeDesc.push("width" + (_currentDocWidth > currentDocWidth? "+": "-"));
+		}else if(Math.abs(_currentWindowHeight - currentWindowHeight) > 0.5){
 			ifChanges = true;
-			changeDesc.push("height+");
+			changeDesc.push("height");
+			changeDesc.push("height" + (_currentWindowHeight > currentWindowHeight? "+": "-"));
 		}
 
 		currentDocWidth = _currentDocWidth;
@@ -86,7 +120,7 @@ View(function(toolbox){
 
 		if(ifChanges){
 			globalLogger.debug("Resolution changes. Changed aspects: {}", changeDesc);
-			execResolutionChangeCallbacks();
+			execResolutionChangeCallbacks(changeDesc);
 		}
 	};
 

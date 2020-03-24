@@ -321,7 +321,20 @@ View(function(toolbox){
 
 		autoReLayoutWhenResize = !!ops.autoReLayoutWhenResize;
 		if(autoReLayoutWhenResize)
-			resolution.addChangeListener(doLayout);
+			resolution.addChangeListener(function(changeAspects){
+				/**
+				 * height-: 暂不处理虚拟键盘弹出，导致浏览窗口变小的现象（对于固定显示在底部的元素，处理后效果较差，效果等同于绝对定位）
+				 * height+: 高度变大时，有可能是因为虚拟键盘弹出导致窗口变小，而后键盘收回窗口随即变大，此时也不应该执行布局动作，否则就间接地响应了 height-
+				 */
+				if(
+					changeAspects.indexOf("height-") !== -1
+					||
+					changeAspects.indexOf("height+") !== -1 && getLayoutHeight() >= getBrowserHeight()
+				)
+					return;
+
+				doLayout(false);
+			});
 
 		if(typeof ops.layoutAsMobilePortrait === "function")
 			layoutAsMobilePortrait = ops.layoutAsMobilePortrait;
