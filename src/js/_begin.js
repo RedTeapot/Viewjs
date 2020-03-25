@@ -1,4 +1,14 @@
-;(function(ctx, name){
+;(function(name){
+	var ctx;
+	if(typeof window !== "undefined")
+		ctx = window;
+	else if(typeof global !== "undefined")
+		ctx = global;
+	else if(typeof self !== "undefined")
+		ctx = self;
+	else
+		ctx = this;
+
 	if(name in ctx){
 		console.error("Plugin name: 'View' has already been used");
 		return;
@@ -26,6 +36,20 @@
 	};
 
 	var _expose = function(entrance){
+		if(typeof define === "function" && define.amd){
+			try{
+				define([name], factory());
+				return;
+			}catch(e){}
+		}
+
+		if(typeof module === "object" && null != module && module.exports){
+			try{
+				module.exports = factory();
+				return;
+			}catch(e){}
+		}
+
 		ctx[name] = entrance;
 	};
 
@@ -42,4 +66,4 @@
 				fn(toolbox);
 			}catch(e){console.error(e);}
 	});
-})(window, "View")
+})("View")

@@ -1375,17 +1375,20 @@ View(function(toolbox){
 				targetViewNamespace = null;
 			var isDefaultViewIdEmpty = util.isEmptyString(defaultViewId, true),
 				isSpecifiedViewIdEmpty = util.isEmptyString(specifiedViewId, true);
-			if(!isSpecifiedViewIdEmpty && View.ifExists(specifiedViewId, specifiedViewNamespace)){
-				targetViewId = specifiedViewId;
-				targetViewNamespace = specifiedViewNamespace;
+			if(!isSpecifiedViewIdEmpty){
+				if(View.ifExists(specifiedViewId, specifiedViewNamespace)){
+					targetViewId = specifiedViewId;
+					targetViewNamespace = specifiedViewNamespace;
+				}else
+					globalLogger.warn("No view of id: '{}' namespace: '{}'(specified in the location hash) found, trying to show the default view", specifiedViewId, specifiedViewNamespace);
 			}else{
-				globalLogger.warn("No view of id: '{}' namespace: '{}'(specified in the location hash) found, trying to show the default view", specifiedViewId, specifiedViewNamespace);
-
-				if(!isDefaultViewIdEmpty && View.ifExists(defaultViewId, defaultViewNamespace)){
-					targetViewId = defaultViewId;
-					targetViewNamespace = defaultViewNamespace;
+				if(!isDefaultViewIdEmpty){
+					if(View.ifExists(defaultViewId, defaultViewNamespace)){
+						targetViewId = defaultViewId;
+						targetViewNamespace = defaultViewNamespace;
+					}else
+						globalLogger.warn("No default view of id: '{}' within namespace: '{}' found", defaultViewId, defaultViewNamespace);
 				}else{
-					globalLogger.warn("No default view of id: '{}' within namespace: '{}' found", defaultViewId, defaultViewNamespace);
 
 					targetViewId = null;
 					targetViewNamespace = null;
@@ -1393,10 +1396,8 @@ View(function(toolbox){
 			}
 
 			var isTargetViewIdEmpty = util.isEmptyString(targetViewId, true);
-			if(isTargetViewIdEmpty){
-				globalLogger.warn("Can not determine the initial view!");
+			if(isTargetViewIdEmpty)
 				return;
-			}
 
 			var targetView = viewInternalVariable.getFinalView(targetViewId, targetViewNamespace);
 			if(null == targetView){
