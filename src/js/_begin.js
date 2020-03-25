@@ -36,20 +36,6 @@
 	};
 
 	var _expose = function(entrance){
-		if(typeof define === "function" && define.amd){
-			try{
-				define([name], factory());
-				return;
-			}catch(e){}
-		}
-
-		if(typeof module === "object" && null != module && module.exports){
-			try{
-				module.exports = factory();
-				return;
-			}catch(e){}
-		}
-
 		ctx[name] = entrance;
 	};
 
