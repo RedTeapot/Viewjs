@@ -47,6 +47,10 @@ interface ViewStateClass{
 	clone(): object;
 }
 
+interface ViewThenable{
+	then: (onFulfilled: (resolvedData: any) => void, onRejected: (rejectedReason: any) => void) => void;
+}
+
 interface ViewClass{
 	readonly id: string;
 	readonly namespace: string;
@@ -101,10 +105,14 @@ interface ViewClass{
 	setAsDirectlyAccessible(isDirectlyAccessible?: boolean): ViewClass;
 
 	setTitle(title?: string): ViewClass;
-	getTitle(): string|null;
+	getTitle(): string | null;
 
 	setFallbackViewId(fallbackViewId: string): ViewClass;
-	getFallbackView(): ViewClass|null;
+	getFallbackView(): ViewClass | null;
+
+	setDataFetchAction(action: Function): ViewClass;
+	getDataFetchAction(): Function | null;
+	fetchData(): Promise<any> | ViewThenable;
 }
 
 interface ChainedHandleClass{

@@ -61,6 +61,10 @@ View(function(toolbox){
 		/** 是否自动保存参数至上下文 */
 		var ifAutoSaveParamsToContext = true;
 
+		/** 视图渲染所需要数据的获取方法（由视图自行定义） */
+		var dataFetchAction = null;
+
+
 		/**
 		 * 启用事件驱动机制
 		 * 事件 beforeenter：视图进入前触发
@@ -490,6 +494,77 @@ View(function(toolbox){
 					});
 				}
 			}while(true);
+		};
+
+		/**
+		 * 设置视图渲染所需要数据的获取方法
+		 * @param {Function} action 获取方法
+		 * @returns {View}
+		 */
+		this.setDataFetchAction = function(action){
+			if(typeof action === "function")
+				dataFetchAction = action;
+			else
+				globalLogger.warn("Invalid argument. Type of 'Function' is required");
+
+			return this;
+		};
+
+		/**
+		 * 获取设置的视图渲染所需要数据的获取方法
+		 * @returns {null|Function}
+		 */
+		this.getDataFetchAction = function(){
+			return dataFetchAction;
+		};
+
+		/**
+		 * @callback ViewThen
+		 * @param {Function} onFulfilled fulfill时执行的方法
+		 * @param {Function} onRejected reject时执行的方法
+		 * @returns {void}
+		 */
+
+		/**
+		 * @typedef {Object} ViewThenable
+		 * @property {ViewThen} then 数据 resolve 或 reject 时执行的方法
+		 */
+
+		/**
+		 * 加载视图渲染所需要的数据
+		 * @returns {Promise|ViewThenable}
+		 */
+		this.fetchData = function(){
+			var isPromiseSupported = util.isPromiseSupported() && false;
+
+			if(typeof dataFetchAction !== "function"){
+				return isPromiseSupported? Promise.resolve(undefined): {
+					then: function(onFulfilled, onRejected){
+						util.try2Call(onFulfilled, null, undefined);
+					}
+				}
+			}
+
+			if(isPromiseSupported)
+				return Promise(function(resolve, reject){
+					util.try2Call(dataFetchAction, null, resolve, reject);
+				});
+			else{
+				var thenable = {
+					then: function(onFulfilled, onRejected){
+						var resolve = function(data){
+							util.try2Call(onFulfilled, null, data);
+						};
+						var reject = function(reason){
+							util.try2Call(onRejected, null, reason);
+						};
+
+						util.try2Call(dataFetchAction, null, resolve, reject);
+					}
+				};
+
+				return thenable;
+			}
 		};
 	};
 

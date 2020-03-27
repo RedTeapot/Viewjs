@@ -88,7 +88,8 @@ View(function(toolbox){
 				return rst;
 			}
 		}catch(e){
-			console.error("Error occured while executing function: " + func.name, e, e.stack);
+			console.error("Error occurred while executing function: " + func.name, e.stack || e);
+			console.error(func);
 			return undefined;
 		}
 	};
@@ -384,6 +385,16 @@ View(function(toolbox){
 		return target.substring(0, len) === str;
 	};
 
+	/**
+	 * 判断浏览器是否支持Promise
+	 * @returns {boolean}
+	 */
+	var isPromiseSupported = function(){
+		return typeof Promise !== 'undefined' && null != Promise && typeof Promise.resolve === "function";
+	};
+
+
+
 	toolbox.set("util", {
 		setDftValue: setDftValue,
 		defineReadOnlyProperty: defineReadOnlyProperty,
@@ -399,6 +410,7 @@ View(function(toolbox){
 		getComputedStyle: getComputedStyle,
 		parseParams: parseParams,
 		blurInputs: blurInputs,
+		isPromiseSupported: isPromiseSupported,
 
 		hasClass: hasClass,
 		addClass: addClass,
