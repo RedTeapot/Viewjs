@@ -253,8 +253,10 @@ declare class View{
 
 	static navTo(id: string, ctrl?: ViewSwitchCtrl): View;
 	static navTo(id: string, namespace?: string, ctrl?: ViewSwitchCtrl): View;
+	static navTo(view: ViewClass, ctrl?: ViewSwitchCtrl): View;
 	static changeTo(id: string, ctrl?: ViewSwitchCtrl): View;
 	static changeTo(id: string, namespace?: string, ctrl?: ViewSwitchCtrl): View;
+	static changeTo(view: ViewClass, ctrl?: ViewSwitchCtrl): View;
 	static back(ctrl?: ViewBackForwardCtrl): View;
 	static forward(ctrl?: ViewBackForwardCtrl): View;
 

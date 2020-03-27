@@ -618,17 +618,32 @@ View(function(toolbox){
 
 	/**
 	 * 以“压入历史堆栈”的方式切换视图
-	 * @param {String} targetViewId 目标视图ID
+	 * @param {String|View} targetViewId 目标视图ID，或目标视图
 	 * @param {String|Object} [targetViewNamespace=defaultNamespace] 目标视图隶属的命名空间
 	 * @param {Object} ops 切换配置。详见viewInternalVariable.showView
 	 * @param {Object} ops.options 视图选项
 	 * @returns {View}
 	 */
 	View.navTo = function(targetViewId, targetViewNamespace, ops){
-		if(arguments.length < 2 || typeof targetViewNamespace !== "string" || util.isEmptyString(targetViewNamespace, true)){
+		if(targetViewId instanceof View){
+			/**
+			 * View.navTo(targetView)
+			 * View.navTo(targetView, ops)
+			 */
 			ops = targetViewNamespace;
-			targetViewNamespace = viewInternalVariable.defaultNamespace;
+			targetViewNamespace = targetViewId.namespace;
+			targetViewId = targetViewId.id;
+		}else{
+			/**
+			 * View.navTo(targetViewId, ops);
+			 * View.navTo(targetViewId, null, ops);
+			 */
+			if(arguments.length < 2 || typeof targetViewNamespace !== "string" || util.isEmptyString(targetViewNamespace, true)){
+				ops = targetViewNamespace;
+				targetViewNamespace = viewInternalVariable.defaultNamespace;
+			}
 		}
+
 		viewInternalVariable.buildNamespace(targetViewNamespace);
 
 		targetViewId = targetViewId.trim();
@@ -715,10 +730,25 @@ View(function(toolbox){
 	 * @returns {View}
 	 */
 	View.changeTo = function(targetViewId, targetViewNamespace, ops){
-		if(arguments.length < 2 || typeof targetViewNamespace !== "string" || util.isEmptyString(targetViewNamespace, true)){
+		if(targetViewId instanceof View){
+			/**
+			 * View.changeTo(targetView)
+			 * View.changeTo(targetView, ops)
+			 */
 			ops = targetViewNamespace;
-			targetViewNamespace = viewInternalVariable.defaultNamespace;
+			targetViewNamespace = targetViewId.namespace;
+			targetViewId = targetViewId.id;
+		}else{
+			/**
+			 * View.changeTo(targetViewId, ops);
+			 * View.changeTo(targetViewId, null, ops);
+			 */
+			if(arguments.length < 2 || typeof targetViewNamespace !== "string" || util.isEmptyString(targetViewNamespace, true)){
+				ops = targetViewNamespace;
+				targetViewNamespace = viewInternalVariable.defaultNamespace;
+			}
 		}
+
 		viewInternalVariable.buildNamespace(targetViewNamespace);
 
 		ops = util.setDftValue(ops, {});
