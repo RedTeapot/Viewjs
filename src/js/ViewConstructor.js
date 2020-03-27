@@ -64,6 +64,9 @@ View(function(toolbox){
 		/** 视图渲染所需要数据的获取方法（由视图自行定义） */
 		var dataFetchAction = null;
 
+		/** 添加的定时器列表 */
+		var timers = [];
+
 
 		/**
 		 * 启用事件驱动机制
@@ -519,18 +522,6 @@ View(function(toolbox){
 		};
 
 		/**
-		 * @callback ViewThen
-		 * @param {Function} onFulfilled fulfill时执行的方法
-		 * @param {Function} onRejected reject时执行的方法
-		 * @returns {void}
-		 */
-
-		/**
-		 * @typedef {Object} ViewThenable
-		 * @property {ViewThen} then 数据 resolve 或 reject 时执行的方法
-		 */
-
-		/**
 		 * 加载视图渲染所需要的数据
 		 * @returns {Promise|ViewThenable}
 		 */
@@ -566,6 +557,166 @@ View(function(toolbox){
 				return thenable;
 			}
 		};
+
+		/**
+		 * 添加周期性执行定时器
+		 * @param {String} [timerName] 定时器名称，不区分大小写
+		 * @param {Function} timerHandle 定时器要执行的动作
+		 * @param {Number} interval 定时器周期性工作间隔。单位：毫秒
+		 * @returns {View}
+		 */
+		this.addTimer = function(timerName, timerHandle, interval){
+			if(typeof timerName === "function"){
+				interval = timerHandle;
+				timerHandle = timerName;
+				timerName = util.randomString("timer");
+			}
+
+			if(util.isEmptyString(timerName, true))
+				throw new Error("Invalid argument. Timer name should not be empty");
+
+			var _timerName = String(timerName).trim().toLowerCase();
+			for(var i = 0; i < timers.length; i++)
+				if(timers[i].name === _timerName)
+					throw new Error("Timer of name: '" + timerName + "' exists already");
+
+			if(typeof timerHandle !== "function")
+				throw new Error("Invalid argument. Timer handle should be of type: 'Function'");
+
+			var _interval = Math.round(Number(interval));
+			if(isNaN(_interval) || _interval < 1)
+				throw new Error("Invalid arguemnt. Timer interval should be of type: 'Number' and be greater than 0");
+
+			var obj = {
+				name: _timerName,
+				handle: timerHandle,
+				interval: interval,
+				timer: null
+			};
+			timers.push(obj);
+
+			if(this.isActive()){
+				util.try2Call(timerHandle);
+				obj.timer = setInterval(function(){util.try2Call(timerHandle);}, interval);
+			}
+
+			return this;
+		};
+
+		/**
+		 * 启动定时器
+		 * @param {String} timerName 定时器名称
+		 * @returns {boolean} true: 启动成功；false：启动失败（定时器不存在，或已经启动）
+		 */
+		this.startTimer = function(timerName){
+			if(util.isEmptyString(timerName, true))
+				return false;
+
+			timerName = String(timerName).trim().toLowerCase();
+
+			for(var i = 0; i < timers.length; i++){
+				var obj = timers[i];
+
+				if(obj.name === timerName){
+					if(null !== obj.timer)
+						return false;
+
+					util.try2Call(obj.handle);
+					obj.timer = setInterval((function(timerHandle){
+						return function(){util.try2Call(timerHandle);}
+					})(obj.handle), obj.interval);
+					return true;
+				}
+			}
+
+			return false;
+		};
+
+		/**
+		 * 启动所有定时器
+		 * @returns {View}
+		 */
+		this.startAllTimers = function(){
+			for(var i = 0; i < timers.length; i++){
+				var obj = timers[i];
+
+				if(null !== obj.timer)
+					continue;
+
+				util.try2Call(obj.handle);
+				obj.timer = setInterval((function(timerHandle){
+					return function(){util.try2Call(timerHandle);}
+				})(obj.handle), obj.interval);
+				obj.timer = null;
+			}
+
+			return this;
+		};
+
+		/**
+		 * 终止定时器
+		 * @param {String} timerName 定时器名称
+		 * @returns {boolean} true: 终止成功；false：终止失败（定时器不存在，或已经终止）
+		 */
+		this.stopTimer = function(timerName){
+			if(util.isEmptyString(timerName, true))
+				return false;
+
+			timerName = String(timerName).trim().toLowerCase();
+
+			for(var i = 0; i < timers.length; i++){
+				var obj = timers[i];
+
+				if(obj.name === timerName){
+					if(null === obj.timer)
+						return false;
+
+					clearInterval(obj.timer);
+					obj.timer = null;
+					return true;
+				}
+			}
+
+			return false;
+		};
+
+		/**
+		 * 终止所有定时器
+		 * @returns {View}
+		 */
+		this.stopAllTimers = function(){
+			for(var i = 0; i < timers.length; i++){
+				var obj = timers[i];
+
+				clearInterval(obj.timer);
+				obj.timer = null;
+			}
+
+			return this;
+		};
+
+
+		/* 定时器的自动开始 */
+		this.on("enter", function(){
+			for(var i = 0; i < timers.length; i++){
+				var obj = timers[i];
+
+				util.try2Call(obj.handle);
+				obj.timer = setInterval((function(timerHandle){
+					return function(){util.try2Call(timerHandle);}
+				})(obj.handle), obj.interval);
+			}
+		});
+
+		/* 定时器的自动结束 */
+		this.on("leave", function(){
+			for(var i = 0; i < timers.length; i++){
+				var obj = timers[i];
+
+				clearInterval(obj.timer);
+				obj.timer = null;
+			}
+		});
 	};
 
 	toolbox.set("ViewConstructor", View);

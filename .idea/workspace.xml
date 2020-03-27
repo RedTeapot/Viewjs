@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="14ed39e3-f4fc-42c4-b75d-b3c5bc2c830e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/view.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/view.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/ViewConstructor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/ViewConstructor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/util.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/view.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/view.d.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -163,7 +164,8 @@
       <workItem from="1585136503032" duration="5000" />
       <workItem from="1585142423416" duration="995000" />
       <workItem from="1585143661014" duration="1018000" />
-      <workItem from="1585276409672" duration="513000" />
+      <workItem from="1585276409672" duration="4050000" />
+      <workItem from="1585314242636" duration="2691000" />
     </task>
     <servers />
   </component>
@@ -207,10 +209,10 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="628" y="275" width="664" height="490" key="find.popup" timestamp="1585043923418">
+    <state x="628" y="275" width="664" height="490" key="find.popup" timestamp="1585279876989">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="628" y="275" width="664" height="490" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1585043923418" />
+    <state x="628" y="275" width="664" height="490" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1585279876989" />
   </component>
   <component name="masterDetails">
     <states>

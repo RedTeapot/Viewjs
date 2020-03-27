@@ -113,6 +113,13 @@ interface ViewClass{
 	setDataFetchAction(action: Function): ViewClass;
 	getDataFetchAction(): Function | null;
 	fetchData(): Promise<any> | ViewThenable;
+
+	addTimer(timerHandle: Function, timerInterval: Number): ViewClass;
+	addTimer(timerName: string, timerHandle: Function, timerInterval: Number): ViewClass;
+	startTimer(timerName: string): boolean;
+	startAllTimers(): ViewClass;
+	stopTimer(timerName: string): boolean;
+	stopAllTimers(): ViewClass;
 }
 
 interface ChainedHandleClass{

@@ -393,6 +393,65 @@ View(function(toolbox){
 		return typeof Promise !== 'undefined' && null != Promise && typeof Promise.resolve === "function";
 	};
 
+	/**
+	 * 合法的内部方法调用器
+	 * @param {Function} func 待执行的方法
+	 * @param {Object} ctx 方法执行时的this上下文
+	 * @param {Arguments} args 方法参数列表对象
+	 * @returns {*}
+	 */
+	var applyInternally = function(func, ctx, args){
+		return func.apply(ctx, args);
+	};
+
+	/**
+	 * 合法的内部方法调用器
+	 * @param {Function} func 待执行的方法
+	 * @param {Object} [ctx] 方法执行时的this上下文
+	 * @param {*} args... 方法参数列表
+	 */
+	var callInternally = function(func, ctx, args){
+		var len = arguments.length;
+
+		if(len === 1)
+			return func();
+		else if(len === 2)
+			return func.call(ctx);
+		else if(len === 3)
+			return func.call(ctx, arguments[2]);
+		else if(len === 4)
+			return func.call(ctx, arguments[2], arguments[3]);
+		else if(len === 5)
+			return func.call(ctx, arguments[2], arguments[3], arguments[4]);
+		else if(len === 6)
+			return func.call(ctx, arguments[2], arguments[3], arguments[4], arguments[5]);
+		else if(len === 7)
+			return func.call(ctx, arguments[2], arguments[3], arguments[4], arguments[5], arguments[6]);
+		else{
+			var tmp = "", index = 2;
+			for(var i = index; i < arguments.length; i++)
+				tmp += ",arguments[" + i + "]";
+
+			var rst;
+			eval("rst = func.call(ctx" + tmp + ")");
+			return rst;
+		}
+	};
+
+	/**
+	 * 将给定的方法标记为“仅插件内部可以合法调用”
+	 * @param {Function} fn 待调用的方法
+	 * @returns {Function} 包装后的新方法
+	 */
+	var markAsInternalCallableOnly = function(fn){
+		return function(){
+			var caller = arguments.callee.caller;
+			if(caller !== callInternally && caller !== applyInternally)
+				throw new Error("Illegal function call, only internal valid caller is permitted");
+
+			return fn.apply(this, arguments);
+		};
+	};
 
 
 	toolbox.set("util", {
@@ -402,6 +461,7 @@ View(function(toolbox){
 		try2Call: try2Call,
 		isEmptyString: isEmptyString,
 		isNullOrUndefined: isNullOrUndefined,
+		startsWith: startsWith,
 		ifStringEquals: ifStringEquals,
 		ifStringEqualsIgnoreCase: ifStringEqualsIgnoreCase,
 		randomString: randomString,
@@ -417,7 +477,9 @@ View(function(toolbox){
 		removeClass: removeClass,
 		toggleClass: toggleClass,
 
-		startsWith: startsWith,
+		callInternally: callInternally,
+		applyInternally: applyInternally,
+		markAsInternalCallableOnly: markAsInternalCallableOnly,
 
 		env: env
 	});
