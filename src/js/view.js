@@ -385,7 +385,7 @@ View(function(toolbox){
 	 * @return {View}
 	 */
 	View.setIsDirectlyAccessible = function(accessible){
-		document.documentElement.setAttribute(viewAttribute.attr$view_directly_accessible, String(!!accessible).toLowerCase());
+		View.getViewContainerDomElement().setAttribute(viewAttribute.attr$view_directly_accessible, String(!!accessible).toLowerCase());
 		return View;
 	};
 
