@@ -4,7 +4,8 @@ var fs = require("fs"),
 
 var action = utils.cli.getParameter("action"),
 	version = utils.cli.getParameter("version"),
-	updateNumber = utils.cli.getParameter("updateNumber");
+	updateNumber = utils.cli.getParameter("updateNumber"),
+	buildTarget = utils.cli.getParameter("buildTarget");
 
 var validActionList = ["min", "src", "minAndZip"];
 if(null == action || validActionList.indexOf(action) === -1)
@@ -26,6 +27,11 @@ if(utils.string.isEmptyString(updateNumber) || isNaN(updateNumber = Number(updat
 	len = fs.readSync(process.stdin.fd, buf, 0, buf.length, 0);
 	updateNumber = buf.toString("utf8", 0, len).trim();
 }
+if(utils.string.isEmptyString(buildTarget)){
+	process.stdout.write("[选填] 是否用于正式发布：");
+	len = fs.readSync(process.stdin.fd, buf, 0, buf.length, 0);
+	buildTarget = buf.toString("utf8", 0, len).trim();
+}
 
 /* 设置版本号 */
 if(!utils.string.isEmptyString(updateNumber)){
@@ -35,7 +41,13 @@ if(!utils.string.isEmptyString(updateNumber)){
 	lib.setVersion(version, updateNumber);
 }
 
-console.log(version, updateNumber || "");
+/* 设置构建用途 */
+if(!utils.string.isEmptyString(buildTarget)){
+	lib.setBuildTargetAsProductionEnv(["1", "true", "y"].indexOf(buildTarget.toLowerCase()) !== -1);
+}else
+	lib.setBuildTargetAsProductionEnv(false);
+
+console.log(version, updateNumber || "", lib.getBuildTarget());
 
 /* 执行动作 */
 switch(action){

@@ -27,6 +27,12 @@ var version = "1.0.0";
 var updateNumber = 0;
 
 /**
+ * 构建用途：开发测试 - dev；正式发布 - prod
+ * @type {string}
+ */
+var buildTarget = "dev";
+
+/**
  * view的js源码文件的文件名
  * @type {string}
  */
@@ -78,11 +84,38 @@ var setVersion = function(_version, _updateNumber){
  * @returns {string}
  */
 var getVersion = function(){
-	var withUpdateNumber = typeof updateNumber === "number" && updateNumber > 0;
-	if(!withUpdateNumber)
-		return version;
+	var f = function(){
+		var withUpdateNumber = typeof updateNumber === "number" && updateNumber > 0;
+		if(!withUpdateNumber)
+			return version;
 
-	return version + ".update" + updateNumber;
+		return version + ".update" + updateNumber;
+	};
+
+	if("dev" === buildTarget){
+		return f() + ".dev";
+	}else{
+		return f();
+	}
+};
+
+/**
+ * 设置构建用途
+ * @param {Boolean} [asProductionEnv=false] 是否作为 正式发布
+ */
+var setBuildTargetAsProductionEnv = function(asProductionEnv){
+	if(arguments.length < 1)
+		asProductionEnv = false;
+
+	buildTarget = !!asProductionEnv? "prod": "dev";
+};
+
+/**
+ * 获取构建用途
+ * @returns {string} dev - 开发测试；prod - 正式发布
+ */
+var getBuildTarget = function(){
+	return buildTarget;
 };
 
 /**
@@ -135,7 +168,11 @@ var getMinifiedCssFileName = function(){
  * @returns {string}
  */
 var getPluginInfo = function(){
-	return '/**\n * View.js v' + getVersion() + '\n * author: Billy, wmjhappy_ok@126.com\n * license: MIT\n * \n * -- ' + utils.date.formatDate(new Date(), 'yyyy-MM-dd HH:mm') + '\n */';
+	var info = '\n * View.js v' + getVersion() + '\n * author: Billy, wmjhappy_ok@126.com\n * license: MIT\n * \n * -- ' + utils.date.formatDate(new Date(), 'yyyy-MM-dd HH:mm') + '\n */';
+	if("dev" === buildTarget)
+		info = "\n * This version is built for test only, we do not recommend you use it in production environment.\n" + info;
+	info = "/**" + info;
+	return info;
 };
 
 /**
@@ -305,6 +342,8 @@ var execCmd_minAndZip = function(){
 
 module.exports = {
 	setVersion: setVersion,
+	setBuildTargetAsProductionEnv: setBuildTargetAsProductionEnv,
+	getBuildTarget: getBuildTarget,
 
 	execCmd_generateSourceFile: execCmd_generateSourceFile,
 	execCmd_generateMinifiedFile: execCmd_generateMinifiedFile,
