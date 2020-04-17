@@ -17,11 +17,9 @@ if('--updateNumber' === version){
 }
 
 var buf = Buffer.from(new Array(1024)), len;
-while(utils.string.isEmptyString(version)){
-	process.stdout.write("[必填] 请输入版本号（如 1.0.0）：");
-	len = fs.readSync(process.stdin.fd, buf, 0, buf.length, 0);
-	version = buf.toString("utf8", 0, len).trim();
-}
+process.stdout.write("[选填] 请输入版本号（如 1.0.0）：");
+len = fs.readSync(process.stdin.fd, buf, 0, buf.length, 0);
+version = buf.toString("utf8", 0, len).trim();
 if(utils.string.isEmptyString(updateNumber) || isNaN(updateNumber = Number(updateNumber))){
 	process.stdout.write("[选填] 请输入更新序号：");
 	len = fs.readSync(process.stdin.fd, buf, 0, buf.length, 0);
@@ -34,6 +32,8 @@ if(utils.string.isEmptyString(buildTarget)){
 }
 
 /* 设置版本号 */
+if(utils.string.isEmptyString(version))
+	version = "newest";
 if(!utils.string.isEmptyString(updateNumber)){
 	lib.setVersion(version);
 }else{
