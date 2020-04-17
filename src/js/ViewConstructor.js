@@ -26,6 +26,13 @@ View(function(toolbox){
 
 		var domElement = null;
 		var domElements = document.querySelectorAll("[" + viewAttribute.attr$view + "=true]");
+		var arr = [];
+		for(var i = 0; i < domElements.length; i++)
+			arr.push(domElements[i]);
+		domElements = document.querySelectorAll("[" + viewAttribute.attr$viewId + "]:not([" + viewAttribute.attr$view + "=true])");
+		for(var i = 0; i < domElements.length; i++)
+			arr.push(domElements[i]);
+		domElements = arr;
 		if(0 === domElements.length || (function(){
 			for(var i = 0; i < domElements.length; i++){
 				var ele = domElements[i];
