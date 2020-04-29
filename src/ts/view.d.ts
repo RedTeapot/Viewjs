@@ -90,6 +90,8 @@ interface ViewClass{
 	getLayoutAction(): Function;
 
 	hasParameter(name: string): boolean;
+	getParameter(): null | Object;
+	getParameter(name: string): any;
 	getParameter(name: string): any;
 	seekParameter(name: string, ifRetrieveFromContext?: boolean): any | null;
 
