@@ -348,6 +348,7 @@ View(function(toolbox){
 			viewParameter.clearViewParameters(targetViewId, targetViewNamespace);
 
 			var keyForParamsAutoSavedToContext = viewParameter.keyForParamsAutoSavedToContext;
+			var ifSaveParamsToContext = targetView.getIfAutoSaveParamsToContext();
 
 			if(isBack){
 				if(viewParameter.hasParameters(viewRepresentation.PSVIEW_BACK, "")){
@@ -357,8 +358,11 @@ View(function(toolbox){
 					viewParameter.setViewParameters(targetViewId, targetViewNamespace, _params);
 					viewParameter.clearViewParameters(viewRepresentation.PSVIEW_BACK, "");
 
-					if(null != _params && typeof _params === "object" && targetView.getIfAutoSaveParamsToContext())
-						targetView.context.set(keyForParamsAutoSavedToContext, _params);
+					if(ifSaveParamsToContext){
+						if(null != _params && typeof _params === "object")
+							targetView.context.set(keyForParamsAutoSavedToContext, _params);
+					}else
+						targetView.context.remove(keyForParamsAutoSavedToContext);
 				}
 			}else if(isForward){
 				if(viewParameter.hasParameters(viewRepresentation.PSVIEW_FORWARD, "")){
@@ -368,14 +372,20 @@ View(function(toolbox){
 					viewParameter.setViewParameters(targetViewId, targetViewNamespace, viewParameter.getParameters(viewRepresentation.PSVIEW_FORWARD, ""));
 					viewParameter.clearViewParameters(viewRepresentation.PSVIEW_FORWARD, "");
 
-					if(null != _params && typeof _params === "object" && targetView.getIfAutoSaveParamsToContext())
-						targetView.context.set(keyForParamsAutoSavedToContext, _params);
+					if(ifSaveParamsToContext){
+						if(null != _params && typeof _params === "object")
+							targetView.context.set(keyForParamsAutoSavedToContext, _params);
+					}else
+						targetView.context.remove(keyForParamsAutoSavedToContext);
 				}
 			}else{
 				viewParameter.setViewParameters(targetViewId, targetViewNamespace, params);
 
-				if(null != params && typeof params === "object" && targetView.getIfAutoSaveParamsToContext())
-					targetView.context.set(keyForParamsAutoSavedToContext, params);
+				if(ifSaveParamsToContext){
+					if(null != params && typeof params === "object")
+						targetView.context.set(keyForParamsAutoSavedToContext, params);
+				}else
+					targetView.context.remove(keyForParamsAutoSavedToContext);
 			}
 
 			var viewInstanceEventData = {
