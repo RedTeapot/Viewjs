@@ -879,7 +879,12 @@ View(function(toolbox){
 			return View;
 		}
 
-		document.title = documentTitle = title;
+		documentTitle = title;
+
+		var activeView = View.getActiveView();
+		if(null == activeView || util.isEmptyString(activeView.getTitle(), true))
+			document.title = documentTitle;
+
 		return View;
 	};
 
