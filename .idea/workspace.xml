@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="14ed39e3-f4fc-42c4-b75d-b3c5bc2c830e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/ViewConstructor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/ViewConstructor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/util.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/view.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/view.d.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,11 +11,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="5" />
-    <option name="width" value="1922" />
-    <option name="height" value="1047" />
   </component>
   <component name="ProjectId" id="1UKGmKoRXKTIozjb1AYBtSPpc8Q" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -36,7 +28,7 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="MTConfigurable" />
-    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2018.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.3.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -53,6 +45,18 @@
       <recent name="G:\代码仓库\js\view\docs\web\www\demo\view-namespace\1" />
       <recent name="G:\代码仓库\js\view\docs\web\www\demo\fallback-view\1" />
     </key>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -166,6 +170,20 @@
       <workItem from="1585143661014" duration="1018000" />
       <workItem from="1585276409672" duration="4050000" />
       <workItem from="1585314242636" duration="2691000" />
+      <workItem from="1587085461267" duration="50000" />
+      <workItem from="1587088115991" duration="28000" />
+      <workItem from="1587088426049" duration="2334000" />
+      <workItem from="1587455914885" duration="262000" />
+      <workItem from="1588139789257" duration="618000" />
+      <workItem from="1588224553908" duration="1000" />
+      <workItem from="1588225140071" duration="179000" />
+      <workItem from="1588226660574" duration="47000" />
+      <workItem from="1588657577892" duration="389000" />
+      <workItem from="1589263633158" duration="211000" />
+      <workItem from="1589264308794" duration="699000" />
+      <workItem from="1589349938989" duration="546000" />
+      <workItem from="1589423164628" duration="813000" />
+      <workItem from="1589515828863" duration="506000" />
     </task>
     <servers />
   </component>
@@ -209,10 +227,10 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="628" y="275" width="664" height="490" key="find.popup" timestamp="1585279876989">
+    <state x="628" y="275" width="664" height="490" key="find.popup" timestamp="1589516029954">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="628" y="275" width="664" height="490" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1585279876989" />
+    <state x="628" y="275" width="664" height="490" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1589516029954" />
   </component>
   <component name="masterDetails">
     <states>

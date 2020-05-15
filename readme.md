@@ -1,8 +1,9 @@
 ## 概述
 
 View.js 是一款运行在浏览器中的，Web 单页应用的开发框架。
-与其它框架不同，View.js 并不需要 Npm，开发者可以像开发传统的多页应用一样，继续使用熟悉的 Web 知识轻松开发单页应用。
-网址：http://view-js.com
+与其它框架不同，View.js 并不需要构建。开发者引入 View.js 后立即可以着手进行单页应用的功能开发。
+
+官网地址：http://view-js.com
 
 ## 特性
 - 事件驱动式开发
@@ -11,6 +12,7 @@ View.js 是一款运行在浏览器中的，Web 单页应用的开发框架。
 - 任意类型的参数传递
 - 自定义场景化布局
 - 格式化日志输出
+- 支持IE9
 
 ## 下载
 https://github.com/RedTeapot/Viewjs/releases
