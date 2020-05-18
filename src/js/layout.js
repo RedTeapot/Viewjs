@@ -29,7 +29,7 @@ View(function(toolbox){
 	 */
 	var getViewContainerObj = function(){
 		var obj = docEle.querySelector("[" + attr$view_container + "]");
-		return obj || document.body;
+		return obj || document.body || docEle;
 	};
 
 	/**

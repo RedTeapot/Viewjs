@@ -296,5 +296,11 @@ declare class View{
 
 	static beforeInit(callback: Function): View;
 	static ready(callback: Function): View;
+
+	/**
+	 * @deprecated
+	 */
 	static setInitializer(initializer: (init: Function) => void, execTime?: string): View;
+
+	static init(): View;
 }

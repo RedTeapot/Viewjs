@@ -1,5 +1,7 @@
 View(function(toolbox){
 	toolbox.set("viewAttribute", {
+		attr$view_auto_init: "data-view-auto-init",
+
 		attr$viewId: "data-view-id",
 		attr$view_name: "data-view-name",
 		attr$view_group: "data-view-group",

@@ -933,7 +933,7 @@ View(function(toolbox){
 
 		/* 如果已经初始化，则不再执行，立即返回 */
 		if(isViewInitialized){
-			globalLogger.warn("View.js is initialized already");
+			globalLogger.error("View.js is initialized already");
 			return View;
 		}
 
@@ -975,7 +975,9 @@ View(function(toolbox){
 	 */
 	View.setInitializer = function(initializer, execTime){
 		if(typeof initializer !== "function")
-			return;
+			return View;
+
+		globalLogger.warn("This method is deprecated, please use 'data-view-auto-init' attribute and 'View.init()' method instead");
 
 		var dftExecTime = "domready";
 		if(arguments.length < 2)
@@ -991,8 +993,10 @@ View(function(toolbox){
 
 		if(!isViewInitialized && "rightnow" === execTime){
 			globalLogger.info("Calling specified view initializer right now");
-			initializer(init);
+			viewInitializer(init);
 		}
+
+		return View;
 	};
 
 	/**
@@ -1129,6 +1133,12 @@ View(function(toolbox){
 		}
 	};
 	var init = function(){
+		if(isViewInitialized){
+			globalLogger.error("View.js was initialized already");
+			return;
+		}
+
+
 		markViewToBeInitialized();
 
 		/* 暂存浏览器标题 */
@@ -1464,14 +1474,28 @@ View(function(toolbox){
 	};
 
 	/**
-	 * 即使文档已经就绪，也不自动后自行初始化动作。否则，对于“通过ajax异步加载view.js”的场景，将无法执行自定义的初始化器。
+	 * 执行初始化动作。如果已经初始化，则不再重复执行
+	 * @returns {View}
+	 */
+	View.init = function(){
+		init();
+		return View;
+	};
+
+	/**
+	 * 即使文档已经就绪，也不自动执行初始化动作。否则，对于“通过ajax异步加载view.js”的场景，将无法执行自定义的初始化器。
 	 * 对于该场景，开发者可以借助View.setInitializer方法手动执行初始化操作。例如：
 	 * View.setInitializer(function(init){init();});
 	 */
 	document.addEventListener("DOMContentLoaded", function(){
 		if(null == viewInitializer){
-			globalLogger.info("Initializing View.js automatically");
-			init();
+			/* 判断是否需要自动执行初始化动作 */
+			var autoInitStr = View.getViewContainerDomElement().getAttribute(viewAttribute.attr$view_auto_init);
+			var ifDoNotAutoInit = null !== autoInitStr && "false" === autoInitStr.trim().toLowerCase();
+			if(!ifDoNotAutoInit){
+				globalLogger.info("Initializing View.js automatically");
+				init();
+			}
 		}else if("domready" === viewInitializerExecTime){
 			globalLogger.info("Calling specified View.js initializer");
 			viewInitializer(init);
