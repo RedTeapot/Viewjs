@@ -34,9 +34,15 @@ View(function(toolbox){
 
 	/**
 	 * @callback ViewSwitchInterceptor 视图切换拦截器
-	 * @param {ViewSwitchMeta} 视图切换信息
+	 * @param {ViewSwitchMeta} meta 视图切换信息
 	 * @returns {Boolean} true - 继续执行后续拦截器或跳转动作；false - 终止后续拦截器或跳转动作的执行
 	 */
+
+	 /**
+	  * @callback ViewDataFetchAcction 视图渲染所需数据的获取方法
+	  * @param {Function} resolve 数据获取成功后要执行的方法
+	  * @param {Function} reject 数据获取失败时要执行的方法
+	  */
 
 	var
 		/**

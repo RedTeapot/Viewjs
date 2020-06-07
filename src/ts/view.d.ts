@@ -112,8 +112,8 @@ interface ViewClass{
 	setFallbackViewId(fallbackViewId: string): ViewClass;
 	getFallbackView(): ViewClass | null;
 
-	setDataFetchAction(action: Function): ViewClass;
-	getDataFetchAction(): Function | null;
+	setDataFetchAction(action: (resolve: Function, reject: Function) => void): ViewClass;
+	getDataFetchAction(): (resolve: Function, reject: Function) => void | null;
 	fetchData(): Promise<any> | ViewThenable;
 
 	addTimer(timerHandle: Function, timerInterval: Number): ViewClass;

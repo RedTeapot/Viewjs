@@ -508,7 +508,7 @@ View(function(toolbox){
 
 		/**
 		 * 设置视图渲染所需要数据的获取方法
-		 * @param {Function} action 获取方法
+		 * @param {ViewDataFetchAcction} action 获取方法
 		 * @returns {View}
 		 */
 		this.setDataFetchAction = function(action){
@@ -522,7 +522,7 @@ View(function(toolbox){
 
 		/**
 		 * 获取设置的视图渲染所需要数据的获取方法
-		 * @returns {null|Function}
+		 * @returns {null|ViewDataFetchAcction}
 		 */
 		this.getDataFetchAction = function(){
 			return dataFetchAction;
