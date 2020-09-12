@@ -226,6 +226,35 @@ declare class View{
 	static checkIfBrowserHistorySupportsPushPopAction(): boolean;
 	static getViewContainerDomElement<E extends Element = Element>(): E;
 
+	static setResolver(
+		resolver: (
+			viewId: string,
+			viewNamespace: string,
+			resolve: (view: ViewClass) => void,
+			reject: (reason: any) => void
+		) => void
+	): View;
+	static getResolver(): (
+		viewId: string,
+		viewNamespace: string,
+		resolve: (view: ViewClass) => void,
+		reject: (reason: any) => void
+	) => void;
+	static resolve(
+		viewId: string,
+		viewNamespace: string,
+		onresolve: (view: ViewClass) => void,
+		onreject: (reason: any) => void
+	): View;
+	static newResolver1(
+		viewFileLocator: (viewId: string, viewNamespace: string) => string
+	): (
+		viewId: string,
+		viewNamespace: string,
+		resolve: (view: ViewClass) => void,
+		reject: (reason: any) => void
+	) => void;
+
 	static find<E extends Element = Element>(selector: string): E;
 	static find<E extends Element = Element>(rootObj: Element, selector: string): E;
 	static findAll<E extends Element = Element>(selector: string): NodeListOf<E>;

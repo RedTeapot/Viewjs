@@ -214,6 +214,28 @@ View(function(toolbox){
 	})();
 
 	/**
+	 * 根据给定的URL获取对应的目录位置
+	 * @param {String} url url。/a/abc -> /a/； http://a.com/abc/ -> http://a.com/abc/
+	 */
+	var getURLFolder = function(url){
+		if(/\/$/.test(url))
+			return url;
+
+		var r = /(?<!(?:http|https|ftp):\/?)\//gi, tmp, lastMatch = null;
+		while((tmp = r.exec(url)) != null)
+			lastMatch = tmp;
+
+		if(null == lastMatch){
+			if(/^(?:http|https|ftp):/i.test(url))
+				return url + "/";
+			else
+				return "/";
+		}
+
+		return url.substring(0, lastMatch.index + 1);
+	};
+
+	/**
 	 * 获取元素的运行时样式
 	 * @param {HTMLElement} obj 要获取样式的元素
 	 * @returns {*}
@@ -453,6 +475,35 @@ View(function(toolbox){
 		};
 	};
 
+	/**
+	 * 异步加载文件内容
+	 * @param {String} url 目标文件路径
+	 * @param {Object} [ops] 控制选项
+	 * @param {Function} [ops.onsuccess] 加载成功时要执行的回调方法
+	 * @param {Function} [ops.onerror] 加载失败时要执行的回调方法
+	 * @param {Function} [ops.oncomplete] 加载完成时要执行的回调方法
+	 */
+	var getFile = function(url, ops){
+		ops = ops || {};
+
+		var xhr = new XMLHttpRequest();
+		xhr.open("GET", url);
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+		xhr.onreadystatechange = function(){
+			if(this.readyState !== 4)
+				return;
+
+			ops.oncomplete && ops.oncomplete(this.responseText, this.status);
+
+			if(this.status === 200){
+				ops.onsuccess && ops.onsuccess.call(window, this.responseText);
+			}else
+				ops.onerror && ops.onerror.call(window, this.responseText, this.status);
+		};
+		xhr.send();
+	};
+
 
 	toolbox.set("util", {
 		setDftValue: setDftValue,
@@ -467,10 +518,12 @@ View(function(toolbox){
 		randomString: randomString,
 		xEncodeURIComponent: xEncodeURIComponent,
 		getUniqueString: getUniqueString,
+		getURLFolder: getURLFolder,
 		getComputedStyle: getComputedStyle,
 		parseParams: parseParams,
 		blurInputs: blurInputs,
 		isPromiseSupported: isPromiseSupported,
+		getFile: getFile,
 
 		hasClass: hasClass,
 		addClass: addClass,

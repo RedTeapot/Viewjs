@@ -38,11 +38,36 @@ View(function(toolbox){
 	 * @returns {Boolean} true - 继续执行后续拦截器或跳转动作；false - 终止后续拦截器或跳转动作的执行
 	 */
 
-	 /**
-	  * @callback ViewDataFetchAcction 视图渲染所需数据的获取方法
-	  * @param {Function} resolve 数据获取成功后要执行的方法
-	  * @param {Function} reject 数据获取失败时要执行的方法
-	  */
+	/**
+	 * @callback ViewDataFetchAction 视图渲染所需数据的获取方法
+	 * @param {Function} resolve 数据获取成功后要执行的方法
+	 * @param {Function} reject 数据获取失败时要执行的方法
+	 */
+
+	/**
+	 * @callback ViewResolver_resolve 视图解析器 - 解析成功时要执行的方法
+	 * @param {View} 视图实例
+	 */
+
+	/**
+	 * @callback ViewResolver_reject 视图解析器 - 解析失败时要执行的方法
+	 * @param {*} 失败描述
+	 */
+
+	/**
+	 * @callback ViewResolver 视图解析器
+	 * @param {String} viewId 视图ID
+	 * @param {String} viewNamespace 视图命名空间
+	 * @param {ViewResolver_resolve} resolve 通知 View.js 解析成功的回调方法
+	 * @param {ViewResolver_reject} reject 通知 View.js 解析失败的回调方法
+	 */
+
+	/**
+	 * @callback ViewFileLocator 视图单文件定位器
+	 * @param {String} viewId 视图ID
+	 * @param {String} viewNamespace 视图命名空间
+	 * @returns {String} 视图单文件位置
+	 */
 
 	var
 		/**
@@ -61,9 +86,34 @@ View(function(toolbox){
 		 * 捕获到的文档标题，用于在视图离开时恢复显示文档的初始标题
 		 * @type {String}
 		 */
-		documentTitle = document.title;
+		documentTitle = document.title,
+
+		/**
+		 * 视图解析器
+		 * @type {Function|null}
+		 */
+	    viewResolver = null,
+
+		/**
+		 * 默认的视图解析器
+		 * @type {ViewResolver}
+		 */
+	    defaultViewResolver = function(viewId, viewNamespace, resolve, reject){
+	    	try{
+	    		resolve(View.ofId(viewId, viewNamespace));
+		    }catch(e){
+	    		reject(e);
+		    }
+	    };
 
 	var
+
+		/**
+		 * 完成初始化了的视图列表
+		 * @type {View[]}
+		 */
+		initedViews = [],
+
 		/**
 		 * 视图是否已经被初始化
 		 * @type {boolean}
@@ -134,8 +184,6 @@ View(function(toolbox){
 		viewInitializerExecTime;
 
 
-
-
 	/**
 	 * 启用事件驱动机制
 	 * 事件 beforechange：视图切换前触发
@@ -190,7 +238,7 @@ View(function(toolbox){
 	/**
 	 * 添加视图跳转拦截器
 	 * @param {ViewSwitchInterceptor} interceptor 拦截器
-	 * @return {View}
+	 * @returns {View}
 	 */
 	View.addSwitchInterceptor = function(interceptor){
 		if(typeof interceptor !== "function")
@@ -204,10 +252,190 @@ View(function(toolbox){
 
 	/**
 	 * 获取已添加的视图跳转拦截器
-	 * @return {ViewSwitchInterceptor[]}
+	 * @returns {ViewSwitchInterceptor[]}
 	 */
 	View.getSwitchInterceptors = function(){
 		return viewSwitchInterceptors.concat();
+	};
+
+	/**
+	 * 设置视图实例解析器
+	 * @param {ViewResolver} resolver 解析器
+	 * @returns {View}
+	 */
+	View.setResolver = function(resolver){
+		if(typeof resolver !== "function")
+			throw new Error("Invalid argument, typeof 'Function' is required");
+
+		viewResolver = resolver;
+		return View;
+	};
+
+	/**
+	 * 获取设置的视图实例解析器
+	 * @returns {ViewResolver} 解析器
+	 */
+	View.getResolver = function(){
+		return viewResolver;
+	};
+
+	/**
+	 * 解析给定ID对应的视图，并在解析成功/失败时执行对应的回调方法
+	 * @param {String} viewId 要解析的目标视图ID
+	 * @param {Function|String} [viewNamespaceOrOnresolve] 要解析的目标视图命名空间 或 视图解析成功后要执行的回调方法
+	 * @param {ViewResolver_resolve} onresolve 视图解析成功后要执行的回调方法
+	 * @param {ViewResolver_reject} onreject 视图解析成功后要执行的回调方法
+	 * @returns {View}
+	 */
+	View.resolve = function(viewId, viewNamespaceOrOnresolve, onresolve, onreject){
+		var viewNamespace = viewNamespaceOrOnresolve;
+		if(typeof viewNamespaceOrOnresolve === "function"){/* resolve(viewId, onresolve, onreject) */
+			onreject = onresolve;
+			onresolve = viewNamespaceOrOnresolve;
+			viewNamespace = viewNamespaceOrOnresolve = viewInternalVariable.defaultNamespace;
+		}
+
+		var resolver = viewResolver || defaultViewResolver;
+		resolver(viewId, viewNamespace,function(view){
+			if(typeof onresolve === "function")
+				onresolve(view);
+		}, function(err){
+			if(typeof onreject === "function")
+				onreject(err);
+		});
+
+		return View;
+	};
+
+	/**
+	 * 预置的视图解析器1
+	 * @param {ViewFileLocator} viewFileLocator 视图单文件的定位器
+	 * @returns {ViewResolver}
+	 */
+	View.newResolver1 = function(viewFileLocator){
+		if(typeof viewFileLocator !== "function")
+			viewFileLocator = function(viewId, viewNamespace){
+				return "views/" + viewId + "@" + viewNamespace + ".view.html";
+			};
+
+		return function(viewId, viewNamespace, resolve, reject){
+			try{
+				resolve(View.ofId(viewId, viewNamespace));
+				return;
+			}catch(e){}
+
+			var viewFileLocation = viewFileLocator(viewId, viewNamespace);
+			var tmpObj = document.createElement("a");
+			tmpObj.setAttribute("href", viewFileLocation);
+			viewFileLocation = tmpObj.href;
+			var viewFolderPath = util.getURLFolder(viewFileLocation);
+			util.getFile(viewFileLocation, {
+				onsuccess: function(responseText){
+					var tmpObj = document.createElement("div");
+					tmpObj.innerHTML = responseText;
+
+					var markupObj = tmpObj.querySelector("view"),
+						styleLinkObjObjs = tmpObj.querySelectorAll("link[rel=stylesheet]"),
+						styleObjs = tmpObj.querySelectorAll("style"),
+						scriptObjs = tmpObj.querySelectorAll("script");
+
+					if(null == markupObj){
+						reject("No template found in '" + viewFileLocation + "'");
+						return;
+					}
+
+					if(markupObj.children.length === 0){
+						reject("No view dom element defined within template in '" + viewFileLocation + "'");
+						return;
+					}
+
+					/* template 下只能有一个元素，即为视图骨架对应的DOM元素 */
+					if(markupObj.children.length > 1){
+						reject("Template contains multiple root element in '" + viewFileLocation + "'");
+						return;
+					}
+
+					/* 视图ID */
+					var _viewId = viewInternalVariable.getPotentialViewId(markupObj.children[0]);
+					if(null == _viewId || "" === _viewId){
+						reject("No view id defined in '" + viewFileLocation + "'");
+						return;
+					}
+
+					if(viewId !== _viewId)
+						globalLogger.error("View id: '{}' defined in dom element is not the same as resolving view id: '{}' in '{}'", _viewId, viewId, viewFileLocation);
+
+					/* 将视图DOM骨架追加到视图容器中 */
+					var viewObj = markupObj.children[0];
+					View.getViewContainerDomElement().appendChild(viewObj);
+
+					/* 将样式追加至文档中 */
+					for(var i = 0; i < styleLinkObjObjs.length; i++){
+						var obj = document.createElement("link");
+						obj.rel = "stylesheet";
+						var href = styleLinkObjObjs[i].getAttribute("href");
+						obj.href = /^(?:http|https|ftp):\/\//i.test(href)? href: (viewFolderPath + href);
+						document.head.appendChild(obj);
+					}
+					for(var i = 0; i < styleObjs.length; i++)
+						document.head.appendChild(styleObjs[i]);
+
+					/* 初始化视图骨架 */
+					initViewObj(viewObj);
+
+					var runScripts = 0;
+					var resolveViewIfAllTheScriptsHaveBeenRun = function(){
+						if(runScripts === scriptObjs.length)
+							resolve(View.ofId(viewId, viewNamespace));
+					};
+
+					/* 运行视图脚本 */
+					resolveViewIfAllTheScriptsHaveBeenRun();
+					for(var i = 0; i < scriptObjs.length; i++){
+						var scriptObj = scriptObjs[i];
+						var isInline = null == scriptObj.src || "" === scriptObj.src.trim();
+						var inlineContent = scriptObj.innerHTML.trim();
+
+						if(isInline){
+							try{
+								runScripts++, eval(inlineContent);
+							}catch(e){
+								globalLogger.error("Error occurred while executing view script in '{}'", viewFileLocation);
+								console.error(e);
+							}
+						}else{
+							/* .view 文件允许以相对路径的方式引用脚本 */
+							var scriptSrc = scriptObj.getAttribute("src");
+							scriptSrc = /^(?:http|https|ftp):\/\//i.test(scriptSrc)? scriptSrc: (viewFolderPath + scriptSrc);
+							(function(scriptSrc){
+								util.getFile(scriptSrc, {
+									onsuccess: function(scriptContent){
+										if("" !== scriptContent){
+											try{
+												eval(scriptContent);
+											}catch(e){
+												globalLogger.error("Error occurred while executing view script: '{}' load by '{}'", scriptSrc, viewFileLocation);
+												console.error(e);
+											}
+										}
+
+										runScripts++, resolveViewIfAllTheScriptsHaveBeenRun();
+									},
+									onerror: function(responseText, status){
+										runScripts++, resolveViewIfAllTheScriptsHaveBeenRun();
+										globalLogger.error("Fail to load script: {} from {}. Http status: {}, response: {}", scriptSrc, viewFileLocation, status, responseText);
+									}
+								});
+							})(scriptSrc);
+						}
+					}
+				},
+				onerror: function(responseText, status){
+					var error = "Fail to load " + viewFileLocation + ". Http status: " + status + ", response: " + responseText;
+					reject(error);
+				}
+			});
+		};
 	};
 
 	/**
@@ -250,7 +478,7 @@ View(function(toolbox){
 	 * 查找给定ID对应的视图实例，如果不存在则创建，否则返回已经存在的实例
 	 * @param {String} id 视图编号
 	 * @param {String} [namespace=defaultNamespace] 视图隶属的命名空间
-	 * @return {View}
+	 * @returns {View}
 	 */
 	View.ofId = function(id, namespace){
 		if(arguments.length < 2 || util.isEmptyString(namespace, true))
@@ -275,7 +503,7 @@ View(function(toolbox){
 	 * 判断指定ID的视图是否存在
 	 * @param {String} id 视图ID
 	 * @param {String} [namespace=defaultNamespace] 视图隶属的命名空间
-	 * @return {Boolean}
+	 * @returns {Boolean}
 	 */
 	View.ifExists = function(id, namespace){
 		if(arguments.length < 2 || util.isEmptyString(namespace, true))
@@ -315,7 +543,7 @@ View(function(toolbox){
 
 	/**
 	 * 列举所有的视图群组名称
-	 * @return {String[]}
+	 * @returns {String[]}
 	 */
 	View.listAllGroups = function(){
 		globalLogger.warn("This method is deprecated, please use 'View.listAllViewNames()' instead");
@@ -326,7 +554,7 @@ View(function(toolbox){
 	 * 设置指定ID的视图为默认视图
 	 * @param {String} viewId 视图ID
 	 * @param {String} [namespace=defaultNamespace] 视图隶属的命名空间
-	 * @return {View}
+	 * @returns {View}
 	 */
 	View.setAsDefault = function(viewId, namespace){
 		if(arguments.length < 2 || util.isEmptyString(namespace, true))
@@ -388,7 +616,7 @@ View(function(toolbox){
 	/**
 	 * 设置视图默认是否可以直接访问
 	 * @param {Boolean} accessible 是否可以直接访问
-	 * @return {View}
+	 * @returns {View}
 	 */
 	View.setIsDirectlyAccessible = function(accessible){
 		View.getViewContainerDomElement().setAttribute(viewAttribute.attr$view_directly_accessible, String(!!accessible).toLowerCase());
@@ -422,7 +650,7 @@ View(function(toolbox){
 
 	/**
 	 * 获取当前的活动视图。如果没有视图处于活动状态，则返回null
-	 * @return {View|null}
+	 * @returns {View|null}
 	 */
 	View.getActiveView = function(){
 		var viewInstances = viewInternalVariable.listAllViews();
@@ -435,7 +663,7 @@ View(function(toolbox){
 
 	/**
 	 * 获取默认视图。如果没有默认视图，则返回null
-	 * @return {View|null}
+	 * @returns {View|null}
 	 */
 	View.getDefaultView = function(){
 		var viewInstances = viewInternalVariable.listAllViews();
@@ -449,7 +677,7 @@ View(function(toolbox){
 	/**
 	 * 设置视图切换动画
 	 * @param {Function} animationFunction 视图切换动画
-	 * @return {View}
+	 * @returns {View}
 	 */
 	View.setSwitchAnimation = function(animationFunction){
 		if(!(animationFunction instanceof Function))
@@ -462,7 +690,7 @@ View(function(toolbox){
 
 	/**
 	 * 获取设置的视图切换动画
-	 * @return {Function} 视图切换动画
+	 * @returns {Function} 视图切换动画
 	 */
 	View.getSwitchAnimation = function(){
 		return viewInternalVariable.viewSwitchAnimation;
@@ -973,6 +1201,52 @@ View(function(toolbox){
 	};
 
 	/**
+	 * 初始化给定的视图骨架DOM元素
+	 * @param {HTMLElement} viewObj 视图骨架DOM元素
+	 */
+	var initViewObj = function(viewObj){
+		var namespace = viewObj.getAttribute(viewAttribute.attr$view_namespace);
+		if(util.isEmptyString(namespace, true)){
+			namespace = viewInternalVariable.defaultNamespace;
+			viewObj.setAttribute(viewAttribute.attr$view_namespace, namespace);
+		}
+
+
+		var defaultView = View.getDefaultView();
+		var viewId = viewInternalVariable.getPotentialViewId(viewObj);
+
+		/* 定义视图 */
+		var view = View.ofId(viewId, namespace);
+		if(initedViews.indexOf(view) !== -1){
+			globalLogger.warn("Multiple view of id: '{}' within namespace: '{}' exists", view.id, view.namespace);
+			return;
+		}
+		initedViews.push(view);
+
+		viewObj.setAttribute(viewAttribute.attr$view, "true");
+
+		/* 去除可能存在的激活状态 */
+		util.removeClass(viewObj, "active");
+
+		/* 添加样式类 */
+		util.addClass(viewObj, "view");
+
+		/* 识别、设置默认视图 */
+		if(view.isDefault()){
+			if(view !== defaultView){/* 多个默认视图同时存在时，以最早出现的准 */
+				viewObj.removeAttribute(viewAttribute.attr$view_default);
+				globalLogger.warn("Default view exits already. View id: '{}', namespace: '{}'", defaultView.id, defaultView.namespace);
+			}
+		}
+
+		/* 视图标题自动设置 */
+		view.on("enter", function(){
+			var specifiedTitle = viewObj.getAttribute(viewAttribute.attr$view_title);
+			document.title = null == specifiedTitle? documentTitle: specifiedTitle;
+		});
+	};
+
+	/**
 	 * 设置视图初始化器
 	 * @param {Function} initializer 初始化器
 	 * @param {Function} initializer#init 执行初始化
@@ -1169,37 +1443,8 @@ View(function(toolbox){
 
 		/* 扫描文档，遍历定义视图 */
 		var viewObjs = viewInternalVariable.getViewDomElements();
-		var initedViews = [];
-		[].forEach.call(viewObjs, function(viewObj){
-			var namespace = viewObj.getAttribute(viewAttribute.attr$view_namespace);
-			if(util.isEmptyString(namespace, true)){
-				namespace = viewInternalVariable.defaultNamespace;
-				viewObj.setAttribute(viewAttribute.attr$view_namespace, namespace);
-			}
-
-			var viewId = viewInternalVariable.getPotentialViewId(viewObj);
-
-			/* 定义视图 */
-			var view = View.ofId(viewId, namespace);
-			if(initedViews.indexOf(view) !== -1){
-				globalLogger.warn("Multiple view of id: '{}' within namespace: '{}' exists", view.id, view.namespace);
-				return;
-			}
-			initedViews.push(view);
-
-			/* 去除可能存在的激活状态 */
-			util.removeClass(viewObj, "active");
-
-			/* 添加样式类 */
-			util.addClass(viewObj, "view");
-
-
-			/* 视图标题自动设置 */
-			view.on("enter", function(){
-				var specifiedTitle = viewObj.getAttribute(viewAttribute.attr$view_title);
-				document.title = null == specifiedTitle? documentTitle: specifiedTitle;
-			});
-		});
+		for(var i = 0; i < viewObjs.length; i++)
+			initViewObj(viewObjs[i]);
 
 		/* 默认视图 */
 		var dftViewObj = null;
